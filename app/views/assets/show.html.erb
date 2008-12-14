@@ -1,0 +1,28 @@
+<p>
+  <b>Name:</b>
+  <%=h @asset.name %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%=h @asset.category.name %>
+</p>
+
+<p>
+  <b>PictureUri:</b>
+  <%=h @asset.pictureUri %>
+</p>
+
+<p>
+  <b>Unitaryprice:</b>
+  <%=h @asset.unitaryPrice %>
+</p>
+
+<p>
+  <b>Floatprice:</b>
+  <%=h @asset.floatPrice %>
+</p>
+
+
+<%= link_to 'Edit', edit_asset_path(@asset) %> |
+<%= link_to 'Back', assets_path %>

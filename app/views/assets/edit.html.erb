@@ -1,0 +1,32 @@
+<h1>Editing asset</h1>
+
+<% form_for(@asset) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :category %><br />
+    <%= f.text_field :category %>
+  </p>
+  <p>
+    <%= f.label :pictureUri %><br />
+    <%= f.text_field :pictureUri %>
+  </p>
+  <p>
+    <%= f.label :unitaryPrice %><br />
+    <%= f.text_field :unitaryPrice %>
+  </p>
+  <p>
+    <%= f.label :floatPrice %><br />
+    <%= f.check_box :floatPrice %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @asset %> |
+<%= link_to 'Back', assets_path %>
