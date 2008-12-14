@@ -1,0 +1,20 @@
+<h1>Editing guild</h1>
+
+<% form_for(@guild) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :pictureUri %><br />
+    <%= f.text_field :pictureUri %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @guild %> |
+<%= link_to 'Back', guilds_path %>

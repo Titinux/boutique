@@ -1,0 +1,22 @@
+<h1>Listing guilds</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Pictureuri</th>
+  </tr>
+
+<% for guild in @guilds %>
+  <tr>
+    <td><%=h guild.name %></td>
+    <td><%=h guild.pictureUri %></td>
+    <td><%= link_to 'Show', guild %></td>
+    <td><%= link_to 'Edit', edit_guild_path(guild) %></td>
+    <td><%= link_to 'Destroy', guild, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New guild', new_guild_path %>

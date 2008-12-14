@@ -1,0 +1,13 @@
+<p>
+  <b>Name:</b>
+  <%=h @guild.name %>
+</p>
+
+<p>
+  <b>Pictureuri:</b>
+  <%=h @guild.pictureUri %>
+</p>
+
+
+<%= link_to 'Edit', edit_guild_path(@guild) %> |
+<%= link_to 'Back', guilds_path %>
