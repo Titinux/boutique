@@ -1,11 +1,11 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  name: MyString
-  guild: 
-  admin: false
+Bagu:
+  name: Bagu
+  guild: Marchands_d_hyze
+  admin: true
 
-two:
-  name: MyString
-  guild: 
-  admin: false
+Juanita:
+  name: Juanita
+  guild: Marchands_d_hyze
+  admin: true

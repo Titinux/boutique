@@ -14,7 +14,7 @@ class OrderLinesControllerTest < ActionController::TestCase
 
   test "should create order_line" do
     assert_difference('OrderLine.count') do
-      post :create, :order_line => { }
+      post :create, :order_line => { :order => orders(:two), :asset => assets(:Frene), :quantity => 100 }
     end
 
     assert_redirected_to order_line_path(assigns(:order_line))
@@ -31,7 +31,7 @@ class OrderLinesControllerTest < ActionController::TestCase
   end
 
   test "should update order_line" do
-    put :update, :id => order_lines(:one).id, :order_line => { }
+    put :update, :id => order_lines(:one).id, :order_line => { :order => orders(:two), :asset => assets(:Fer), :quantity => 200}
     assert_redirected_to order_line_path(assigns(:order_line))
   end
 

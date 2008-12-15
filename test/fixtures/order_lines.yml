@@ -1,11 +1,16 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  order: 
-  asset: 
-  quantity: 1
+  order: one
+  asset: Frene
+  quantity: 100
 
 two:
-  order: 
-  asset: 
-  quantity: 1
+  order: one
+  asset: Noyer
+  quantity: 500
+  
+three:
+  order: two
+  asset: Fer
+  quantity: 1700

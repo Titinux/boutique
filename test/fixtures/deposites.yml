@@ -1,11 +1,16 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  user: 
-  asset: 
-  quantity: 1
+  user: Bagu
+  asset: Fer
+  quantity: 12000
 
 two:
-  user: 
-  asset: 
-  quantity: 1
+  user: Juanita
+  asset: Frene
+  quantity: 1800
+  
+three:
+  user: Juanita
+  asset: Noyer
+  quantity: 2700

@@ -1,15 +1,22 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  name: MyString
-  category: 
-  uri: MyString
+Frene:
+  name: Frêne
+  category: Bois
+  pictureUri: 
   unitaryPrice: 9.99
   floatPrice: false
 
-two:
+Noyer:
   name: MyString
-  category: 
-  uri: MyString
+  category: Bois
+  pictureUri: MyString
   unitaryPrice: 9.99
   floatPrice: false
+
+Fer:
+  name: Fer
+  category: Minerai
+  pictureUri:
+  unitaryPrice: 0
+  floatPrice: true
