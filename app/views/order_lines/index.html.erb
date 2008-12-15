@@ -3,14 +3,14 @@
 <table>
   <tr>
     <th>Order</th>
-    <th>Asset.name</th>
+    <th>Asset</th>
     <th>Quantity</th>
   </tr>
 
 <% for order_line in @order_lines %>
   <tr>
     <td><%=h order_line.order %></td>
-    <td><%=h order_line.asset %></td>
+    <td><%=h order_line.asset.name %></td>
     <td><%=h order_line.quantity %></td>
     <td><%= link_to 'Show', order_line %></td>
     <td><%= link_to 'Edit', edit_order_line_path(order_line) %></td>
