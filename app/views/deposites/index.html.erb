@@ -1,0 +1,24 @@
+<h1>Listing deposites</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Asset</th>
+    <th>Quantity</th>
+  </tr>
+
+<% for deposite in @deposites %>
+  <tr>
+    <td><%=h deposite.user.name %></td>
+    <td><%=h deposite.asset.name %></td>
+    <td><%=h deposite.quantity %></td>
+    <td><%= link_to 'Show', deposite %></td>
+    <td><%= link_to 'Edit', edit_deposite_path(deposite) %></td>
+    <td><%= link_to 'Destroy', deposite, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New deposite', new_deposite_path %>

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081215001236) do
+ActiveRecord::Schema.define(:version => 20081215002523) do
 
   create_table "assets", :force => true do |t|
     t.string   "name",         :limit => 25,                                                 :null => false
@@ -51,8 +51,8 @@ ActiveRecord::Schema.define(:version => 20081215001236) do
   end
 
   create_table "orders", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "state"
+    t.integer  "user_id",    :null => false
+    t.integer  "state",      :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

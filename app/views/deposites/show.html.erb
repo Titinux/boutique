@@ -1,0 +1,18 @@
+<p>
+  <b>User:</b>
+  <%=h @deposite.user.name %>
+</p>
+
+<p>
+  <b>Asset:</b>
+  <%=h @deposite.asset.name %>
+</p>
+
+<p>
+  <b>Quantity:</b>
+  <%=h @deposite.quantity %>
+</p>
+
+
+<%= link_to 'Edit', edit_deposite_path(@deposite) %> |
+<%= link_to 'Back', deposites_path %>
