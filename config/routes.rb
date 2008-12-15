@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :order_lines
+
+  map.resources :orders
+
   map.resources :users
 
   map.resources :guilds
