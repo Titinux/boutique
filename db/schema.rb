@@ -58,11 +58,13 @@ ActiveRecord::Schema.define(:version => 20081215002523) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "name"
-    t.integer  "guild_id"
-    t.boolean  "admin"
+    t.string   "name",       :limit => 25,                    :null => false
+    t.integer  "guild_id",                                    :null => false
+    t.boolean  "admin",                    :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "users", ["name"], :name => "index_users_on_name", :unique => true
 
 end
