@@ -8,7 +8,7 @@
 
 <% for order in @orders %>
   <tr>
-    <td><%=h order.user %></td>
+    <td><%=h order.user.name %></td>
     <td><%=h order.state %></td>
     <td><%= link_to 'Show', order %></td>
     <td><%= link_to 'Edit', edit_order_path(order) %></td>
