@@ -6,6 +6,8 @@ ActionController::Routing::Routes.draw do |map|
     
     admin.resources :categories
     admin.resources :assets
+    
+    admin.resources :orders
   end
   
   map.resources :deposites
