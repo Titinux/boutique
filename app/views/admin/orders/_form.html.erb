@@ -1,0 +1,13 @@
+<%= f.error_messages %>
+
+<p>
+  <%= f.label :user %><br />
+  <%= f.collection_select(:user_id, User.find(:all), :id, :name) %>
+</p>
+<p>
+  <%= f.label :state %><br />
+  <%= f.text_field :state %>
+</p>
+<p>
+  <%= f.submit bt_name %>
+</p>
