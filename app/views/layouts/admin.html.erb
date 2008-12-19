@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Boutique</title>
+  <%= stylesheet_link_tag 'scaffold' %>
+</head>
+<body>
+
+<h1>Admin Panel</h1>
+
+<% div_for :side_bar do %>
+	<%= link_to 'Guilds', admin_guilds_path %>
+<% end %>
+
+<% div_for :main_part do %>
+	<p style="color: green"><%= flash[:notice] %></p>
+
+  <%= yield %>
+<% end %>
+
+</body>
+</html>
