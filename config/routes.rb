@@ -2,6 +2,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.namespace :admin do |admin|
     admin.resources :guilds
+    admin.resources :users
   end
   
   map.resources :deposites
