@@ -1,6 +1,6 @@
 <h1>Editing asset</h1>
 
-<% form_for(@asset) do |f| %>
+<% form_for([:admin, @asset]) do |f| %>
   <%= f.error_messages %>
 
   <p>
@@ -9,7 +9,7 @@
   </p>
   <p>
     <%= f.label :category %><br />
-    <%= f.text_field :category %>
+    <%= f.collection_select(:category_id, Category.find(:all), :id, :name) %>
   </p>
   <p>
     <%= f.label :pictureUri %><br />
@@ -28,5 +28,5 @@
   </p>
 <% end %>
 
-<%= link_to 'Show', @asset %> |
-<%= link_to 'Back', assets_path %>
+<%= link_to 'Show', [:admin, @asset] %> |
+<%= link_to 'Back', admin_assets_path %>
