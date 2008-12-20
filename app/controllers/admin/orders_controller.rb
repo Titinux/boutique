@@ -59,6 +59,8 @@ class Admin::OrdersController < ApplicationController
   # PUT /admin/orders/1
   # PUT /admin/orders/1.xml
   def update
+    params[:order][:existing_line_attributes] ||= {}
+    
     @order = Order.find(params[:id])
 
     respond_to do |format|

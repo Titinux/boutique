@@ -1,0 +1,10 @@
+<table id="order_lines">
+	<tr>
+		<th>Asset</th>
+		<th>Quantity</th>
+	</tr>
+	
+	<% order.orderLines.each do |orderLine| %>
+	  <%= render :partial => 'admin/order_lines/row', :locals => { :order_line => orderLine } %>
+	<% end %>
+</table>

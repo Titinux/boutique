@@ -1,0 +1,16 @@
+<tr class="order_line">
+	<% new_or_existing = form_line.new_record? ? 'new' : 'existing' -%>
+	<% prefix = "order[#{new_or_existing}_line_attributes][]" -%>
+
+	<% fields_for prefix, form_line do |line_form| -%>
+		<td>
+      <%= line_form.collection_select(:asset_id, Asset.find(:all), :id, :name) %>
+    </td>
+		<td>
+      <%= line_form.text_field :quantity %>
+    </td>
+		<td>
+		  <%= link_to_function 'Remove line' , "$(this).up('.order_line').remove()" %>
+		</td>
+	<% end -%>
+</tr>
