@@ -1,0 +1,10 @@
+<table>
+  <tr>
+    <th>Asset</th>
+    <th>Quantity</th>
+  </tr>
+	
+	<% deposites.each do |deposite| %>
+		<%= render :partial => 'admin/users/deposite_row', :locals => { :deposite => deposite } %>
+	<% end %>
+</table>

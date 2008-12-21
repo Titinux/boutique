@@ -1,0 +1,33 @@
+<%= f.error_messages %>
+
+<p>
+  <%= f.label :name %><br />
+  <%= f.text_field :name %>
+</p>
+<p>
+  <%= f.label :guild %><br />
+  <%= f.collection_select(:guild_id, Guild.find(:all), :id, :name) %>
+</p>
+<p>
+  <%= f.label :admin %><br />
+  <%= f.check_box :admin %>
+</p>
+
+<table id="deposites">
+	<tr>
+		<th>Asset</th>
+		<th>Quantity</th>
+	</tr>
+	
+	<% @user.deposites.each do |deposite| %>
+	  <%= render :partial => 'deposite_dform', :locals => { :deposite => deposite } %>
+	<% end %>
+</table>
+
+<p>
+<%= add_deposite_link 'Add a deposite' %>
+</p>
+
+<p>
+  <%= f.submit bt_name %>
+</p>

@@ -1,23 +1,7 @@
 <h1>New user</h1>
 
 <% form_for([:admin, @user]) do |f| %>
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :guild %><br />
-    <%= f.collection_select(:guild_id, Guild.find(:all), :id, :name) %>
-  </p>
-  <p>
-    <%= f.label :admin %><br />
-    <%= f.check_box :admin %>
-  </p>
-  <p>
-    <%= f.submit "Create" %>
-  </p>
+  <%= render :partial => 'form', :locals => { :f => f, :bt_name => 'Create' } %>
 <% end %>
 
 <%= link_to 'Back', admin_users_path %>

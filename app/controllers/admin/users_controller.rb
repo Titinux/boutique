@@ -59,6 +59,8 @@ class Admin::UsersController < ApplicationController
   # PUT /admin/users/1
   # PUT /admin/users/1.xml
   def update
+    params[:user][:existing_deposite_attributes] ||= {}
+    
     @user = User.find(params[:id])
 
     respond_to do |format|
