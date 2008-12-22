@@ -1,0 +1,11 @@
+<table>
+  <tr>
+    <th>Name</th>
+		<th>Parent category</th>
+		<th>PictureUri</th>
+  </tr>
+
+<% categories.each do |category| %>
+  <%= render :partial => 'admin/categories/row', :locals => { :category => category } %>
+<% end %>
+</table>

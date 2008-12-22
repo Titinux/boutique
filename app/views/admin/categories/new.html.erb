@@ -1,15 +1,7 @@
 <h1>New category</h1>
 
 <% form_for([:admin, @category]) do |f| %>
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.submit "Create" %>
-  </p>
+  <%= render :partial => 'form', :locals => { :f => f, :bt_name => 'Create' } %>
 <% end %>
 
 <%= link_to 'Back', admin_categories_path %>

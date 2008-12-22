@@ -1,0 +1,18 @@
+<%= f.error_messages %>
+
+<p>
+  <%= f.label :name %> :
+  <%= f.text_field :name %>
+</p>
+<p>
+	<%= f.label :parent %> :
+	<%= f.collection_select :parent_id, Category.find(:all), :id, :name, { :include_blank => true } %>
+</p>
+<p>
+	<%= f.label :pictureUri %> :
+	<%= f.text_field :pictureUri %>
+</p>
+
+<p>
+  <%= f.submit bt_name %>
+</p>

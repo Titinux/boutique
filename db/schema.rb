@@ -22,7 +22,9 @@ ActiveRecord::Schema.define(:version => 20081215002523) do
   end
 
   create_table "categories", :force => true do |t|
-    t.string   "name"
+    t.string   "name",       :limit => 25, :null => false
+    t.string   "pictureUri"
+    t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,0 +1,8 @@
+<tr>
+  <td><%=h category.name %></td>
+	<td><%=h(category.parent.name) if category.parent %></td>
+	<td><%=h category.pictureUri %></td>
+  <td><%= link_to 'Show', [:admin, category] %></td>
+  <td><%= link_to 'Edit', edit_admin_category_path(category) %></td>
+  <td><%= link_to 'Destroy', [:admin, category], :confirm => 'Are you sure?', :method => :delete %></td>
+</tr>

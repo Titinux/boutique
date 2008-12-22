@@ -1,19 +1,6 @@
 <h1>Listing categories</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-  </tr>
-
-<% for category in @categories %>
-  <tr>
-    <td><%=h category.name %></td>
-    <td><%= link_to 'Show', [:admin, category] %></td>
-    <td><%= link_to 'Edit', edit_admin_category_path(category) %></td>
-    <td><%= link_to 'Destroy', [:admin, category], :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+<%= render :partial => 'table', :locals => { :categories => @categories } %>
 
 <br />
 

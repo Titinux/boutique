@@ -1,15 +1,7 @@
 <h1>Editing category</h1>
 
 <% form_for([:admin, @category]) do |f| %>
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.submit "Update" %>
-  </p>
+  <%= render :partial => 'form', :locals => { :f => f, :bt_name => 'Update' } %>
 <% end %>
 
 <%= link_to 'Show', [:admin, @category] %> |
