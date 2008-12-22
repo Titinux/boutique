@@ -4,5 +4,5 @@
   <%= render :partial => 'form', :locals => { :f => f, :bt_name => 'Update' } %>
 <% end %>
 
-<%= link_to 'Show', @user %> |
+<%= link_to 'Show', [:admin, @user] %> |
 <%= link_to 'Back', admin_users_path %>
