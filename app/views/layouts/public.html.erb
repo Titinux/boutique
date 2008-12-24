@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Boutique</title>
+  <%= stylesheet_link_tag 'dispatch' %>
+	<%= javascript_include_tag :defaults %>
+</head>
+<body>
+
+<div id="header">
+	<p id="header_text">
+		Marchands d'Hyze's shop<br />
+		<%= image_tag 'global/blason.png' %>
+	</p>
+</div>
+
+<div id="topbar">
+	<ul>
+		<li><%= link_to 'Welcome page', welcome_path %></li>
+		<li><%= link_to 'Assets', categories_path %></li>
+		<li>I want order</li>
+		<li>About Marchands d'Hyze</li>
+	</ul>
+</div>
+
+<div id="center">
+	<div id="sidebar">
+		<%= yield :sidebar %>
+	</div>
+	
+	<div id="main_part">
+		<% if flash[:notice] -%>
+		  <p style="color: green"><%= flash[:notice] %></p>
+	  <% end -%>
+		
+	  <%= yield %>
+	</div>
+</div>
+
+<div id="footer">
+	<p>www.DOFUS.com (c) 2004 Ankama Studio . Tous droits réservés.</p>
+</div>
+
+</body>
+</html>

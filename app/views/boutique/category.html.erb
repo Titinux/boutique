@@ -1,0 +1,26 @@
+<% unless @category.nil? %>
+	<div id="category">
+		<div class="block">
+			<div class="block_header"><%= h @category.name %></div>
+			<div class="block_body">
+				<div id="assets">
+					<% unless @category.nil? %>
+						<div class="asset">
+								<% @category.assets.each do |asset| %>
+									<%= image_tag asset.pictureUri %><br />
+									<%= link_to asset.name, :asset => asset.id %>
+								<% end %>
+						</div>
+					<% end %>
+				</div>	
+				<hr class="spacer" />
+			</div>
+		</div>
+	</div>
+<% end %>
+
+<div id="categories">
+	<% @subCategories.each do |category| %>
+		<%= render :partial => 'subCategories', :locals => { :category => category } %>
+	<% end %>
+</div>

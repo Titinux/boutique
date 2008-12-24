@@ -1,0 +1,161 @@
+html {
+	background-color: #3f3720;
+}
+
+body {
+	background-color: #a19062;
+	
+	width: 800px;
+	margin: 0 auto 0 auto;
+	
+	padding: 10px;
+}
+
+hr.spacer {
+	visibility: hidden;
+	clear: both;
+}
+
+/* Header */
+#header {
+	background-image: url('/images/header/tribal.jpg');
+	background-repeat: no-repeat;
+	
+	height: 250px;
+	width: 800px;
+	margin: 0 auto 0 auto;
+}
+
+#header_text {
+	position: relative;
+	left: 400px;
+	top: 50px;
+	
+	width: 400px;
+	height: 150px;
+	
+	text-align: center;
+}
+
+/* Top bar */
+#topbar {
+	width: 800px;
+	height: 25px;
+	
+	font-family: Verdana, Arial;
+	font-size: 11px;
+	font-weight: bold;
+	color: #ffffff;
+	vertical-align: middle;
+	line-height: 25px;
+	
+	background-image: url('/images/global/cellpic1.gif');
+	background-repeat: repeat-x;
+}
+
+#topbar li {
+	float: left;
+	list-style: none;
+	
+	padding: 0px 5px 0 5px;
+}
+
+#topbar a {
+	color: #ffffff;
+	text-decoration: none;
+}
+
+#topbar a:hover {
+	color: #3f3720;
+}
+
+/* Center part */
+#center {
+	clear: both;
+	
+	padding: 20px 0 10px 0;
+}
+
+/* Main part*/
+#main_part {
+	width: 75%;
+}
+
+/* Side bar*/
+#sidebar {
+	width: 25%;
+	float: right;
+	
+	border-color: #696464;
+	border-style: solid;
+	border-width: 1px;
+	
+	-moz-border-radius: 20px;
+}
+
+/* Footer */
+#footer {
+	width: 800px;
+	margin: 0 auto 0 auto;
+	
+	clear: both;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #696464;
+	
+	-moz-border-radius: 20px;
+}
+
+/* Categories */
+#categories {
+	background-color: #ff0000;
+	width: 100%;
+}
+
+.block {
+}
+
+.block.mini {
+	width: 45%;
+	margin: 10px;
+	float: left;
+}
+
+.block_header {
+	background-image: url('/images/global/cellpic1.gif');
+	height: 25px;
+
+	-moz-border-radius-topright: 20px;
+	-moz-border-radius-topleft: 20px;
+	
+	color: #ffffff;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 25px;
+	font-weight: bold;
+	font-family: Verdana, Arial;
+	font-size: 11px;
+}
+
+.block_body {
+  border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-right-width: 1px;
+	border-top-width: 0px;
+	border-style: solid;
+	border-color: #696464;
+	
+	padding: 5px;
+	
+	-moz-border-radius-bottomright: 20px;
+	-moz-border-radius-bottomleft: 20px;
+
+	
+	
+}
+
+#assets {
+	width: 70px;
+	float: left;
+}
+
