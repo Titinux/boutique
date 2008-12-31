@@ -16,6 +16,8 @@ hr.spacer {
 	clear: both;
 }
 
+label:after {content:" : ";}
+
 /* Header */
 #header {
 	background-image: url('/images/header/tribal.jpg');

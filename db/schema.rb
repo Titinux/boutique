@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081215002523) do
+ActiveRecord::Schema.define(:version => 20081228161753) do
 
   create_table "assets", :force => true do |t|
     t.string   "name",         :limit => 25,                                                 :null => false
@@ -25,6 +25,22 @@ ActiveRecord::Schema.define(:version => 20081215002523) do
     t.string   "name",       :limit => 25, :null => false
     t.string   "pictureUri"
     t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "config_tree", :force => true do |t|
+    t.string   "name"
+    t.integer  "parent_id"
+    t.integer  "lft"
+    t.integer  "rgt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "config_values", :force => true do |t|
+    t.string   "name",           :null => false
+    t.integer  "config_tree_id", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

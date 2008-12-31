@@ -13,6 +13,8 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :assets
     
     admin.resources :orders
+    
+    admin.resources :config_tree
   end
   
   # Racine du site.
