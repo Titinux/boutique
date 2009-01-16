@@ -15,6 +15,8 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :orders
     
     admin.resources :config_tree
+    
+    admin.root :controller => :users, :action => 'index'
   end
   
   # Racine du site.
