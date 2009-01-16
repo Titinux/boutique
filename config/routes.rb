@@ -18,5 +18,5 @@ ActionController::Routing::Routes.draw do |map|
   end
   
   # Racine du site.
-  map.root :controller => 'boutique', :action => 'welcome', :conditions => { :method => :get }
+  map.root :welcome
 end
