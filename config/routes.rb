@@ -4,6 +4,8 @@ ActionController::Routing::Routes.draw do |map|
   map.welcome    'welcome',    :controller => 'boutique', :action => 'welcome',  :conditions => { :method => :get }
   map.categories 'categories', :controller => 'boutique', :action => 'category', :conditions => { :method => :get }
   
+  map.resources :cart, :collection => { :destroy_all => :delete }
+  
   # Partie admin du site.
   map.namespace :admin do |admin|
     admin.resources :guilds

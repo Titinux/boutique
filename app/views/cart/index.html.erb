@@ -1,0 +1,3 @@
+<%= render :partial => 'table', :locals => { :cart => @cart } %>
+
+<%= link_to 'Empty cart', destroy_all_cart_path, :method => :delete %>

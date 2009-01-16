@@ -1,0 +1,5 @@
+<table>
+	<% cart.each do |cart_line| %>
+		<tr><%= render :partial => 'row', :locals => { :cart_line => cart_line } %></tr>
+	<% end %>
+</table>
