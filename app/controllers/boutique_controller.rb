@@ -1,11 +1,12 @@
 class BoutiqueController < ApplicationController
   layout 'public'
   
-   # GET /boutique/welcome
+   # GET /welcome
   def welcome
     @categories = Category.find(:all)
   end
   
+  # GET /category
   def category
     if params[:cat]
       @category = Category.find(params[:cat])
