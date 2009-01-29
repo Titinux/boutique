@@ -30,14 +30,14 @@ ActiveRecord::Schema.define(:version => 20081231133941) do
   end
 
   create_table "config_tree", :force => true do |t|
-    t.string   "name"
+    t.string   "name",       :null => false
+    t.string   "form_kind"
+    t.string   "type"
     t.integer  "parent_id"
-    t.integer  "lft"
-    t.integer  "rgt"
+    t.integer  "lft",        :null => false
+    t.integer  "rgt",        :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "value"
-    t.string   "form_kind"
   end
 
   create_table "config_values", :force => true do |t|
@@ -88,9 +88,11 @@ ActiveRecord::Schema.define(:version => 20081231133941) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "users", :force => true do |t|
-    t.string   "name",       :limit => 25,                    :null => false
-    t.integer  "guild_id",                                    :null => false
-    t.boolean  "admin",                    :default => false, :null => false
+    t.string   "name",          :limit => 25,                    :null => false
+    t.integer  "guild_id",                                       :null => false
+    t.boolean  "admin",                       :default => false, :null => false
+    t.string   "password_salt"
+    t.string   "password_hash"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

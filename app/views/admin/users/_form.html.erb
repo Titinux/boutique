@@ -1,15 +1,19 @@
 <%= f.error_messages %>
 
 <p>
-  <%= f.label :name %><br />
+  <%= f.label :name %>
   <%= f.text_field :name %>
 </p>
 <p>
-  <%= f.label :guild %><br />
+	<%= f.label :password %>
+	<%= f.password_field :password %>
+</p>
+<p>
+  <%= f.label :guild %>
   <%= f.collection_select(:guild_id, Guild.find(:all), :id, :name) %>
 </p>
 <p>
-  <%= f.label :admin %><br />
+  <%= f.label :admin %>
   <%= f.check_box :admin %>
 </p>
 

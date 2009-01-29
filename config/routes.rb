@@ -6,6 +6,12 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :cart, :collection => { :destroy_all => :delete }
   
+  
+  map.autenticate  'autenticate',  :controller => 'user_session', :action => 'create', :conditions => { :method => :post }
+  map.login  'login',  :controller => 'user_session', :action => 'new', :conditions => { :method => :get }
+  map.logout 'logout', :controller => 'user_session', :action => 'destroy', :conditions => { :method => :delete }
+  map.user   'user', :controller => 'user_session', :action => "show", :conditions => { :method => :get }
+  
   # Partie admin du site.
   map.namespace :admin do |admin|
     admin.resources :guilds

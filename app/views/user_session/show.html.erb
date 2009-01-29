@@ -1,0 +1,28 @@
+<div class="block">
+	<div class="block_header">My personnal informations</div>
+	<div class="block_body">
+		<p>
+		  Username : 
+		  <%=h @user_session.user.name %>
+		</p>
+		<p>
+			Guildname :
+			<%=h @user_session.user.guild.name %>
+		</p>
+	</div>
+</div>
+
+<div class="block">
+	<div class="block_header">My pig money box</div>
+	<div class="block_body">
+		Amount : 0 kamas
+	</div>
+</div>
+
+<div class="block">
+	<div class="block_header">My deposites</div> 
+	<div class="block_body">
+		<%= render :partial => 'admin/deposites/table', :locals => { :deposites => @user_session.user.deposites } %>
+	</div>
+</div>
+

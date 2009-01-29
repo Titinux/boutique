@@ -13,6 +13,23 @@ class User < ActiveRecord::Base
   # Callbacks
   after_update :save_deposites
   
+  # Passwords can't be retrived
+  def password
+    ''
+  end
+  
+  # For a new password we generate salt and hash 
+  def password=(pass)
+    # Generate salt
+    salt = [Array.new(6){rand(256).chr}.join].pack("m").chomp
+    
+    self.password_salt, self.password_hash = salt, Digest::SHA256.hexdigest(pass + salt)
+  end
+  
+  def autenticate(password)
+    Digest::SHA256.hexdigest(password + self.password_salt) == self.password_hash
+  end
+  
   def new_deposite_attributes=(deposite_attributes)
     deposite_attributes.each do |attributes|
       deposites.build(attributes)

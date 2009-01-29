@@ -4,6 +4,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string     :name, :limit => 25, :null => false
       t.references :guild, :null => false
       t.boolean    :admin, :null => false, :default => false
+      t.string     :password_salt
+      t.string     :password_hash
 
       t.timestamps
     end

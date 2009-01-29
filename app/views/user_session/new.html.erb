@@ -1,0 +1,14 @@
+<% form_tag autenticate_path do %>
+	<p>
+		<%= label :user_session, :username %>
+		<%= text_field_tag :username %>
+	</p>
+	<p>
+		<%= label :user_session, :password %>
+		<%= password_field_tag :password %>
+	</p>
+	<p>
+		<%= button_to 'Login' %>
+	</p>
+<% end %>
+
