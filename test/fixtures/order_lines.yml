@@ -2,15 +2,15 @@
 
 one:
   order: one
-  asset: Frene
+  asset: Ash
   quantity: 100
 
 two:
   order: one
-  asset: Noyer
+  asset: Walnut
   quantity: 500
   
 three:
   order: two
-  asset: Fer
+  asset: Iron
   quantity: 1700

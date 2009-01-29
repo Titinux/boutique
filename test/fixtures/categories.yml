@@ -1,7 +1,10 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-Bois:
-  name: Bois
+Wood:
+  name: Wood
 
-Minerai:
-  name: Minerai
+Ore:
+  name: Ore
+
+Fish:
+  name: Fish

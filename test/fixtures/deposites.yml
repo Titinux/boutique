@@ -2,15 +2,15 @@
 
 one:
   user: Bagu
-  asset: Fer
+  asset: Iron
   quantity: 12000
 
 two:
   user: Juanita
-  asset: Frene
+  asset: Ash
   quantity: 1800
   
 three:
   user: Juanita
-  asset: Noyer
+  asset: Walnut
   quantity: 2700

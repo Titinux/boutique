@@ -4,8 +4,12 @@ Bagu:
   name: Bagu
   guild: Marchands_d_hyze
   admin: true
+  password_salt: U8FtZCAM
+  password_hash: 176f814608a295f49e17c29041b34609ccbb8aa27957e8e9bd8e940208d31ede
 
 Juanita:
   name: Juanita
   guild: Marchands_d_hyze
   admin: true
+  password_salt: 8HGrsdBj
+  password_hash: ba7e215749d08de6ed4d5d1d50740856908ba82d75c6297f849de3e5f8532e9e
