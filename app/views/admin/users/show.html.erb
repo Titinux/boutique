@@ -13,7 +13,7 @@
   <%=h @user.admin %>
 </p>
 
-<%= render :partial => 'admin/users/deposites_table', :locals => { :deposites => @user.deposites } %>
+<%= render :partial => 'admin/deposites/table', :locals => { :deposites => @user.deposites } %>
 
 <%= link_to 'Edit', edit_admin_user_path(@user) %> |
 <%= link_to 'Back', admin_users_path %>

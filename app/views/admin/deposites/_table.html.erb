@@ -1,0 +1,12 @@
+<table>
+  <tr>
+    <th>Asset</th>
+    <th>Quantity</th>
+  </tr>
+	
+	<% deposites.sort! {|a, b| a.asset.name <=> b.asset.name } %>
+	
+	<% deposites.each do |deposite| %>
+		<%= render :partial => 'admin/deposites/row', :locals => { :deposite => deposite } %>
+	<% end %>
+</table>
