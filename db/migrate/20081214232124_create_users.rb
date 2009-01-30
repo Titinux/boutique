@@ -2,6 +2,7 @@ class CreateUsers < ActiveRecord::Migration
   def self.up
     create_table :users do |t|
       t.string     :name, :limit => 25, :null => false
+      t.integer    :pigMoneyBox, :null => false, :default => 0 
       t.references :guild, :null => false
       t.boolean    :admin, :null => false, :default => false
       t.string     :password_salt

@@ -13,6 +13,10 @@
   <%= f.collection_select(:guild_id, Guild.find(:all), :id, :name) %>
 </p>
 <p>
+	<%= f.label :pigMoneyBox %>
+	<%= f.text_field :pigMoneyBox %>
+</p>
+<p>
   <%= f.label :admin %>
   <%= f.check_box :admin %>
 </p>

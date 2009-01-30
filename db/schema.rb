@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(:version => 20081231133941) do
 
   create_table "users", :force => true do |t|
     t.string   "name",          :limit => 25,                    :null => false
+    t.integer  "pigMoneyBox",                 :default => 0,     :null => false
     t.integer  "guild_id",                                       :null => false
     t.boolean  "admin",                       :default => false, :null => false
     t.string   "password_salt"
