@@ -20,6 +20,10 @@ class User < ActiveRecord::Base
   
   # For a new password we generate salt and hash 
   def password=(pass)
+    if pass.blank?
+      return
+    end
+    
     # Generate salt
     salt = [Array.new(6){rand(256).chr}.join].pack("m").chomp
     
