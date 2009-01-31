@@ -5,7 +5,7 @@
 
 <p>
   <b>State:</b>
-  <%=h @order.state %>
+  <%=h orderStatusHash[@order.state] %>
 </p>
 
 <%= render :partial => 'admin/order_lines/table', :locals => { :order => @order } %>

@@ -1,12 +1,12 @@
 <%= f.error_messages %>
 
 <p>
-  <%= f.label :user %><br />
+  <%= f.label :user %>
   <%= f.collection_select(:user_id, User.find(:all), :id, :name) %>
 </p>
 <p>
-  <%= f.label :state %><br />
-  <%= f.text_field :state %>
+  <%= f.label :state %>
+	<%= f.select :state, orderStatusHash.collect{|k, v| [v, k] } %>
 </p>
 
 <table id="order_lines">
