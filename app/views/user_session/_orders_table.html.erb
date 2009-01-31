@@ -1,0 +1,10 @@
+<table>
+  <tr>
+  	<th>Id</th>
+    <th>State</th>
+  </tr>
+	<% orders.each do |order| -%>
+		<%= render :partial => 'orders_row', :locals => { :order => order } %>
+	<% end -%>
+</table>
+

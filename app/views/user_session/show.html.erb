@@ -26,3 +26,9 @@
 	</div>
 </div>
 
+<div class="block">
+	<div class="block_header">My orders</div>
+	<div class="block_body">
+		<%= render :partial => 'orders_table', :locals => { :orders => @user_session.user.orders.ongoing } %>
+	</div>
+</div>

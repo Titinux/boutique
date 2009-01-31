@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   belongs_to :guild
   
   has_many :deposites
+  has_many :orders
   
   #Validations
   validates_length_of :name, :maximum => 25, :allow_blank => false

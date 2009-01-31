@@ -3,6 +3,8 @@ class Order < ActiveRecord::Base
   
   has_many :orderLines
   
+  named_scope :ongoing, :conditions => ["state < 4"]
+  
   # Callbacks
   after_update :save_lines
   
