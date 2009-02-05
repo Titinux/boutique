@@ -1,14 +1,9 @@
-html {
+html, body {
+	height: 100%;
+	margin: 0 auto;
+	padding: 0;
+	
 	background-color: #3f3720;
-}
-
-body {
-	background-color: #a19062;
-	
-	width: 800px;
-	margin: 0 auto 0 auto;
-	
-	padding: 10px;
 }
 
 hr.spacer {
@@ -18,14 +13,28 @@ hr.spacer {
 
 label:after {content:" : ";}
 
+/* Page */
+div#page {
+	width: 800px;
+	margin: 0 auto;
+	min-height: 100%;
+	position: relative;
+	
+	background-color: #a19062;
+}
+
 /* Header */
 #header {
 	background-image: url('/images/header/tribal.jpg');
 	background-repeat: no-repeat;
 	
 	height: 250px;
-	width: 800px;
-	margin: 0 auto 0 auto;
+	margin: 0;
+	padding: 0;
+}
+
+div#header :first-child {
+	margin: 0;
 }
 
 #header_text {
@@ -41,7 +50,6 @@ label:after {content:" : ";}
 
 /* Top bar */
 #topbar {
-	width: 800px;
 	height: 25px;
 	
 	font-family: Verdana, Arial;
@@ -53,6 +61,10 @@ label:after {content:" : ";}
 	
 	background-image: url('/images/global/cellpic1.gif');
 	background-repeat: repeat-x;
+}
+
+div#topbar :first-child {
+	margin: 0;
 }
 
 #topbar li {
@@ -75,12 +87,15 @@ label:after {content:" : ";}
 #center {
 	clear: both;
 	
-	padding: 20px 0 10px 0;
+	padding: 20px 10px 10px 10px;
 }
 
 /* Main part*/
 #main_part {
 	width: 75%;
+	
+	margin-bottom: 0;
+	padding-bottom: 4em;
 }
 
 /* Side bar*/
@@ -89,16 +104,18 @@ label:after {content:" : ";}
 	float: right;
 	
 	border-color: #696464;
-	border-style: solid;
-	border-width: 1px;
+	border-left-style: solid;
+	border-left-width: 1px;
 	
-	-moz-border-radius: 20px;
+	padding-left: 5px;
 }
 
 /* Footer */
 #footer {
-	width: 800px;
-	margin: 0 auto 0 auto;
+	position: absolute;
+	bottom: 10px;
+	width: 98%;
+	margin: 0 1% 0 1%;
 	
 	clear: both;
 	border-width: 1px;
@@ -108,13 +125,9 @@ label:after {content:" : ";}
 	-moz-border-radius: 20px;
 }
 
-/* Categories */
-#categories {
-	background-color: #ff0000;
-	width: 100%;
-}
-
+/* Blocks */
 .block {
+	margin: 10px 0 10px 0;
 }
 
 .block.mini {
@@ -151,13 +164,16 @@ label:after {content:" : ";}
 	
 	-moz-border-radius-bottomright: 20px;
 	-moz-border-radius-bottomleft: 20px;
-
-	
-	
 }
 
+/* Categories */
+#categories {
+	background-color: #ff0000;
+	width: 100%;
+}
+
+/* Assets */
 #assets {
 	width: 70px;
 	float: left;
 }
-
