@@ -1,3 +1,8 @@
 <%= render :partial => 'table', :locals => { :cart => @cart } %>
 
-<%= link_to 'Empty cart', destroy_all_cart_path, :method => :delete %>
+<% unless @cart.empty? %>
+	<%= link_to 'Empty cart', destroy_all_cart_path, :method => :delete %>
+	<%= link_to 'Make an order', to_order_cart_path, :method => :put %>
+<% else %>
+	Your cart is empty !
+<% end %>

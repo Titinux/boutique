@@ -46,4 +46,17 @@ class Cart
       cart_item[0] == asset_id
     end
   end
+  
+  def to_order(user_session)
+    return false if !user_session.login? || cart.empty?
+    
+    order = Order.new({ :user => user_session.user, :state => 0})
+    
+    cart.each do |cart_line|
+      orderLine = order.orderLines.build({:asset_id => cart_line[0], :quantity => cart_line[1], :unitaryPrice => 0})
+    end
+    
+    order.save
+    empty_cart
+  end
 end

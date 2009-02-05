@@ -96,14 +96,29 @@ class CartController < ApplicationController
     end
   end
   
-  # DELETE /cart
-  # DELETE /cart.xml
+  # DELETE /cart/destroy_all
+  # DELETE /cart/destroy_all.xml
   def destroy_all
     cart_session.empty_cart
     
     respond_to do |format|
       format.html { redirect_to(cart_index_url) }
       format.xml  { head :ok }
+    end
+  end
+  
+  # PUT /cart/to_order
+  # PUT /cart/to_order
+  def to_order
+    respond_to do |format|
+      if cart_session.to_order(user_session)
+        flash[:notice] = 'Order was succes created.'
+        format.html { redirect_to(cart_index_path) }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "index" }
+        format.xml  { render :xml => cart_session.errors, :status => :unprocessable_entity }
+      end
     end
   end
 end

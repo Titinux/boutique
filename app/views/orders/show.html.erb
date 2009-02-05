@@ -1,0 +1,19 @@
+<div class="block">
+	<div class="block_header">Order n°<%= @order.id%></div>
+	<div class="block_body">
+		<p>
+			State : <%= orderStatusHash[@order.state] %>
+			<% if @order.state == 1 %>
+				--> <%= link_to orderActionHash[1], validateEstimate_path(@order), :method => :put %>
+			<% end %>
+		</p>
+		<p>Amount :</p>
+		
+		<div class="block">
+			<div class="block_header">Details</div>
+			<div class="block_body">
+				<%= render :partial => 'table', :locals => { :order => @order } %>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,2 +1,5 @@
-<td><%=h order.id %></td>
-<td><%=h orderStatusHash[order.state] %></td>
+<tr>
+	<td><%=h order.id %></td>
+	<td><%=h orderStatusHash[order.state] %></td>
+	<td><%= link_to 'Show', order_path(order) %></td>
+</tr>

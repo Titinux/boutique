@@ -1,14 +1,19 @@
 <p>
-  <b>User:</b>
+  User:
   <%=h @order.user.name %>
 </p>
 
 <p>
-  <b>State:</b>
+  State:
   <%=h orderStatusHash[@order.state] %>
 </p>
 
 <%= render :partial => 'admin/order_lines/table', :locals => { :order => @order } %>
+
+<p>
+	Total amount :
+	<%=h @order.totalAmount %>
+</p>
 
 <%= link_to 'Edit', edit_admin_order_path(@order) %> |
 <%= link_to 'Back', admin_orders_path %>

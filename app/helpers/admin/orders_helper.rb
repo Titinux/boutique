@@ -12,4 +12,25 @@ module Admin::OrdersHelper
          3, 'Waiting delivery',
          4, 'Achieved']
   end
+  
+  def orderActionHash
+    Hash[0, 'Create estimate',
+         1, 'Accept this estimate',
+         2, 'Order prepared',
+         3, 'Order delivered']
+    
+  end  
+  
+  
+  def action(order, adminSide = false)
+    if adminSide
+     
+      
+    else  
+      if order.state == 1
+        link_to 
+      end
+    end
+    
+  end
 end

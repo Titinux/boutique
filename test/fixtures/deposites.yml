@@ -6,11 +6,21 @@ one:
   quantity: 12000
 
 two:
+  user: Bagu
+  asset: Walnut
+  quantity: 10000
+
+three:
+  user: Bagu
+  asset: Ash
+  quantity: 1500
+
+four:
   user: Juanita
   asset: Ash
   quantity: 1800
   
-three:
+five:
   user: Juanita
   asset: Walnut
   quantity: 2700

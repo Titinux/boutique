@@ -2,6 +2,7 @@
   <td><%=h order.id %></td>
 	<td><%=h order.user.name %></td>
   <td><%=h orderStatusHash[order.state] %></td>
+	<td><%=h order.totalAmount %></td>
   <td><%= link_to 'Show', [:admin, order] %></td>
   <td><%= link_to 'Edit', edit_admin_order_path(order) %></td>
   <td><%= link_to 'Destroy', [:admin, order], :confirm => 'Are you sure?', :method => :delete %></td>

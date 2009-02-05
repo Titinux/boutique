@@ -4,13 +4,16 @@ one:
   order: one
   asset: Ash
   quantity: 100
+  unitaryPrice: 5
 
 two:
   order: one
   asset: Walnut
   quantity: 500
+  unitaryPrice: 10
   
 three:
   order: two
   asset: Iron
   quantity: 1700
+  unitaryPrice: 20
