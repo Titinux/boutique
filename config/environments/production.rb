@@ -3,6 +3,7 @@
 # The production environment is meant for finished, "live" apps.
 # Code is not reloaded between requests
 config.cache_classes = true
+config.cache_store = :mem_cache_store, '127.0.0.1:11211', { :namespace => 'Boutique' }
 
 # Enable threaded mode
 # config.threadsafe!
@@ -21,4 +22,11 @@ config.action_controller.perform_caching             = true
 # config.action_controller.asset_host                  = "http://assets.example.com"
 
 # Disable delivery errors, bad email addresses will be ignored
-# config.action_mailer.raise_delivery_errors = false
+config.action_mailer.raise_delivery_errors = false
+config.action_mailer.delivery_method = :smtp
+
+config.action_mailer.smtp_settings = {
+  :address => "mail.titinux.net",
+  :port => 25,
+  :domain => "boutique.hyze.bagu.biz"
+}
