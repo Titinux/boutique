@@ -98,9 +98,10 @@ Other instance methods added by this plugin include:
 * <tt>self_and_ancestors</tt> - array of all parents and self
 * <tt>siblings</tt> - array of all siblings (items sharing the same parent)
 * <tt>self_and_siblings</tt> - array of itself and all siblings
-* <tt>children_count</tt> - count of all nested children
+* <tt>children_count</tt> - count of all direct children
 * <tt>children</tt> - array of all immediate children
 * <tt>all_children</tt> - array of all children and nested children
+* <tt>all_children_count</tt> - count of all nested children
 * <tt>full_set</tt> - array of itself and all children and nested children
 * <tt>leaves</tt> - array of the children of this node who do not have children
 * <tt>leaves_count</tt> - the number of leaves

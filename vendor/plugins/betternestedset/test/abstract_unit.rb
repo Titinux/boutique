@@ -1,12 +1,6 @@
 ENV['RAILS_ENV'] = 'test'
 require File.expand_path(File.join(File.dirname(__FILE__), '../../../../config/environment.rb'))
 require 'test_help'
-require File.dirname(__FILE__) + '/../init'
-
-
-ActiveRecord::Base.class_eval do
-  include SymetrieCom::Acts::NestedSet
-end
 
 config = YAML::load(IO.read(File.dirname(__FILE__) + '/database.yml'))
 ActiveRecord::Base.logger = Logger.new(File.dirname(__FILE__) + '/debug.log')
