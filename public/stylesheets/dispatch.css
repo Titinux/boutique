@@ -173,7 +173,17 @@ div#topbar :first-child {
 }
 
 /* Assets */
-#assets {
-	width: 70px;
-	float: left;
+.asset {
+	float:left;
+	margin: 5px;
+	
+	min-height: 100px;
+	min-width: 175px;
+	
+	
+	border-style: solid;
+	border-width: thin;
+	border-color: #696464;
+	
+	text-align: center;
 }

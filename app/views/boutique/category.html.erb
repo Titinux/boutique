@@ -5,13 +5,15 @@
 			<div class="block_body">
 				<div id="assets">
 					<% unless @category.nil? %>
-						<div class="asset">
-								<% @category.assets.each do |asset| %>
-									<%= image_tag asset.pictureUri %><br />
-									<%= link_to asset.name, :asset => asset.id %>
+							<% @category.assets.each do |asset| %>
+								<div class="asset">
+									<% unless asset.pictureUri.blank? %>
+										<%= image_tag asset.pictureUri %><br />
+									<% end %>
+									<%= asset.name %><br />
 									<%= link_to '(add to cart)', new_cart_path(:asset_id => asset.id) %>
-								<% end %>
-						</div>
+								</div>
+							<% end %>
 					<% end %>
 				</div>	
 				<hr class="spacer" />
