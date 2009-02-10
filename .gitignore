@@ -1,3 +1,4 @@
 log/*
 .tmp_*
 tmp/*
+public/images

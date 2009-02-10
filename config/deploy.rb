@@ -22,6 +22,20 @@ namespace :deploy do
     production_db_config = "#{deploy_to}/config/production.database.yml"
     run "cp #{production_db_config} #{release_path}/config/database.yml"
   end
-
-  after "deploy:update_code" , "deploy:copy_database_configuration"
 end
+
+namespace :assets do
+  task :symlink, :roles => :app do
+    assets.create_dirs
+    run "rm -rf #{release_path}/public/images && ln -nfs #{shared_path}/images #{release_path}/public/images"
+  end
+
+  task :create_dirs, :roles => :app do
+    %w(index pictures).each do |name|
+      run "mkdir -p #{shared_path}/#{name}"
+    end
+  end
+end
+
+after "deploy:update_code" , "deploy:copy_database_configuration"
+after "deploy:update_code" , "assets:symlink"
