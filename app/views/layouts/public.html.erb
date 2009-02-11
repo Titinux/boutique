@@ -38,8 +38,16 @@
 		
 		<div id="main_part">
 			<% if flash[:notice] -%>
-			  <p style="color: green"><%= flash[:notice] %></p>
+			  <p class="flash notice"><%= flash[:notice] %></p>
 		  <% end -%>
+			
+			<% if flash[:warning] -%>
+				<p class="flash warning"><%= flash[:warning] %></p>
+			<% end -%>
+			
+			<% if flash[:error] -%>
+				<p class="flash error"><%= flash[:error] %></p>
+			<% end -%>
 			
 		  <%= yield %>
 		</div>

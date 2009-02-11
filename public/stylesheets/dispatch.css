@@ -125,6 +125,23 @@ div#topbar :first-child {
 	-moz-border-radius: 20px;
 }
 
+/* Flash */
+.flash {
+	font-weight: bold;
+}
+
+.flash.notice {
+	color : green;
+}
+
+.flash.warning {
+	color : orange;
+}
+
+.flash.error {
+	color: red;
+}
+
 /* Blocks */
 .block {
 	margin: 10px 0 10px 0;

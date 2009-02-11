@@ -4,8 +4,6 @@ class CartController < ApplicationController
   # GET /cart
   # GET /cart.xml
   def index
-    @cart = cart_session.cart
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @assets }
@@ -111,11 +109,14 @@ class CartController < ApplicationController
   # PUT /cart/to_order
   def to_order
     respond_to do |format|
-      if cart_session.to_order(user_session)
+      begin
+        cart_session.to_order(user_session)
+      
         flash[:notice] = 'Order was succes created.'
         format.html { redirect_to(cart_index_path) }
         format.xml  { head :ok }
-      else
+      rescue Exception => e
+        flash.now[:error] = e.message
         format.html { render :action => "index" }
         format.xml  { render :xml => cart_session.errors, :status => :unprocessable_entity }
       end

@@ -1,5 +1,7 @@
 <table>
 	<% cart.each do |cart_line| %>
+		<% flash.now[:warning] = 'Products with a quantity to 0 won\'t appear in the order.' if cart_line[1].to_i == 0 %>
+		
 		<tr><%= render :partial => 'row', :locals => { :cart_line => cart_line } %></tr>
 	<% end %>
 </table>

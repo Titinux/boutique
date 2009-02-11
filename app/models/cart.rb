@@ -48,7 +48,10 @@ class Cart
   end
   
   def to_order(user_session)
-    return false if !user_session.login? || cart.empty?
+    @cart.delete_if {|cartLine| cartLine[1].to_i < 1 }
+    
+    raise "You must be logged to make an order" unless user_session.login?
+    raise "It's impossible to make an empty order !" if cart.empty?
     
     order = Order.new({ :user => user_session.user, :state => 0})
     
