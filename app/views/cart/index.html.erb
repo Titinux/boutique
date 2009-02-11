@@ -1,8 +1,12 @@
 <%= render :partial => 'table', :locals => { :cart => @cart } %>
 
 <% unless @cart.empty? %>
-	<%= link_to 'Empty cart', destroy_all_cart_path, :method => :delete %>
-	<%= link_to 'Make an order', to_order_cart_path, :method => :put %>
+	<%= link_to 'Empty cart', destroy_all_cart_path, :method => :delete %> |
+	<% if user_session.login? %>
+		<%= link_to 'Make an order', to_order_cart_path, :method => :put %>
+	<% else %>
+		You have to log in to make an order.
+	<% end %>
 <% else %>
 	Your cart is empty !
 <% end %>
