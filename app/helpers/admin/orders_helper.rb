@@ -6,31 +6,22 @@ module Admin::OrdersHelper
   end
   
   def orderStatusHash
-    Hash[0, 'Waiting estimate',
-         1, 'Waiting estimate validation',
-         2, 'In preparation',
-         3, 'Waiting delivery',
-         4, 'Achieved']
+    Hash['WAIT_ESTIMATE',            'Waiting estimate',
+         'WAIT_ESTIMATE_VALIDATION', 'Waiting estimate validation',
+         'IN_PREPARATION',           'In preparation',
+         'WAIT_DELIVERY',            'Waiting delivery',
+         'ACHIEVED',                 'Achieved',
+         'ORDER_CANCELED',           'Order canceled',
+         'ERROR',                    'Error'
+        ]
   end
   
   def orderActionHash
-    Hash[0, 'Create estimate',
-         1, 'Accept this estimate',
-         2, 'Order prepared',
-         3, 'Order delivered']
-    
-  end  
-  
-  
-  def action(order, adminSide = false)
-    if adminSide
-     
-      
-    else  
-      if order.state == 1
-        link_to 
-      end
-    end
+    Hash['CREATE_ESTIMATE', 'Create estimate',
+         'ACCEPT_ESTIMATE', 'Accept this estimate',
+         'REFUSE_ESTIMATE', 'Refuse this estimate',
+         'ORDER_PREPARED',  'Order prepared',
+         'ORDER_DELIVERED', 'Order delivered']
     
   end
 end

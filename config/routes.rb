@@ -13,7 +13,7 @@ ActionController::Routing::Routes.draw do |map|
   map.user   'user', :controller => 'user_session', :action => "show", :conditions => { :method => :get }
   
   map.order 'order/:id', :controller => 'orders', :action => 'show', :conditions => { :method => :get }
-  map.validateEstimate 'validate_estimate/:id', :controller => 'orders', :action => 'update', :conditions => { :method => :put }
+  map.orderAction 'order_action/:id', :controller => 'orders', :action => 'update', :conditions =>{ :method => :put }
   
   # Partie admin du site.
   map.namespace :admin do |admin|

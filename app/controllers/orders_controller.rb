@@ -1,8 +1,8 @@
 class OrdersController < ApplicationController
   layout 'public'
   
-  # GET /admin/orders/1
-  # GET /admin/orders/1.xml
+  # GET /order/1
+  # GET /order/1.xml
   def show
     @order = Order.find(params[:id])
 
@@ -12,13 +12,13 @@ class OrdersController < ApplicationController
     end
   end
 
-  # PUT /validate_estimate/1
-  # PUT /validate_estimate/1.xml
+  # PUT /order_action/1
+  # PUT /order_action/1.xml
   def update
     @order = Order.find(params[:id])
     
     respond_to do |format|
-      if @order.nextStep(user_session.user) && @order.save
+      if @order.modifyState(params[:op]) && @order.save
         flash[:notice] = 'Estimate was successfully accepted.'
         format.html { render :action => 'show' }
         format.xml  { head :ok }

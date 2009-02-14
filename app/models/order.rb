@@ -32,14 +32,24 @@ class Order < ActiveRecord::Base
     end
   end
   
-  def nextStep(user)
-    return if self.state == 4
-    
-    if user.admin?
-      self.state =+ 1
-    elsif self.state == 1
-      self.state = 2
+  def modifyState(op)
+    case op
+      when 'ACCEPT_ESTIMATE'
+        if self.state == 'WAIT_ESTIMATE_VALIDATION'
+          self.state = 'IN_PREPARATION'
+        else
+          return false
+        end
+      
+      when 'REFUSE_ESTIMATE'
+        if self.state == 'WAIT_ESTIMATE_VALIDATION'
+          self.state = 'ORDER_CANCELED'
+        else
+          return false
+        end    
     end
+    
+    true
   end
   
   def totalAmount

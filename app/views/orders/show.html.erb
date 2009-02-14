@@ -3,9 +3,6 @@
 	<div class="block_body">
 		<p>
 			State : <%= orderStatusHash[@order.state] %>
-			<% if @order.state == 1 %>
-				--> <%= link_to orderActionHash[1], validateEstimate_path(@order), :method => :put %>
-			<% end %>
 		</p>
 		<p>Amount : <%= @order.totalAmount %></p>
 		
@@ -15,5 +12,10 @@
 				<%= render :partial => 'table', :locals => { :order => @order } %>
 			</div>
 		</div>
+	
+		<% if @order.state == 'WAIT_ESTIMATE_VALIDATION' %>
+			<%= link_to orderActionHash['ACCEPT_ESTIMATE'], orderAction_path(@order, :op => 'ACCEPT_ESTIMATE'), :method => :put %> | 
+			<%= link_to orderActionHash['REFUSE_ESTIMATE'], orderAction_path(@order, :op => 'REFUSE_ESTIMATE'), :method => :put %>
+		<% end %>
 	</div>
 </div>
