@@ -7,7 +7,7 @@
 				--> <%= link_to orderActionHash[1], validateEstimate_path(@order), :method => :put %>
 			<% end %>
 		</p>
-		<p>Amount :</p>
+		<p>Amount : <%= @order.totalAmount %></p>
 		
 		<div class="block">
 			<div class="block_header">Details</div>
