@@ -1,5 +1,5 @@
-<tr>
+<tr class="<%= cycle('even', 'odd')%>">
 	<td><%= order_line.asset.name %></td>
-	<td><%= order_line.quantity %></td>
-	<td><%= order_line.unitaryPrice %></td>
+	<td class="number"><%= order_line.quantity %></td>
+	<td class="currency"><%= order_line.unitaryPrice %></td>
 </tr>

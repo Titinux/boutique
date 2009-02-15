@@ -1,0 +1,13 @@
+<table>
+	<thead>
+  <tr>
+    <th>Name</th>
+    <th>Pictureuri</th>
+  </tr>
+	</thead>
+	<tbody>
+		<% guilds.each do |guild| %>
+		  <%= render :partial => 'admin/guilds/row', :locals => { :guild => guild } %>
+		<% end %>
+	</tbody>
+</table>

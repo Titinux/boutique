@@ -1,6 +1,5 @@
-<%= render :partial => 'table', :locals => { :cart => cart_session.cart } %>
-
 <% unless cart_session.cart.empty? %>
+	<%= render :partial => 'table', :locals => { :cart => cart_session.cart } %>
 	<%= link_to 'Empty cart', destroy_all_cart_path, :method => :delete %> |
 	<% if user_session.login? %>
 		<%= link_to 'Make an order', to_order_cart_path, :method => :put %>

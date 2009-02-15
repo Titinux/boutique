@@ -1,0 +1,12 @@
+<tr class="<%= cycle('even', 'odd')%>">
+  <td><%=h asset.name %></td>
+  <td><%=h asset.category.name %></td>
+  <td><%=h asset.pictureUri %></td>
+  <td class="currency"><%=h asset.unitaryPrice %></td>
+  <td><%=h asset.floatPrice %></td>
+  <td>
+  	<%= link_to 'Show', [:admin, asset] %> |
+  	<%= link_to 'Edit', edit_admin_asset_path(asset) %> |
+  	<%= link_to 'Destroy', [:admin, asset], :confirm => 'Are you sure?', :method => :delete %>
+	</td>
+</tr>

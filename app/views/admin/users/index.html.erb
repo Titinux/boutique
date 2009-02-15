@@ -1,25 +1,6 @@
 <h1>Listing users</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Guild</th>
-		<th>PigMoneyBox</th>
-    <th>Admin</th>
-  </tr>
-
-<% for user in @users %>
-  <tr>
-    <td><%=h user.name %></td>
-    <td><%=h user.guild.name %></td>
-		<td><%=h user.pigMoneyBox %></td>
-    <td><%=h user.admin %></td>
-    <td><%= link_to 'Show', [:admin, user] %></td>
-    <td><%= link_to 'Edit', edit_admin_user_path(user) %></td>
-    <td><%= link_to 'Destroy', [:admin, user], :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+<%= render :partial => 'table', :locals => { :users => @users } %>
 
 <br />
 

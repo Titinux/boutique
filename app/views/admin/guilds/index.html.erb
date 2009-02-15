@@ -1,21 +1,6 @@
 <h1>Listing guilds</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Pictureuri</th>
-  </tr>
-
-<% for guild in @guilds %>
-  <tr>
-    <td><%=h guild.name %></td>
-    <td><%=h guild.pictureUri %></td>
-    <td><%= link_to 'Show', [:admin, guild] %></td>
-    <td><%= link_to 'Edit', edit_admin_guild_path(guild) %></td>
-    <td><%= link_to 'Destroy', [:admin, guild], :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+<%= render :partial => 'table', :locals => { :guilds => @guilds } %>
 
 <br />
 

@@ -1,0 +1,15 @@
+<table>
+	<thead>
+	  <tr>
+	    <th>Name</th>
+	    <th>Guild</th>
+			<th>PigMoneyBox</th>
+	    <th>Admin</th>
+	  </tr>
+	</thead>
+	<tbody>
+		<% users.each do |user| %>
+		  <%= render :partial => 'admin/users/row', :locals => { :user => user } %>
+		<% end %>
+	</tbody>
+</table>

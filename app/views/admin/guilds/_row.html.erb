@@ -1,0 +1,9 @@
+<tr class="<%= cycle('even', 'odd')%>">
+  <td><%=h guild.name %></td>
+  <td><%=h guild.pictureUri %></td>
+  <td>
+  	<%= link_to 'Show', [:admin, guild] %> |
+  	<%= link_to 'Edit', edit_admin_guild_path(guild) %> |
+  	<%= link_to 'Destroy', [:admin, guild], :confirm => 'Are you sure?', :method => :delete %>
+	</td>
+</tr>

@@ -1,11 +1,17 @@
 <table>
-  <tr>
-  	<th>Id</th>
-    <th>State</th>
-		<th>Actions</th>
-  </tr>
-	<% orders.each do |order| -%>
-		<%= render :partial => 'orders_row', :locals => { :order => order } %>
-	<% end -%>
+  <col />
+	<col width="100%" />
+	<thead>
+		<tr>
+	  	<th>Id</th>
+	    <th>State</th>
+			<th>Actions</th>
+	  </tr>
+	</thead>
+	<tbody>
+		<% orders.each do |order| -%>
+			<%= render :partial => 'orders_row', :locals => { :order => order } %>
+		<% end -%>
+	</tbody>
 </table>
 

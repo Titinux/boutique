@@ -1,27 +1,6 @@
 <h1>Listing assets</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Category</th>
-    <th>PictureUri</th>
-    <th>Unitaryprice</th>
-    <th>Floatprice</th>
-  </tr>
-
-<% for asset in @assets %>
-  <tr>
-    <td><%=h asset.name %></td>
-    <td><%=h asset.category.name %></td>
-    <td><%=h asset.pictureUri %></td>
-    <td><%=h asset.unitaryPrice %></td>
-    <td><%=h asset.floatPrice %></td>
-    <td><%= link_to 'Show', [:admin, asset] %></td>
-    <td><%= link_to 'Edit', edit_admin_asset_path(asset) %></td>
-    <td><%= link_to 'Destroy', [:admin, asset], :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+<%= render :partial => 'table', :locals => { :assets => @assets } %>
 
 <br />
 

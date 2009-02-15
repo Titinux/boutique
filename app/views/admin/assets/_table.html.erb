@@ -1,0 +1,16 @@
+<table>
+	<thead>
+  <tr>
+    <th>Name</th>
+    <th>Category</th>
+    <th>PictureUri</th>
+    <th>Unitaryprice</th>
+    <th>Floatprice</th>
+  </tr>
+	</thead>
+	<tbody>
+		<% assets.each do |asset| %>
+		  <%= render :partial => 'admin/assets/row', :locals => { :asset => asset } %>
+		<% end %>
+	</tbody>
+</table>

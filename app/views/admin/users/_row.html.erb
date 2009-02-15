@@ -1,0 +1,11 @@
+<tr class="<%= cycle('even', 'odd')%>">
+  <td><%=h user.name %></td>
+  <td><%=h user.guild.name %></td>
+	<td class="currency"><%=h user.pigMoneyBox %></td>
+  <td><%=h user.admin %></td>
+  <td>
+  	<%= link_to 'Show', [:admin, user] %> |
+  	<%= link_to 'Edit', edit_admin_user_path(user) %> |
+  	<%= link_to 'Destroy', [:admin, user], :confirm => 'Are you sure?', :method => :delete %>
+	</td>
+</tr>

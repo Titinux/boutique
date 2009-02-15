@@ -183,6 +183,46 @@ div#topbar :first-child {
 	-moz-border-radius-bottomleft: 20px;
 }
 
+/* Tables */
+table {
+	border-collapse: collapse;
+	width: 90%;
+	margin: 0 auto;
+}
+
+th {
+	text-align: center;
+	padding-left: 20px;
+}
+
+table th:first-child {
+	padding-left: 0;
+}
+
+tr.even {
+	background-color: #77683c;
+}
+
+tr.odd {
+	
+}
+
+td {
+	padding-left: 20px;
+}
+
+tr td:first-child {
+	padding-left: 0px;
+}
+
+td.number {
+	text-align: right;
+}
+
+td.currency {
+	text-align: right;
+}
+
 /* Categories */
 #categories {
 	width: 100%;
