@@ -48,6 +48,7 @@ class UserSessionController < ApplicationController
   # DELETE /logout.xml
   def destroy
     user_session.logout
+    flash[:notice] = 'Thank you for visiting our shop, we hope to see you soon.'
     
     respond_to do |format|
       format.html { redirect_to(root_url) }
