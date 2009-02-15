@@ -1,7 +1,9 @@
 <% form_tag cart_index_path do %>
 	<%= label :cart_line, :quantity %>
-	<%= text_field_tag :quantity%>
+	<%= text_field_tag :quantity%><br />
 	
-	<%= hidden_field_tag :asset_id, @asset.id %>
-	<%= submit_tag 'create' %>
+	<%= hidden_field_tag :asset_id, @asset.id %><br />
+
+	<%= submit_tag 'Add to cart and continue shopping', :name => 'add_and_continue_shopping' %>
+	<%= submit_tag 'Add to cart and go to cart', :name => 'add_and_view_cart' %>
 <% end %>

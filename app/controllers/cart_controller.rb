@@ -55,8 +55,14 @@ class CartController < ApplicationController
       if @asset
         cart_session.add_line(@asset.id, params[:quantity])
         flash[:notice] = 'Asset was successfully added to cart.'
-        format.html { redirect_to(cart_index_path) }
-        format.xml  { render :xml => @asset, :status => :created, :location => @asset }
+        
+        if params[:add_and_continue_shopping].blank?
+          format.html { redirect_to(cart_index_path) }
+          format.xml  { render :xml => @asset, :status => :created, :location => @asset }
+        else
+          format.html { redirect_to(categories_path(:cat => @asset.category.id)) }
+          format.xml  { render :xml => @asset, :status => :created, :location => @asset }
+        end
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @asset.errors, :status => :unprocessable_entity }

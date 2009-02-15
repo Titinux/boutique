@@ -3,19 +3,13 @@
 		<div class="block">
 			<div class="block_header"><%= h @category.name %></div>
 			<div class="block_body">
-				<div id="assets">
-					<% unless @category.nil? %>
-							<% @category.assets.each do |asset| %>
-								<div class="asset">
-									<% unless asset.pictureUri.blank? %>
-										<%= image_tag asset.pictureUri %><br />
-									<% end %>
-									<%= asset.name %><br />
-									<%= link_to '(add to cart)', new_cart_path(:asset_id => asset.id) %>
-								</div>
-							<% end %>
-					<% end %>
-				</div>	
+				<% unless @category.parent.blank? %>
+					<p><%= link_to 'Go to parent category', categories_path(:cat => @category.parent.id) %></p>
+				<% else %>
+					<p><%= link_to 'Go to parent category', categories_path() %></p>
+				<% end %>
+				
+				<%= render :partial => 'assets' , :locals => { :assets => @category.assets} %>
 				<hr class="spacer" />
 			</div>
 		</div>
