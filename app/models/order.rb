@@ -3,7 +3,7 @@ class Order < ActiveRecord::Base
   
   has_many :orderLines
   
-  named_scope :ongoing, :conditions => ["state < 4"]
+  named_scope :ongoing, :conditions => ["state IN ('WAIT_ESTIMATE', 'WAIT_ESTIMATE_VALIDATION', 'IN_PREPARATION', 'WAIT_DELIVERY')"]
   
   # Callbacks
   after_update :save_lines

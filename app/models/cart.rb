@@ -53,7 +53,7 @@ class Cart
     raise "You must be logged to make an order" unless user_session.login?
     raise "It's impossible to make an empty order !" if cart.empty?
     
-    order = Order.new({ :user => user_session.user, :state => 0})
+    order = Order.new({ :user => user_session.user, :state => 'WAIT_ESTIMATE'})
     
     cart.each do |cart_line|
       orderLine = order.orderLines.build({:asset_id => cart_line[0], :quantity => cart_line[1], :unitaryPrice => 0})
