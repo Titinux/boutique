@@ -61,5 +61,8 @@ class Cart
     
     order.save
     empty_cart
+  
+    OrdersMailer.deliver_order_created_admin(order)
+    OrdersMailer.deliver_order_created_user(order)
   end
 end

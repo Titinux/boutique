@@ -1,0 +1,13 @@
+Order confirmation.
+-------------------
+
+Thank you for choosing Les marchands d'Hyse, your order has been registered under number <%= @order.id %>.
+
+Order details.
+--------------
+
+<%= render :partial => 'order_details', :locals => { :orderLines => @order.orderLines } %>
+
+
+
+							-= Marchands d'hyze team =-

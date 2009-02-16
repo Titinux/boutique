@@ -1,0 +1,4 @@
+	Asset | Quantity
+<% orderLines.each do |orderLine| -%>
+	<%= orderLine.asset.name %>	|	<%= orderLine.quantity %>
+<% end -%>

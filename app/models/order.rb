@@ -37,6 +37,9 @@ class Order < ActiveRecord::Base
       when 'ACCEPT_ESTIMATE'
         if self.state == 'WAIT_ESTIMATE_VALIDATION'
           self.state = 'IN_PREPARATION'
+          
+          OrdersMailer.deliver_order_in_preparation_admin(self)
+          OrdersMailer.deliver_order_in_preparation_user(self)
         else
           return false
         end
@@ -44,6 +47,9 @@ class Order < ActiveRecord::Base
       when 'REFUSE_ESTIMATE'
         if self.state == 'WAIT_ESTIMATE_VALIDATION'
           self.state = 'ORDER_CANCELED'
+          
+          OrdersMailer.deliver_order_canceled_admin(self)
+          OrdersMailer.deliver_order_canceled_user(self)
         else
           return false
         end    

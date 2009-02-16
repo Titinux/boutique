@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   has_many :deposites
   has_many :orders
   
+  named_scope :admins, :conditions => {:admin => true}
+  
   #Validations
   validates_length_of :name, :maximum => 25, :allow_blank => false
   validates_uniqueness_of :name
