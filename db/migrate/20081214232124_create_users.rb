@@ -5,7 +5,6 @@ class CreateUsers < ActiveRecord::Migration
       t.integer    :pigMoneyBox, :null => false, :default => 0 
       t.references :guild, :null => false
       t.boolean    :admin, :null => false, :default => false
-      t.string     :email, :limit => 50
       t.string     :password_salt
       t.string     :password_hash
 
