@@ -27,6 +27,7 @@ div#page {
 #header {
 	background-image: url('/images/header/tribal.jpg');
 	background-repeat: no-repeat;
+	background-position: center;
 	
 	height: 250px;
 	margin: 0;
