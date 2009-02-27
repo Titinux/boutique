@@ -18,12 +18,13 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     
     respond_to do |format|
-      if @order.modifyState(params[:op]) && @order.save
-        flash[:notice] = 'Estimate was successfully accepted.'
-        format.html { render :action => 'show' }
+      if @order.modifyState(params[:op])
+        flash[:notice] = @order.message
+        format.html { redirect_to user_path }
         format.xml  { head :ok }
       else
-        format.html { render :action => "show" }
+        flash[:error] = @order.message
+        format.html { redirect_to user_path }
         format.xml  { render :xml => @order.errors, :status => :unprocessable_entity }
       end
     end

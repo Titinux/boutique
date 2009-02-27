@@ -8,6 +8,8 @@ class Order < ActiveRecord::Base
   # Callbacks
   after_update :save_lines
   
+  attr_reader(:message)
+  
   def new_line_attributes=(line_attributes)
     line_attributes.each do |attributes|
       orderLines.build(attributes)
@@ -38,9 +40,14 @@ class Order < ActiveRecord::Base
         if self.state == 'WAIT_ESTIMATE_VALIDATION'
           self.state = 'IN_PREPARATION'
           
+          self.save
+          
           OrdersMailer.deliver_order_in_preparation_admin(self)
           OrdersMailer.deliver_order_in_preparation_user(self)
+          
+          @message = 'Estimate was successfully accepted.'
         else
+          @message = 'Order can\'t be modified.'
           return false
         end
       
@@ -48,11 +55,18 @@ class Order < ActiveRecord::Base
         if self.state == 'WAIT_ESTIMATE_VALIDATION'
           self.state = 'ORDER_CANCELED'
           
+          self.save
+          
           OrdersMailer.deliver_order_canceled_admin(self)
           OrdersMailer.deliver_order_canceled_user(self)
+          
+          @message = 'Estimate was successfully canceled.'
         else
+          @message = 'Order can\'t be modified.'
           return false
-        end    
+        end
+      else
+        @message = 'Error !'
     end
     
     true
