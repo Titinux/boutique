@@ -35,16 +35,15 @@ namespace :assets do
       run "mkdir -p #{shared_path}/#{name}"
     end
   end
-  
- namespace :deploy do
- desc "Create asset packages for production" 
- task :after_update_code, :roles => [:web] do
-   run <<-EOF
-     cd #{release_path} && rake asset:packager:build_all
-   EOF
- end
-end
-end
+end  
+  namespace :deploy do
+    desc "Create asset packages for production" 
+    task :after_update_code, :roles => [:web] do
+      run <<-EOF
+        cd #{release_path} && rake asset:packager:build_all
+      EOF
+    end
+  end
 
 after "deploy:update_code" , "deploy:copy_database_configuration"
 after "deploy:update_code" , "assets:symlink"
