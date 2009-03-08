@@ -1,7 +1,7 @@
 class Order < ActiveRecord::Base
   belongs_to :user
   
-  has_many :orderLines
+  has_many :orderLines, :dependent => :delete_all
   
   named_scope :ongoing, :conditions => ["state IN ('WAIT_ESTIMATE', 'WAIT_ESTIMATE_VALIDATION', 'IN_PREPARATION', 'WAIT_DELIVERY')"]
   

@@ -26,7 +26,7 @@ class Statistics
       
       def asset.orderQuantity
         @orderQuantity ||= self.order_lines.inject(0) do |sum, order_line|
-          ['ACHIEVED', 'ORDER_CANCELED', 'ERROR'].include?(order_line.order.state) ? 0 : (sum + order_line.quantity)
+          order_line.order.blank? || ['ACHIEVED', 'ORDER_CANCELED', 'ERROR'].include?(order_line.order.state) ? 0 : (sum + order_line.quantity)
         end      
       end
     end
