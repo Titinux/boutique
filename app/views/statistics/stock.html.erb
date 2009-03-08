@@ -1,0 +1,19 @@
+<h2>Stock statistics</h2>
+
+<table>
+	<tr>
+		<th>Asset</th>
+		<th>Stock</th>
+		<th>Order volume</th>
+		<th>Difference</th>
+	</tr>
+	
+	<% Statistics.stockStats.each do |asset| %>
+		<tr class="<%= cycle('even', 'odd')%>">
+			<td><%=h asset.name %></td>
+			<td class="number"><%=h asset.stock %></td>
+			<td class="number"><%=h asset.orderQuantity %></td>
+			<td class="number <%= 'negative' if (asset.stock - asset.orderQuantity) < 0 %>"><%=h asset.stock - asset.orderQuantity %></td>
+		</tr>
+	<% end %>
+</table>

@@ -220,6 +220,11 @@ td.number {
 	text-align: right;
 }
 
+td.number.negative {
+	font-weight: bold;
+	color: red;
+}
+
 td.currency {
 	text-align: right;
 }

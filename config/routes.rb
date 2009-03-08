@@ -1,5 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-  
   # Partie publique du site.
   map.welcome    'welcome',    :controller => 'boutique', :action => 'welcome',  :conditions => { :method => :get }
   map.categories 'categories', :controller => 'boutique', :action => 'category', :conditions => { :method => :get }
@@ -14,6 +13,9 @@ ActionController::Routing::Routes.draw do |map|
   
   map.order 'order/:id', :controller => 'orders', :action => 'show', :conditions => { :method => :get }
   map.orderAction 'order_action/:id', :controller => 'orders', :action => 'update', :conditions =>{ :method => :put }
+  
+  map.statistics 'statistics', :controller => 'statistics', :action => 'index', :conditions => { :method => :get }
+  map.statistic 'statistics/:stattype', :controller => 'statistics', :action => 'show', :conditions => { :method => :get }
   
   # Partie admin du site.
   map.namespace :admin do |admin|
