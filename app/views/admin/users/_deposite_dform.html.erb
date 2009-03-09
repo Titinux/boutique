@@ -2,12 +2,15 @@
 	<% new_or_existing = deposite.new_record? ? 'new' : 'existing' -%>
 	<% prefix = "user[#{new_or_existing}_deposite_attributes][]" -%>
 
-	<% fields_for prefix, deposite do |deposite| -%>
+	<% fields_for prefix, deposite do |f| -%>
 		<td>
-      <%= deposite.collection_select(:asset_id, Asset.find(:all), :id, :name) %>
+      <%= f.collection_select(:asset_id, Asset.find(:all), :id, :name) %>
     </td>
+		<td class="number">
+      <%= deposite.quantity || 0 %>
+		</td>
 		<td>
-      <%= deposite.text_field :quantity %>
+			+ <%= f.text_field :addQuantity %>
     </td>
 		<td>
 		  <%= link_to_function 'Remove this deposite' , "$(this).up('.deposite').remove()" %>

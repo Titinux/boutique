@@ -7,4 +7,14 @@ class Deposite < ActiveRecord::Base
   def self.stock(asset)
     deposites_of(asset).sum(:quantity)
   end
+  
+  def addQuantity
+    0
+  end
+  
+  def addQuantity=(value)
+    self.quantity ||= 0
+    
+    self.quantity += value.to_i
+  end
 end
