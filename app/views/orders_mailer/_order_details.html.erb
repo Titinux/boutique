@@ -1,4 +1,14 @@
-	Asset | Quantity
+<% longestAsset = orderLines.inject(0) {|memo, orderLine| memo >= orderLine.asset.name.length ? memo : orderLine.asset.name.length } -%>
+<% longestQt    = orderLines.inject(0) {|memo, orderLine| memo >= orderLine.quantity.to_s.length ? memo : orderLine.quantity.to_s.length } -%>
+<% longestAsset = longestAsset >= 'Asset'.length ? longestAsset : 'Asset'.length -%>
+<% longestQt = longestQt >= 'Quantity'.length ? longestQt : 'Quantity'.length -%>
+<% longestAsset += 4 -%>
+<% longestQt += 4 -%>
+
+<%= ''.ljust(longestAsset, '-') %>---<%= ''.ljust(longestQt, '-') %>
+<%= 'Asset'.center(longestAsset) %> | <%= 'Quantity'.center(longestQt) %>
+<%= ''.ljust(longestAsset, '-') %>-+-<%= ''.ljust(longestQt, '-') %>
 <% orderLines.each do |orderLine| -%>
-	<%= orderLine.asset.name %>	|	<%= orderLine.quantity %>
+<%= orderLine.asset.name.ljust(longestAsset) %> | <%= orderLine.quantity.to_s.rjust(longestQt) %>
 <% end -%>
+<%= ''.ljust(longestAsset, '-') %>---<%= ''.ljust(longestQt, '-') %>
