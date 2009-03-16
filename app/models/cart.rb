@@ -51,7 +51,7 @@ class Cart
     @cart.delete_if {|cartLine| cartLine[1].to_i < 1 }
     
     raise "You must be logged to make an order" unless user_session.login?
-    raise "It's impossible to make an empty order !" if cart.empty?
+    raise "It\'s impossible to make an empty order !" if cart.empty?
     
     order = Order.new({ :user => user_session.user, :state => 'WAIT_ESTIMATE'})
     
@@ -61,8 +61,5 @@ class Cart
     
     order.save
     empty_cart
-  
-    OrdersMailer.deliver_order_created_admin(order)
-    OrdersMailer.deliver_order_created_user(order)
   end
 end

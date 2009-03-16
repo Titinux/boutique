@@ -1,12 +1,15 @@
-<%= @order.user.name %> has accepted the estimate.
---------------------------------------------------
+Estimation of your order.
+-------------------------
+
+Your order #<%= @order.id %> has been estimated.
 
 Order details.
 --------------
 <%= render :partial => 'order_details', :locals => { :orderLines => @order.orderLines, :full => true } %>
 
-Total : <%= @order.totalAmount %>
+Total amount : <%= @order.totalAmount %>
 
 
 
 							-= Marchands d'hyze team =-
+

@@ -1,10 +1,18 @@
 <% longestAsset = orderLines.inject(0) {|memo, orderLine| memo >= orderLine.asset.name.length ? memo : orderLine.asset.name.length } -%>
 <% longestQt    = orderLines.inject(0) {|memo, orderLine| memo >= orderLine.quantity.to_s.length ? memo : orderLine.quantity.to_s.length } -%>
+<% longestUp    = orderLines.inject(0) {|memo, orderLine| memo >= orderLine.unitaryPrice.to_s.length ? memo : orderLine.unitaryPrice.to_s.length } -%>
+<% longestPrice = orderLines.inject(0) {|memo, orderLine| memo >= orderLine.price.to_s.length ? memo : orderLine.price.to_s.length } -%>
 <% longestAsset = longestAsset >= 'Asset'.length ? longestAsset : 'Asset'.length -%>
-<% longestQt = longestQt >= 'Quantity'.length ? longestQt : 'Quantity'.length -%>
+<% longestQt    = longestQt >= 'Quantity'.length ? longestQt : 'Quantity'.length -%>
+<% longestUp    = longestAsset >= 'Unitary price'.length ? longestAsset : 'Unitary price'.length -%>
+<% longestPrice = longestQt >= 'Price'.length ? longestQt : 'Price'.length -%>
 <% longestAsset += 4 -%>
-<% longestQt += 4 -%>
+<% longestQt    += 4 -%>
+<% longestUp    += 4 -%>
+<% longestPrice += 4 -%>
 
+<% full ||= false -%>
+<% unless full -%>
 <%= ''.ljust(longestAsset, '-') %>---<%= ''.ljust(longestQt, '-') %>
 <%= 'Asset'.center(longestAsset) %> | <%= 'Quantity'.center(longestQt) %>
 <%= ''.ljust(longestAsset, '-') %>-+-<%= ''.ljust(longestQt, '-') %>
@@ -12,3 +20,12 @@
 <%= orderLine.asset.name.ljust(longestAsset) %> | <%= orderLine.quantity.to_s.rjust(longestQt) %>
 <% end -%>
 <%= ''.ljust(longestAsset, '-') %>---<%= ''.ljust(longestQt, '-') %>
+<% else -%>
+<%= ''.ljust(longestAsset, '-') %>---<%= ''.ljust(longestQt, '-') %>---<%= ''.ljust(longestUp, '-') %>---<%= ''.ljust(longestPrice, '-') %>
+<%= 'Asset'.center(longestAsset) %> | <%= 'Quantity'.center(longestQt) %> | <%= 'Unitary price'.center(longestUp) %> | <%= 'Price'.center(longestPrice) %>
+<%= ''.ljust(longestAsset, '-') %>-+-<%= ''.ljust(longestQt, '-') %>-+-<%= ''.ljust(longestUp, '-') %>-+-<%= ''.ljust(longestPrice, '-') %>
+<% orderLines.each do |orderLine| -%>
+<%= orderLine.asset.name.ljust(longestAsset) %> | <%= orderLine.quantity.to_s.rjust(longestQt) %> | <%= orderLine.unitaryPrice.to_s.rjust(longestUp) %> | <%= orderLine.price.to_s.rjust(longestPrice) %>
+<% end -%>
+<%= ''.ljust(longestAsset, '-') %>---<%= ''.ljust(longestQt, '-') %>---<%= ''.ljust(longestUp, '-') %>---<%= ''.ljust(longestPrice, '-') %>
+<% end -%>

@@ -23,6 +23,16 @@ class OrdersMailer < ActionMailer::Base
     body :order => order
   end
 
+  def wait_estimate_validation_user(order)
+    recipients order.user.email
+    
+    # TODO Utiliser un paramètre pour spécifier l'adresse d'expédition des mails de la boutique.
+    from "no-reply@boutique.hyze.bagu.biz"
+    subject "Your order ##{order.id} has been estimated"
+    content_type "text/plain"
+    body :order => order
+  end
+
   def order_in_preparation_admin(order)
     admin_emails = []
     
@@ -65,6 +75,52 @@ class OrdersMailer < ActionMailer::Base
     # TODO Utiliser un paramètre pour spécifier l'adresse d'expédition des mails de la boutique.
     from "no-reply@boutique.hyze.bagu.biz"
     subject "Order ##{order.id} was canceled"
+    content_type "text/plain"
+    body :order => order
+  end
+
+  def order_ready_admin(order)
+    admin_emails = []
+    
+    User.admins.each {|admin| admin_emails << admin.email }
+
+    bcc admin_emails
+    # TODO Utiliser un paramètre pour spécifier l'adresse d'expédition des mails de la boutique.
+    from "no-reply@boutique.hyze.bagu.biz"
+    subject "Order ##{order.id} is ready"
+    content_type "text/plain"
+    body :order => order
+  end
+
+  def order_ready_user(order)
+    recipients order.user.email
+    
+    # TODO Utiliser un paramètre pour spécifier l'adresse d'expédition des mails de la boutique.
+    from "no-reply@boutique.hyze.bagu.biz"
+    subject "Your order ##{order.id} is ready"
+    content_type "text/plain"
+    body :order => order
+  end
+
+  def order_achieved_admin(order)
+    admin_emails = []
+    
+    User.admins.each {|admin| admin_emails << admin.email }
+
+    bcc admin_emails
+    # TODO Utiliser un paramètre pour spécifier l'adresse d'expédition des mails de la boutique.
+    from "no-reply@boutique.hyze.bagu.biz"
+    subject "Order ##{order.id} is finished"
+    content_type "text/plain"
+    body :order => order
+  end
+
+  def order_achieved_user(order)
+    recipients order.user.email
+    
+    # TODO Utiliser un paramètre pour spécifier l'adresse d'expédition des mails de la boutique.
+    from "no-reply@boutique.hyze.bagu.biz"
+    subject "Your order ##{order.id} is now achieved"
     content_type "text/plain"
     body :order => order
   end

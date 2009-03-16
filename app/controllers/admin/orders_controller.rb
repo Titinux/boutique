@@ -37,6 +37,7 @@ class Admin::OrdersController < ApplicationController
   # GET /admin/orders/1/edit
   def edit
     @order = Order.find(params[:id])
+    @estimateRestriction = params[:estimate]
   end
 
   # POST /admin/orders
@@ -64,7 +65,7 @@ class Admin::OrdersController < ApplicationController
     @order = Order.find(params[:id])
 
     respond_to do |format|
-      if @order.update_attributes(params[:order])
+      if @order.update_attributes(params[:order]) && @order.modifyState(params[:op])
         flash[:notice] = 'Order was successfully updated.'
         format.html { redirect_to(([:admin, @order])) }
         format.xml  { head :ok }

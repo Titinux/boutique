@@ -36,14 +36,24 @@ class Order < ActiveRecord::Base
   
   def modifyState(op)
     case op
+      when 'MAKE_ESTIMATE'
+        if self.state == 'WAIT_ESTIMATE'
+          self.state = 'WAIT_ESTIMATE_VALIDATION'
+        
+          if self.save
+            @message = 'Estimate was successfully created.'
+          else
+            @message = 'Order can\'t be modified.'
+          end
+        end
+      
       when 'ACCEPT_ESTIMATE'
         if self.state == 'WAIT_ESTIMATE_VALIDATION'
           self.state = 'IN_PREPARATION'
           
           self.save
           
-          OrdersMailer.deliver_order_in_preparation_admin(self)
-          OrdersMailer.deliver_order_in_preparation_user(self)
+          
           
           @message = 'Estimate was successfully accepted.'
         else
@@ -57,17 +67,17 @@ class Order < ActiveRecord::Base
           
           self.save
           
-          OrdersMailer.deliver_order_canceled_admin(self)
-          OrdersMailer.deliver_order_canceled_user(self)
+          
           
           @message = 'Estimate was successfully canceled.'
         else
           @message = 'Order can\'t be modified.'
           return false
         end
+       
       else
         @message = 'Error !'
-    end
+      end
     
     true
   end
