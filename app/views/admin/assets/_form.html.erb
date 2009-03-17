@@ -1,0 +1,28 @@
+<% form_for([:admin, asset]) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+		<span class="required">Required</span>
+  </p>
+  <p>
+    <%= f.label :category %>
+    <%= f.collection_select(:category_id, Category.find(:all), :id, :name) %>
+  </p>
+  <p>
+    <%= f.label :pictureUri %>
+    <%= f.text_field :pictureUri %>
+  </p>
+  <p>
+    <%= f.label :unitaryPrice %>
+    <%= f.text_field :unitaryPrice %>
+  </p>
+  <p>
+    <%= f.label :floatPrice %>
+    <%= f.check_box :floatPrice %>
+  </p>
+  <p>
+    <%= f.submit bt_name %>
+  </p>
+<% end %>
