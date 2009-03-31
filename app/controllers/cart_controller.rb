@@ -118,7 +118,7 @@ class CartController < ApplicationController
       begin
         cart_session.to_order(user_session)
       
-        flash[:notice] = 'Order was succes created.'
+        flash[:notice] = 'Order was successfully created.'
         format.html { redirect_to(cart_index_path) }
         format.xml  { head :ok }
       rescue Exception => e
