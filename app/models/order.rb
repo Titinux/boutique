@@ -36,6 +36,18 @@ class Order < ActiveRecord::Base
   
   def modifyState(op)
     case op
+      when 'CANCEL_ORDER'
+        if self.state == 'WAIT_ESTIMATE'
+          self.state = 'ORDER_CANCELED'
+          
+          if self.save
+            @message = 'Order was successfully canceled.'
+          else  
+            @message = 'Order can\'t be canceled.'
+            return false
+          end
+        end
+      
       when 'MAKE_ESTIMATE'
         if self.state == 'WAIT_ESTIMATE'
           self.state = 'WAIT_ESTIMATE_VALIDATION'
@@ -44,6 +56,7 @@ class Order < ActiveRecord::Base
             @message = 'Estimate was successfully created.'
           else
             @message = 'Order can\'t be modified.'
+            return false
           end
         end
       
@@ -65,16 +78,13 @@ class Order < ActiveRecord::Base
         if self.state == 'WAIT_ESTIMATE_VALIDATION'
           self.state = 'ORDER_CANCELED'
           
-          self.save
-          
-          
-          
-          @message = 'Estimate was successfully canceled.'
-        else
-          @message = 'Order can\'t be modified.'
-          return false
-        end
-       
+          if self.save
+            @message = 'Estimate was successfully canceled.'
+          else
+            @message = 'Order can\'t be modified.'
+            return false
+          end
+        end       
       else
         @message = 'Error !'
       end
@@ -103,43 +113,44 @@ class Order < ActiveRecord::Base
   end
   
   def dispatchMoney
+    # TODO : Utliser une option pour définir un compte qui récupère l'argent "en trop".
+    tax_collector = User.find_by_name('Marchands d\'Hyze')
+    
     self.transaction do
     
       dispatchedMoney = 0
       # TODO : Utiliser une option pour gérer le montant de la taxe. 
-      taxe = (100 - 5) / 100 
+      taxe = (100 - 1.to_f) / 100 
       
       self.orderLines.each do |orderLine|
         assetQuantity = orderLine.quantity
-        deposites = Array Deposite.find_all_by_asset_id(orderLine.asset.id, :order => 'quantity DESC')
+        deposites = Deposite.find_all_by_asset_id(orderLine.asset.id, :order => 'quantity DESC')
         
         deposites.size.downto(1) do |i|
           deposite = deposites[i-1]
           qt = [deposite.quantity, (assetQuantity / i).to_i].min
           money = (qt * orderLine.unitaryPrice * taxe).to_i
-          
+       
           deposite.user.pigMoneyBox += money
           deposite.user.save
           
           dispatchedMoney += money
+          deposite.quantity -= qt
           
-          if qt == deposite.quantity
-            deposite.delete
+          if deposite.quantity == 0
+            deposite.destroy 
           else
-            deposite.quantity -= qt
+            deposite.save
           end
-          
-          deposite.save
           
           assetQuantity -= qt
         end
       end
       
       if dispatchedMoney < totalAmount
-          # TODO : Utliser une option pour définir un compte qui récupère l'argent "en trop".
-          #User.find(???).pigMoneyBox += totalAmount - dispatchedMoney
+        tax_collector.pigMoneyBox += totalAmount - dispatchedMoney
+        tax_collector.save
       end
-      
     end
   end
 end
