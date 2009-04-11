@@ -14,7 +14,7 @@
 </p>
 <p>
   <%= f.label :guild %>
-  <%= f.collection_select(:guild_id, Guild.find(:all), :id, :name) %>
+  <%= f.collection_select(:guild_id, Guild.find(:all), :id, :name, :include_blank => true) %>
 </p>
 <p>
 	<%= f.label :pigMoneyBox %>

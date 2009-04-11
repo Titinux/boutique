@@ -5,7 +5,7 @@
 
 <p>
   Guild:
-  <%=h @user.guild.name %>
+	<%=h !@user.guild.blank? ? @user.guild.name : 'None' %>
 </p>
 
 <p>

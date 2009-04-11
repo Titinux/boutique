@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090214174432) do
+ActiveRecord::Schema.define(:version => 20090410223700) do
 
   create_table "assets", :force => true do |t|
     t.string   "name",         :limit => 25,                                                 :null => false
@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(:version => 20090214174432) do
   create_table "users", :force => true do |t|
     t.string   "name",          :limit => 25,                    :null => false
     t.integer  "pigMoneyBox",                 :default => 0,     :null => false
-    t.integer  "guild_id",                                       :null => false
+    t.integer  "guild_id"
     t.boolean  "admin",                       :default => false, :null => false
     t.string   "email",         :limit => 50
     t.string   "password_salt"

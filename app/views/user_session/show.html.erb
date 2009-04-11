@@ -9,10 +9,9 @@
 			Email :
 			<%=h @user_session.user.email %>
 		</p>
-		<p>
-			Guildname :
-			<%=h @user_session.user.guild.name %>
-		</p>
+		<% unless @user_session.user.guild.blank? %>
+			<p>Guildname :<%=h @user_session.user.guild.name %></p>
+		<%end %>
 	</div>
 </div>
 
