@@ -22,12 +22,14 @@
 	</div>
 </div>
 
-<div class="block">
-	<div class="block_header">My deposites</div> 
-	<div class="block_body">
-		<%= render :partial => 'admin/deposites/table', :locals => { :deposites => @user_session.user.deposites } %>
+<% if @user_session.user.gatherer %>
+	<div class="block">
+		<div class="block_header">My deposites</div> 
+		<div class="block_body">
+			<%= render :partial => 'admin/deposites/table', :locals => { :deposites => @user_session.user.deposites } %>
+		</div>
 	</div>
-</div>
+<% end %>
 
 <div class="block">
 	<div class="block_header">My orders</div>
