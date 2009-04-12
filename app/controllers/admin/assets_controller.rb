@@ -1,6 +1,4 @@
-class Admin::AssetsController < ApplicationController
-  layout 'admin'
-  
+class Admin::AssetsController < Admin::AdminController
   # GET /admin/assets
   # GET /admin/assets.xml
   def index

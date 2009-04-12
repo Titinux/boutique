@@ -1,6 +1,5 @@
-class Admin::CategoriesController < ApplicationController
-  layout 'admin'
-
+class Admin::CategoriesController < Admin::AdminController
+  
   # GET /admin/categories
   # GET /admin/categories.xml
   def index

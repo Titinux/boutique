@@ -1,5 +1,4 @@
-class Admin::GuildsController < ApplicationController
-  layout 'admin'
+class Admin::GuildsController < Admin::AdminController
   
   # GET /admin/guilds
   # GET /admin/guilds.xml

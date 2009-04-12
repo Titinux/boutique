@@ -1,6 +1,5 @@
-class Admin::ConfigTreeController < ApplicationController
-  layout 'admin'
-
+class Admin::ConfigTreeController < Admin::AdminController
+  
   # GET /admin/config_tree
   # GET /admin/config_tree.xml
   def index

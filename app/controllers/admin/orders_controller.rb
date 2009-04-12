@@ -1,5 +1,4 @@
-class Admin::OrdersController < ApplicationController
-  layout 'admin'
+class Admin::OrdersController < Admin::AdminController
   
   # GET /admin/orders
   # GET /admin/orders.xml
