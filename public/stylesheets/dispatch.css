@@ -143,6 +143,8 @@ div#topbar :first-child {
 
 /* Forms */
 label:after {content:" : ";}
+label.differential:after {content: " + ";}
+
 
 .required {
 	font-size: small;

@@ -13,12 +13,12 @@
 	<%= f.text_field :email %>
 </p>
 <p>
-  <%= f.label :guild %>
+  <%= f.label :guild_id %>
   <%= f.collection_select(:guild_id, Guild.find(:all), :id, :name, :include_blank => true) %>
 </p>
 <p>
-	<%= f.label :pigMoneyBox %>
-	<%= f.text_field :pigMoneyBox %>
+	<%= f.label :addMoney, "Pig moneybox : #{f.object.pigMoneyBox}", :class => 'differential' %>
+	<%= f.text_field :addMoney %>
 </p>
 <p>
   <%= f.label :gatherer %>

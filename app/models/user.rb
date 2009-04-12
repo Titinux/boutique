@@ -59,4 +59,15 @@ class User < ActiveRecord::Base
       deposite.save(false)
     end
   end
+  
+  def addMoney
+    @addMoney ||= 0
+  end
+  
+  def addMoney=(value)
+    @addMoney = value.to_i
+    self.pigMoneyBox ||= 0
+    
+    self.pigMoneyBox += @addMoney
+  end
 end
