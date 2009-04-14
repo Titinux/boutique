@@ -15,6 +15,9 @@ class User < ActiveRecord::Base
   # Callbacks
   after_update :save_deposites
   
+  # Scopes
+  default_scope :order => 'name', :include => :guild
+  
   # Passwords can't be retrived
   def password
     ''
