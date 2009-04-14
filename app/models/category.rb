@@ -4,5 +4,7 @@ class Category < ActiveRecord::Base
 
   has_many :assets
   
+  # Scopes
+  default_scope :order => :name
   named_scope :mainCategories, :conditions => { :parent_id => nil }
 end
