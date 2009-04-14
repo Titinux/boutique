@@ -3,63 +3,63 @@
 Ash:
   name: Ash
   category: Wood
-  pictureUri: 
+  pictureUri: assets/wood/ash_wood.png
   unitaryPrice: 9.99
   floatPrice: false
 
 Chestnut:
   name: Chestnut
   category: Wood
-  pictureUri: 
+  pictureUri: assets/wood/chestnut_wood.png
   unitaryPrice: 9.99
   floatPrice: false
 
 Walnut:
   name: Walnut
   category: Wood
-  pictureUri:
+  pictureUri: assets/wood/walnut_wood.png
   unitaryPrice: 0
   floatPrice: true
   
 Iron:
   name: Iron
   category: Ore
-  pictureUri:
+  pictureUri: assets/ore/iron.png
   unitaryPrice: 10
   floatPrice: false
  
 Copper:
   name: Copper
   category: Ore
-  pictureUri:
+  pictureUri: assets/ore/coppery_stone.png
   unitaryPrice: 25
   floatPrice: false
   
 Bronze:
   name: Bronze
   category: Ore
-  pictureUri:
+  pictureUri: assets/ore/bronze.png
   unitaryPrice: 25
   floatPrice: false
 
 Gudgeon:
   name: Gudgeon
   category: Fish
-  pictureUri:
+  pictureUri: assets/fish/gudgeon.png
   unitaryPrice: 3
   floatPrice: false
   
 Grawn:
   name: Grawn
   category: Fish
-  pictureUri:
+  pictureUri: assets/fish/grawn.png
   unitaryPrice: 12
   floatPrice: false
   
 Kittenfish:
   name: Kittenfish
   category: Fish
-  pictureUri:
+  pictureUri: assets/fish/kittenfish.png
   unitaryPrice: 2
   floatPrice: false
   
