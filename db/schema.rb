@@ -93,11 +93,11 @@ ActiveRecord::Schema.define(:version => 20090412111924) do
     t.integer  "pigMoneyBox",                 :default => 0,     :null => false
     t.integer  "guild_id"
     t.boolean  "admin",                       :default => false, :null => false
-    t.string   "email",         :limit => 50
     t.string   "password_salt"
     t.string   "password_hash"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email",         :limit => 50,                    :null => false
     t.boolean  "gatherer",                    :default => false, :null => false
   end
 
