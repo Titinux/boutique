@@ -91,22 +91,18 @@ div#topbar :first-child {
 
 /* Main part*/
 #main_part {
-	width: 75%;
+	width: 74%;
 	
 	margin-bottom: 0;
 	padding-bottom: 4em;
+
 }
 
 /* Side bar*/
 #sidebar {
 	width: 25%;
 	float: right;
-	
-	border-color: #696464;
-	border-left-style: solid;
-	border-left-width: 1px;
-	
-	padding-left: 5px;
+
 }
 
 /* Footer */
