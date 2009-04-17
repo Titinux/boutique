@@ -26,10 +26,10 @@
 			
 			<% if user_session.login? %>
 				<li><%= link_to 'Profile', user_path %></li>
-				<li><%= link_to_if user_session.user.admin?, 'Admin part', admin_root_path %></li>
-				<li><%= link_to 'Logout', logout_path, :method => :delete %></li>
+				<li><%= link_to_if user_session.user.admin?, t('navigate.adminPart'), admin_root_path %></li>
+				<li><%= link_to t('userSession.logout'), logout_path, :method => :delete %></li>
 			<% else %>
-				<li><%= link_to 'Login', login_path %></li>
+				<li><%= link_to t('userSession.authenticate'), login_path %></li>
 			<% end %>
 		</ul>
 	</div>

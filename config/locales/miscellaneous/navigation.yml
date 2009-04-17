@@ -1,0 +1,14 @@
+en:
+  # Navigation
+  navigate:
+    publicPart: Public part
+    adminPart: Administration panel
+    userPart: User part
+
+fr-FR:
+  # Navigation
+  navigate:
+    publicPart: Partie publique
+    adminPart: Panel d'administration
+    userPart: Section client
+    profile: Mon profile

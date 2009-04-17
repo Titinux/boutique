@@ -1,31 +1,31 @@
 <%= render :partial => 'shared/user_sidebar' %>
 
 <div class="block">
-	<div class="block_header">My personnal informations</div>
+	<div class="block_header"><%= t 'userSession.myPersonnalInformations' %></div>
 	<div class="block_body">
 		<p>
-		  Username : 
+		  <%= User.human_attribute_name('username') %> : 
 		  <%=h @user_session.user.name %>
 		</p>
 		<p>
-			Email :
+			<%= User.human_attribute_name('email') %> :
 			<%=h @user_session.user.email %>
 		</p>
 		<% unless @user_session.user.guild.blank? %>
-			<p>Guildname :<%=h @user_session.user.guild.name %></p>
+			<p><%= User.human_attribute_name('guild') %> : <%=h @user_session.user.guild.name %></p>
 		<%end %>
 	</div>
 </div>
 
 <div class="block">
-	<div class="block_header">My pig money box</div>
+	<div class="block_header"><%= t 'userSession.myPigMoneybox' %></div>
 	<div class="block_body">
-		Amount : <%= @user_session.user.pigMoneyBox %> kamas
+		<%= t 'userSession.amount' %> : <%= @user_session.user.pigMoneyBox %> kamas
 	</div>
 </div>
 
 <div class="block">
-	<div class="block_header">My orders</div>
+	<div class="block_header"><%= t 'userSession.myOrders' %></div>
 	<div class="block_body">
 		<%= render :partial => 'orders_table', :locals => { :orders => @user_session.user.orders.ongoing } %>
 	</div>

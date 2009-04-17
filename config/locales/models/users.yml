@@ -1,0 +1,43 @@
+en:
+  activerecord:
+    models:
+      user: User
+      
+    attributes:  
+      user:
+        username: Username
+        pigMoneyBox: Pig moneybox
+        guild: Guild
+        email: Email
+        admin: Administrator
+        gatherer: Gatherer
+        passwordSalt: Random adding to password
+        passwordHash: Password control sum
+        
+  # Users
+  user:
+    editing: Edit user
+    listing: Users listing
+    new: New user
+
+fr-FR:
+  activerecord:
+    models:
+      user: Utilisateur
+      
+    attributes:  
+      user:
+        username: Identifiant
+        pigMoneyBox: Cochon tirelire
+        guild: Guilde
+        email: E-mail
+        admin: Administrateur
+        gatherer: Récoltant
+        passwordSalt: Ajout aléatoire au mot de passe
+        passwordHash: Somme de contrôle du mot de passe
+        
+  # Users
+  user:
+    editing: Modification de l'utilisateur
+    listing: Liste des utilisateurs
+    new: Nouvel utilisateur

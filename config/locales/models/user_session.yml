@@ -1,0 +1,20 @@
+en:
+  # Sessions
+  userSession:
+    authenticate: Authentification
+    logout: Logout
+    myPersonnalInformations: My personnal informations
+    myPigMoneybox: My pig moneybox
+    myOrders: My orders
+    amount: Amount
+
+
+fr-FR:
+  # Sessions
+  userSession:
+    authenticate: Authentification
+    logout: Déconnexion
+    myPersonnalInformations: Mes informations personnelles
+    myPigMoneybox: Mon cochon tirelire
+    myOrders: Mes commandes
+    amount: Montant

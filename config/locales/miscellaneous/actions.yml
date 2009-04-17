@@ -1,0 +1,20 @@
+en:
+  # Actions
+  back: Back
+  create: Create
+  destroy: Destroy
+  destroy_confirm: Are you sure ?
+  edit: Edit
+  show: Show
+  update: Update
+
+
+fr-FR:
+  # Actions
+  back: Retour
+  create: Créer
+  destroy: Supprimer
+  destroy_confirm: Etes-vous certain ?
+  edit: Editer
+  show: Afficher
+  update: Mettre à jour
