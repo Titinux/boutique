@@ -19,10 +19,10 @@
 	
 	<div id="topbar">
 		<ul>
-			<li><%= link_to t('navigation.welcomepage'), welcome_path %></li>
-			<li><%= link_to t('navigation.assets'), categories_path %></li>
-			<li><%= link_to t('navigation.cart'), cart_index_path %></li>
-			<li><%= link_to t('navigation.statistics'), statistics_path %></li>
+			<li><%= link_to t('navigate.welcomepage'), welcome_path %></li>
+			<li><%= link_to t('navigate.assets'), categories_path %></li>
+			<li><%= link_to t('navigate.cart'), cart_index_path %></li>
+			<li><%= link_to t('navigate.statistics'), statistics_path %></li>
 			
 			<% if user_session.login? %>
 				<li><%= link_to t('userSession.profile'), user_path %></li>
