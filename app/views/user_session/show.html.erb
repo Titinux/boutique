@@ -1,3 +1,5 @@
+<%= render :partial => 'shared/user_sidebar' %>
+
 <div class="block">
 	<div class="block_header">My personnal informations</div>
 	<div class="block_body">
@@ -21,15 +23,6 @@
 		Amount : <%= @user_session.user.pigMoneyBox %> kamas
 	</div>
 </div>
-
-<% if @user_session.user.gatherer %>
-	<div class="block">
-		<div class="block_header">My deposites</div> 
-		<div class="block_body">
-			<%= render :partial => 'admin/deposites/table', :locals => { :deposites => @user_session.user.deposites } %>
-		</div>
-	</div>
-<% end %>
 
 <div class="block">
 	<div class="block_header">My orders</div>

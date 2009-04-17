@@ -1,6 +1,8 @@
 class UserSessionController < ApplicationController
   layout 'public'
   
+  before_filter :authenticated?, :only => [:show]
+  
   # GET /user_session
   # GET /user_session.xml
   def show
@@ -53,6 +55,16 @@ class UserSessionController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(root_url) }
       format.xml  { head :ok }
+    end
+  end
+  
+  private
+  
+  def authenticated?
+    unless user_session.login?
+      flash[:error] = 'You have to be logged in to view user informations'
+      redirect_to login_path
+      false
     end
   end
 end

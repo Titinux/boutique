@@ -1,0 +1,17 @@
+<%= render :partial => 'shared/user_sidebar' %>
+
+<div class="block">
+	<div class="block_header">My validated deposites</div> 
+	<div class="block_body">
+		<%= render :partial => 'table', :locals => { :deposites => @validated_deposites } %>
+	</div>
+</div>
+
+<div class="block">
+	<div class="block_header">My waiting deposites</div> 
+	<div class="block_body">
+		<%= render :partial => 'table', :locals => { :deposites => @waiting_deposites } %>
+	</div>
+</div>
+
+<p><%= link_to 'New deposite', new_deposite_path %></p>

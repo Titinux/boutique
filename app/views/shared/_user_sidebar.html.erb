@@ -1,0 +1,13 @@
+<% content_for :sidebar do %>
+  <div class="block">
+		<div class="block_header">User</div>
+			<div class="block_body">
+				<ul>
+					<li><%= link_to 'Infos' , user_path %></li>
+					<% if user_session.user.gatherer %>
+						<li><%= link_to 'Deposites' , deposites_path %></li>
+					<% end %>
+				</ul>
+			</div>
+	</div>
+<% end %>

@@ -2,14 +2,13 @@
   <col width="100%" />
 	<thead>
 		<tr>
-			<th>User</th>
 	    <th>Asset</th>
 	    <th>Quantity</th>
 	  </tr>
 	</thead>
 	<tbody>
 		<% deposites.each do |deposite| %>
-			<%= render :partial => 'admin/deposites/row', :locals => { :deposite => deposite } %>
+			<%= render :partial => 'deposites/row', :locals => { :deposite => deposite } %>
 		<% end %>
 	</tbody>
 </table>

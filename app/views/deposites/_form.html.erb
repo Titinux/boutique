@@ -1,0 +1,11 @@
+<%= f.error_messages %>
+
+<td>
+  <%= f.collection_select(:asset_id, Asset.find(:all), :id, :name) %>
+</td>
+<td class="number">
+  <%= f.text_field :quantity %>
+</td>
+<p>
+  <%= f.submit bt_name %>
+</p>

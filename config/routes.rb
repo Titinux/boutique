@@ -5,11 +5,12 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :cart, :collection => { :destroy_all => :delete, :to_order => :put }
   
-  
   map.autenticate  'autenticate',  :controller => 'user_session', :action => 'create', :conditions => { :method => :post }
   map.login  'login',  :controller => 'user_session', :action => 'new', :conditions => { :method => :get }
   map.logout 'logout', :controller => 'user_session', :action => 'destroy', :conditions => { :method => :delete }
   map.user   'user', :controller => 'user_session', :action => "show", :conditions => { :method => :get }
+  
+  map.resources :deposites, :except => [ :edit, :update, :destroy ]
   
   map.order 'order/:id', :controller => 'orders', :action => 'show', :conditions => { :method => :get }
   map.orderAction 'order_action/:id', :controller => 'orders', :action => 'update', :conditions =>{ :method => :put }
@@ -28,6 +29,8 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :orders
     
     admin.resources :config_tree
+    
+    admin.resources :deposites, :only => [:index, :update]
     
     admin.root :controller => :users, :action => 'index'
   end
