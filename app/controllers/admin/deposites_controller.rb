@@ -3,8 +3,7 @@ class Admin::DepositesController < Admin::AdminController
   # GET /deposites
   # GET /deposites.xml
   def index
-    @validated_deposites = user_session.user.deposites.validated?
-    @waiting_deposites = user_session.user.deposites.validated?(false)
+    @waiting_deposites = Deposite.validated?(false)
 
     respond_to do |format|
       format.html # index.html.erb
