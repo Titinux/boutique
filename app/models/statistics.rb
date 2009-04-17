@@ -17,11 +17,11 @@ class Statistics
   end
   
   def self.stockStats
-    assets = Asset.find(:all, :include => [:deposites, :order_lines], :order => :name)           
-               
+    assets = Asset.find(:all, :include => [:deposites, :order_lines], :order => :name)
+
     assets.each do |asset|
       def asset.stock
-        @stock ||= self.deposites.sum(:quantity)
+        @stock ||= self.deposites.validated?.sum(:quantity)
       end
       
       def asset.orderQuantity
