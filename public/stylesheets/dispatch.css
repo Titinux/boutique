@@ -57,6 +57,8 @@ div#header :first-child {
 	color: #ffffff;
 	vertical-align: middle;
 	line-height: 25px;
+	margin-right: 10px;
+	margin-left: 10px;
 	
 	background-image: url('/images/global/cellpic1.gif');
 	background-repeat: repeat-x;
@@ -102,7 +104,10 @@ div#topbar :first-child {
 #sidebar {
 	width: 25%;
 	float: right;
+}
 
+#sidebar li{
+	list-style: none;
 }
 
 /* Footer */
