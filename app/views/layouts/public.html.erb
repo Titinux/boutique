@@ -19,13 +19,13 @@
 	
 	<div id="topbar">
 		<ul>
-			<li><%= link_to 'Welcome page', welcome_path %></li>
-			<li><%= link_to 'Assets', categories_path %></li>
-			<li><%= link_to 'Cart', cart_index_path %></li>
-			<li><%= link_to 'Statistics', statistics_path %></li>
+			<li><%= link_to t('navigation.welcomepage'), welcome_path %></li>
+			<li><%= link_to t('navigation.assets'), categories_path %></li>
+			<li><%= link_to t('navigation.cart'), cart_index_path %></li>
+			<li><%= link_to t('navigation.statistics'), statistics_path %></li>
 			
 			<% if user_session.login? %>
-				<li><%= link_to 'Profile', user_path %></li>
+				<li><%= link_to t('userSession.profile'), user_path %></li>
 				<li><%= link_to_if user_session.user.admin?, t('navigate.adminPart'), admin_root_path %></li>
 				<li><%= link_to t('userSession.logout'), logout_path, :method => :delete %></li>
 			<% else %>

@@ -7,7 +7,7 @@ en:
     myPigMoneybox: My pig moneybox
     myOrders: My orders
     amount: Amount
-
+   profile: Profile
 
 fr-FR:
   # Sessions
@@ -18,3 +18,4 @@ fr-FR:
     myPigMoneybox: Mon cochon tirelire
     myOrders: Mes commandes
     amount: Montant
+    profile: Profil

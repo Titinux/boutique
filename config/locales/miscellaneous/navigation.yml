@@ -1,6 +1,10 @@
 en:
   # Navigation
   navigate:
+    welcomepage: Welcome Page
+    assets: Assets
+    cart: Cart
+    statistics: Statistics
     publicPart: Public part
     adminPart: Administration panel
     userPart: User part
@@ -8,7 +12,10 @@ en:
 fr-FR:
   # Navigation
   navigate:
+    welcomepage: Page d'accueil
+    assets: Ressources
+    cart: Panier
+    statistics: Statistiques
     publicPart: Partie publique
     adminPart: Panel d'administration
     userPart: Section client
-    profile: Mon profile
