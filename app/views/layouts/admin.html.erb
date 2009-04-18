@@ -12,15 +12,17 @@
 
 <h1>Admin Panel</h1>
 
-<div id="top_bar">
-	<%= link_to 'Guilds', admin_guilds_path %>
-	<%= link_to 'Users', admin_users_path %>
-	<%= link_to 'Categories', admin_categories_path %>
-	<%= link_to 'Assets', admin_assets_path %>
-	<%= link_to 'Orders', admin_orders_path %>
-	<%= link_to 'Waiting deposites', admin_deposites_path %>
-	<%= link_to 'Config Tree', admin_config_tree_index_path %>
-	<%= link_to 'Public part', root_path %>
+<div id="topbaradmin">
+	<ul>
+		<li><%= link_to 'Guilds', admin_guilds_path %></li>
+		<li><%= link_to 'Users', admin_users_path %></li>
+		<li><%= link_to 'Categories', admin_categories_path %></li>
+		<li><%= link_to 'Assets', admin_assets_path %></li>
+		<li><%= link_to 'Orders', admin_orders_path %></li>
+		<li><%= link_to 'Waiting deposites', admin_deposites_path %></li>
+		<li><%= link_to 'Config Tree', admin_config_tree_index_path %></li>
+		<li><%= link_to 'Public part', root_path %></li>
+	</ul>
 </div>
 
 <div id="main_part">
