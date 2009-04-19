@@ -1,34 +1,34 @@
 <p>
-  Name:
+  <%= User.human_attribute_name('username') %>:
   <%=h @user.name %>
 </p>
 
 <p>
-  Guild:
+  <%= User.human_attribute_name('guild') %>:
 	<%=h !@user.guild.blank? ? @user.guild.name : 'None' %>
 </p>
 
 <p>
-	Email:
+	<%= User.human_attribute_name('email') %>:
 	<%=h @user.email %>
 </p>
 
 <p>
-	PigMoneyBox:
+	<%= User.human_attribute_name('pigMoneyBox') %>:
 	<%=h @user.pigMoneyBox %>
 </p>
 
 <p>
-  Gatherer:
+  <%= User.human_attribute_name('gatherer') %>:
   <%=h @user.gatherer %>
 </p>
 
 <p>
-  Admin:
+  <%= User.human_attribute_name('admin') %>:
   <%=h @user.admin %>
 </p>
 
 <%= render :partial => 'admin/deposites/table', :locals => { :deposites => @user.deposites } %>
 
-<%= link_to 'Edit', edit_admin_user_path(@user) %> |
-<%= link_to 'Back', admin_users_path %>
+<%= link_to t('edit'), edit_admin_user_path(@user) %> |
+<%= link_to t('back'), admin_users_path %>

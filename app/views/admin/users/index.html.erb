@@ -1,7 +1,7 @@
-<h1>Listing users</h1>
+<h1><%= t('user.listing') %></h1>
 
 <%= render :partial => 'table', :locals => { :users => @users } %>
 
 <br />
 
-<%= link_to 'New user', new_admin_user_path %>
+<%= link_to t('user.new'), new_admin_user_path %>

@@ -13,6 +13,7 @@ en:
         gatherer: Gatherer
         passwordSalt: Random adding to password
         passwordHash: Password control sum
+        password: Password
         
   # Users
   user:
@@ -35,6 +36,7 @@ fr-FR:
         gatherer: Récoltant
         passwordSalt: Ajout aléatoire au mot de passe
         passwordHash: Somme de contrôle du mot de passe
+        password: Mot de passe
         
   # Users
   user:

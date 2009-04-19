@@ -12,9 +12,9 @@ en:
 fr-FR:
   # Sessions
   userSession:
-    authenticate: Authentification
+    authenticate: Identification
     logout: Déconnexion
-    myPersonnalInformations: Mes informations personnelles
+    myPersonnalInformations: Mes informations
     myPigMoneybox: Mon cochon tirelire
     myOrders: Mes commandes
     amount: Montant
