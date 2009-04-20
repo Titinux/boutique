@@ -60,7 +60,9 @@ class Admin::UsersController < Admin::AdminController
   def update
     params[:user][:existing_deposite_attributes] ||= {}
     
-    params[:user][:new_deposite_attributes].each { |new_deposite| new_deposite[:validated] = true }
+    unless params[:user][:new_deposite_attributes].blank?
+      params[:user][:new_deposite_attributes].each { |new_deposite| new_deposite[:validated] = true }
+    end
     
     @user = User.find(params[:id])
 
