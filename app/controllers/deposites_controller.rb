@@ -7,8 +7,8 @@ class DepositesController < ApplicationController
   # GET /deposites
   # GET /deposites.xml
   def index
-    @validated_deposites = user_session.user.deposites.validated?
-    @waiting_deposites = user_session.user.deposites.validated?(false)
+    @validated_deposites = user_session.user.deposites.validated
+    @waiting_deposites = user_session.user.deposites.validated(false)
 
     respond_to do |format|
       format.html # index.html.erb

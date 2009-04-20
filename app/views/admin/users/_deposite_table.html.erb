@@ -1,0 +1,14 @@
+<table>
+  <col width="100%" />
+	<thead>
+		<tr>
+	    <th>Asset</th>
+	    <th>Quantity</th>
+	  </tr>
+	</thead>
+	<tbody>
+		<% deposites.each do |deposite| %>
+			<%= render :partial => 'deposite_row', :locals => { :deposite => deposite } %>
+		<% end %>
+	</tbody>
+</table>

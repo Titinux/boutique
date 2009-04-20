@@ -10,13 +10,13 @@ class Deposite < ActiveRecord::Base
   default_scope :include => :asset, :order => 'assets.name'
   
   named_scope :deposites_of, lambda {|asset| { :conditions => ["asset_id = ?", asset.id]}}
-  named_scope :validated?, lambda {|*args| { :conditions => ["validated = ?", (args.empty? ? true : args.first)]}}
+  named_scope :validated, lambda {|*args| { :conditions => ["validated = ?", (args.empty? ? true : args.first)]}}
   
   # Callbacks
   before_save :compact
   
   def self.stock(asset)
-    deposites_of(asset).sum(:quantity)
+    validated.deposites_of(asset).sum(:quantity)
   end
   
   def addQuantity

@@ -3,6 +3,6 @@
 	<td><%=h deposite.asset.name %></td>
 	<td class="number"><%=h deposite.quantity %></td>
 	<% unless deposite.validated %>
-		<td><%= link_to 'Validate', admin_deposite_path(deposite, :validate => true), :method => :put %></td>
+		<td><%= link_to 'Validate', validate_admin_deposite_path(deposite), :method => :put %></td>
 	<% end %>
 </tr>

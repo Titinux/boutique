@@ -104,9 +104,7 @@ class Order < ActiveRecord::Base
   
   def available?
     self.orderLines.each do |orderLine|
-      if(Deposite.stock(orderLine.asset) < orderLine.quantity)
-        return false
-      end
+      return false if(Deposite.stock(orderLine.asset) < orderLine.quantity)
     end
     
     return true
@@ -124,7 +122,7 @@ class Order < ActiveRecord::Base
       
       self.orderLines.each do |orderLine|
         assetQuantity = orderLine.quantity
-        deposites = Deposite.find_all_by_asset_id(orderLine.asset.id, :order => 'quantity DESC')
+        deposites = Deposite.find(:all, :conditions => { :asset_id => orderLine.asset.id, :validated => true} , :order => 'quantity DESC')
         
         deposites.size.downto(1) do |i|
           deposite = deposites[i-1]

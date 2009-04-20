@@ -21,7 +21,7 @@ class Statistics
 
     assets.each do |asset|
       def asset.stock
-        @stock ||= self.deposites.validated?.sum(:quantity)
+        @stock ||= self.deposites.validated.sum(:quantity)
       end
       
       def asset.orderQuantity
