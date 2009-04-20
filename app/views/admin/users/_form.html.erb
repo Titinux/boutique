@@ -35,7 +35,7 @@
 		<th colspan="2">Quantity</th>
 	</tr>
 	
-	<% @user.deposites.each do |deposite| %>
+	<% @user.deposites.validated.each do |deposite| %>
 	  <%= render :partial => 'deposite_dform', :locals => { :deposite => deposite } %>
 	<% end %>
 </table>
