@@ -57,8 +57,8 @@ div#header :first-child {
 	color: #ffffff;
 	vertical-align: middle;
 	line-height: 25px;
-	margin-right: 10px;
-	margin-left: 10px;
+	margin-right: 11px;
+	margin-left: 11px;
 	
 	background-image: url('/images/global/cellpic1.gif');
 	background-repeat: repeat-x;
@@ -84,6 +84,39 @@ div#topbar :first-child {
 	color: #3f3720;
 }
 
+#topbaradmin {
+	height: 25px;
+	
+	font-family: Verdana, Arial;
+	font-size: 11px;
+	font-weight: bold;
+	color: #ffffff;
+	vertical-align: middle;
+	line-height: 25px;
+
+	background-image: url('/images/global/cellpic1.gif');
+	background-repeat: repeat-x;
+}
+
+div#topbaradmin :first-child {
+	margin: 0;
+}
+
+#topbaradmin li {
+	float: left;
+	list-style: none;
+	
+	padding: 0px 5px 0 5px;
+}
+
+#topbaradmin a {
+	color: #ffffff;
+	text-decoration: none;
+}
+
+#topbaradmin a:hover {
+	color: #3f3720;
+}
 /* Center part */
 #center {
 	clear: both;

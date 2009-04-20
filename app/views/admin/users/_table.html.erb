@@ -1,12 +1,12 @@
 <table>
 	<thead>
 	  <tr>
-	    <th>Name</th>
-	    <th>Guild</th>
-			<th>Email</th>
-			<th>PigMoneyBox</th>
-			<th>Gatherer</th>
-	    <th>Admin</th>
+	    <th><%= User.human_attribute_name('username') %></th>
+	    <th><%= User.human_attribute_name('guild') %></th>
+			<th><%= User.human_attribute_name('email') %></th>
+			<th><%= User.human_attribute_name('pigMoneyBox') %></th>
+			<th><%= User.human_attribute_name('gatherer') %></th>
+	    <th><%= User.human_attribute_name('admin') %></th>
 	  </tr>
 	</thead>
 	<tbody>

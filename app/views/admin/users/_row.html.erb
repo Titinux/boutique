@@ -10,8 +10,8 @@
 	<td><%=h user.gatherer %></td>
   <td><%=h user.admin %></td>
   <td>
-  	<%= link_to 'Show', [:admin, user] %> |
-  	<%= link_to 'Edit', edit_admin_user_path(user) %> |
-  	<%= link_to 'Destroy', [:admin, user], :confirm => 'Are you sure?', :method => :delete %>
+  	<%= link_to t('show'), [:admin, user] %> |
+  	<%= link_to t('edit'), edit_admin_user_path(user) %> |
+  	<%= link_to t('destroy'), [:admin, user], :confirm => t('destroy_confirm'), :method => :delete %>
 	</td>
 </tr>
