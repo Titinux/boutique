@@ -2,8 +2,8 @@
   <td><%=h guild.name %></td>
   <td><%=h guild.pictureUri %></td>
   <td>
-  	<%= link_to 'Show', [:admin, guild] %> |
-  	<%= link_to 'Edit', edit_admin_guild_path(guild) %> |
-  	<%= link_to 'Destroy', [:admin, guild], :confirm => 'Are you sure?', :method => :delete %>
+  	<%= link_to t('show'), [:admin, guild] %> |
+  	<%= link_to t('edit'), edit_admin_guild_path(guild) %> |
+  	<%= link_to t('destroy'), [:admin, guild], :confirm => 'Are you sure?', :method => :delete %>
 	</td>
 </tr>

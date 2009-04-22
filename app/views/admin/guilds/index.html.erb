@@ -1,7 +1,7 @@
-<h1>Listing guilds</h1>
+<h1><%= t('user.listing') %></h1>
 
 <%= render :partial => 'table', :locals => { :guilds => @guilds } %>
 
 <br />
 
-<%= link_to 'New guild', new_admin_guild_path %>
+<%= link_to t('user.new'), new_admin_guild_path %>

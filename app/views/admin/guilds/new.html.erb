@@ -1,14 +1,14 @@
-<h1>New guild</h1>
+<h1><%= t('guild.new') %></h1>
 
 <% form_for([:admin, @guild]) do |f| %>
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :name %><br />
+    <%= f.label :name, Guild.human_attribute_name('name') %><br />
     <%= f.text_field :name %>
   </p>
   <p>
-    <%= f.label :pictureUri %><br />
+    <%= f.label :pictureUri, Guild.human_attribute_name('pictureUri') %><br />
     <%= f.text_field :pictureUri %>
   </p>
   <p>
@@ -16,4 +16,4 @@
   </p>
 <% end %>
 
-<%= link_to 'Back', admin_guilds_path %>
+<%= link_to t('back'), admin_guilds_path %>

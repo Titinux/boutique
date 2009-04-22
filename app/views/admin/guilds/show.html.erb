@@ -1,13 +1,13 @@
 <p>
-  <b>Name:</b>
+  <b><%= Guild.human_attribute_name('name') %>:</b>
   <%=h @guild.name %>
 </p>
 
 <p>
-  <b>Pictureuri:</b>
+  <b><%= Guild.human_attribute_name('pictureUri') %>:</b>
   <%=h @guild.pictureUri %>
 </p>
 
 
-<%= link_to 'Edit', edit_admin_guild_path(@guild) %> |
-<%= link_to 'Back', admin_guilds_path %>
+<%= link_to t('edit'), edit_admin_guild_path(@guild) %> |
+<%= link_to t('back'), admin_guilds_path %>

@@ -1,11 +1,11 @@
 en:
   activerecord:
     models:
-      user: User
+      user: Users
       
     attributes:  
       user:
-        username: Username
+        name: Username
         pigMoneyBox: Pig moneybox
         guild: Guild
         email: Email
@@ -24,11 +24,11 @@ en:
 fr-FR:
   activerecord:
     models:
-      user: Utilisateur
+      user: Utilisateurs
       
     attributes:  
       user:
-        username: Identifiant
+        name: Identifiant
         pigMoneyBox: Cochon tirelire
         guild: Guilde
         email: E-mail
