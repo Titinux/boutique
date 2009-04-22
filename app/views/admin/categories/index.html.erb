@@ -1,7 +1,7 @@
-<h1>Listing categories</h1>
+<h1><%= t('category.listing') %></h1>
 
 <%= render :partial => 'table', :locals => { :categories => @categories } %>
 
 <br />
 
-<%= link_to 'New category', new_admin_category_path %>
+<%= link_to t('category.new'), new_admin_category_path %>

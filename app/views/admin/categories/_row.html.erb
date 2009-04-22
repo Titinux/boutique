@@ -3,8 +3,8 @@
 	<td><%=h(category.parent.name) if category.parent %></td>
 	<td><%=h category.pictureUri %></td>
   <td>
-  	<%= link_to 'Show', [:admin, category] %> |
-  	<%= link_to 'Edit', edit_admin_category_path(category) %> |
-  	<%= link_to 'Destroy', [:admin, category], :confirm => 'Are you sure?', :method => :delete %>
+  	<%= link_to t('show'), [:admin, category] %> |
+  	<%= link_to t('edit'), edit_admin_category_path(category) %> |
+  	<%= link_to t('destroy'), [:admin, category], :confirm => 'Are you sure?', :method => :delete %>
 	</td>
 </tr>

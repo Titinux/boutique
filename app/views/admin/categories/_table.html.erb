@@ -1,9 +1,9 @@
 <table>
 	<thead>
 	  <tr>
-	    <th>Name</th>
-			<th>Parent category</th>
-			<th>PictureUri</th>
+	    <th><%= Category.human_attribute_name('name') %></th>
+			<th><%= Category.human_attribute_name('parent') %></th>
+			<th><%= Category.human_attribute_name('pictureUri') %></th>
 	  </tr>
 	</thead>
 	<tbody>
