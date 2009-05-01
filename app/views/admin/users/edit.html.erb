@@ -1,6 +1,6 @@
 <h1><%= t('user.editing') %></h1>
 
-<% form_for([:admin, @user]) do |f| %>
+<% form_for([:admin, @user], :builder => CustomFormBuilder) do |f| %>
   <%= render :partial => 'form', :locals => { :f => f, :bt_name => t('update') } %>
 <% end %>
 

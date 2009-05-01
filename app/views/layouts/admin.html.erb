@@ -7,6 +7,10 @@
   <title>Boutique</title>
   <%= stylesheet_link_merged :admin %>
 	<%= javascript_include_merged :base %>
+	
+	<% javascript_tag do -%>
+    <%= yield(:jstemplates) %>
+  <% end -%>
 </head>
 <body>
 

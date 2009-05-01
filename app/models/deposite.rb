@@ -12,9 +12,6 @@ class Deposite < ActiveRecord::Base
   named_scope :deposites_of, lambda {|asset| { :conditions => ["asset_id = ?", asset.id]}}
   named_scope :validated, lambda {|*args| { :conditions => ["validated = ?", (args.empty? ? true : args.first)]}}
   
-  # Callbacks
-  before_save :compact
-  
   def self.stock(asset)
     validated.deposites_of(asset).sum(:quantity)
   end
@@ -29,13 +26,24 @@ class Deposite < ActiveRecord::Base
     self.quantity += value.to_i
   end
   
-  def compact
-    slaves = Deposite.find(:all, :conditions => {:user_id => self.user_id, :asset_id => self.asset_id, :validated => self.validated})
+  def self.compact(&block)
+    self.transaction do
+      
+      block.call if block
     
-    slaves.delete_if {|slave| slave.id == self.id } unless self.new_record?
-    
-    self.quantity += slaves.sum(&:quantity)
-    slaves.each {|slave| slave.delete }
+      groups = Deposite.all.group_by do |deposite|
+        [deposite.user_id, deposite.asset_id, deposite.validated]
+      end
+      
+      groups.values.each do |group|
+        next if group.size < 2
+        
+        group.first.quantity = group.sum(&:quantity)
+        group.shift.save
+
+        group.each(&:delete)
+      end
+    end
     
     true
   end

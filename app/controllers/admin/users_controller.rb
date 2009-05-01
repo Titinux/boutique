@@ -58,16 +58,10 @@ class Admin::UsersController < Admin::AdminController
   # PUT /admin/users/1
   # PUT /admin/users/1.xml
   def update
-    params[:user][:existing_deposite_attributes] ||= {}
-    
-    unless params[:user][:new_deposite_attributes].blank?
-      params[:user][:new_deposite_attributes].each { |new_deposite| new_deposite[:validated] = true }
-    end
-    
     @user = User.find(params[:id])
 
     respond_to do |format|
-      if @user.update_attributes(params[:user])
+      if Deposite.compact { @user.update_attributes(params[:user]) }
         flash[:notice] = 'User was successfully updated.'
         format.html { redirect_to([:admin, @user]) }
         format.xml  { head :ok }

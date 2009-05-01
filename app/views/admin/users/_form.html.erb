@@ -1,49 +1,25 @@
+<% content_for :jstemplates do -%>
+	<%= "var deposite='#{generate_template(f, :deposites)}'" %>
+<% end -%>
+
 <%= f.error_messages %>
 
-<p>
-  <%= f.label :name, User.human_attribute_name('name') %>
-  <%= f.text_field :name %>
-</p>
-<p>
-	<%= f.label :password, User.human_attribute_name('password') %>
-	<%= f.password_field :password %>
-</p>
-<p>
-	<%= f.label :email, User.human_attribute_name('email') %>
-	<%= f.text_field :email %>
-</p>
-<p>
-  <%= f.label :guild_id, User.human_attribute_name('guild') %>
-  <%= f.collection_select(:guild_id, Guild.find(:all), :id, :name, :include_blank => true) %>
-</p>
-<p>
-	<%= f.label :addMoney, "#{User.human_attribute_name('pigMoneyBox')} : #{f.object.pigMoneyBox}", :class => 'differential' %>
-	<%= f.text_field :addMoney %>
-</p>
-<p>
-  <%= f.label :gatherer, User.human_attribute_name('gatherer') %>
-  <%= f.check_box :gatherer %>
-</p>
-<p>
-  <%= f.label :admin,  User.human_attribute_name('admin') %>
-  <%= f.check_box :admin %>
-</p>
+<%= f.text_field :name %>
+<%= f.password_field :password %>
+<%= f.text_field :email %>
+<%= f.collection_select(:guild_id, Guild.find(:all), :id, :name, :include_blank => true) %>
+<%= f.text_field :pigMoneyBox, :differential => :addMoney %>
+<%= f.check_box :gatherer %>
+<%= f.check_box :admin %>
 
-<table id="deposites">
-	<tr>
-		<th>Asset</th>
-		<th colspan="2">Quantity</th>
-	</tr>
-	
-	<% @user.deposites.validated.each do |deposite| %>
-	  <%= render :partial => 'deposite_dform', :locals => { :deposite => deposite } %>
+<div id="deposites">
+	<% f.fields_for :deposites, :builder => InLineFormBuilder do |dep| %>
+		<% content_tag :div, :id => "user_deposite_#{dep.object.id}", :class => "deposite" do %>
+			<%= render :partial => 'deposite_form', :locals => { :f => dep } %>
+		<% end %>
 	<% end %>
-</table>
+</div>
 
-<p>
-<%= add_deposite_link 'Add a deposite' %>
-</p>
+<p><%= link_to_function 'Add deposite', 'add_nested_form("deposite", "deposites")'%></p>
 
-<p>
-  <%= f.submit bt_name %>
-</p>
+<%= f.submit bt_name %>

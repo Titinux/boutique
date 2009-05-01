@@ -35,7 +35,7 @@ class Admin::DepositesController < Admin::AdminController
     @deposite.validated = true
 
     respond_to do |format|
-      if @deposite.save
+      if Deposite.compact { @deposite.save }
         flash[:notice] = 'Deposite was successfully validated.'
         format.html { redirect_to admin_deposites_path }
         format.xml  { head :ok }
