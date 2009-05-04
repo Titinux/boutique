@@ -264,7 +264,6 @@ label.differential:after {content: " + ";}
 	border-color: #696464;
 	
 	padding: 5px;
-	text-align: center;
 	
 	-moz-border-radius-bottomright: 20px;
 	-moz-border-radius-bottomleft: 20px;
@@ -320,14 +319,18 @@ td.currency {
 	width: 100%;
 }
 
+.category {
+	text-align: center;
+}
+
 /* Assets */
 .asset {
 	float:left;
 	margin: 5px;
 	
-	min-height: 100px;
+	min-height: 115px;
 	min-width: 175px;
-	
+	max-width: 175px;
 	
 	border-style: solid;
 	border-width: thin;

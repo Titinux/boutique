@@ -2,7 +2,7 @@
 	<div id="category">
 		<div class="block">
 			<div class="block_header"><%= h @category.name %></div>
-			<div class="block_body">
+			<div class="block_body category">
 				<% unless @category.parent.blank? %>
 					<p><%= link_to t('category.goParent'), categories_path(:cat => @category.parent.id) %></p>
 				<% else %>
