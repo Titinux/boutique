@@ -3,9 +3,9 @@ class Statistics
   def self.list(admin = false)
     if(admin)
     {
-    :ASSETS => 'Assets statistics',
-    :ORDERS => 'Orders statistics',
-    :STOCK  => 'Stock statistics'
+    :ASSETS => I18n.t('statistics.assetsStatistics'),
+    :ORDERS => I18n.t('statistics.ordersStatistics'),
+    :STOCK  => I18n.t('statistics.stockStatistics')
     } 
     else
     {

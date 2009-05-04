@@ -2,6 +2,7 @@
 	<div class="block_header"><%= h category.name %></div>
 	<div class="block_body">
 		<%= image_tag category.pictureUri unless category.pictureUri.blank? %>
+		<br />
 		<%= link_to category.name, categories_path(:cat => category.id) %>
 	</div>
 </div>

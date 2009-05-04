@@ -7,13 +7,14 @@ en:
       category:
         name: Name
         pictureUri: Picture URI
-        parent: Parent categorie
+        parent: Parent category
         
   # Category
   category:
-    editing: Edit categorie
+    editing: Edit category
     listing: Categories listing
-    new: New categorie
+    new: New category
+    goParent: Go to parent category
 
 fr-FR:
   activerecord:
@@ -31,4 +32,4 @@ fr-FR:
     editing: Editer la catégorie
     listing: Liste des catégories
     new: Nouvelle catégorie
-    
+    goParent: Aller à la catégorie parente
