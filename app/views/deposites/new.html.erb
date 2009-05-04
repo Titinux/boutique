@@ -1,9 +1,9 @@
 <%= render :partial => 'shared/user_sidebar' %>
 
-<h2>New deposite</h2>
+<h2><%= t('deposite.new') %></h2>
 
 <% form_for(@deposite) do |f| %>
-	<%= render :partial => 'form', :locals => { :f => f, :bt_name => 'Create' } %>
+	<%= render :partial => 'form', :locals => { :f => f, :bt_name => t('create') } %>
 <% end %>
 
-<%= link_to 'Back', deposites_path %>
+<%= link_to t('back'), deposites_path %>

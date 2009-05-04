@@ -5,7 +5,7 @@
 				<ul>
 					<li><%= link_to 'Infos' , user_path %></li>
 					<% if user_session.user.gatherer %>
-						<li><%= link_to 'Deposites' , deposites_path %></li>
+						<li><%= link_to Deposite.human_name , deposites_path %></li>
 					<% end %>
 				</ul>
 			</div>
