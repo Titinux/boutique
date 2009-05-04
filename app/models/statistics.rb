@@ -11,7 +11,7 @@ class Statistics
     {
     #:ASSETS => 'Assets statistics',
     #:ORDERS => 'Orders statistics',
-    :STOCK  => 'Stock statistics'
+    :STOCK  => I18n.t('statistics.stockStatistics')
     }
     end
   end
