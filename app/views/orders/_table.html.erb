@@ -2,10 +2,10 @@
 	<col width="100%" />
 	<thead>
 		<tr>
-			<th>Asset</th>
-			<th class="number">Quantity</th>
-			<th class="currency">Unitary Price</th>
-			<th class="currency">Price</th>
+			<th><%= Asset.human_name.pluralize %></th>
+			<th class="number"><%= Order.human_attribute_name('quantity') %></th>
+			<th class="currency"><%= Order.human_attribute_name('uPrice') %></th>
+			<th class="currency"><%= Order.human_attribute_name('price') %></th>
 		</tr>
 	</thead>
 	<tbody>

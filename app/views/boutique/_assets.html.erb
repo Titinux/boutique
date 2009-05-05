@@ -6,7 +6,7 @@
 						<%= image_tag asset.pictureUri %><br />
 					<% end %>
 					<%= asset.name %><br />
-					<%= link_to '(add to cart)', new_cart_path(:asset_id => asset.id) %>
+					<%= link_to t('cart.add'), new_cart_path(:asset_id => asset.id) %>
 				</div>
 			<% end %>
 	<% end %>

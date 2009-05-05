@@ -6,13 +6,13 @@ module Admin::OrdersHelper
   end
   
   def orderStatusHash
-    Hash['WAIT_ESTIMATE',            'Waiting estimate',
-         'WAIT_ESTIMATE_VALIDATION', 'Waiting estimate validation',
-         'IN_PREPARATION',           'In preparation',
-         'WAIT_DELIVERY',            'Waiting delivery',
-         'ACHIEVED',                 'Achieved',
-         'ORDER_CANCELED',           'Order canceled',
-         'ERROR',                    'Error'
+    Hash['WAIT_ESTIMATE',            t('order.state.waitEstimate'),
+         'WAIT_ESTIMATE_VALIDATION', t('order.state.waitEstimateValidation'),
+         'IN_PREPARATION',           t('order.state.preparation'),
+         'WAIT_DELIVERY',            t('order.state.waitDelivery'),
+         'ACHIEVED',                 t('order.state.achieved'),
+         'ORDER_CANCELED',           t('order.state.canceled'),
+         'ERROR',                    t('order.state.error')
         ]
   end
   

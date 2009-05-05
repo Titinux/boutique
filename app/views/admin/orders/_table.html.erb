@@ -1,11 +1,11 @@
 <table>
   <thead>
 		<tr>
-	    <th>Id</th>
-			<th>User</th>
-	    <th>State</th>
-			<th>Total amount</th>
-	  </tr>
+			<th><%= Order.human_attribute_name('id') %></th>
+			<th><%= User.human_attribute_name('name') %></th>
+			<th><%= Order.human_attribute_name('state') %></th>
+			<th><%= Order.human_attribute_name('totalAmount') %></th>
+		</tr>
 	</thead>
 	<tbody>
 		<% orders.each do |order| -%>

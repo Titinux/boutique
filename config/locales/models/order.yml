@@ -1,0 +1,79 @@
+en:
+  activerecord:
+    models:
+      order: Order
+      
+    attributes:  
+      order:
+        quantity: Quantity
+        uPrice: Unitary price
+        price: Price
+        totalAmount: Total amount
+        id: Command number
+        state: State
+
+  # Order
+  order:
+    makeOrder: Make an order
+    youHaveToLog: You have to log in to make an order.
+    actions: Actions
+    details: Details
+    new: New order
+    listing: Listing order
+    editing: Editing order
+    cancelSucces: Order was successfully canceled.
+    cancelFail: Order can\'t be canceled.
+    estimate:
+      created: Estimate was successfully created.
+      accepted: Estimate was successfully accepted.
+      canceled: Estimate was successfully canceled.
+    modifyFail: Order can't be modified.
+    state:
+      waitEstimate: Waiting estimate
+      waitEstimateValidation: Waiting estimate validation
+      preparation: In preparation
+      waitDelivery: Waiting delivery
+      achieved: Achieved
+      canceled: Order canceled
+      error: Error
+    createSuccess: Order was successfully created.
+
+fr-FR:
+  activerecord:
+    models:
+      order: Commande
+      
+    attributes:  
+      order:
+        quantity: Quantité
+        uPrice: Prix à l'unité
+        price: Prix
+        totalAmount: Montant total
+        id: N° de commande
+        state: Etat
+
+  # Order
+  order:
+    makeOrder: Passer la commande
+    youHaveToLog: Vous devez vous identifer pour passer commande
+    actions: Actions
+    details: Détails
+    new: Nouvelle commande
+    listing: Liste des commandes
+    editing: Editer la commande
+    cancelSucces: La commande à bien été annulée.
+    cancelFail: La commande ne peut pas être annulée.
+    estimate:
+      created: L'estimation a été créée.
+      accepted: L'estimation a été accepté.
+      canceled: L'estimation a été annulée.
+    modifyFail: La commande ne peut pas être modifiée.
+    state:
+      waitEstimate: En attente de devis
+      waitEstimateValidation: En attente de validation du devis
+      preparation: En préparation
+      waitDelivery: En attente de livraison
+      achieved: Achevée
+      canceled: Annulée
+      error: Erreur
+    createSuccess: La commande a bien été créée.

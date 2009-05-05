@@ -41,9 +41,9 @@ class Order < ActiveRecord::Base
           self.state = 'ORDER_CANCELED'
           
           if self.save
-            @message = 'Order was successfully canceled.'
+            @message = t('order.cancelSucces')
           else  
-            @message = 'Order can\'t be canceled.'
+            @message = t('order.cancelFail')
             return false
           end
         end
@@ -53,9 +53,9 @@ class Order < ActiveRecord::Base
           self.state = 'WAIT_ESTIMATE_VALIDATION'
         
           if self.save
-            @message = 'Estimate was successfully created.'
+            @message = t('order.estimate.created')
           else
-            @message = 'Order can\'t be modified.'
+            @message = t('order.modifyFail')
             return false
           end
         end
@@ -68,9 +68,9 @@ class Order < ActiveRecord::Base
           
           
           
-          @message = 'Estimate was successfully accepted.'
+          @message = t('order.estimate.accepted')
         else
-          @message = 'Order can\'t be modified.'
+          @message = t('order.modifyFail')
           return false
         end
       
@@ -79,9 +79,9 @@ class Order < ActiveRecord::Base
           self.state = 'ORDER_CANCELED'
           
           if self.save
-            @message = 'Estimate was successfully canceled.'
+            @message = t('order.estimate.canceled')
           else
-            @message = 'Order can\'t be modified.'
+            @message = t('order.modifyFail')
             return false
           end
         end       

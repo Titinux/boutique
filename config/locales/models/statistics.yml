@@ -8,14 +8,16 @@ en:
     stock: Stock
     orderVolume: Order volume
     difference: Difference
+    name: Statistics
 
 fr-FR:
   # Statistics
   statistics:
-    stockStatistics: Statistiques des stocks
+    stockStatistics: Etat des stocks
     ordersStatistics: Statistiques des commandes
     assetsStatistics: Statistiques des ressources
     asset: Ressource
     stock: Stock actuel
     orderVolume: Quantité commandée
     difference: Stock disponible
+    name: Statistiques

@@ -1,13 +1,11 @@
 <div class="block">
-	<div class="block_header">Order n°<%= @order.id%></div>
+	<div class="block_header"><%= Order.human_attribute_name('id') %>: <%= @order.id%></div>
 	<div class="block_body">
-		<p>
-			State : <%= orderStatusHash[@order.state] %>
-		</p>
-		<p>Amount : <%= @order.totalAmount %></p>
+		<p><%= Order.human_attribute_name('state') %> : <%= orderStatusHash[@order.state] %></p>
+		<p><%= Order.human_attribute_name('totalAmount') %> : <%= @order.totalAmount %></p>
 		
 		<div class="block">
-			<div class="block_header">Details</div>
+			<div class="block_header"><%= t('order.details') %></div>
 			<div class="block_body">
 				<%= render :partial => 'table', :locals => { :order => @order } %>
 			</div>
@@ -17,5 +15,6 @@
 			<%= link_to orderActionHash['ACCEPT_ESTIMATE'], orderAction_path(@order, :op => 'ACCEPT_ESTIMATE'), :method => :put %> | 
 			<%= link_to orderActionHash['REFUSE_ESTIMATE'], orderAction_path(@order, :op => 'REFUSE_ESTIMATE'), :method => :put %>
 		<% end %>
+		<%= link_to t('back'), user_path %>
 	</div>
 </div>

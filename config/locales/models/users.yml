@@ -20,6 +20,8 @@ en:
     editing: Edit user
     listing: Users listing
     new: New user
+    block: User block
+    infos: Informations
 
 fr-FR:
   activerecord:
@@ -43,3 +45,6 @@ fr-FR:
     editing: Modification de l'utilisateur
     listing: Liste des utilisateurs
     new: Nouvel utilisateur
+    block: Bloc utilisateur
+    infos: Informations
+    

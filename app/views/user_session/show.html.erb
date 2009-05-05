@@ -4,7 +4,7 @@
 	<div class="block_header"><%= t 'userSession.myPersonnalInformations' %></div>
 	<div class="block_body">
 		<p>
-		  <%= User.human_attribute_name('username') %> : 
+		  <%= User.human_attribute_name('name') %> : 
 		  <%=h @user_session.user.name %>
 		</p>
 		<p>

@@ -2,20 +2,12 @@ en:
   # Navigation
   navigate:
     welcomepage: Welcome Page
-    assets: Assets
-    cart: Cart
-    statistics: Statistics
     publicPart: Public part
     adminPart: Administration panel
-    userPart: User part
 
 fr-FR:
   # Navigation
   navigate:
     welcomepage: Page d'accueil
-    assets: Ressources
-    cart: Panier
-    statistics: Statistiques
     publicPart: Partie publique
     adminPart: Administration
-    userPart: Section client

@@ -54,7 +54,7 @@ class CartController < ApplicationController
     respond_to do |format|
       if @asset
         cart_session.add_line(@asset.id, params[:quantity])
-        flash[:notice] = 'Asset was successfully added to cart.'
+        flash[:notice] = t('cart.addCartSuccess')
         
         if params[:add_and_continue_shopping].blank?
           format.html { redirect_to(cart_index_path) }
@@ -78,7 +78,7 @@ class CartController < ApplicationController
     respond_to do |format|
       if @asset
         cart_session.edit_line(@asset.id, params[:quantity])
-        flash[:notice] = 'Asset was successfully updated.'
+        flash[:notice] = t('cart.updateSuccess')
         format.html { redirect_to(cart_index_path) }
         format.xml  { head :ok }
       else
@@ -118,7 +118,7 @@ class CartController < ApplicationController
       begin
         cart_session.to_order(user_session)
       
-        flash[:notice] = 'Order was successfully created.'
+        flash[:notice] = t('order.createSuccess')
         format.html { redirect_to(cart_index_path) }
         format.xml  { head :ok }
       rescue Exception => e

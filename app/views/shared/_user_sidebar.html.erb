@@ -1,9 +1,9 @@
 <% content_for :sidebar do %>
   <div class="block">
-		<div class="block_header">User</div>
+		<div class="block_header"><%= t('user.block') %></div>
 			<div class="block_body">
 				<ul>
-					<li><%= link_to 'Infos' , user_path %></li>
+					<li><%= link_to t('user.infos') , user_path %></li>
 					<% if user_session.user.gatherer %>
 						<li><%= link_to Deposite.human_name , deposites_path %></li>
 					<% end %>

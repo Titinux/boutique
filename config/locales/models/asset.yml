@@ -1,0 +1,21 @@
+en:
+  activerecord:
+    models:
+      asset: Asset
+      
+    attributes:  
+      asset:
+        
+  # Asset
+  asset:
+
+fr-FR:
+  activerecord:
+    models:
+      asset: Ressource
+      
+    attributes:  
+      asset:
+        
+  # Asset
+  asset:

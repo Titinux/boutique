@@ -7,6 +7,7 @@ en:
   edit: Edit
   show: Show
   update: Update
+  login: Login
 
 
 fr-FR:
@@ -18,3 +19,4 @@ fr-FR:
   edit: Editer
   show: Afficher
   update: Mettre à jour
+  login: Connexion

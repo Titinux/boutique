@@ -1,7 +1,7 @@
-<h1>Listing orders</h1>
+<h1><%= t('order.listing') %></h1>
 
 <%= render :partial => 'table', :locals => { :orders => @orders } %>
 
 <br />
 
-<%= link_to 'New order', new_admin_order_path %>
+<%= link_to t('order.new'), new_admin_order_path %>

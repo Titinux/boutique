@@ -1,7 +1,7 @@
 <% form_tag cart_path, :method => :put do %>
-	<%= label :cart_line, :quantity %>
+	<%= label :quantity, t('cart.quantity') %>
 	<%= text_field_tag :quantity, @cart_line[1] %>
 	
 	<%= hidden_field_tag :asset_id, @cart_line[0] %>
-	<%= submit_tag 'edit' %>
+	<%= submit_tag t('edit') %>
 <% end %>
