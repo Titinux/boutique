@@ -1,28 +1,28 @@
 <p>
-  <b>Name:</b>
+  <b><%= Asset.human_attribute_name('name') %>:</b>
   <%=h @asset.name %>
 </p>
 
 <p>
-  <b>Category:</b>
+  <b><%= Asset.human_attribute_name('category') %>:</b>
   <%=h @asset.category.name %>
 </p>
 
 <p>
-  <b>PictureUri:</b>
+  <b><%= Asset.human_attribute_name('pictureUri') %>:</b>
   <%=h @asset.pictureUri %>
 </p>
 
 <p>
-  <b>Unitaryprice:</b>
+  <b><%= Asset.human_attribute_name('unitaryprice') %>:</b>
   <%=h @asset.unitaryPrice %>
 </p>
 
 <p>
-  <b>Floatprice:</b>
+  <b><%= Asset.human_attribute_name('floatprice') %>:</b>
   <%=h @asset.floatPrice %>
 </p>
 
 
-<%= link_to 'Edit', edit_admin_asset_path(@asset) %> |
-<%= link_to 'Back', admin_assets_path %>
+<%= link_to t('edit'), edit_admin_asset_path(@asset) %> |
+<%= link_to t('back'), admin_assets_path %>

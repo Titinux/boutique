@@ -1,5 +1,5 @@
-<h2>New asset</h2>
+<h2><%= t('asset.new') %></h2>
 
-<%= render :partial => 'form', :locals => { :asset => @asset, :bt_name => 'Create' } %>
+<%= render :partial => 'form', :locals => { :asset => @asset, :bt_name => t('create') } %>
 
-<%= link_to 'Back', admin_assets_path %>
+<%= link_to t('back'), admin_assets_path %>
