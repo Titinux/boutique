@@ -1,4 +1,4 @@
-<h1><%= t('order.new') %></h1>
+<h2><%= t('order.new') %></h2>
 
 <% form_for([:admin, @order]) do |f| %>
   <%= render :partial => 'form', :locals => {:f => f, :bt_name => t('create') } %>
