@@ -37,6 +37,7 @@ en:
       canceled: Order canceled
       error: Error
     createSuccess: Order was successfully created.
+    commandId: Order #{{id}}
 
 fr-FR:
   activerecord:
@@ -77,3 +78,4 @@ fr-FR:
       canceled: Annulée
       error: Erreur
     createSuccess: La commande a bien été créée.
+    commandId: Commande n°{{id}}

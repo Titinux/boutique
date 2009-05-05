@@ -1,17 +1,11 @@
 <%= render :partial => 'shared/user_sidebar' %>
 
-<div class="block">
-	<div class="block_header"><%= t('deposite.validated') %></div> 
-	<div class="block_body">
-		<%= render :partial => 'table', :locals => { :deposites => @validated_deposites } %>
-	</div>
-</div>
+<% block :title => t('deposite.validated') do%>
+	<%= render :partial => 'table', :locals => { :deposites => @validated_deposites } %>
+<% end %>
 
-<div class="block">
-	<div class="block_header"><%= t('deposite.waiting') %></div> 
-	<div class="block_body">
-		<%= render :partial => 'table', :locals => { :deposites => @waiting_deposites } %>
-	</div>
-</div>
+<% block :title => t('deposite.waiting') do %> 
+	<%= render :partial => 'table', :locals => { :deposites => @waiting_deposites } %>
+<% end %>
 
 <p><%= link_to t('deposite.new'), new_deposite_path %></p>

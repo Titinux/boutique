@@ -1,8 +1,5 @@
-<div class="block mini">
-	<div class="block_header"><%= h category.name %></div>
-	<div class="block_body category">
-		<%= image_tag category.pictureUri unless category.pictureUri.blank? %>
+<% block :class => 'mini', :title => h(category.name), :body_class => 'category' do %>
+	<%= image_tag category.pictureUri unless category.pictureUri.blank? %>
 		<br />
-		<%= link_to category.name, categories_path(:cat => category.id) %>
-	</div>
-</div>
+	<%= link_to category.name, categories_path(:cat => category.id) %>
+<% end %>
