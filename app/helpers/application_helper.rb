@@ -13,4 +13,20 @@ module ApplicationHelper
   def generate_template(form_builder, method, options = {})
     escape_javascript generate_html(form_builder, method, options = {})
   end
+  
+  def block(*args, &block)
+    options = args.extract_options!
+    options[:class] ||= ''
+    options[:body_class] ||= ''
+    
+    out = ''
+    out << '<div class="block ' + options[:class] + '">'
+    out << '<div class="block_header">' + options[:title] + '</div>'
+    out << '<div class="block_body ' + options[:body_class] + '">'
+    out << capture(&block)
+    out << '</div>'
+    out << '</div>'
+    
+    concat out
+  end
 end

@@ -1,32 +1,23 @@
 <%= render :partial => 'shared/user_sidebar' %>
 
-<div class="block">
-	<div class="block_header"><%= t 'userSession.myPersonnalInformations' %></div>
-	<div class="block_body">
-		<p>
-		  <%= User.human_attribute_name('username') %> : 
-		  <%=h @user_session.user.name %>
-		</p>
-		<p>
-			<%= User.human_attribute_name('email') %> :
-			<%=h @user_session.user.email %>
-		</p>
-		<% unless @user_session.user.guild.blank? %>
-			<p><%= User.human_attribute_name('guild') %> : <%=h @user_session.user.guild.name %></p>
-		<%end %>
-	</div>
-</div>
+<% block :title => t('userSession.myPersonnalInformations') do %>
+	<p>
+	  <%= User.human_attribute_name('username') %> : 
+	  <%=h @user_session.user.name %>
+	</p>
+	<p>
+		<%= User.human_attribute_name('email') %> :
+		<%=h @user_session.user.email %>
+	</p>
+	<% unless @user_session.user.guild.blank? %>
+		<p><%= User.human_attribute_name('guild') %> : <%=h @user_session.user.guild.name %></p>
+	<%end %>
+<% end %>
 
-<div class="block">
-	<div class="block_header"><%= t 'userSession.myPigMoneybox' %></div>
-	<div class="block_body">
-		<%= t 'userSession.amount' %> : <%= @user_session.user.pigMoneyBox %> kamas
-	</div>
-</div>
+<% block :title => t('userSession.myPigMoneybox') do %>
+	<%= t 'userSession.amount' %> : <%= @user_session.user.pigMoneyBox %> kamas
+<% end %>
 
-<div class="block">
-	<div class="block_header"><%= t 'userSession.myOrders' %></div>
-	<div class="block_body">
-		<%= render :partial => 'orders_table', :locals => { :orders => @user_session.user.orders.ongoing } %>
-	</div>
-</div>
+<% block :title => t('userSession.myOrders') do %>
+	<%= render :partial => 'orders_table', :locals => { :orders => @user_session.user.orders.ongoing } %>
+<% end %>

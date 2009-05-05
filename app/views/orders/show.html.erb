@@ -1,21 +1,15 @@
-<div class="block">
-	<div class="block_header">Order n°<%= @order.id%></div>
-	<div class="block_body">
-		<p>
-			State : <%= orderStatusHash[@order.state] %>
-		</p>
-		<p>Amount : <%= @order.totalAmount %></p>
-		
-		<div class="block">
-			<div class="block_header">Details</div>
-			<div class="block_body">
-				<%= render :partial => 'table', :locals => { :order => @order } %>
-			</div>
-		</div>
+<% block :tile => "Order n° {@order.id}" do %>
+	<p>
+		State : <%= orderStatusHash[@order.state] %>
+	</p>
+	<p>Amount : <%= @order.totalAmount %></p>
 	
-		<% if @order.state == 'WAIT_ESTIMATE_VALIDATION' %>
-			<%= link_to orderActionHash['ACCEPT_ESTIMATE'], orderAction_path(@order, :op => 'ACCEPT_ESTIMATE'), :method => :put %> | 
-			<%= link_to orderActionHash['REFUSE_ESTIMATE'], orderAction_path(@order, :op => 'REFUSE_ESTIMATE'), :method => :put %>
-		<% end %>
-	</div>
-</div>
+	<% block :title => 'Details' %>
+		<%= render :partial => 'table', :locals => { :order => @order } %>
+	<% end %>
+	
+	<% if @order.state == 'WAIT_ESTIMATE_VALIDATION' %>
+		<%= link_to orderActionHash['ACCEPT_ESTIMATE'], orderAction_path(@order, :op => 'ACCEPT_ESTIMATE'), :method => :put %> | 
+		<%= link_to orderActionHash['REFUSE_ESTIMATE'], orderAction_path(@order, :op => 'REFUSE_ESTIMATE'), :method => :put %>
+	<% end %>
+<% end %>

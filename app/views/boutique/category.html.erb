@@ -1,18 +1,15 @@
 <% unless @category.nil? %>
 	<div id="category">
-		<div class="block">
-			<div class="block_header"><%= h @category.name %></div>
-			<div class="block_body">
-				<% unless @category.parent.blank? %>
-					<p><%= link_to 'Go to parent category', categories_path(:cat => @category.parent.id) %></p>
-				<% else %>
-					<p><%= link_to 'Go to parent category', categories_path() %></p>
-				<% end %>
-				
-				<%= render :partial => 'assets' , :locals => { :assets => @category.assets} %>
-				<hr class="spacer" />
-			</div>
-		</div>
+		<% block :title => h(@category.name) do %>
+			<% unless @category.parent.blank? %>
+				<p><%= link_to 'Go to parent category', categories_path(:cat => @category.parent.id) %></p>
+			<% else %>
+				<p><%= link_to 'Go to parent category', categories_path() %></p>
+			<% end %>
+			
+			<%= render :partial => 'assets' , :locals => { :assets => @category.assets} %>
+			<hr class="spacer" />
+		<% end %>
 	</div>
 <% end %>
 
