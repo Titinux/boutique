@@ -1,0 +1,32 @@
+en:
+  activerecord:
+    models:
+      deposite: Deposites
+      
+    attributes:  
+      deposite:
+        asset: Asset
+        quantity: Quantity
+        
+  # Deposite
+  deposite:
+    new: New deposite
+    validated: My validated deposites
+    waiting: My waiting deposites
+
+fr-FR:
+  activerecord:
+    models:
+      deposite: Dépôts
+      
+    attributes:  
+      deposite:
+        asset: Ressources
+        quantity: Quantité
+        
+  # Deposite
+  deposite:
+    new: Nouveau dépôt
+    validated: Mes dépôts validés
+    waiting: Mes dépôts en attente
+    

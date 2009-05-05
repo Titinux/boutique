@@ -2,9 +2,9 @@
 	<div id="category">
 		<% block :title => h(@category.name) do %>
 			<% unless @category.parent.blank? %>
-				<p><%= link_to 'Go to parent category', categories_path(:cat => @category.parent.id) %></p>
+				<p><%= link_to t('category.goParent'), categories_path(:cat => @category.parent.id) %></p>
 			<% else %>
-				<p><%= link_to 'Go to parent category', categories_path() %></p>
+				<p><%= link_to t('category.goParent'), categories_path() %></p>
 			<% end %>
 			
 			<%= render :partial => 'assets' , :locals => { :assets => @category.assets} %>

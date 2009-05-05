@@ -72,7 +72,7 @@ div#topbar :first-child {
 	float: left;
 	list-style: none;
 	
-	padding: 0px 5px 0 5px;
+	padding: 0px 10px 0 0;
 }
 
 #topbar a {
@@ -146,16 +146,23 @@ div#topbaradmin :first-child {
 /* Footer */
 #footer {
 	position: absolute;
-	bottom: 10px;
+	bottom: 0px;
 	width: 98%;
 	margin: 0 1% 0 1%;
+	height: 25px;
+	line-height: 25px;
 	
 	clear: both;
-	border-width: 1px;
+	/*border-width: 1px;
 	border-style: solid;
-	border-color: #696464;
+	border-color: #696464;*/
 	
-	-moz-border-radius: 20px;
+	background-image: url('/images/global/cellpic1.gif');
+	background-repeat: repeat-x;
+	/*-moz-border-radius: 20px;*/
+	
+	font-size: 15px;
+	text-align: center;
 }
 
 /* Flash */
@@ -257,6 +264,7 @@ label.differential:after {content: " + ";}
 	border-color: #696464;
 	
 	padding: 5px;
+	text-align: center;
 	
 	-moz-border-radius-bottomright: 20px;
 	-moz-border-radius-bottomleft: 20px;

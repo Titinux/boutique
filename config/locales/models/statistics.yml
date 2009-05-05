@@ -1,0 +1,21 @@
+en:
+  # Statistics
+  statistics:
+    stockStatistics: Stock statistics
+    ordersStatistics: Orders statistics
+    assetsStatistics: Assets statistics
+    asset: Asset
+    stock: Stock
+    orderVolume: Order volume
+    difference: Difference
+
+fr-FR:
+  # Statistics
+  statistics:
+    stockStatistics: Statistiques des stocks
+    ordersStatistics: Statistiques des commandes
+    assetsStatistics: Statistiques des ressources
+    asset: Ressource
+    stock: Stock actuel
+    orderVolume: Quantité commandée
+    difference: Stock disponible

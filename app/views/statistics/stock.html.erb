@@ -1,11 +1,11 @@
-<h2>Stock statistics</h2>
+<h2><%= t('statistics.stockStatistics') %></h2>
 
 <table>
 	<tr>
-		<th>Asset</th>
-		<th>Stock</th>
-		<th>Order volume</th>
-		<th>Difference</th>
+		<th><%= t('statistics.asset') %></th>
+		<th><%= t('statistics.stock') %></th>
+		<th><%= t('statistics.orderVolume') %></th>
+		<th><%= t('statistics.difference') %></th>
 	</tr>
 	
 	<% Statistics.stockStats.each do |asset| %>
