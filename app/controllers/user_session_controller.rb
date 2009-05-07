@@ -41,7 +41,8 @@ class UserSessionController < ApplicationController
         flash[:notice] = 'Successfully logged in.'
         format.html { redirect_to(root_url) }
       else
-        format.html { redirect_to(root_url) }
+        flash[:error] = 'Wrong login or password !'
+        format.html { redirect_to(login_path) }
       end
     end
   end

@@ -12,12 +12,9 @@ class UserSession
   def autenticate(username, password)
     @user = User.find_by_name(username)
     
-    if @user.blank? || !@user.autenticate(password)
-      raise "Username or password invalid !!!"
-    else
-      @session[:user]['user_id'] = @user.id
-    end
-
+    return nil if @user.blank? || !@user.autenticate(password)
+      
+    @session[:user]['user_id'] = @user.id
     @user
   end
   
