@@ -2,43 +2,127 @@ require 'test_helper'
 
 class Admin::UsersControllerTest < ActionController::TestCase
 
-  test "should get index" do
+  test "simple user shouldn't get index" do
+    autenticate_as_simple_user
+    
+    get :index
+    
+    admin_section_forbidden
+  end
+
+  test "admin should get index" do
+    autenticate_as_admin
+    
     get :index
     assert_response :success
     assert_not_nil assigns(:users)
   end
 
-  test "should get new" do
+  test "simple user shouldn't get new" do
+    autenticate_as_simple_user
+    
+    get :new
+    
+    admin_section_forbidden
+  end
+
+  test "admin should get new" do
+    autenticate_as_admin
+    
     get :new
     assert_response :success
   end
 
-  test "should create user" do
+  test "simple user shouldn't create user" do
+    assert_no_difference('User.count') do
+      post :create, :user => { :name => 'Foobar user',
+                               :guild_id => guilds(:Famakna_food).id,
+                               :email => 'foo@bar.com',
+                               :admin => false,
+                               :gatherer => false
+                             }
+    end
+
+    admin_section_forbidden
+  end
+
+
+  test "admin should create user" do
+    autenticate_as_admin
+    
     assert_difference('User.count') do
-      post :create, :user => { :name => 'New user', :guild => Guild.find_by_name('Famakna Food'), :admin => false}
+      post :create, :user => { :name => 'Foobar user',
+                               :guild_id => guilds(:Famakna_food).id,
+                               :email => 'foo@bar.com',
+                               :admin => false,
+                               :gatherer => false
+                             }
     end
 
     assert_redirected_to admin_user_path(assigns(:user))
   end
 
-  test "should show user" do
-    get :show, :id => users(:Bagu).id
+  test "simple user should show user" do
+    autenticate_as_simple_user
+    
+    get :show, :id => users(:Tata).id
+    
+    admin_section_forbidden
+  end
+
+  test "admin should show user" do
+    autenticate_as_admin
+    
+    get :show, :id => users(:Tata).id
     assert_response :success
   end
 
-  test "should get edit" do
-    get :edit, :id => users(:Bagu).id
+  test "simple user should get edit" do
+    autenticate_as_simple_user
+    
+    get :edit, :id => users(:Tata).id
+    
+    admin_section_forbidden
+  end
+
+  test "admin should get edit" do
+    autenticate_as_admin
+    
+    get :edit, :id => users(:Tata).id
     assert_response :success
   end
+
+  test "simple user shouldn't update user" do
+    autenticate_as_simple_user
+    
+    put :update, :id => users(:Tata).id, :user => { :email => 'foo@bar.com' }
+    
+    admin_section_forbidden
+  end
+
 
   test "should update user" do
-    put :update, :id => users(:Bagu).id, :user => { }
+    autenticate_as_admin
+    
+    put :update, :id => users(:Tata).id, :user => { :email => 'foo@bar.com' }
     assert_redirected_to admin_user_path(assigns(:user))
   end
 
+  test "simple user shouldn't destroy user" do
+    autenticate_as_simple_user
+    
+    assert_no_difference('User.count') do
+      delete :destroy, :id => users(:Tata).id
+    end
+
+    admin_section_forbidden
+  end
+
   test "should destroy user" do
+    autenticate_as_admin
+    
     assert_difference('User.count', -1) do
-      delete :destroy, :id => users(:Bagu).id
+      delete :destroy, :id => users(:Tata).id
     end
 
     assert_redirected_to admin_users_path

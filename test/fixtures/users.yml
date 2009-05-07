@@ -1,19 +1,77 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-Bagu:
-  name: Bagu
-  guild: Marchands_d_hyze
-  pigMoneyBox: 1000
-  admin: true
-  email: jeremie.horhant@titinux.net
-  password_salt: U8FtZCAM
-  password_hash: 176f814608a295f49e17c29041b34609ccbb8aa27957e8e9bd8e940208d31ede
+<% include Crypt %>
 
-Juanita:
-  name: Juanita
+# Admins
+Boule:
+  name: Boule
   guild: Marchands_d_hyze
   pigMoneyBox: 1000
   admin: true
-  email: jeremie.horhant@titinux.net
-  password_salt: 8HGrsdBj
-  password_hash: ba7e215749d08de6ed4d5d1d50740856908ba82d75c6297f849de3e5f8532e9e
+  gatherer: true
+  email: boule@truc.com
+  password_salt: <%= salt = computeSalt %>
+  password_hash: <%= computePassword(salt, 'boule') %>
+
+Bill:
+  name: Bill
+  guild: Marchands_d_hyze
+  pigMoneyBox: 1000
+  admin: true
+  gatherer: true
+  email: bill@truc.com
+  password_salt: <%= salt = computeSalt %>
+  password_hash: <%= computePassword(salt, 'bill') %>
+
+# Tax collector
+Marchands_d_hyze:
+  name: Marchands d'Hyze
+  guild: Marchands_d_hyze
+  pigMoneyBox: 0
+  admin: false
+  gatherer: true
+  email: truc@truc.com
+  password_salt: 
+  password_hash: 
+
+# Gatherer
+Toto:
+  name: Toto
+  guild: Marchands_d_hyze
+  pigMoneyBox: 0
+  admin: false
+  gatherer: true
+  email: toto@truc.com
+  password_salt: <%= salt = computeSalt %>
+  password_hash: <%= computePassword(salt, 'toto') %>
+
+Tata:
+  name: Tata
+  guild: Marchands_d_hyze
+  pigMoneyBox: 0
+  admin: false
+  gatherer: true
+  email: tata@truc.com
+  password_salt: <%= salt = computeSalt %>
+  password_hash: <%= computePassword(salt, 'tata') %>  
+
+# Clients
+Pim:
+  name: Pim
+  guild: Famakna_food
+  pigMoneyBox: 0
+  admin: false
+  gatherer: false
+  email: pim@truc.com
+  password_salt: <%= salt = computeSalt %>
+  password_hash: <%= computePassword(salt, 'pim') %>
+
+Pam:
+  name: Pam
+  guild: Famakna_food
+  pigMoneyBox: 0
+  admin: false
+  gatherer: false
+  email: pam@truc.com
+  password_salt: <%= salt = computeSalt %>
+  password_hash: <%= computePassword(salt, 'pam') %>

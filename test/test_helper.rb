@@ -2,7 +2,7 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'test_help'
 
-class Test::Unit::TestCase
+class ActiveSupport::TestCase 
   # Transactional fixtures accelerate your tests by wrapping each test method
   # in a transaction that's rolled back on completion.  This ensures that the
   # test database remains unchanged so your fixtures don't have to be reloaded
@@ -35,4 +35,32 @@ class Test::Unit::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def user_session
+    UserSession.new(session)
+  end
+  
+  def autenticate_as_admin
+    user_session.autenticate('Boule', 'boule')
+  end
+  
+  def autenticate_as_gatherer
+    user_session.autenticate('Toto', 'toto')
+  end
+  
+  def autenticate_as_simple_user
+    user_session.autenticate('Pim', 'pim')
+  end
+  
+  def autenticate(username, password)
+    user_session.autenticate(username, password)
+  end
+  
+  def logout
+    user_session.logout
+  end
+  
+  def admin_section_forbidden
+    assert flash[:error].include?("You're not allowed to browse admin section")
+    assert_redirected_to root_path
+  end
 end

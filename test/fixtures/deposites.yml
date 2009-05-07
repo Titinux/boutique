@@ -1,26 +1,43 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  user: Bagu
+  user: Toto
   asset: Iron
   quantity: 12000
+  validated: true
 
 two:
-  user: Bagu
+  user: Toto
   asset: Walnut
   quantity: 10000
+  validated: true
 
 three:
-  user: Bagu
+  user: Toto
   asset: Ash
   quantity: 1500
+  validated: true
 
 four:
-  user: Juanita
+  user: Tata
   asset: Ash
   quantity: 1800
+  validated: true
   
 five:
-  user: Juanita
+  user: Tata
   asset: Walnut
   quantity: 2700
+  validated: true
+
+six:
+  user: Tata
+  asset: Iron
+  quantity: 2700
+  validated: false
+
+seven:
+  user: Tata
+  asset: Ash
+  quantity: 500
+  validated: false

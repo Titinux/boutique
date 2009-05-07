@@ -1,53 +1,136 @@
 require 'test_helper'
 
 class Admin::AssetsControllerTest < ActionController::TestCase
-  test "should get index" do
+  test "admin should get index" do
+    autenticate_as_admin
+    
     get :index
     assert_response :success
     assert_not_nil assigns(:assets)
   end
 
-  test "should get new" do
+  test "simple user shouldn't get index" do
+    autenticate_as_simple_user
+
+    get :index
+    
+    admin_section_forbidden
+  end
+
+
+  test "admin should get new" do
+    autenticate_as_admin
+    
     get :new
     assert_response :success
   end
+  
+  test "simple user shouldn't get new" do
+    autenticate_as_simple_user
+    
+    get :new
+    assert_redirected_to root_path
+  end
 
-  test "should create asset" do
-    assert_difference('Asset.count') do
+  test "simple user shouldn't create asset" do
+    autenticate_as_simple_user
+    
+    assert_no_difference('Asset.count') do
       post :create, :asset => { :name => 'Chêne',
-                                :category => categories(:Bois),
-                                :pictureUri => '',
+                                :category => categories(:Wood),
+                                :pictureUri => 'assets/wood/walnut_wood.png',
                                 :unitaryPrice => 10.99,
                                 :floatPrice => false
                               }
     end
 
+    admin_section_forbidden
+  end
+  
+  test "admin should create asset" do
+    autenticate_as_admin
+    
+    assert_difference('Asset.count') do
+      post :create, :asset => { :name => 'Chêne',
+                                :category => categories(:Wood),
+                                :pictureUri => 'assets/wood/walnut_wood.png',
+                                :unitaryPrice => 10.99,
+                                :floatPrice => false
+                              }
+    end
+
+    assert flash[:notice].include?("Asset was successfully created.")
+
     assert_redirected_to admin_asset_path(assigns(:asset))
   end
+  
+  test "simple user shouldn't show asset" do
+    autenticate_as_simple_user
+    
+    get :show, :id => assets(:Iron).id
+    admin_section_forbidden
+  end
 
-  test "should show asset" do
-    get :show, :id => assets(:Fer).id
+  test "admin should show asset" do
+    autenticate_as_admin
+    
+    get :show, :id => assets(:Iron).id
     assert_response :success
   end
 
-  test "should get edit" do
-    get :edit, :id => assets(:Fer).id
+  test "simple user shouldn't get edit" do
+    autenticate_as_simple_user
+    
+    get :edit, :id => assets(:Iron).id
+    admin_section_forbidden
+  end
+
+  test "admin should get edit" do
+    autenticate_as_admin
+    
+    get :edit, :id => assets(:Iron).id
     assert_response :success
   end
 
-  test "should update asset" do
-    put :update, :id => assets(:Noyer).id, :asset => { :name => 'Cuivre',
-                                :category => categories(:Minerai),
+  test "simple user shouldn't update asset" do
+    autenticate_as_simple_user
+    
+    put :update, :id => assets(:Chestnut).id, :asset => {
+                                :category => categories(:Ore),
                                 :pictureUri => '',
                                 :unitaryPrice => 5,
                                 :floatPrice => false
                               }
-    assert_redirected_to admin_asset_path(assigns(:asset))
+    admin_section_forbidden
   end
 
-  test "should destroy asset" do
+  test "admin should update asset" do
+    autenticate_as_admin
+    
+    put :update, :id => assets(:Chestnut).id, :asset => {
+                                :category => categories(:Ore),
+                                :pictureUri => '',
+                                :unitaryPrice => 5,
+                                :floatPrice => false
+                              }
+    assert_redirected_to admin_asset_path(assets(:Chestnut).id)
+  end
+
+  test "simple user shouldn't destroy asset" do
+    autenticate_as_simple_user
+    
+    assert_no_difference('Asset.count') do
+      delete :destroy, :id => assets(:Iron).id
+    end
+
+    admin_section_forbidden
+  end
+
+  test "admin should destroy asset" do
+    autenticate_as_admin
+    
     assert_difference('Asset.count', -1) do
-      delete :destroy, :id => assets(:Fer).id
+      delete :destroy, :id => assets(:Iron).id
     end
 
     assert_redirected_to admin_assets_path
