@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  
+  include Crypt
+
   # Associations
   belongs_to :guild
   
@@ -27,18 +28,16 @@ class User < ActiveRecord::Base
   
   # For a new password we generate salt and hash 
   def password=(pass)
-    if pass.blank?
-      return
-    end
+    return if pass.blank?
     
     # Generate salt
-    salt = [Array.new(6){rand(256).chr}.join].pack("m").chomp
+    salt = computeSalt
     
-    self.password_salt, self.password_hash = salt, Digest::SHA256.hexdigest(pass + salt)
+    self.password_salt, self.password_hash = salt, computePassword(salt, pass)
   end
   
   def autenticate(password)
-    Digest::SHA256.hexdigest(password + self.password_salt) == self.password_hash
+    computePassword(self.password_salt, password) == self.password_hash
   end
   
   def addMoney
