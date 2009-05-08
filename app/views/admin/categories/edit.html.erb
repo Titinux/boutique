@@ -1,4 +1,4 @@
-<h1><%= t('category.editing') %></h1>
+<h2><%= t('category.editing') %></h2>
 
 <% form_for([:admin, @category]) do |f| %>
   <%= render :partial => 'form', :locals => { :f => f, :bt_name => t('update') } %>

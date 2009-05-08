@@ -8,6 +8,9 @@ en:
     myOrders: My orders
     amount: Amount
     profile: Profile
+    successfullLogin: Successfully logged in.
+    successfullLogout: Thank you for visiting our shop, we hope to see you soon.
+    youHaveToLog: You have to be logged in to view user informations.
 
 fr-FR:
   # Sessions
@@ -19,4 +22,6 @@ fr-FR:
     myOrders: Mes commandes
     amount: Montant
     profile: Profil
-    
+    successfullLogin: Bienvenue {{username}}.
+    successfullLogout: Merci d'avoir visité notre boutique, nous espérons vous revoir bientôt.
+    youHaveToLog: Vous devez vous connecter pour voir les informations utilisateur.

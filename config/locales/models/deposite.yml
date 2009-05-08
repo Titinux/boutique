@@ -12,6 +12,8 @@ en:
     new: New deposite
     validated: My validated deposites
     waiting: My waiting deposites
+    waitingDeposites: Waiting Deposites
+    validate: Validate
 
 fr-FR:
   activerecord:
@@ -27,4 +29,5 @@ fr-FR:
     new: Nouveau dépôt
     validated: Mes dépôts validés
     waiting: Mes dépôts en attente
-    
+    waitingDeposites: Dépôts en attente
+    validate: Valider

@@ -1,7 +1,7 @@
-<h1>Listing assets</h1>
+<h2><%= t('asset.listing') %></h2>
 
 <%= render :partial => 'table', :locals => { :assets => @assets } %>
 
 <br />
 
-<%= link_to 'New asset', new_admin_asset_path %>
+<%= link_to t('asset.new'), new_admin_asset_path %>

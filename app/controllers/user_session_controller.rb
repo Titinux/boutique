@@ -38,7 +38,7 @@ class UserSessionController < ApplicationController
 
     respond_to do |format|
       if @user_session.login?
-        flash[:notice] = 'Successfully logged in.'
+        flash[:notice] = t('userSession.successfullLogin', :username => @user_session.user.name )
         format.html { redirect_to(root_url) }
       else
         flash[:error] = 'Wrong login or password !'
@@ -51,7 +51,7 @@ class UserSessionController < ApplicationController
   # DELETE /logout.xml
   def destroy
     user_session.logout
-    flash[:notice] = 'Thank you for visiting our shop, we hope to see you soon.'
+    flash[:notice] = t('userSession.successfullLogout')
     
     respond_to do |format|
       format.html { redirect_to(root_url) }
@@ -63,7 +63,7 @@ class UserSessionController < ApplicationController
   
   def authenticated?
     unless user_session.login?
-      flash[:error] = 'You have to be logged in to view user informations'
+      flash[:error] = t('userSession.youHaveToLog')
       redirect_to login_path
       false
     end
