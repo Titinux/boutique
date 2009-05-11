@@ -23,7 +23,7 @@ en:
     block: User block
     infos: Informations
 
-fr-FR:
+fr:
   activerecord:
     models:
       user: Utilisateurs

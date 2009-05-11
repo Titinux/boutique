@@ -17,7 +17,7 @@ en:
     listing: Listing assets
     new: New asset
 
-fr-FR:
+fr:
   activerecord:
     models:
       asset: Ressource

@@ -15,7 +15,7 @@ en:
     waitingDeposites: Waiting Deposites
     validate: Validate
 
-fr-FR:
+fr:
   activerecord:
     models:
       deposite: Dépôts

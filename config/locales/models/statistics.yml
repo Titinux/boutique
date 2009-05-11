@@ -10,7 +10,7 @@ en:
     difference: Difference
     name: Statistics
 
-fr-FR:
+fr:
   # Statistics
   statistics:
     stockStatistics: Etat des stocks

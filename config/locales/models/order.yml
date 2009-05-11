@@ -39,7 +39,7 @@ en:
     createSuccess: Order was successfully created.
     commandId: Order #{{id}}
 
-fr-FR:
+fr:
   activerecord:
     models:
       order: Commande

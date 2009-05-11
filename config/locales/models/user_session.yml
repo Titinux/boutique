@@ -12,7 +12,7 @@ en:
     successfullLogout: Thank you for visiting our shop, we hope to see you soon.
     youHaveToLog: You have to be logged in to view user informations.
 
-fr-FR:
+fr:
   # Sessions
   userSession:
     authenticate: Identification
