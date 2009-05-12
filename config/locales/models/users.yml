@@ -14,6 +14,7 @@ en:
         passwordSalt: Random adding to password
         passwordHash: Password control sum
         password: Password
+        password_confirmation: Password confirmation
         
   # Users
   user:
@@ -27,6 +28,7 @@ en:
     myOrders: My orders
     amount: Amount
     profile: Profile
+    update_success: Your profile was successfully updated.
 
 fr:
   activerecord:
@@ -44,6 +46,7 @@ fr:
         passwordSalt: Ajout aléatoire au mot de passe
         passwordHash: Somme de contrôle du mot de passe
         password: Mot de passe
+        password_confirmation: Confirmation du mot de passe
         
   # Users
   user:
@@ -57,3 +60,4 @@ fr:
     myOrders: Mes commandes
     amount: Montant
     profile: Profil
+    update_success: Votre profil a été correctement mis à jour.
