@@ -25,7 +25,7 @@
 			<li><%= link_to t('statistics.name'), statistics_path %></li>
 			
 			<% if user_session.login? %>
-				<li><%= link_to t('userSession.profile'), user_path %></li>
+				<li><%= link_to t('user.profile'), user_path %></li>
 				<% if user_session.user.admin %>
 					<li><%= link_to t('navigate.adminPart'), admin_root_path %></li>
 				<% end %>

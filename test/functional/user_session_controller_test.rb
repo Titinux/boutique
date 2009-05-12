@@ -25,17 +25,4 @@ class UserSessionControllerTest < ActionController::TestCase
     assert !user_session.login?
     assert_redirected_to root_url
   end
-
-  test "authenticated user should view his profile" do
-    autenticate_as_simple_user
-    
-    get :show
-    assert_response :success
-  end
-
-  test "profile can\'t be diplayed without authenticated user"do
-    get :show
-    assert_redirected_to login_path
-  end
-
 end

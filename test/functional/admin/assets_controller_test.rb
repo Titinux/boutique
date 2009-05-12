@@ -113,6 +113,7 @@ class Admin::AssetsControllerTest < ActionController::TestCase
                                 :unitaryPrice => 5,
                                 :floatPrice => false
                               }
+    
     assert_redirected_to admin_asset_path(assets(:Chestnut).id)
   end
 

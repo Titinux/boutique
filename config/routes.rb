@@ -8,7 +8,6 @@ ActionController::Routing::Routes.draw do |map|
   map.autenticate  'autenticate',  :controller => 'user_session', :action => 'create', :conditions => { :method => :post }
   map.login  'login',  :controller => 'user_session', :action => 'new', :conditions => { :method => :get }
   map.logout 'logout', :controller => 'user_session', :action => 'destroy', :conditions => { :method => :delete }
-  map.user   'user', :controller => 'user_session', :action => "show", :conditions => { :method => :get }
   
   map.resources :deposites, :except => [ :edit, :update, :destroy ]
   
@@ -17,6 +16,8 @@ ActionController::Routing::Routes.draw do |map|
   
   map.statistics 'statistics', :controller => 'statistics', :action => 'index', :conditions => { :method => :get }
   map.statistic 'statistics/:stattype', :controller => 'statistics', :action => 'show', :conditions => { :method => :get }
+  
+  map.resource :user
   
   # Partie admin du site.
   map.namespace :admin do |admin|

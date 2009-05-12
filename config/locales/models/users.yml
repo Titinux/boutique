@@ -22,6 +22,11 @@ en:
     new: New user
     block: User block
     infos: Informations
+    myPersonnalInformations: My personnal informations
+    myPigMoneybox: My pig moneybox
+    myOrders: My orders
+    amount: Amount
+    profile: Profile
 
 fr-FR:
   activerecord:
@@ -47,4 +52,8 @@ fr-FR:
     new: Nouvel utilisateur
     block: Bloc utilisateur
     infos: Informations
-    
+    myPersonnalInformations: Mes informations
+    myPigMoneybox: Mon cochon tirelire
+    myOrders: Mes commandes
+    amount: Montant
+    profile: Profil

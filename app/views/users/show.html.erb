@@ -1,0 +1,33 @@
+<%= render :partial => 'shared/user_sidebar' %>
+
+<% block :title => t('user.myPersonnalInformations') do %>
+	<p>
+		<%= User.human_attribute_name('name') %> : 
+	  <%=h @user.name %>
+	</p>
+	<p>
+		<%= User.human_attribute_name('email') %> :
+		<%=h @user.email %>
+	</p>
+	<% unless @user.guild.blank? %>
+		<p><%= Guild.human_name %> : <%=h @user.guild.name %></p>
+	<%end %>
+	
+	<% if @user.gatherer %>
+		<p><%= User.human_attribute_name('gatherer') %></p>
+	<% end %>
+	
+	<% if @user.admin %>
+		<p><%= User.human_attribute_name('admin') %></p>
+	<% end %>
+	
+	<%= link_to t('edit'), edit_user_path %>
+<% end %>
+
+<% block :title => t('user.myPigMoneybox') do %>
+	<%= t 'user.amount' %> : <%= @user.pigMoneyBox %> kamas
+<% end %>
+
+<% block :title => t('user.myOrders') do %>
+	<%= render :partial => 'orders_table', :locals => { :orders => @user.orders.ongoing } %>
+<% end %>

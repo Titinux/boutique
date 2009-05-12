@@ -63,4 +63,9 @@ class ActiveSupport::TestCase
     assert flash[:error].include?("You're not allowed to browse admin section")
     assert_redirected_to root_path
   end
+  
+  def unautenticated_forbidden
+    assert flash[:error].include?(I18n.t('userSession.youHaveToLog'))
+    assert_redirected_to login_path
+  end
 end

@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   
   validates_associated :guild
   validates_associated :deposites
+  validates_confirmation_of :password
   
   # Scopes
   default_scope :order => :name, :include => :guild
@@ -23,12 +24,14 @@ class User < ActiveRecord::Base
   
   # Passwords can't be retrived
   def password
-    ''
+    @password ||= ''
   end
   
   # For a new password we generate salt and hash 
   def password=(pass)
     return if pass.blank?
+    
+    @password = pass
     
     # Generate salt
     salt = computeSalt
