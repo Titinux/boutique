@@ -1,10 +1,10 @@
 <% form_tag autenticate_path do %>
 	<p>
-		<%= label :user_session, :username %>
+		<%= label :user_session, User.human_attribute_name('name') %>
 		<%= text_field_tag :username %>
 	</p>
 	<p>
-		<%= label :user_session, :password %>
+		<%= label :user_session, User.human_attribute_name('password') %>
 		<%= password_field_tag :password %>
 	</p>
 	<p>
