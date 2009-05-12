@@ -14,7 +14,7 @@ en:
     listing: Guilds listing
     new: New guild
 
-fr-FR:
+fr:
   activerecord:
     models:
       guild: Guildes

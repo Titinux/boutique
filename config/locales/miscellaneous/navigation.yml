@@ -5,7 +5,7 @@ en:
     publicPart: Public part
     adminPart: Administration panel
 
-fr-FR:
+fr:
   # Navigation
   navigate:
     welcomepage: Page d'accueil

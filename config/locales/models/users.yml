@@ -28,7 +28,7 @@ en:
     amount: Amount
     profile: Profile
 
-fr-FR:
+fr:
   activerecord:
     models:
       user: Utilisateurs

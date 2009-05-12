@@ -16,7 +16,7 @@ en:
     new: New category
     goParent: Go to parent category
 
-fr-FR:
+fr:
   activerecord:
     models:
       category: Catégories

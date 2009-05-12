@@ -11,7 +11,7 @@ en:
     updateSuccess: Asset was successfully updated.
     addCartSuccess: Asset was successfully added to cart.
 
-fr-FR:
+fr:
   # Cart
   cart:
     quantity: Quantité
