@@ -1,7 +1,7 @@
 en:
   activerecord:
     models:
-      guild: Guilds
+      guild: Guild
       
     attributes:  
       guild:
@@ -17,7 +17,7 @@ en:
 fr:
   activerecord:
     models:
-      guild: Guildes
+      guild: Guilde
       
     attributes:  
       guild:
