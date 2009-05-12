@@ -29,7 +29,17 @@ class CustomFormBuilder < ActionView::Helpers::FormBuilder
     options = args.extract_options!
     options.reverse_merge!(:required => field_required?(field_name))
     options[:label_class] = "required" if options[:required]
-    label(field_name, object.class.human_attribute_name(field_name.to_s), :class => options[:label_class])
+    
+    field_text = object.class.human_attribute_name(field_name.to_s)
+    
+    object.class.reflect_on_all_associations.each do |assoc|
+      if assoc.name.to_s + '_id' == field_name.to_s
+        field_text = assoc.klass.human_name
+        break
+      end
+    end
+    
+    label(field_name, field_text, :class => options[:label_class])
   end
   
   def field_required?(field_name)
