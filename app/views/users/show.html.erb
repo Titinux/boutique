@@ -6,6 +6,10 @@
 	  <%=h @user.name %>
 	</p>
 	<p>
+		<%= User.human_attribute_name('dofusNicknames') %> : 
+	  <%=h @user.dofusNicknames %>
+	</p>
+	<p>
 		<%= User.human_attribute_name('email') %> :
 		<%=h @user.email %>
 	</p>

@@ -4,6 +4,11 @@
 </p>
 
 <p>
+  <%= User.human_attribute_name('dofusNicknames') %>:
+  <%=h @user.dofusNicknames %>
+</p>
+
+<p>
   <%= User.human_attribute_name('guild') %>:
 	<%=h !@user.guild.blank? ? @user.guild.name : 'None' %>
 </p>

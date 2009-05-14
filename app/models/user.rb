@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   validates_associated :deposites
   validates_confirmation_of :password
   
+  validates_length_of :dofusNicknames, :maximum => 255, :allow_blank => true
+  
   # Scopes
   default_scope :order => :name, :include => :guild
   named_scope :admins, :conditions => {:admin => true}

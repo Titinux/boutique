@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090415191236) do
+ActiveRecord::Schema.define(:version => 20090514151944) do
 
   create_table "assets", :force => true do |t|
     t.string   "name",         :limit => 25,                                                 :null => false
@@ -90,16 +90,17 @@ ActiveRecord::Schema.define(:version => 20090415191236) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "users", :force => true do |t|
-    t.string   "name",          :limit => 25,                    :null => false
-    t.integer  "pigMoneyBox",                 :default => 0,     :null => false
+    t.string   "name",           :limit => 25,                    :null => false
+    t.integer  "pigMoneyBox",                  :default => 0,     :null => false
     t.integer  "guild_id"
-    t.boolean  "admin",                       :default => false, :null => false
+    t.boolean  "admin",                        :default => false, :null => false
     t.string   "password_salt"
     t.string   "password_hash"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",         :limit => 50,                    :null => false
-    t.boolean  "gatherer",                    :default => false, :null => false
+    t.string   "email",          :limit => 50,                    :null => false
+    t.boolean  "gatherer",                     :default => false, :null => false
+    t.string   "dofusNicknames"
   end
 
   add_index "users", ["name"], :name => "index_users_on_name", :unique => true

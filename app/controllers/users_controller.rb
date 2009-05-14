@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     @user = user_session.user
 
     params[:user].delete_if do |key, value|
-      ! %w(email guild_id password password_confirmation).include? key
+      ! %w(email guild_id password password_confirmation dofusNicknames).include? key
     end
 
     respond_to do |format|
