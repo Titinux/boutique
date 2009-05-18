@@ -110,45 +110,5 @@ class Order < ActiveRecord::Base
     return true
   end
   
-  def dispatchMoney
-    # TODO : Utliser une option pour définir un compte qui récupère l'argent "en trop".
-    tax_collector = User.find_by_name('Marchands d\'Hyze')
-    
-    self.transaction do
-    
-      dispatchedMoney = 0
-      # TODO : Utiliser une option pour gérer le montant de la taxe. 
-      taxe = (100 - 1.to_f) / 100 
-      
-      self.orderLines.each do |orderLine|
-        assetQuantity = orderLine.quantity
-        deposites = Deposite.find(:all, :conditions => { :asset_id => orderLine.asset.id, :validated => true} , :order => 'quantity DESC')
-        
-        deposites.size.downto(1) do |i|
-          deposite = deposites[i-1]
-          qt = [deposite.quantity, (assetQuantity / i).to_i].min
-          money = (qt * orderLine.unitaryPrice * taxe).to_i
-       
-          deposite.user.pigMoneyBox += money
-          deposite.user.save
-          
-          dispatchedMoney += money
-          deposite.quantity -= qt
-          
-          if deposite.quantity == 0
-            deposite.destroy 
-          else
-            deposite.save
-          end
-          
-          assetQuantity -= qt
-        end
-      end
-      
-      if dispatchedMoney < totalAmount
-        tax_collector.pigMoneyBox += totalAmount - dispatchedMoney
-        tax_collector.save
-      end
-    end
-  end
+  
 end
