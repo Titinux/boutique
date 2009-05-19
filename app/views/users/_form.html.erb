@@ -1,5 +1,9 @@
 <%= f.error_messages %>
 
+<% if f.object.new_record? %>
+	<%= f.text_field :name %>
+<% end %>
+
 <%= f.text_field :dofusNicknames %>
 <%= f.password_field :password %>
 <%= f.password_field :password_confirmation %>

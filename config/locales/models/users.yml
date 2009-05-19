@@ -30,6 +30,8 @@ en:
     amount: Amount
     profile: Profile
     update_success: Your profile was successfully updated.
+    create_success: Your profile was successfully created.
+    create_account: Create an account
 
 fr:
   activerecord:
@@ -63,3 +65,5 @@ fr:
     amount: Montant
     profile: Profil
     update_success: Votre profil a été correctement mis à jour.
+    create_success: Votre compte a été correctement créé.
+    create_account: Créer un compte
