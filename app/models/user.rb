@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   
   validates_associated :guild
   validates_associated :deposites
+  
+  validates_length_of :password, :within => 6..25
   validates_confirmation_of :password
   
   validates_length_of :dofusNicknames, :maximum => 255, :allow_blank => true
