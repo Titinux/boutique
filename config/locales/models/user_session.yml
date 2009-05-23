@@ -1,7 +1,7 @@
 en:
   # Sessions
   userSession:
-    authenticate: Authentification
+    authenticate: Authentification/Register
     logout: Logout
     successfullLogin: Successfully logged in.
     successfullLogout: Thank you for visiting our shop, we hope to see you soon.
@@ -11,7 +11,7 @@ en:
 fr:
   # Sessions
   userSession:
-    authenticate: Identification
+    authenticate: Identification/Enregistrement
     logout: Déconnexion
     successfullLogin: Bienvenue {{username}}.
     successfullLogout: Merci d'avoir visité notre boutique, nous espérons vous revoir bientôt.
