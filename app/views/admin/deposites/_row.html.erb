@@ -2,7 +2,8 @@
 	<td><%=h deposite.user.name %></td>
 	<td><%=h deposite.asset.name %></td>
 	<td class="number"><%=h deposite.quantity %></td>
-	<% unless deposite.validated %>
-		<td><%= link_to t('deposite.validate'), validate_admin_deposite_path(deposite), :method => :put %></td>
-	<% end %>
+	<td>
+		<%= link_to t('deposite.validate'), validate_admin_deposite_path(deposite), :method => :put %>
+		<%= link_to t('deposite.refuse'), admin_deposite_path(deposite), :confirm => t('destroy_confirm'), :method => :delete %>
+	</td>
 </tr>

@@ -11,20 +11,15 @@ class Admin::DepositesController < Admin::AdminController
     end
   end
   
-  # PUT /admin/deposites/1
-  # PUT /admin/deposites/1.xml
-  def update
+  # DELETE /admin/deposites/1
+  # DELETE /admin/deposites/1.xml
+  def destroy
     @deposite = Deposite.find(params[:id])
-    
+    @deposite.destroy
+
     respond_to do |format|
-      if @deposite.save
-        flash[:notice] = 'Deposite was successfully updated.'
-        format.html { redirect_to admin_deposites_path }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @deposite.errors, :status => :unprocessable_entity }
-      end
+      format.html { redirect_to admin_deposites_url }
+      format.xml  { head :ok }
     end
   end
   
