@@ -27,9 +27,12 @@ class Deposite < ActiveRecord::Base
   end
   
   def self.compact(&block)
+    raise ArgumentError, "Missing block" unless block_given?
+
+    false    
     self.transaction do
       
-      block.call if block
+      return unless block.call
     
       groups = Deposite.all.group_by do |deposite|
         [deposite.user_id, deposite.asset_id, deposite.validated]
