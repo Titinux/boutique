@@ -5,8 +5,9 @@
 <%= f.error_messages %>
 
 <%= f.text_field :name %>
-<%= f.text_field :dofusNicknames %>
 <%= f.password_field :password %>
+<%= f.password_field :password_confirmation %>
+<%= f.text_field :dofusNicknames %>
 <%= f.text_field :email %>
 <%= f.collection_select(:guild_id, Guild.find(:all), :id, :name, :include_blank => true) %>
 <%= f.text_field :pigMoneyBox, :differential => :addMoney %>
