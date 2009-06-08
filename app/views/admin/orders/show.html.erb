@@ -15,5 +15,5 @@
 	<%=h @order.totalAmount %>
 </p>
 
-<%= link_to t('edit'), edit_admin_order_path(@order) %> |
-<%= link_to t('back'), admin_orders_path %>
+<%= link_to_back admin_orders_path %>
+<%= link_to_edit edit_admin_order_path(@order) %>

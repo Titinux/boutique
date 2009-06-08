@@ -8,7 +8,7 @@ en:
   show: Show
   update: Update
   login: Login
-
+  action: Action
 
 fr:
   # Actions
@@ -20,3 +20,4 @@ fr:
   show: Afficher
   update: Mettre à jour
   login: Connexion
+  action: Action

@@ -3,9 +3,9 @@
 	<td><%=h order.user.name %></td>
   <td><%=h orderStatusHash[order.state] %></td>
 	<td class="currency"><%=h order.totalAmount %></td>
-  <td>
-  	<%= link_to t('show'), [:admin, order] %> |
-  	<%= link_to t('edit'), edit_admin_order_path(order) %> |
-  	<%= link_to t('destroy'), [:admin, order], :confirm => t('destroy_confirm'), :method => :delete %>
+  <td class="actions">
+  	<%= link_to_show admin_order_path(order) %>
+  	<%= link_to_edit edit_admin_order_path(order) %>
+  	<%= link_to_destroy admin_order_path(order) %>
 	</td>
 </tr>

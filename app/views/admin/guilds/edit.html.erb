@@ -16,5 +16,5 @@
   </p>
 <% end %>
 
-<%= link_to t('show'), [:admin, @guild] %> |
-<%= link_to t('back'), admin_guilds_path %>
+<%= link_to_back admin_guilds_path %>
+<%= link_to_show admin_guild_path(@guild) %>

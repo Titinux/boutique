@@ -1,9 +1,9 @@
 <tr class="<%= cycle('even', 'odd')%>">
   <td><%=h guild.name %></td>
   <td><%=h guild.pictureUri %></td>
-  <td>
-  	<%= link_to t('show'), [:admin, guild] %> |
-  	<%= link_to t('edit'), edit_admin_guild_path(guild) %> |
-  	<%= link_to t('destroy'), [:admin, guild], :confirm => t('destroy_confirm'), :method => :delete %>
+  <td class="actions">
+  	<%= link_to_show admin_guild_path(guild) %>
+  	<%= link_to_edit edit_admin_guild_path(guild) %>
+  	<%= link_to_destroy admin_guild_path(guild) %>
 	</td>
 </tr>

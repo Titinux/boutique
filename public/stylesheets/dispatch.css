@@ -165,6 +165,11 @@ div#topbaradmin :first-child {
 	text-align: center;
 }
 
+/* Links */
+img {
+	border-style: none;
+}
+
 /* Flash */
 .flash {
 	font-weight: bold;
@@ -271,18 +276,15 @@ label.differential:after {content: " + ";}
 
 /* Tables */
 table {
-	border-collapse: collapse;
 	width: 90%;
 	margin: 0 auto;
+	border-collapse: collapse;
 }
 
 th {
 	text-align: center;
-	padding-left: 20px;
-}
-
-table th:first-child {
-	padding-left: 0;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 tr.even {
@@ -294,11 +296,12 @@ tr.odd {
 }
 
 td {
-	padding-left: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
-tr td:first-child {
-	padding-left: 0px;
+td.actions {
+	text-align: center;
 }
 
 td.number {

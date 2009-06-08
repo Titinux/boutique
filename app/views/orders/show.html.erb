@@ -10,5 +10,6 @@
 		<%= link_to orderActionHash['ACCEPT_ESTIMATE'], orderAction_path(@order, :op => 'ACCEPT_ESTIMATE'), :method => :put %> | 
 		<%= link_to orderActionHash['REFUSE_ESTIMATE'], orderAction_path(@order, :op => 'REFUSE_ESTIMATE'), :method => :put %>
 	<% end %>
-	<%= link_to t('back'), user_path %>
+	
+	<%= link_to_back user_path %>
 <% end %>

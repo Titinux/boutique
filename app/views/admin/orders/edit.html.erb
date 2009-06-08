@@ -4,5 +4,5 @@
   <%= render :partial => 'form', :locals => {:f => f, :bt_name => t('update')} %>
 <% end %>
 
-<%= link_to t('show'), [:admin, @order] %> |
-<%= link_to t('back'), admin_orders_path %>
+<%= link_to_back admin_orders_path %>
+<%= link_to_edit edit_admin_order_path(@order) %>

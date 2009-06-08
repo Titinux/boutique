@@ -4,9 +4,9 @@
   <td><%=h asset.pictureUri %></td>
   <td class="currency"><%=h asset.unitaryPrice %></td>
   <td><%=h asset.floatPrice %></td>
-  <td>
-  	<%= link_to t('show'), [:admin, asset] %> |
-  	<%= link_to t('edit'), edit_admin_asset_path(asset) %> |
-  	<%= link_to t('destroy'), [:admin, asset], :confirm => t('destroy_confirm'), :method => :delete %>
+  <td class="actions">
+  	<%= link_to_show admin_asset_path(asset) %>
+  	<%= link_to_edit edit_admin_asset_path(asset) %>
+  	<%= link_to_destroy admin_asset_path(asset) %>
 	</td>
 </tr>

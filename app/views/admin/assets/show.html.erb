@@ -23,6 +23,5 @@
   <%=h @asset.floatPrice %>
 </p>
 
-
-<%= link_to t('edit'), edit_admin_asset_path(@asset) %> |
-<%= link_to t('back'), admin_assets_path %>
+<%= link_to_back admin_assets_path %>
+<%= link_to_edit edit_admin_asset_path(@asset) %>

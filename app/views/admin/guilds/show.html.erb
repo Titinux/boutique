@@ -8,6 +8,5 @@
   <%=h @guild.pictureUri %>
 </p>
 
-
-<%= link_to t('edit'), edit_admin_guild_path(@guild) %> |
-<%= link_to t('back'), admin_guilds_path %>
+<%= link_to_back admin_guilds_path %>
+<%= link_to_edit edit_admin_guild_path(@guild) %>
