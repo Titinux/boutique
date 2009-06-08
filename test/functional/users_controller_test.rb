@@ -31,8 +31,8 @@ class UsersControllerTest < ActionController::TestCase
     autenticate_as_simple_user
     
     put :update, :user => {
-                          :password => 'truc',
-                          :password_confirmation => 'truc',
+                          :password => 'tructructruc',
+                          :password_confirmation => 'tructructruc',
                           :email => 'truc@chose.com',
                           :guild_id => guilds(:Famakna_food).id
                           }
