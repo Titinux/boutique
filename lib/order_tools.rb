@@ -53,6 +53,7 @@ module OrderTools
       end
       
       order.dispatched = true
+      order.save
     end
   end
 end
