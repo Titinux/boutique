@@ -46,7 +46,7 @@ class DepositesController < ApplicationController
 
     respond_to do |format|
       if Deposite.compact { @deposite.save }
-        flash[:notice] = 'Deposite was successfully created.'
+        flash[:notice] = t('deposite.created')
         format.html { redirect_to deposites_path }
         format.xml  { render :xml => @deposite, :status => :created, :location => @deposite }
       else

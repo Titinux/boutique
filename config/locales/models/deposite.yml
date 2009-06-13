@@ -15,6 +15,7 @@ en:
     waitingDeposites: Waiting Deposites
     validate: Validate
     refuse: Refuse
+    created: Deposite was successfully created.
 
 fr:
   activerecord:
@@ -33,3 +34,4 @@ fr:
     waitingDeposites: Dépôts en attente
     validate: Valider
     refuse: Refuser
+    created: Votre dépôt a bien été pris en compte.
