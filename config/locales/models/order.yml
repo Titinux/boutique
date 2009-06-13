@@ -36,6 +36,12 @@ en:
       achieved: Achieved
       canceled: Order canceled
       error: Error
+    action:
+      create: Create estimate
+      accept: Accept this estimate
+      refuse: Refuse this estimate
+      prepared: Order prepared
+      delivered: Order delivered
     createSuccess: Order was successfully created.
     commandId: Order #{{id}}
 
@@ -77,5 +83,11 @@ fr:
       achieved: Achevée
       canceled: Annulée
       error: Erreur
+    action:
+      create: Créer le devis
+      accept: Accepter le devis
+      refuse: Refuser le devis
+      prepared: Commande prête
+      delivered: Commande livrée
     createSuccess: La commande a bien été créée.
     commandId: Commande n°{{id}}

@@ -17,11 +17,11 @@ module Admin::OrdersHelper
   end
   
   def orderActionHash
-    Hash['CREATE_ESTIMATE', 'Create estimate',
-         'ACCEPT_ESTIMATE', 'Accept this estimate',
-         'REFUSE_ESTIMATE', 'Refuse this estimate',
-         'ORDER_PREPARED',  'Order prepared',
-         'ORDER_DELIVERED', 'Order delivered']
+    Hash['CREATE_ESTIMATE', t('order.action.create'),
+         'ACCEPT_ESTIMATE', t('order.action.accept'),
+         'REFUSE_ESTIMATE', t('order.action.refuse'),
+         'ORDER_PREPARED',  t('order.action.prepared'),
+         'ORDER_DELIVERED', t('order.action.delivered')]
     
   end
 end
