@@ -9,7 +9,7 @@ en:
         pigMoneyBox: Pig moneybox
         guild: Guild
         email: Email
-        admin: Administrator
+        admin: Admin.
         gatherer: Gatherer
         passwordSalt: Random adding to password
         passwordHash: Password control sum
@@ -44,7 +44,7 @@ fr:
         pigMoneyBox: Cochon tirelire
         guild: Guilde
         email: E-mail
-        admin: Administrateur
+        admin: Admin.
         gatherer: Récoltant
         passwordSalt: Ajout aléatoire au mot de passe
         passwordHash: Somme de contrôle du mot de passe
