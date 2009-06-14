@@ -21,7 +21,8 @@ module Admin::OrdersHelper
          'ACCEPT_ESTIMATE', t('order.action.accept'),
          'REFUSE_ESTIMATE', t('order.action.refuse'),
          'ORDER_PREPARED',  t('order.action.prepared'),
-         'ORDER_DELIVERED', t('order.action.delivered')]
+         'ORDER_DELIVERED', t('order.action.delivered')
+        ]
     
   end
 end

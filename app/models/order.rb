@@ -41,9 +41,9 @@ class Order < ActiveRecord::Base
           self.state = 'ORDER_CANCELED'
           
           if self.save
-            @message = t('order.cancelSucces')
+            @message = I18n.t('order.cancelSucces')
           else  
-            @message = t('order.cancelFail')
+            @message = I18n.t('order.cancelFail')
             return false
           end
         end
@@ -53,9 +53,9 @@ class Order < ActiveRecord::Base
           self.state = 'WAIT_ESTIMATE_VALIDATION'
         
           if self.save
-            @message = t('order.estimate.created')
+            @message = I18n.t('order.estimate.created')
           else
-            @message = t('order.modifyFail')
+            @message = I18n.t('order.modifyFail')
             return false
           end
         end
@@ -64,14 +64,12 @@ class Order < ActiveRecord::Base
         if self.state == 'WAIT_ESTIMATE_VALIDATION'
           self.state = 'IN_PREPARATION'
           
-          self.save
-          
-          
-          
-          @message = t('order.estimate.accepted')
-        else
-          @message = t('order.modifyFail')
-          return false
+          if self.save
+            @message = I18n.t('order.estimate.accepted')
+          else
+            @message = I18n.t('order.modifyFail')
+            return false
+          end
         end
       
       when 'REFUSE_ESTIMATE'
@@ -79,9 +77,9 @@ class Order < ActiveRecord::Base
           self.state = 'ORDER_CANCELED'
           
           if self.save
-            @message = t('order.estimate.canceled')
+            @message = I18n.t('order.estimate.canceled')
           else
-            @message = t('order.modifyFail')
+            @message = I18n.t('order.modifyFail')
             return false
           end
         end       
