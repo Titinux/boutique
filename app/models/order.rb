@@ -3,7 +3,9 @@ class Order < ActiveRecord::Base
   
   has_many :orderLines, :dependent => :delete_all
   
+  # Scopes
   named_scope :ongoing, :conditions => ["state IN ('WAIT_ESTIMATE', 'WAIT_ESTIMATE_VALIDATION', 'IN_PREPARATION', 'WAIT_DELIVERY')"]
+  default_scope  :order => 'id DESC'
   
   # Callbacks
   after_update :save_lines
