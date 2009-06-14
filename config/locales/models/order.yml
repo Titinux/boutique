@@ -9,7 +9,7 @@ en:
         uPrice: Unitary price
         price: Price
         totalAmount: Total amount
-        id: Command number
+        id: #
         state: State
 
   # Order
@@ -56,7 +56,7 @@ fr:
         uPrice: Prix à l'unité
         price: Prix
         totalAmount: Montant total
-        id: N° de commande
+        id: N°
         state: Etat
 
   # Order
