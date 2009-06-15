@@ -2,8 +2,20 @@
 
 one:
   user: Pim
-  state: 1
+  state: WAIT_ESTIMATE
+  dispatched: false
 
 two:
   user: Pam
-  state: 1
+  state: WAIT_ESTIMATE
+  dispatched: false
+
+three:
+  user: Pim
+  state: WAIT_ESTIMATE_VALIDATION
+  dispatched: false
+
+four:
+  user: Pam
+  state: ACHIEVED
+  dispatched: true

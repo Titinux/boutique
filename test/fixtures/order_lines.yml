@@ -1,19 +1,49 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
+o1_l1:
   order: one
   asset: Ash
   quantity: 100
   unitaryPrice: 5
 
-two:
+o1_l2:
   order: one
   asset: Walnut
   quantity: 500
   unitaryPrice: 10
   
-three:
+o2_l1:
   order: two
   asset: Iron
   quantity: 1700
   unitaryPrice: 20
+  
+o3_l1:
+  order: three
+  asset: Iron
+  quantity: 25
+  unitaryPrice: 10
+  
+o3_l1:
+  order: three
+  asset: Iron
+  quantity: 25
+  unitaryPrice: 10
+  
+o4_l1:
+  order: four
+  asset: Iron
+  quantity: 25
+  unitaryPrice: 30
+  
+o4_l2:
+  order: four
+  asset: Grawn
+  quantity: 100
+  unitaryPrice: 15
+  
+o5_l3:
+  order: four
+  asset: Walnut
+  quantity: 120
+  unitaryPrice: 15
