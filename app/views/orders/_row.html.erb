@@ -2,5 +2,5 @@
 	<td><%=h order_line.asset.name %></td>
 	<td class="number"><%=h order_line.quantity %></td>
 	<td class="currency"><%=h order_line.unitaryPrice %></td>
-	<td class="currency"><%=h order_line.price %></td>
+	<td class="currency"><%=h number_to_currency(order_line.price) %></td>
 </tr>

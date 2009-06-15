@@ -1,0 +1,7 @@
+en:
+  number:
+    currency:
+      format:
+        unit: 'K'
+        precision: 0
+

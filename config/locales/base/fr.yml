@@ -78,8 +78,8 @@ fr:
       delimiter: ' '
     currency:
       format:
-        unit: '€'
-        precision: 2
+        unit: 'K'
+        precision: 0
         format: '%n %u'
     human:
       format:

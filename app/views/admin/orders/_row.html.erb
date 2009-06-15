@@ -2,7 +2,7 @@
   <td><%=h order.id %></td>
 	<td><%=h order.user.name %></td>
   <td><%=h orderStatusHash[order.state] %></td>
-	<td class="currency"><%=h order.totalAmount %></td>
+	<td class="currency"><%=h number_to_currency(order.totalAmount) %></td>
   <td class="actions">
   	<%= link_to_show admin_order_path(order) %>
   	<%= link_to_edit edit_admin_order_path(order) %>

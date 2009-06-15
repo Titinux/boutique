@@ -12,7 +12,7 @@
 
 <p>
 	<%= Order.human_attribute_name('totalAmount') %>:
-	<%=h @order.totalAmount %>
+	<%=h number_to_currency(@order.totalAmount) %>
 </p>
 
 <%= link_to_back admin_orders_path %>

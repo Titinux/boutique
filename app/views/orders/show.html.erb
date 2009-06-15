@@ -1,6 +1,6 @@
 <% block :title => t('order.commandId', :id => @order.id) do %>
 		<p><%= Order.human_attribute_name('state') %> : <%= orderStatusHash[@order.state] %></p>
-		<p><%= Order.human_attribute_name('totalAmount') %> : <%= @order.totalAmount %></p>
+		<p><%= Order.human_attribute_name('totalAmount') %> : <%= number_to_currency(@order.totalAmount) %></p>
 	
 	<% block :title => t('order.details') do %>
 		<%= render :partial => 'table', :locals => { :order => @order } %>

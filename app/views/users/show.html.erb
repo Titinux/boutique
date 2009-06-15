@@ -29,7 +29,7 @@
 <% end %>
 
 <% block :title => t('user.myPigMoneybox') do %>
-	<%= t 'user.amount' %> : <%= @user.pigMoneyBox %> kamas
+	<%= t 'user.amount' %> : <%= number_to_currency(@user.pigMoneyBox) %>
 <% end %>
 
 <% block :title => t('user.myOrders') do %>
