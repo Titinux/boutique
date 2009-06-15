@@ -1,7 +1,7 @@
 <tr class="<%= cycle('even', 'odd')%>">
   <td><%=h asset.name %></td>
   <td><%=h asset.category.name %></td>
-  <td><%=h asset.pictureUri %></td>
+	<td class="picture"><%= image_tag(asset.pictureUri, :alt => t('pictureOf', :subject => asset.name), :width => 50, :height => 50) unless asset.pictureUri.blank? %></td>
   <td class="currency"><%=h asset.unitaryPrice %></td>
   <td><%=h asset.floatPrice %></td>
   <td class="actions">

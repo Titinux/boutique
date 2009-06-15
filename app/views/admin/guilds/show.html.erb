@@ -4,8 +4,8 @@
 </p>
 
 <p>
-  <b><%= Guild.human_attribute_name('pictureUri') %>:</b>
-  <%=h @guild.pictureUri %>
+  <b><%= t('guild.blazon') %> :</b>
+  <%= image_tag(@guild.pictureUri, :alt => t('pictureOf', :subject => @guild.name)) unless @guild.pictureUri.blank? %>
 </p>
 
 <%= link_to_back admin_guilds_path %>

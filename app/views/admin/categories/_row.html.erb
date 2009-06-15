@@ -1,7 +1,7 @@
 <tr class="<%= cycle('even', 'odd')%>">
   <td><%=h category.name %></td>
 	<td><%=h(category.parent.name) if category.parent %></td>
-	<td><%=h category.pictureUri %></td>
+	<td class="picture"><%= image_tag(category.pictureUri, :alt => t('pictureOf', :subject => category.name), :width => 75, :height => 75) unless category.pictureUri.blank? %></td>
   <td class="actions">
   	<%= link_to_show [:admin, category] %>
   	<%= link_to_edit edit_admin_category_path(category) %>

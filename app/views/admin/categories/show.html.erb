@@ -7,8 +7,8 @@
 	<%= @category.parent ? h(@category.parent.name) : 'none' %>
 </p>
 <p>
-	<%= Category.human_attribute_name('pictureUri') %> : 
-	<%=h @category.pictureUri %>
+	<%= t('picture') %> : 
+	<%= image_tag(@category.pictureUri, :alt => t('pictureOf', :subject => @category.name)) unless @category.pictureUri.blank? %>
 </p>
 
 <%= link_to_back admin_categories_path %>

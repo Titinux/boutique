@@ -13,6 +13,7 @@ en:
     editing: Edit guild
     listing: Guilds listing
     new: New guild
+    blazon: Blazon
 
 fr:
   activerecord:
@@ -29,4 +30,5 @@ fr:
     editing: Editer la guilde
     listing: Liste des guildes
     new: Nouvelle guilde
+    blazon: Blason
     
