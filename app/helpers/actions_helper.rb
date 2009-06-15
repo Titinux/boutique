@@ -6,7 +6,7 @@ module ActionsHelper
     out = []
     
     capture do
-      link_to(link, options) do
+      link_to(link, options.except(:format, :text)) do
         out << image_tag(picture, :alt => text, :title => text)
         out << text if options[:format] == :long
         out
