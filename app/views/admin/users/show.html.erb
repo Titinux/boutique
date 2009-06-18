@@ -20,7 +20,7 @@
 
 <p>
 	<%= User.human_attribute_name('pigMoneyBox') %>:
-	<%=h @user.pigMoneyBox %>
+	<%=h number_to_currency(@user.pigMoneyBox) %>
 </p>
 
 <p>
