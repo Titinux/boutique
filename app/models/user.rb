@@ -8,16 +8,20 @@ class User < ActiveRecord::Base
   has_many :orders
   
   #Validations
-  validates_length_of :name, :maximum => 25, :allow_blank => false
+  validates_length_of :name, :within => 3..25, :allow_blank => false
   validates_uniqueness_of :name
   
   validates_associated :guild
   validates_associated :deposites
   
+  validates_presence_of :password, :on => :create
   validates_length_of :password, :within => 6..25, :allow_blank => true
   validates_confirmation_of :password
   
   validates_length_of :dofusNicknames, :maximum => 255, :allow_blank => true
+  
+  validates_presence_of :email
+  validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/
   
   # Scopes
   default_scope :order => :name, :include => :guild
