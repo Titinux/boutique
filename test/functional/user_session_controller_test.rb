@@ -18,6 +18,12 @@ class UserSessionControllerTest < ActionController::TestCase
     assert_redirected_to login_path
   end
 
+  test "unactivated user shouldn't authenticate" do
+    post :create, { :username => 'Poum', :password => 'poum' }
+    assert !user_session.login?
+    assert_redirected_to login_path
+  end
+
   test "should logout" do
     autenticate_as_simple_user
     

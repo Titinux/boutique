@@ -13,6 +13,7 @@
 <%= f.text_field :pigMoneyBox, :differential => :addMoney %>
 <%= f.check_box :gatherer %>
 <%= f.check_box :admin %>
+<%= f.check_box :activated %>
 
 <div id="deposites">
 	<% f.fields_for :deposites, :builder => InLineFormBuilder do |dep| %>

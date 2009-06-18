@@ -33,6 +33,11 @@
   <%=h @user.admin %>
 </p>
 
+<p>
+  <%= User.human_attribute_name('activated') %>:
+  <%=h @user.activated %>
+</p>
+
 <%= render :partial => 'deposite_table', :locals => { :deposites => @user.deposites.validated } %>
 
 <%= link_to_back admin_users_path %>

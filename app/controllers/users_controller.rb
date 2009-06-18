@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   layout 'public'
 
-  before_filter :authenticated?, :except => [:new, :create]
-  before_filter :not_autenticated?, :only => [:new, :create]
+  before_filter :authenticated?, :except => [:new, :create, :activate]
+  before_filter :not_autenticated?, :only => [:new, :create, :activate]
   
   # GET /user
   # GET /user.xml
@@ -65,6 +65,26 @@ class UsersController < ApplicationController
       if @user.update_attributes(params[:user])
         flash[:notice] = t('user.update_success')
         format.html { redirect_to user_path }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => :edit }
+        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+  
+  # GET /user/activate/:key
+  # GET /user/activate/:key.xml
+  def activate
+    params[:key] ||= ''
+    @user = User.find_by_activationKey(params[:key])
+    
+    @user.activate if @user
+    
+    respond_to do |format|
+      if @user && @user.save
+        flash[:notice] = 'Your account is now activated. Welcome '
+        format.html { redirect_to login_path }
         format.xml  { head :ok }
       else
         format.html { render :action => :edit }

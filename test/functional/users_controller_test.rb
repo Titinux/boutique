@@ -51,4 +51,10 @@ class UsersControllerTest < ActionController::TestCase
     unautenticated_forbidden
   end
 
+  test "user should active is account" do
+    get :activate, :key => users('Poum').activationKey
+    
+    assert_redirected_to login_path
+  end
+
 end

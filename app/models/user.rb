@@ -30,6 +30,10 @@ class User < ActiveRecord::Base
   # Nested attributes
   accepts_nested_attributes_for :deposites, :allow_destroy => true
   
+  # Callbacks
+  before_create :makeActivationKey
+  after_create :send_activation_mail
+  
   # Passwords can't be retrived
   def password
     @password ||= ''
@@ -60,5 +64,20 @@ class User < ActiveRecord::Base
     self.pigMoneyBox ||= 0
     
     self.pigMoneyBox += @addMoney
+  end
+  
+  def activate
+    self.activationKey = nil
+    self.activated = true
+  end
+  
+  private
+  
+  def makeActivationKey
+    self.activationKey = Array.new(64){rand(10).to_s}.join
+  end
+  
+  def send_activation_mail
+     UsersMailer.deliver_user_account_created(self)
   end
 end

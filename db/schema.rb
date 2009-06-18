@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090514200743) do
+ActiveRecord::Schema.define(:version => 20090615211505) do
 
   create_table "assets", :force => true do |t|
     t.string   "name",         :limit => 25,                                                 :null => false
@@ -102,6 +102,8 @@ ActiveRecord::Schema.define(:version => 20090514200743) do
     t.string   "email",          :limit => 50,                    :null => false
     t.boolean  "gatherer",                     :default => false, :null => false
     t.string   "dofusNicknames"
+    t.string   "activationKey"
+    t.boolean  "activated",                    :default => false, :null => false
   end
 
   add_index "users", ["name"], :name => "index_users_on_name", :unique => true

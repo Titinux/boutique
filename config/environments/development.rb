@@ -22,3 +22,5 @@ config.action_mailer.smtp_settings = {
   :port => 25,
   :domain => "boutique.hyze.bagu.biz"
 }
+
+config.action_mailer.default_url_options = { :host => "localhost:10081" }

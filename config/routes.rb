@@ -18,6 +18,7 @@ ActionController::Routing::Routes.draw do |map|
   map.statistic 'statistics/:stattype', :controller => 'statistics', :action => 'show', :conditions => { :method => :get }
   
   map.resource :user
+  map.activate 'user/activate/:key', :controller => 'users', :action => 'activate', :conditions => { :method => :get }
   
   # Partie admin du site.
   map.namespace :admin do |admin|

@@ -16,6 +16,7 @@ en:
         password: Password
         password_confirmation: Password confirmation
         dofusNicknames: Dofus nicknames
+        activated: Account activated
         
   # Users
   user:
@@ -51,6 +52,7 @@ fr:
         password: Mot de passe
         password_confirmation: Confirmation du mot de passe
         dofusNicknames: Pseudos Dofus
+        activated: Compte activé
         
   # Users
   user:

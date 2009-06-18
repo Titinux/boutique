@@ -12,6 +12,8 @@ Boule:
   email: boule@truc.com
   password_salt: <%= salt = computeSalt %>
   password_hash: <%= computePassword(salt, 'boule') %>
+  activationKey:
+  activated: true
 
 Bill:
   name: Bill
@@ -22,6 +24,8 @@ Bill:
   email: bill@truc.com
   password_salt: <%= salt = computeSalt %>
   password_hash: <%= computePassword(salt, 'bill') %>
+  activationKey:
+  activated: true
 
 # Tax collector
 Marchands_d_hyze:
@@ -33,6 +37,8 @@ Marchands_d_hyze:
   email: truc@truc.com
   password_salt: 
   password_hash: 
+  activationKey:
+  activated: false
 
 # Gatherer
 Toto:
@@ -44,6 +50,8 @@ Toto:
   email: toto@truc.com
   password_salt: <%= salt = computeSalt %>
   password_hash: <%= computePassword(salt, 'toto') %>
+  activationKey:
+  activated: true
 
 Tata:
   name: Tata
@@ -53,7 +61,9 @@ Tata:
   gatherer: true
   email: tata@truc.com
   password_salt: <%= salt = computeSalt %>
-  password_hash: <%= computePassword(salt, 'tata') %>  
+  password_hash: <%= computePassword(salt, 'tata') %>
+  activationKey:
+  activated: true  
 
 # Clients
 Pim:
@@ -65,6 +75,8 @@ Pim:
   email: pim@truc.com
   password_salt: <%= salt = computeSalt %>
   password_hash: <%= computePassword(salt, 'pim') %>
+  activationKey:
+  activated: true
 
 Pam:
   name: Pam
@@ -75,3 +87,17 @@ Pam:
   email: pam@truc.com
   password_salt: <%= salt = computeSalt %>
   password_hash: <%= computePassword(salt, 'pam') %>
+  activationKey:
+  activated: true
+
+Poum:
+  name: Poum
+  guild: Famakna_food
+  pigMoneyBox: 0
+  admin: false
+  gatherer: false
+  email: pam@truc.com
+  password_salt: <%= salt = computeSalt %>
+  password_hash: <%= computePassword(salt, 'poum') %>
+  activationKey: 9667661709257364838813232864938639864038496694630816628244506874
+  activated: false
