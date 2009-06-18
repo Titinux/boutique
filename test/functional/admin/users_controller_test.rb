@@ -52,6 +52,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
     
     assert_difference('User.count') do
       post :create, :user => { :name => 'Foobar user',
+                               :password => '1234567',
                                :guild_id => guilds(:Famakna_food).id,
                                :email => 'foo@bar.com',
                                :admin => false,
