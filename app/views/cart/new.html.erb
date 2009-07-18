@@ -1,9 +1,9 @@
 <% form_tag cart_index_path do %>
-	<%= label :quantity, t('cart.quantity') %>
-	<%= text_field_tag :quantity %><br />
+	<p><label for="quantity"><%= t('cart.quantity') %></label>
+	<%= text_field_tag :quantity %></p>
 	
-	<%= hidden_field_tag :asset_id, @asset.id %><br />
+	<p><%= hidden_field_tag :asset_id, @asset.id %></p>
 
-	<%= submit_tag t('cart.add_and_continue_shopping'), :name => 'add_and_continue_shopping' %>
-	<%= submit_tag t('cart.add_and_view_cart'), :name => 'add_and_view_cart' %>
+	<p><%= submit_tag t('cart.add_and_continue_shopping'), :name => 'add_and_continue_shopping' %>
+	<%= submit_tag t('cart.add_and_view_cart'), :name => 'add_and_view_cart' %></p>
 <% end %>
