@@ -1,5 +1,5 @@
 <% form_tag cart_index_path do %>
-	<p><label for="quantity"><%= t('cart.quantity') %></label>
+	<p><%= label_tag :quantity,  t('cart.quantity') %>
 	<%= text_field_tag :quantity %></p>
 	
 	<p><%= hidden_field_tag :asset_id, @asset.id %></p>
