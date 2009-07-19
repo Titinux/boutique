@@ -3,8 +3,9 @@ class Deposite < ActiveRecord::Base
   belongs_to :asset
   
   # Validations
-  validates_presence_of :user_id
-  validates_presence_of :asset_id
+  validates_presence_of :user, :asset
+  
+  validates_numericality_of :quantity, :only_integer => true, :greater_than => 0
   
   # Scopes
   default_scope :include => :asset, :order => 'assets.name'
