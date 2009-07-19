@@ -87,7 +87,8 @@ class UsersController < ApplicationController
         format.html { redirect_to login_path }
         format.xml  { head :ok }
       else
-        format.html { render :action => :edit }
+        flash[:error] = 'This activation key doesn\'t match any account !'
+        format.html { redirect_to root_path }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
     end
