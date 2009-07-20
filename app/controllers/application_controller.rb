@@ -26,3 +26,11 @@ class ApplicationController < ActionController::Base
     @user_session_cache ||= UserSession.new(session)
   end
 end
+
+ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
+  if html_tag =~ /<label/
+    html_tag
+  else
+    "<span class=\"fieldWithErrors\">#{html_tag}</span>"
+  end
+end
