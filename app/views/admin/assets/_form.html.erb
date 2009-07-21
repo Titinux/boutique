@@ -7,7 +7,7 @@
 		<span class="required">Required</span>
   </p>
   <p>
-    <%= f.label :category %>
+    <%= f.label :category_id %>
     <%= f.collection_select(:category_id, Category.find(:all), :id, :name) %>
   </p>
   <p>
