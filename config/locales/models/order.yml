@@ -11,6 +11,7 @@ en:
         totalAmount: Total amount
         id: #
         state: State
+        dispatched: Dispatched
 
   # Order
   order:
@@ -58,6 +59,7 @@ fr:
         totalAmount: Montant total
         id: N°
         state: Etat
+        dispatched: Répartie
 
   # Order
   order:

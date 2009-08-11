@@ -14,6 +14,10 @@
 	<%= Order.human_attribute_name('totalAmount') %>:
 	<%=h number_to_currency(@order.totalAmount) %>
 </p>
+<p>
+  <%= Order.human_attribute_name('dispatched') %> :
+  <%= @order.dispatched %>
+</p>
 
 <%= link_to_back admin_orders_path %>
 <%= link_to_edit edit_admin_order_path(@order) %>
