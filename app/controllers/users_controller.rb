@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   layout 'public'
 
-  before_filter :authenticated?, :except => [:new, :create, :activate]
-  before_filter :not_autenticated?, :only => [:new, :create, :activate]
+  before_filter :authenticated?, :except => [:new, :create, :activate, :passwordReset, :passwordResetForm]
+  before_filter :not_autenticated?, :only => [:new, :create, :activate, :passwordReset, :passwordResetForm]
   
   # GET /user
   # GET /user.xml
@@ -92,6 +92,25 @@ class UsersController < ApplicationController
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
     end
+  end
+  
+  # GET /user/passwordReset
+  def passwordResetForm
+    
+  end
+  
+  # POST
+  def passwordReset
+    @user = User.find_by_email(params[:email])
+    
+    unless @user.blank?
+      UserTools::passwordReset(@user)
+      flash[:notice] = t('user.newPasswordSent')
+    else
+      flash[:error] = t('user.emailNotMatch')
+    end
+    
+    redirect_to root_path
   end
   
   private

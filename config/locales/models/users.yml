@@ -33,6 +33,10 @@ en:
     update_success: Your profile was successfully updated.
     create_success: Your profile was successfully created.
     create_account: Create an account
+    idAndOrPasswordLost: Account name or/and password lost
+    sendMeMyIds: Send me my name and password
+    emailNotMatch: This email doesn't match any user !
+    newPasswordSent: Your account name and a new password have been sent to you.
 
 fr:
   activerecord:
@@ -69,3 +73,7 @@ fr:
     update_success: Votre profil a été correctement mis à jour.
     create_success: Votre compte a été correctement créé.
     create_account: Créer un compte
+    idAndOrPasswordLost: Nom de compte ou/et mot de passe perdu
+    sendMeMyIds: Envoyez-moi mes identifiants
+    emailNotMatch: Cette adresse e-mail ne correspond à aucun utilisateur.
+    newPasswordSent: Votre nom de compte et un nouveau mot de passe vous ont été envoyés.

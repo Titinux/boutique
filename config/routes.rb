@@ -19,6 +19,8 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resource :user
   map.activate 'user/activate/:key', :controller => 'users', :action => 'activate', :conditions => { :method => :get }
+  map.passwordResetForm 'user/passwordReset', :controller => 'users', :action => 'passwordResetForm', :conditions => { :method => :get }
+  map.passwordReset 'user/passwordReset', :controller => 'users', :action => 'passwordReset', :conditions => { :method => :post }
   
   # Partie admin du site.
   map.namespace :admin do |admin|
