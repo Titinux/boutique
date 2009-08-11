@@ -5,7 +5,7 @@
 		<%=h user.guild.name %>
 		<% end %>
 	</td>
-	<td class="currency"><%=h user.pigMoneyBox %></td>
+	<td class="currency"><%=h number_to_currency(user.pigMoneyBox) %></td>
 	<td><%=h user.gatherer %></td>
 	<td><%=h user.admin %></td>
 	<td class="actions">
