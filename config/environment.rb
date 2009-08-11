@@ -60,7 +60,8 @@ Rails::Initializer.run do |config|
   # no regular words or you'll be exposed to dictionary attacks.
   config.action_controller.session = {
     :session_key => '_Boutique_session',
-    :secret      => '67b0bdc43837fa0a261a666577594b03e1893d3a49fd40eb62b0a6d1c7d48c0e8e99bccf2435880f2dda07fa70c9778e1ea074543cdbcd3fab5bd016f72258dd'
+    :secret      => '67b0bdc43837fa0a261a666577594b03e1893d3a49fd40eb62b0a6d1c7d48c0e8e99bccf2435880f2dda07fa70c9778e1ea074543cdbcd3fab5bd016f72258dd',
+    :expire_after => 604800
   }
 
   # Use the database for sessions instead of the cookie-based default,
