@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   layout 'public'
 
-  before_filter :authenticated?, :except => [:new, :create, :activate, :passwordReset, :passwordResetForm]
-  before_filter :not_autenticated?, :only => [:new, :create, :activate, :passwordReset, :passwordResetForm]
+  before_filter :authentication, :except => [:new, :create, :activate, :passwordReset, :passwordResetForm]
+  before_filter :noAuthentication, :only => [:new, :create, :activate, :passwordReset, :passwordResetForm]
   
   # GET /user
   # GET /user.xml
@@ -115,15 +115,7 @@ class UsersController < ApplicationController
   
   private
   
-  def authenticated?
-    unless user_session.login?
-      flash[:error] = t('userSession.youHaveToLog')
-      redirect_to login_path
-      false
-    end
-  end
-  
-  def not_autenticated?
+  def noAuthentication
     if user_session.login?
       flash[:error] = t('userSession.youHaveToUnLog')
       redirect_to root_path

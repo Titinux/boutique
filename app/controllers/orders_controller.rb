@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   layout 'public'
   
-  before_filter :order_owner_only
+  before_filter :authentication, :order_owner_only
   
   # GET /order/1
   # GET /order/1.xml
@@ -31,15 +31,9 @@ class OrdersController < ApplicationController
   private
   
   def order_owner_only
-    unless user_session.login?
-      flash[:error] = t('userSession.youHaveToLog')
-      redirect_to login_path
-      return false
-    end
-    
     @order = Order.find(params[:id])
     
-    unless @order.user.id == user_session.user.id
+    if @order.blank? or @order.user.id != user_session.user.id
       flash[:error] = 'Access forbidden !'
       redirect_to user_path
       return false

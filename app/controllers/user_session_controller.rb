@@ -21,7 +21,10 @@ class UserSessionController < ApplicationController
     respond_to do |format|
       if @user_session.login?
         flash[:notice] = t('userSession.successfullLogin', :username => @user_session.user.name )
-        format.html { redirect_to(root_url) }
+        format.html do 
+          redirect_to(session[:urlRequested].blank? ? root_url : session[:urlRequested])
+          session[:urlRequested] = nil
+        end
       else
         flash[:error] = 'Wrong login or password !'
         format.html { redirect_to(login_path) }

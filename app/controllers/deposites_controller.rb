@@ -1,8 +1,8 @@
 class DepositesController < ApplicationController
   layout 'public'
   
-  before_filter :authenticated?
-  before_filter :gatherer?
+  before_filter :authentication
+  before_filter :gathererOnly
   
   # GET /deposites
   # GET /deposites.xml
@@ -58,15 +58,7 @@ class DepositesController < ApplicationController
   
   private
   
-  def authenticated?
-    unless user_session.login?
-      flash[:error] = 'You have to be logged in to view user informations'
-      redirect_to login_path
-      false
-    end
-  end
-  
-  def gatherer?
+  def gathererOnly
     unless user_session.user.gatherer
       flash[:error] = 'You can\'t view or make deposites if you\'re not gatherer'
       redirect_to root_path
