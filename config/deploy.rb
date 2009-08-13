@@ -46,11 +46,8 @@ namespace :deploy do
   end
 end
 
-namespace :passenger do
-  desc "Restart Application"
-  task :restart do
-    run "touch #{release_path}/tmp/restart.txt"
-  end
+deploy.task :restart, :roles => :app do
+  run "touch #{current_path}/tmp/restart.txt" 
 end
 
 namespace :deploy do
@@ -62,6 +59,5 @@ end
 
 after "deploy:update_code" , "deploy:copy_database_configuration"
 after "deploy:update_code" , "assets:symlink"
-after :deploy, "passenger:restart"
 after "deploy:symlink", "deploy:update_crontab"
 
