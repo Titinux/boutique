@@ -1,0 +1,12 @@
+<%= @order.user.name %> a accepté le devis.
+-------------------------------------------
+
+Détails de la commande.
+-----------------------
+<%= render :partial => 'order_details', :locals => { :orderLines => @order.orderLines, :full => true } %>
+
+Total : <%= @order.totalAmount %>
+
+
+
+							-= L'équipe des Marchands d'Hyze =-

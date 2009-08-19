@@ -1,0 +1,10 @@
+Nouvelle commande de <%= @order.user.name %>.
+---------------------------------------------
+
+Détails de la commande.
+-----------------------
+<%= render :partial => 'order_details', :locals => { :orderLines => @order.orderLines } %>
+
+
+
+							-= L'équipe des Marchands d'Hyze =-

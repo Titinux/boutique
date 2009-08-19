@@ -1,0 +1,10 @@
+<%= @order.user.name %> a annulé la commande n°<%= @order.id %>
+-------------------------------------
+
+Détails de la commande.
+-----------------------
+<%= render :partial => 'order_details', :locals => { :orderLines => @order.orderLines } %>
+
+
+
+							-= L'équipe des Marchands d'Hyze =-

@@ -1,12 +1,12 @@
-Order #<%= @order.id %> for <%= @order.user.name %> is ready to deliver.
+La commande n°<%= @order.id %> pour <%= @order.user.name %> est prête à être livrée.
 -----------------------------------------
 
-Order details.
---------------
+Détails de la commande.
+-----------------------
 <%= render :partial => 'order_details', :locals => { :orderLines => @order.orderLines,  :full => true } %>
 
 Total : <%= @order.totalAmount %>
 
 
 
-							-= Marchands d'hyze team =-
+							-= L'équipe des Marchands d'Hyze =-

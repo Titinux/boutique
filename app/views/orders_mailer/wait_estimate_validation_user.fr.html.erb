@@ -1,0 +1,15 @@
+Devis pour votre commande.
+--------------------------
+
+Votre commande n°<%= @order.id %> a été estimée.
+
+Détails de la commande.
+-----------------------
+<%= render :partial => 'order_details', :locals => { :orderLines => @order.orderLines, :full => true } %>
+
+Montant total : <%= @order.totalAmount %>
+
+
+
+							-= L'équipe des Marchands d'Hyze =-
+
