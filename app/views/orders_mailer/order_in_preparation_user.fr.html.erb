@@ -1,0 +1,15 @@
+Bonjour <%= @order.user.name %>,
+
+Votre commande n°<%= @order.id %> est en préparation.
+
+Détails de la commande.
+-----------------------
+<%= render :partial => 'order_details', :locals => { :orderLines => @order.orderLines, :full => true } %>
+
+Total : <%= @order.totalAmount %>
+
+Nous mettons tout en œuvre afin de vous livrer le plus tôt possible.
+
+
+
+							-= L'équipe des Marchands d'Hyze =-

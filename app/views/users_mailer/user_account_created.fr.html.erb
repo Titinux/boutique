@@ -1,0 +1,18 @@
+Bonjour <%= @user.name %>,
+
+Vous venez de créer votre compte sur http://boutique.hyze.bagu.biz. Pour finaliser
+cette création et activer votre compte, vous devez cliquer sur le lien ci-dessous
+afin de prouver que vous avez bien accès à cette boîte mail.
+
+Cliquez sur ce lien ou copiez-le dans votre navigateur web.
+
+<%= activate_url :key => @user.activationKey %>
+
+Après cela, vous devriez pouvoir accéder à notre boutique et passer vos commandes.
+
+
+Nous espérons que vous apprécierez nos services.
+
+
+
+							-= L'équipe des Marchands d'Hyze =-

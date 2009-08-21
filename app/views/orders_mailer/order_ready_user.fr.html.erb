@@ -1,0 +1,14 @@
+Votre commande n°<%= @order.id %> est prête à être livrée.
+--------------------------------------------------
+
+Nous vous invitons à contacter un responsable des Marchands d'Hyze afin d'obtenir votre commande.
+
+Détails de la commande.
+-----------------------
+<%= render :partial => 'order_details', :locals => { :orderLines => @order.orderLines, :full => true } %>
+
+Total : <%= @order.totalAmount %>
+
+
+
+							-= L'équipe des Marchands d'Hyze =-
