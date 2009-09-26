@@ -19,16 +19,7 @@
 <h1>Admin Panel</h1>
 
 <div id="topbaradmin">
-	<ul>
-		<li><%= link_to Guild.human_name.pluralize, admin_guilds_path %></li>
-		<li><%= link_to User.human_name, admin_users_path %></li>
-		<li><%= link_to Category.human_name, admin_categories_path %></li>
-		<li><%= link_to Asset.human_name.pluralize, admin_assets_path %></li>
-		<li><%= link_to Order.human_name.pluralize, admin_orders_path %></li>
-		<li><%= link_to t('deposite.waitingDeposites'), admin_deposites_path %></li>
-		<li><%= link_to 'Config Tree', admin_config_tree_index_path %></li>
-		<li><%= link_to t('navigate.publicPart'), root_path %></li>
-	</ul>
+  <%= makeMenu('admin') %>
 </div>
 
 <div id="main_part">

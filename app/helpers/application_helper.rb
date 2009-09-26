@@ -1,4 +1,5 @@
 # Methods added to this helper will be available to all templates in the application.
+#require "#{RAILS_ROOT}/config/menus.rb"
 module ApplicationHelper
   def generate_html(form_builder, method, options = {})
     options[:object] ||= form_builder.object.class.reflect_on_association(method).klass.new
@@ -28,5 +29,25 @@ module ApplicationHelper
     out << '</div>'
     
     concat out
+  end
+  
+  def makeMenu(name)
+    filename = "#{RAILS_ROOT}/config/menus.rb"
+    
+    menu = eval(IO.read(filename), binding, filename)
+    
+    name.split('.').each {|name_part| menu = menu[name_part.to_sym] }
+    
+    out = "<ul>"
+    
+    menu.each do |item|
+      if (not item.has_key? :condition) or item[:condition]
+        out << "<li>"
+        out << link_to(item[:name], item[:link], item[:link_opts])
+        out << "</li>"
+      end
+    end
+    
+    out << "</ul>"
   end
 end

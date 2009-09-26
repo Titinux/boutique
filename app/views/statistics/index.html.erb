@@ -1,5 +1,1 @@
-<ul>
-	<% @statlist.each do |key, value| %>
-	<li><%= link_to value, statistic_path(key.to_s.downcase) %></li>
-	<% end %>
-</ul>
+<%= makeMenu('statistics.public') %>

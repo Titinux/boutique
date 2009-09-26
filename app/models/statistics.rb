@@ -1,21 +1,5 @@
 class Statistics
-  
-  def self.list(admin = false)
-    if(admin)
-    {
-    :ASSETS => I18n.t('statistics.assetsStatistics'),
-    :ORDERS => I18n.t('statistics.ordersStatistics'),
-    :STOCK  => I18n.t('statistics.stockStatistics')
-    } 
-    else
-    {
-    #:ASSETS => 'Assets statistics',
-    #:ORDERS => 'Orders statistics',
-    :STOCK  => I18n.t('statistics.stockStatistics')
-    }
-    end
-  end
-  
+
   def self.stockStats
     assets = Asset.find(:all, :include => [:deposites, :order_lines], :order => :name)
 
