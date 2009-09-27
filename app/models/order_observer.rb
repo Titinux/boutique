@@ -26,7 +26,8 @@ class OrderObserver < ActiveRecord::Observer
         when 'ACHIEVED'
           OrdersMailer.deliver_order_achieved_admin(order)
           OrdersMailer.deliver_order_achieved_user(order)
- 
+          
+          Delayed::Job.enqueue DispatchOrderJob.new(order.id)
       end
     end
   end

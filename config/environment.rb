@@ -30,6 +30,8 @@ Rails::Initializer.run do |config|
 
   config.gem 'javan-whenever', :lib => false, :source => 'http://gems.github.com'
 
+  config.gem 'collectiveidea-delayed_job', :lib => 'delayed_job', :source => 'http://gems.github.com'
+
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.
   # :all can be used as a placeholder for all plugins not explicitly named
@@ -38,6 +40,7 @@ Rails::Initializer.run do |config|
   # Add additional load paths for your own custom dirs
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
   config.load_paths += %W( #{RAILS_ROOT}/app/builders )
+  config.load_paths += %W( #{RAILS_ROOT}/app/jobs )
 
   # Force all environments to use the same logger level
   # (by default production uses :info, the others :debug)

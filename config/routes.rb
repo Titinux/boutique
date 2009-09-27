@@ -36,6 +36,8 @@ ActionController::Routing::Routes.draw do |map|
     
     admin.resources :deposites, :only => [:index, :destroy], :member => { :validate => :put }
     
+    admin.resources :jobs, :only => [:index]
+    
     admin.root :controller => :users, :action => 'index'
   end
   

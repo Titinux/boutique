@@ -63,8 +63,8 @@
       :link => admin_deposites_path
     },
     {
-      :name => 'Config Tree',
-      :link => admin_config_tree_index_path
+      :name => Job.human_name.pluralize,
+      :link => admin_jobs_path
     },
     {
       :name => I18n.t('navigate.publicPart'),

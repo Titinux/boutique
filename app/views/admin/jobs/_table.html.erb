@@ -1,0 +1,21 @@
+<table>
+  <thead>
+  <tr>
+    <th><%= Job.human_attribute_name('id') %></th>
+    <th><%= Job.human_attribute_name('priority') %></th>
+    <th><%= Job.human_attribute_name('attempts') %></th>
+    <th><%= Job.human_attribute_name('handler') %></th>
+    <th><%= Job.human_attribute_name('last_error') %></th>
+    <th><%= Job.human_attribute_name('run_at') %></th>
+    <th><%= Job.human_attribute_name('locked_at') %></th>
+    <th><%= Job.human_attribute_name('failed_at') %></th>
+    <th><%= Job.human_attribute_name('locked_by') %></th>
+    <th><%= Job.human_attribute_name('created_at') %></th>
+  </tr>
+  </thead>
+  <tbody>
+    <% jobs.each do |job| %>
+      <%= render :partial => 'admin/jobs/row', :locals => { :job => job } %>
+    <% end %>
+  </tbody>
+</table>
