@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::AdminController
-  
+
   # GET /admin/users
   # GET /admin/users.xml
   def index
@@ -61,7 +61,7 @@ class Admin::UsersController < Admin::AdminController
     @user = User.find(params[:id])
 
     respond_to do |format|
-      if Deposite.compact { @user.update_attributes(params[:user]) }
+      if @user.update_attributes(params[:user])
         flash[:notice] = 'User was successfully updated.'
         format.html { redirect_to([:admin, @user]) }
         format.xml  { head :ok }

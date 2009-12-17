@@ -7,8 +7,6 @@
 	  </tr>
 	</thead>
 	<tbody>
-		<% deposites.each do |deposite| %>
-			<%= render :partial => 'deposite_row', :locals => { :deposite => deposite } %>
-		<% end %>
+    <%= render :partial => 'deposit_row', :collection => deposit_table, :as => :deposit %>
 	</tbody>
 </table>

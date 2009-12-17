@@ -59,8 +59,8 @@
       :link => admin_orders_path
     },
     {
-      :name => I18n.t('deposite.waitingDeposites'),
-      :link => admin_deposites_path
+      :name => Deposit.human_name.pluralize,
+      :link => admin_deposits_path
     },
     {
       :name => Job.human_name.pluralize,

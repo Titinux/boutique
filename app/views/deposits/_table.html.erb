@@ -1,0 +1,12 @@
+<table>
+  <col width="100%" />
+	<thead>
+		<tr>
+	    <th><%= Asset.human_name %></th>
+	    <th><%= Deposit.human_attribute_name('quantity') %></th>
+	  </tr>
+	</thead>
+	<tbody>
+		<%= render :partial => 'deposits/row', :collection => deposits, :as => :deposit %>
+	</tbody>
+</table>

@@ -1,0 +1,11 @@
+<tr class="<%= cycle('even', 'odd')%>">
+	<td><%=h deposit.user.name %></td>
+	<td><%=h deposit.asset.name %></td>
+	<td class="number"><%=h deposit.quantity %></td>
+	<% unless deposit.validated %>
+    <td>
+      <%= link_to t('deposit.validate'), validate_admin_deposit_path(deposit), :method => :put %>
+      <%= link_to t('deposit.refuse'), admin_deposit_path(deposit), :confirm => t('destroy_confirm'), :method => :delete %>
+    </td>
+  <% end %>
+</tr>

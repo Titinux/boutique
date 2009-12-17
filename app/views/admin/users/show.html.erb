@@ -38,7 +38,7 @@
   <%=h @user.activated %>
 </p>
 
-<%= render :partial => 'deposite_table', :locals => { :deposites => @user.deposites.validated } %>
+<%= render :partial => 'admin/users/deposit_table', :object => @user.deposits.validated, :as => :deposits %>
 
 <%= link_to_back admin_users_path %>
 <%= link_to_edit edit_admin_user_path(@user) %>

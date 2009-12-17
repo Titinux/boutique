@@ -1,4 +1,4 @@
 require 'test_helper'
 
-class DepositeHelperTest < ActionView::TestCase
+class DepositHelperTest < ActionView::TestCase
 end

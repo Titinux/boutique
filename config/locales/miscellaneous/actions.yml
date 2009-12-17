@@ -9,6 +9,7 @@ en:
   update: Update
   login: Login
   action: Action
+  filter: Apply filter
 
 fr:
   # Actions
@@ -21,3 +22,4 @@ fr:
   update: Mettre à jour
   login: Connexion
   action: Action
+  filter: Appliquer le filtre

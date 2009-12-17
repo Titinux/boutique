@@ -2,7 +2,10 @@ en:
   # Misc
   picture: Picture
   pictureOf: Picture of {{subject}}
+  filters: Filters
+
 fr:
   # Misc
   picture: Image
   pictureOf: Image de {{subject}}
+  filters: Filtres

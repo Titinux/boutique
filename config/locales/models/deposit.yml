@@ -1,0 +1,41 @@
+en:
+  activerecord:
+    models:
+      deposit: Deposits
+
+    attributes:
+      deposit:
+        quantity: Quantity
+        validated: Validated
+
+  # Deposit
+  deposit:
+    new: New Deposit
+    validated: My validated Deposits
+    waiting: My waiting Deposits
+    waitingDeposits: Waiting Deposits
+    validate: Validate
+    refuse: Refuse
+    created: Deposit was successfully created.
+    listing: Liste des dépôts
+
+fr:
+  activerecord:
+    models:
+      deposit: Dépôts
+
+    attributes:
+      deposit:
+        quantity: Quantité
+        validated: Validé
+
+  # Deposit
+  deposit:
+    new: Nouveau dépôt
+    validated: Mes dépôts validés
+    waiting: Mes dépôts en attente
+    waitingDeposits: Dépôts en attente
+    validate: Valider
+    refuse: Refuser
+    created: Votre dépôt a bien été pris en compte.
+    listing: Liste des dépôts

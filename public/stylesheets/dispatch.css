@@ -2,7 +2,7 @@ html, body {
 	height: 100%;
 	margin: 0 auto;
 	padding: 0;
-	
+
 	background-color: #3f3720;
 }
 
@@ -17,7 +17,7 @@ div#page {
 	margin: 0 auto;
 	min-height: 100%;
 	position: relative;
-	
+
 	background-color: #a19062;
 }
 
@@ -26,7 +26,7 @@ div#page {
 	background-image: url('/images/header/tribal.jpg');
 	background-repeat: no-repeat;
 	background-position: center;
-	
+
 	height: 250px;
 	margin: 0;
 	padding: 0;
@@ -40,17 +40,17 @@ div#header :first-child {
 	position: relative;
 	left: 400px;
 	top: 50px;
-	
+
 	width: 400px;
 	height: 150px;
-	
+
 	text-align: center;
 }
 
 /* Top bar */
 #topbar {
 	height: 25px;
-	
+
 	font-family: Verdana, Arial;
 	font-size: 11px;
 	font-weight: bold;
@@ -59,7 +59,7 @@ div#header :first-child {
 	line-height: 25px;
 	margin-right: 11px;
 	margin-left: 11px;
-	
+
 	background-image: url('/images/global/cellpic1.gif');
 	background-repeat: repeat-x;
 }
@@ -71,7 +71,7 @@ div#topbar :first-child {
 #topbar li {
 	float: left;
 	list-style: none;
-	
+
 	padding: 0px 10px 0 0;
 }
 
@@ -87,14 +87,14 @@ div#topbar :first-child {
 /* Center part */
 #center {
 	clear: both;
-	
+
 	padding: 20px 10px 10px 10px;
 }
 
 /* Main part*/
 #main_part {
 	width: 74%;
-	
+
 	margin-bottom: 0;
 	padding-bottom: 4em;
 
@@ -118,16 +118,16 @@ div#topbar :first-child {
 	margin: 0 1% 0 1%;
 	height: 25px;
 	line-height: 25px;
-	
+
 	clear: both;
 	/*border-width: 1px;
 	border-style: solid;
 	border-color: #696464;*/
-	
+
 	background-image: url('/images/global/cellpic1.gif');
 	background-repeat: repeat-x;
 	/*-moz-border-radius: 20px;*/
-	
+
 	font-size: 15px;
 	text-align: center;
 }
@@ -151,13 +151,26 @@ img {
 }
 
 .flash.error {
-	color: red;
+  color: red;
 }
 
 /* Forms */
 label:after {content:" : ";}
 label.differential:after {content: " + ";}
 
+form ol {
+  list-style: none;
+}
+
+form.horizontal label {
+  display: block;
+}
+
+form.horizontal li {
+  display: inline-block;
+  margin-right: 2em;
+  margin-left: 2em;
+}
 
 .required {
 	font-size: small;
@@ -217,7 +230,7 @@ label.differential:after {content: " + ";}
 
 	-moz-border-radius-topright: 20px;
 	-moz-border-radius-topleft: 20px;
-	
+
 	color: #ffffff;
 	text-align: center;
 	vertical-align: middle;
@@ -234,9 +247,9 @@ label.differential:after {content: " + ";}
 	border-top-width: 0px;
 	border-style: solid;
 	border-color: #696464;
-	
+
 	padding: 5px;
-	
+
 	-moz-border-radius-bottomright: 20px;
 	-moz-border-radius-bottomleft: 20px;
 }
@@ -259,7 +272,7 @@ tr.even {
 }
 
 tr.odd {
-	
+
 }
 
 td {
@@ -297,14 +310,14 @@ td.currency {
 .asset {
 	float:left;
 	margin: 5px;
-	
+
 	min-height: 115px;
 	min-width: 175px;
 	max-width: 175px;
-	
+
 	border-style: solid;
 	border-width: thin;
 	border-color: #696464;
-	
+
 	text-align: center;
 }
