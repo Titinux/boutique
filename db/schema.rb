@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091202143243) do
+ActiveRecord::Schema.define(:version => 20091217134809) do
 
   create_table "assets", :force => true do |t|
     t.string   "name",         :limit => 25,                                                 :null => false
@@ -68,6 +68,8 @@ ActiveRecord::Schema.define(:version => 20091202143243) do
     t.datetime "updated_at"
     t.boolean  "validated",  :default => false, :null => false
   end
+
+  add_index "deposits", ["user_id", "asset_id", "validated"], :name => "index_deposits_on_user_id_and_asset_id_and_validated", :unique => true
 
   create_table "guilds", :force => true do |t|
     t.string   "name"
