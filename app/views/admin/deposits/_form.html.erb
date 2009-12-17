@@ -1,0 +1,21 @@
+<%= f.error_messages %>
+
+<p>
+  <%= f.label :user_id, User.human_name %>
+  <%= f.collection_select :user_id, User.find(:all), :id, :name %>
+</p>
+<p>
+  <%= f.label :asset_id, Asset.human_name %>
+  <%= f.collection_select :asset_id, Asset.find(:all), :id, :name %>
+</p>
+<p>
+  <%= f.label :quantity_modifier, Deposit.human_attribute_name(:quantity) %>
+  <%= f.text_field :quantity_modifier, :value => f.object.quantity_modifier %>
+</p>
+<p>
+  <%= f.label :validated, Deposit.human_attribute_name(:validated) %>
+  <%= f.check_box :validated %>
+</p>
+<p>
+  <%= f.submit bt_name %>
+</p>

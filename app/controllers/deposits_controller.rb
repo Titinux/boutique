@@ -12,7 +12,7 @@ class DepositsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @orders }
+      format.xml  { render :xml => @validated_deposits + @waiting_deposits }
     end
   end
 
@@ -23,7 +23,7 @@ class DepositsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @order }
+      format.xml  { render :xml => @deposit }
     end
   end
 
@@ -34,7 +34,7 @@ class DepositsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @order }
+      format.xml  { render :xml => @deposit }
     end
   end
 

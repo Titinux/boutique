@@ -34,7 +34,7 @@ ActionController::Routing::Routes.draw do |map|
 
     admin.resources :config_tree
 
-    admin.resources :deposits, :only => [:index, :destroy], :member => { :validate => :put }
+    admin.resources :deposits, :except => [:edit, :update], :member => { :validate => :put }
 
     admin.resources :jobs, :only => [:index]
 

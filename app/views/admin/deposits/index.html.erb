@@ -5,3 +5,7 @@
 <p>
 <%= render :partial => 'table', :locals => { :deposits => @deposits } %>
 </p>
+
+<p>
+  <%= link_to t('deposit.new'), new_admin_deposit_path %>
+</p>

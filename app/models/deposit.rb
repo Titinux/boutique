@@ -12,8 +12,8 @@ class Deposit < ActiveRecord::Base
   validates_presence_of :user, :asset
 
   validates_numericality_of :quantity, :only_integer => true
-  validates_numericality_of :quantity_modifier, :only_integer => true
 
+  validate :quantity_modifier_must_be_an_integer
   validate :not_duplicate
   validate :coherant_quantity
 
@@ -56,9 +56,16 @@ class Deposit < ActiveRecord::Base
   private
 
   # Validation
+  def quantity_modifier_must_be_an_integer
+    unless self.quantity_modifier.to_i.to_s == self.quantity_modifier.to_s
+      errors.add(:quantity, I18n.t('validation.must_be_an_integer'))
+    end
+  end
+
+  # Validation
   def not_duplicate
     unless Deposit.find(:first, :conditions =>{ :user_id => self.user_id, :asset_id => self.user_id, :validated => self.validated }).blank?
-      errors.add_to_base("Duplicate deposit is forbidden !")
+      errors.add_to_base(I18n('deposit.validation.duplicate_is_forbidden'))
     end
   end
 
@@ -68,15 +75,15 @@ class Deposit < ActiveRecord::Base
     potential_user_stock = Deposit.find(:all, :conditions => { :user_id => self.user_id, :asset_id => self.asset_id }).sum(&:quantity)
 
     if self.validated?
-      errors.add_to_base("Stock quantity can\'t be negative !") if final_quantity < 0
+      errors.add_to_base(I18n.t('deposit.validation.stock_cant_be_negative')) if final_quantity < 0
     else
-      errors.add_to_base("Withdrawal amount can\'t be superior to deposits !") if self.quantity_modifier.to_i + potential_user_stock < 0
+      errors.add_to_base(I18n.t('deposit.validation.withdrawal_cant_be_superior_to_deposits')) if self.quantity_modifier.to_i + potential_user_stock < 0
     end
   end
 
   # Before save
   def compute_quantity
-    self.quantity += self.quantity_modifier.to_i
+    self.quantity += self.quantity_modifier.to_i if self.valid?
   end
 
   # After save
@@ -85,4 +92,5 @@ class Deposit < ActiveRecord::Base
       self.delete
     end
   end
+
 end

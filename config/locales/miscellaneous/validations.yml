@@ -1,0 +1,7 @@
+en:
+  validation:
+    must_be_an_integer: must be an integer
+
+fr:
+  validation:
+    must_be_an_integer: doit être un nombre entier

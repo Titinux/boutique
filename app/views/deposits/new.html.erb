@@ -2,7 +2,7 @@
 
 <h2><%= t('deposit.new') %></h2>
 
-<% form_for(@deposit) do |f| %>
+<% form_for(@deposit, :url => deposits_path, :html => { :method => :post }) do |f| %>
 	<%= render :partial => 'form', :locals => { :f => f, :bt_name => t('create') } %>
 <% end %>
 

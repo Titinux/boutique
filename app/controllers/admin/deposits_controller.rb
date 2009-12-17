@@ -17,6 +17,35 @@ class Admin::DepositsController < Admin::AdminController
     end
   end
 
+  # GET /admin/deposits/new
+  # GET /admin/deposits/new.xml
+  def new
+    @deposit = Deposit.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @deposit }
+    end
+  end
+
+  # POST /admin/deposits
+  # POST /admin/deposits.xml
+  def create
+    @deposit = Deposit.find_or_new({ :user_id => params[:deposit][:user_id], :asset_id => params[:deposit][:asset_id], :validated => params[:deposit][:validated]})
+    @deposit.quantity_modifier = params[:deposit][:quantity_modifier]
+
+    respond_to do |format|
+      if @deposit.save
+        flash[:notice] = t('deposit.created')
+        format.html { redirect_to(admin_deposits_path) }
+        format.xml  { render :xml => @deposit, :status => :created, :location => @deposit }
+      else
+        format.html { render :action => :new }
+        format.xml  { render :xml => @deposits.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
   # DELETE /admin/deposits/1
   # DELETE /admin/deposits/1.xml
   def destroy

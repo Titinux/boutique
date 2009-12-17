@@ -19,6 +19,11 @@ en:
     created: Deposit was successfully created.
     listing: Liste des dépôts
 
+    validation:
+      duplicate_is_forbidden: Duplicates are forbidden
+      stock_cant_be_negative: Stock amount can\'t be negative
+      withdrawal_cant_be_superior_to_deposits: Withdrawal amount can\'t be superior to deposits
+
 fr:
   activerecord:
     models:
@@ -39,3 +44,8 @@ fr:
     refuse: Refuser
     created: Votre dépôt a bien été pris en compte.
     listing: Liste des dépôts
+
+    validation:
+      duplicate_is_forbidden: Les doublons sont interdits
+      stock_cant_be_negative: La valeur du stock ne peut être négative
+      withdrawal_cant_be_superior_to_deposits: La valeur du retrait ne peux excéder les dépôts
