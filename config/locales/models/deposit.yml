@@ -18,6 +18,8 @@ en:
     refuse: Refuse
     created: Deposit was successfully created.
     listing: Liste des dépôts
+    validation_success: Deposit was successfully validated.
+    validation_failure: Deposit can\'t be validated.
 
     validation:
       duplicate_is_forbidden: Duplicates are forbidden
@@ -44,6 +46,8 @@ fr:
     refuse: Refuser
     created: Votre dépôt a bien été pris en compte.
     listing: Liste des dépôts
+    validation_success: Le dépôt à bien été validé.
+    validation_failure: Le dépôt n'a pas pu être validé.
 
     validation:
       duplicate_is_forbidden: Les doublons sont interdits

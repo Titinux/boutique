@@ -65,10 +65,11 @@ class Admin::DepositsController < Admin::AdminController
 
     respond_to do |format|
       if @deposit.approve
-        flash[:notice] = 'Deposit was successfully validated.'
+        flash[:notice] = t('deposit.validation_success')
         format.html { redirect_to admin_deposits_path }
         format.xml  { head :ok }
       else
+        flash[:error] = t('deposit.validation_failure')
         format.html { redirect_to admin_deposits_path }
         format.xml  { render :xml => @deposit.errors, :status => :unprocessable_entity }
       end

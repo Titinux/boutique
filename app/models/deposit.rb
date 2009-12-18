@@ -29,8 +29,8 @@ class Deposit < ActiveRecord::Base
 
   # Default values
   def after_initialize
-    self[:quantity] ||= 0
-    self[:quantity_modifier] ||= 0
+    self.quantity ||= 0
+    self.quantity_modifier ||= 0
   end
 
   # Approve a deposit
@@ -38,10 +38,9 @@ class Deposit < ActiveRecord::Base
     # Find a validated duplicate.
     stock = Deposit.find_or_new({:user_id => user_id, :asset_id => asset_id, :validated => true})
 
-    stock.quantity += self.quantity
-    stock.save
+    stock.quantity_modifier = self.quantity
 
-    self.destroy
+    stock.save && self.destroy
   end
 
   # Class method to get the total amount of an asset
