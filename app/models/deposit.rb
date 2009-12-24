@@ -63,7 +63,7 @@ class Deposit < ActiveRecord::Base
 
   # Validation
   def not_duplicate
-    unless Deposit.find(:first, :conditions =>{ :user_id => self.user_id, :asset_id => self.user_id, :validated => self.validated }).blank?
+    unless Deposit.find(:first, :conditions =>{ :user_id => self.user_id, :asset_id => self.asset_id, :validated => self.validated }).blank?
       errors.add_to_base(I18n.t('deposit.validation.duplicate_is_forbidden'))
     end
   end
