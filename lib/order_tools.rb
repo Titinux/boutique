@@ -10,13 +10,14 @@ module OrderTools
   end
 
   def self.dispatch(order)
-    raise OrderDispatchException, 'This order have already been dispatched !' if order.dispatched
+    raise OrderDispatchException, 'This order has already been dispatched !' if order.dispatched
     raise OrderDispatchException, 'Stocks are insufficient to dispatch this order !' unless available?(order)
 
     # TODO : Utliser une option pour définir un compte qui récupère l'argent "en trop".
     tax_collector = User.find_by_name('Marchands d\'Hyze')
+    raise OrderDispatchException, 'Tax collector can\'t be found !' if tax_collector.blank?
 
-    order.transaction do
+    Order.transaction do
 
       moneySpent = 0
       # TODO : Utiliser une option pour gérer le montant de la taxe.
@@ -24,36 +25,33 @@ module OrderTools
 
       order.orderLines.each do |orderLine|
         assetQuantity = orderLine.quantity
-        deposites = Deposit.find(:all, :conditions => { :asset_id => orderLine.asset.id, :validated => true} , :order => 'quantity DESC')
+        deposits = Deposit.find(:all, :conditions => { :asset_id => orderLine.asset.id, :validated => true} , :order => 'quantity DESC')
 
-        deposites.size.downto(1) do |i|
-          deposite = deposites[i-1]
-          qt = [deposite.quantity, (assetQuantity / i).to_i].min
+        deposits.size.downto(1) do |i|
+          deposit = deposits[i-1]
+
+          qt = [deposit.quantity, (assetQuantity / i).to_i].min
           money = (qt * orderLine.unitaryPrice * taxe).to_i
 
-          deposite.user.pigMoneyBox += money
-          deposite.user.save
+          deposit.user.pigMoneyBox += money
+          deposit.user.save!
 
           moneySpent += money
-          deposite.quantity -= qt
+          deposit.quantity_modifier = -qt
 
-          if deposite.quantity == 0
-            deposite.destroy
-          else
-            deposite.save
-          end
+          deposit.save!
 
           assetQuantity -= qt
         end
       end
 
-      if moneySpent < order.totalAmount
-        tax_collector.pigMoneyBox += order.totalAmount - moneySpent
-        tax_collector.save
-      end
+      raise OrderDispatchException, 'Dispatch money can\'t be superior to order amount !' if moneySpent > order.totalAmount
+
+      tax_collector.pigMoneyBox += order.totalAmount - moneySpent
+      tax_collector.save!
 
       order.dispatched = true
-      order.save
+      order.save!
     end
   end
 end
