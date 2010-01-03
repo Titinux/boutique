@@ -1,0 +1,16 @@
+<table>
+  <thead>
+    <tr>
+      <th><%= 'Id' %></th>
+      <th><%= Log.human_attribute_name('level') %></th>
+      <th><%= User.human_name %></th>
+      <th><%= Log.human_attribute_name('action') %></th>
+      <th><%= Log.human_attribute_name('objectType') %></th>
+      <th><%= Log.human_attribute_name('objectId') %></th>
+      <th><%= Log.human_attribute_name('created_at') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render :partial => 'row', :collection => @logs, :as => :log %>
+  </tbody>
+</table>

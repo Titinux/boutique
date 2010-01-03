@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091217134809) do
+ActiveRecord::Schema.define(:version => 20100103150313) do
 
   create_table "assets", :force => true do |t|
     t.string   "name",         :limit => 25,                                                 :null => false
@@ -74,6 +74,17 @@ ActiveRecord::Schema.define(:version => 20091217134809) do
   create_table "guilds", :force => true do |t|
     t.string   "name"
     t.string   "pictureUri"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "logs", :force => true do |t|
+    t.integer  "level",      :default => 0, :null => false
+    t.string   "user",                      :null => false
+    t.string   "action",                    :null => false
+    t.string   "objectType",                :null => false
+    t.integer  "objectId",                  :null => false
+    t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

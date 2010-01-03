@@ -38,6 +38,8 @@ ActionController::Routing::Routes.draw do |map|
 
     admin.resources :jobs, :only => [:index]
 
+    admin.resources :logs, :only => [:index, :show]
+
     admin.root :controller => :users, :action => 'index'
   end
 

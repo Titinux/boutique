@@ -1,0 +1,12 @@
+<tr class="<%= cycle('even', 'odd')%>">
+  <td><%=h log.id %></td>
+  <td><%=h log.level %></td>
+  <td><%=h log.user %></td>
+  <td><%=h log.action %></td>
+  <td><%=h log.objectType %></td>
+  <td><%=h log.objectId %></td>
+  <td><%=h l(log.created_at) %></td>
+  <td class="actions">
+    <%= link_to_show admin_log_path(log) %>
+  </td>
+</tr>

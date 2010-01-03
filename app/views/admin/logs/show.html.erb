@@ -1,0 +1,47 @@
+<p>
+  <b><%= Log.human_attribute_name('id') %>:</b>
+  <%=h @log.id %>
+</p>
+
+<p>
+  <b><%= Log.human_attribute_name('created_at') %> :</b>
+  <%=h l(@log.created_at) %>
+</p>
+
+<p>
+  <b><%= Log.human_attribute_name('level') %>:</b>
+  <%=h @log.level %>
+</p>
+
+<p>
+  <b><%= User.human_name %> :</b>
+  <%=h @log.user %>
+</p>
+
+<p>
+  <b><%= Log.human_attribute_name('action') %> :</b>
+  <%=h @log.action %>
+</p>
+
+<p>
+  <b><%= Log.human_attribute_name('objectType') %> :</b>
+  <%=h @log.objectType %>
+</p>
+
+<p>
+  <b><%= Log.human_attribute_name('objectId') %> :</b>
+  <%=h @log.objectId %>
+</p>
+
+<p>
+  <b><%= Log.human_attribute_name('data') %> :</b>
+  <% if @log.data.is_a? Hash %>
+    <%= hash_to_table(@log.data) %>
+  <% else %>
+    <%=h @log.data.inspect %>
+  <% end %>
+</p>
+
+<p>
+  <%= link_to_back admin_logs_path %>
+</p>

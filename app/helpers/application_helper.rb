@@ -76,4 +76,24 @@ module ApplicationHelper
 
     out
   end
+
+  def hash_to_table(source)
+    source_a = source.sort
+
+    out = "<table>"
+
+    source_a.each do |item|
+      out << "<tr class=\"#{cycle('even', 'odd')}\">"
+      out << "<td>#{item[0]}</td>"
+
+      if item[1].is_a? Array
+        out << "<td>#{item[1][0]} -> #{item[1][1]}</td>"
+      else
+        out << "<td>#{item[1]}</td>"
+      end
+      out << '</tr>'
+    end
+
+    out << "</table>"
+  end
 end

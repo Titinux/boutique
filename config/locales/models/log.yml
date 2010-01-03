@@ -1,0 +1,35 @@
+en:
+  activerecord:
+    models:
+      log: Log
+
+    attributes:
+      log:
+        level: Level
+        action: Action
+        objectType: Object type
+        objectId: Object Id
+        data: Data
+        created_at: Logged at
+
+  # Logs
+  log:
+    listing: Logs listing
+
+fr:
+  activerecord:
+    models:
+      log: Journal
+
+    attributes:
+      log:
+        level: Level
+        action: Action
+        objectType: Type d'objet
+        objectId: Id de l'objet
+        data: Données
+        created_at: Date de l'événement
+
+  # Logs
+  log:
+    listing: List des journaux

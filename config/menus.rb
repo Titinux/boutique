@@ -67,6 +67,10 @@
       :link => admin_jobs_path
     },
     {
+      :name => Log.human_name.pluralize,
+      :link => admin_logs_path
+    },
+    {
       :name => I18n.t('navigate.publicPart'),
       :link => root_path
     }

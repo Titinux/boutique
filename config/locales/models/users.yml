@@ -2,8 +2,8 @@ en:
   activerecord:
     models:
       user: Users
-      
-    attributes:  
+
+    attributes:
       user:
         name: Username
         pigMoneyBox: Pig moneybox
@@ -17,7 +17,7 @@ en:
         password_confirmation: Password confirmation
         dofusNicknames: Dofus nicknames
         activated: Account activated
-        
+
   # Users
   user:
     editing: Edit user
@@ -37,13 +37,14 @@ en:
     sendMeMyIds: Send me my name and password
     emailNotMatch: This email doesn't match any user !
     newPasswordSent: Your account name and a new password have been sent to you.
+    system: System
 
 fr:
   activerecord:
     models:
       user: Utilisateurs
-      
-    attributes:  
+
+    attributes:
       user:
         name: Identifiant
         pigMoneyBox: Cochon tirelire
@@ -57,7 +58,7 @@ fr:
         password_confirmation: Confirmation du mot de passe
         dofusNicknames: Pseudos Dofus
         activated: Compte activé
-        
+
   # Users
   user:
     editing: Modification de l'utilisateur
@@ -77,3 +78,4 @@ fr:
     sendMeMyIds: Envoyez-moi mes identifiants
     emailNotMatch: Cette adresse e-mail ne correspond à aucun utilisateur.
     newPasswordSent: Votre nom de compte et un nouveau mot de passe vous ont été envoyés.
+    system : Système
