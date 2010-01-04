@@ -6,7 +6,7 @@ class LogSweeper < ActionController::Caching::Sweeper
   end
 
   def after_update(record)
-    LogTools::log_me(record, { :user => current_user_name, :action => 'update', :data => record.changes })
+    LogTools::log_me(record, { :user => current_user_name, :action => 'update', :data => record.attributes.merge(record.changes) })
   end
 
   def before_destroy(record)
