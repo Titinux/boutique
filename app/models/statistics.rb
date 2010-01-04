@@ -15,4 +15,15 @@ class Statistics
       end
     end
   end
+
+  def self.pigmoneyboxStats
+    out = {}
+
+    users = User.all(:order => 'pigMoneyBox DESC')
+
+    out[:sum]     = users.sum(&:pigMoneyBox)
+    out[:richests] = users.slice(0, 3)
+
+    out
+  end
 end

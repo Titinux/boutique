@@ -63,6 +63,10 @@
       :link => admin_deposits_path
     },
     {
+      :name => I18n.t('statistics.name'),
+      :link => admin_statistics_path
+    },
+    {
       :name => Job.human_name.pluralize,
       :link => admin_jobs_path
     },
@@ -85,7 +89,11 @@
     :admin => [
       {
         :name => I18n.t('statistics.stockStatistics'),
-        :link => statistic_path('stock')
+        :link => admin_statistic_path('stock')
+      },
+      {
+        :name => I18n.t('statistics.pigMoneyBoxStatistics'),
+        :link => admin_statistic_path('pigmoneybox')
       }
     ]
   }

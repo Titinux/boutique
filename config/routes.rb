@@ -36,6 +36,9 @@ ActionController::Routing::Routes.draw do |map|
 
     admin.resources :deposits, :except => [:edit, :update], :member => { :validate => :put }
 
+    admin.statistics 'statistics', :controller => 'statistics', :action => 'index', :conditions => { :method => :get }
+    admin.statistic  'statistics/:stattype', :controller => 'statistics', :action => 'show', :conditions => { :method => :get }
+
     admin.resources :jobs, :only => [:index]
 
     admin.resources :logs, :only => [:index, :show]
