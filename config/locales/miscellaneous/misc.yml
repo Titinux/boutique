@@ -5,6 +5,7 @@ en:
   filters: Filters
   startDate: Start date
   endDate: End date
+  created_at: Created at
 
 fr:
   # Misc
@@ -13,3 +14,4 @@ fr:
   filters: Filtres
   startDate: Date de début
   endDate: Date de fin
+  created_at: Créé le
