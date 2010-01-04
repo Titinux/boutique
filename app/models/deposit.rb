@@ -88,7 +88,7 @@ class Deposit < ActiveRecord::Base
   # After save
   def delete_me_if_empty
     if self.quantity == 0
-      self.delete
+      self.destroy
     end
   end
 
