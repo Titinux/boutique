@@ -1,9 +1,14 @@
-log/*
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/**/*
+
 .tmp_*
-tmp/*
 public/images
 *_packaged.js
 *_packaged.css
 .loadpath
 .idea
 *~
+
+.htaccess

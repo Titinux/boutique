@@ -28,11 +28,11 @@ module ApplicationHelper
     out << '</div>'
     out << '</div>'
 
-    concat out
+    concat raw(out)
   end
 
   def makeMenu(name)
-    filename = "#{RAILS_ROOT}/config/menus.rb"
+    filename = "#{Rails.root}/config/menus.rb"
 
     menu = eval(IO.read(filename), binding, filename)
 
@@ -49,6 +49,7 @@ module ApplicationHelper
     end
 
     out << "</ul>"
+    raw out
   end
 
   def my_select_options(container, *args)

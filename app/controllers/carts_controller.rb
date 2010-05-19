@@ -1,6 +1,6 @@
-class CartController < ApplicationController
+class CartsController < ApplicationController
   layout 'public'
-  
+
   # GET /cart
   # GET /cart.xml
   def index
@@ -25,9 +25,9 @@ class CartController < ApplicationController
   # GET /cart/new.xml
   def new
    redirect_to welcome_path unless params[:asset_id]
-    
+
    @asset = Asset.find(params[:asset_id])
-    
+
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @asset }
@@ -37,9 +37,9 @@ class CartController < ApplicationController
   # GET /cart/1/edit
   def edit
     redirect_to welcome_path unless params[:id]
-    
+
     @cart_line = cart_session.line(params[:id])
-    
+
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @asset }
@@ -55,7 +55,7 @@ class CartController < ApplicationController
       if @asset
         cart_session.add_line(@asset.id, params[:quantity])
         flash[:notice] = t('cart.addCartSuccess')
-        
+
         if params[:add_and_continue_shopping].blank?
           format.html { redirect_to(cart_index_path) }
           format.xml  { render :xml => @asset, :status => :created, :location => @asset }
@@ -99,25 +99,25 @@ class CartController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
+
   # DELETE /cart/destroy_all
   # DELETE /cart/destroy_all.xml
   def destroy_all
     cart_session.empty_cart
-    
+
     respond_to do |format|
       format.html { redirect_to(cart_index_url) }
       format.xml  { head :ok }
     end
   end
-  
+
   # PUT /cart/to_order
   # PUT /cart/to_order
   def to_order
     respond_to do |format|
       begin
         cart_session.to_order(user_session)
-      
+
         flash[:notice] = t('order.createSuccess')
         format.html { redirect_to(cart_index_path) }
         format.xml  { head :ok }

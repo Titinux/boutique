@@ -10,7 +10,7 @@
     },
     {
       :name => I18n.t('cart.name'),
-      :link => cart_index_path
+      :link => carts_path
     },
     {
       :name => I18n.t('statistics.name'),

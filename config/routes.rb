@@ -1,51 +1,54 @@
-ActionController::Routing::Routes.draw do |map|
-  # Partie publique du site.
-  map.welcome    'welcome',    :controller => 'boutique', :action => 'welcome',  :conditions => { :method => :get }
-  map.categories 'categories', :controller => 'boutique', :action => 'category', :conditions => { :method => :get }
+Boutique::Application.routes.draw do |map|
+  match 'welcome' => 'boutique#welcome', :as => :welcome, :conditions => { :method => :get }
+  match 'categories' => 'boutique#category', :as => :categories, :conditions => { :method => :get }
 
-  map.resources :cart, :collection => { :destroy_all => :delete, :to_order => :put }
+  resources :carts, :as => :cart do
+    collection do
+      delete :destroy_all
+      put :to_order
+    end
+  end
 
-  map.autenticate  'autenticate',  :controller => 'user_session', :action => 'create', :conditions => { :method => :post }
-  map.login  'login',  :controller => 'user_session', :action => 'new', :conditions => { :method => :get }
-  map.logout 'logout', :controller => 'user_session', :action => 'destroy', :conditions => { :method => :delete }
+  match 'autenticate' => 'user_session#create', :as => :autenticate, :conditions => { :method => :post }
+  match 'login' => 'user_session#new', :as => :login, :conditions => { :method => :get }
+  match 'logout' => 'user_session#destroy', :as => :logout, :conditions => { :method => :delete }
 
   map.resources :deposits, :except => [ :edit, :update, :destroy ]
 
-  map.order 'order/:id', :controller => 'orders', :action => 'show', :conditions => { :method => :get }
-  map.orderAction 'order_action/:id', :controller => 'orders', :action => 'update', :conditions =>{ :method => :put }
+  match 'order/:id' => 'orders#show', :as => :order, :conditions => { :method => :get }
+  match 'order_action/:id' => 'orders#update', :as => :orderAction, :conditions =>{ :method => :put }
 
-  map.statistics 'statistics', :controller => 'statistics', :action => 'index', :conditions => { :method => :get }
-  map.statistic 'statistics/:stattype', :controller => 'statistics', :action => 'show', :conditions => { :method => :get }
+  match 'statistics' => 'statistics#index', :as => :statistics, :conditions => { :method => :get }
+  match 'statistics/:stattype' => 'statistics#show', :as => :statistic, :conditions => { :method => :get }
 
   map.resource :user
-  map.activate 'user/activate/:key', :controller => 'users', :action => 'activate', :conditions => { :method => :get }
-  map.passwordResetForm 'user/passwordReset', :controller => 'users', :action => 'passwordResetForm', :conditions => { :method => :get }
-  map.passwordReset 'user/passwordReset', :controller => 'users', :action => 'passwordReset', :conditions => { :method => :post }
+  match 'user/activate/:key' => 'users#activate', :as => :activate, :conditions => { :method => :get }
+  match 'user/passwordResetForm' => 'users#passwordResetForm', :as => :passwordResetForm, :conditions => { :method => :get }
+  match 'user/passwordReset' => 'users#passwordReset', :as => :passwordReset, :conditions => { :method => :post }
 
   # Partie admin du site.
-  map.namespace :admin do |admin|
-    admin.resources :guilds
-    admin.resources :users
+  namespace :admin do
+    resources :guilds
+    resources :users
 
-    admin.resources :categories
-    admin.resources :assets
+    resources :categories
+    resources :assets
 
-    admin.resources :orders
+    resources :orders
 
-    admin.resources :config_tree
+    resources :config_tree
 
-    admin.resources :deposits, :except => [:edit, :update], :member => { :validate => :put }
+    resources :deposits, :except => [:edit, :update], :member => { :validate => :put }
 
-    admin.statistics 'statistics', :controller => 'statistics', :action => 'index', :conditions => { :method => :get }
-    admin.statistic  'statistics/:stattype', :controller => 'statistics', :action => 'show', :conditions => { :method => :get }
+    match 'statistics' => 'admin/statistics#index', :as => :statistics, :conditions => { :method => :get }
+    match 'statistics/:stattype' => 'admin/statistics#show', :as => :statistic, :conditions => { :method => :get }
 
-    admin.resources :jobs, :only => [:index]
+    resources :jobs, :only => [:index]
 
-    admin.resources :logs, :only => [:index, :show]
+    resources :logs, :only => [:index, :show]
 
-    admin.root :controller => :users, :action => 'index'
+    root :to => 'admin/users#index', :conditions => { :method => :get }
   end
 
-  # Racine du site.
   map.root :welcome
 end

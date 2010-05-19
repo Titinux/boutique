@@ -29,7 +29,7 @@ class Deposit < ActiveRecord::Base
 
   # Default values
   def after_initialize
-    self.quantity ||= 0
+    #self.quantity ||= 0
     self.quantity_modifier ||= 0
   end
 

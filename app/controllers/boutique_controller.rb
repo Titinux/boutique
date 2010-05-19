@@ -1,11 +1,15 @@
 class BoutiqueController < ApplicationController
   layout 'public'
-  
-   # GET /welcome
+
+  # GET /welcome
   def welcome
-    @categories = Category.find(:all)
+    @categories = Category.all
+
+    respond_to do |format|
+      format.html
+    end
   end
-  
+
   # GET /category
   def category
     if params[:cat]
