@@ -2,11 +2,11 @@
 
 <% block :title => t('user.myPersonnalInformations') do %>
 	<p>
-		<%= User.human_attribute_name('name') %> : 
+		<%= User.human_attribute_name('name') %> :
 	  <%=h @user.name %>
 	</p>
 	<p>
-		<%= User.human_attribute_name('dofusNicknames') %> : 
+		<%= User.human_attribute_name('dofusNicknames') %> :
 	  <%=h @user.dofusNicknames %>
 	</p>
 	<p>
@@ -14,17 +14,17 @@
 		<%=h @user.email %>
 	</p>
 	<% unless @user.guild.blank? %>
-		<p><%= Guild.human_name %> : <%=h @user.guild.name %></p>
+		<p><%= Guild.model_name.human %> : <%=h @user.guild.name %></p>
 	<%end %>
-	
+
 	<% if @user.gatherer %>
 		<p><%= User.human_attribute_name('gatherer') %></p>
 	<% end %>
-	
+
 	<% if @user.admin %>
 		<p><%= User.human_attribute_name('admin') %></p>
 	<% end %>
-	
+
 	<%= link_to_edit edit_user_path %>
 <% end %>
 

@@ -8,11 +8,11 @@
         <%= check_box_tag(:approved, 1, params[:approved]) %>
       </li>
       <li>
-        <%= label_tag :user_id, User.human_name %>
+        <%= label_tag :user_id, User.model_name.human %>
         <%= select_tag("user_id", my_select_options(User.all.collect {|u| [ u.name, u.id ] }, :selected => params[:user_id], :include_blank => true) ) %>
       </li>
       <li>
-        <%= label_tag :asset_id, Asset.human_name %>
+        <%= label_tag :asset_id, Asset.model_name.human %>
         <%= select_tag("asset_id", my_select_options(Asset.all.collect {|a| [ a.name, a.id ] }, :selected => params[:asset_id], :include_blank => true) ) %>
       </li>
     </ol>

@@ -3,7 +3,7 @@
 			<ul>
 				<li><%= link_to t('user.infos') , user_path %></li>
 				<% if user_session.user.gatherer %>
-					<li><%= link_to Deposit.human_name , deposits_path %></li>
+					<li><%= link_to Deposit.model_name.human , deposits_path %></li>
 				<% end %>
 			</ul>
 	<% end %>

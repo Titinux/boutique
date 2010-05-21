@@ -5,7 +5,7 @@
       :link => welcome_path
     },
     {
-      :name => Asset.human_name.pluralize,
+      :name => Asset.model_name.human.pluralize,
       :link => categories_path
     },
     {
@@ -39,27 +39,27 @@
   ],
   :admin => [
     {
-      :name => Guild.human_name.pluralize,
+      :name => Guild.model_name.human.pluralize,
       :link => admin_guilds_path
     },
     {
-      :name => User.human_name,
+      :name => User.model_name.human,
       :link => admin_users_path
     },
     {
-      :name => Category.human_name,
+      :name => Category.model_name.human,
       :link => admin_categories_path
     },
     {
-      :name => Asset.human_name.pluralize,
+      :name => Asset.model_name.human.pluralize,
       :link => admin_assets_path
     },
     {
-      :name => Order.human_name.pluralize,
+      :name => Order.model_name.human.pluralize,
       :link => admin_orders_path
     },
     {
-      :name => Deposit.human_name.pluralize,
+      :name => Deposit.model_name.human.pluralize,
       :link => admin_deposits_path
     },
     {
@@ -67,11 +67,11 @@
       :link => admin_statistics_path
     },
     {
-      :name => Job.human_name.pluralize,
+      :name => Job.model_name.human.pluralize,
       :link => admin_jobs_path
     },
     {
-      :name => Log.human_name.pluralize,
+      :name => Log.model_name.human.pluralize,
       :link => admin_logs_path
     },
     {

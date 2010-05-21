@@ -12,7 +12,7 @@
         <%= select_tag("level", my_select_options(Log.all.map {|log| [ log.level, log.level ] }.uniq.sort, :selected => params[:level], :include_blank => true) ) %>
       </li>
       <li>
-        <%= label_tag :user, User.human_name %>
+        <%= label_tag :user, User.model_name.human %>
         <%= select_tag("user", my_select_options(Log.all.map {|log| [ log.user, log.user ] }.uniq.sort {|item_a, item_b| item_a[0] <=> item_b[0] }, :selected => params[:user], :include_blank => true) ) %>
       </li>
       <li>

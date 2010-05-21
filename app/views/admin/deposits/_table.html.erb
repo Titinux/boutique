@@ -2,8 +2,8 @@
 	<col width="100%" />
 	<thead>
 		<tr>
-			<th><%= User.human_name %></th>
-			<th><%= Asset.human_name %></th>
+			<th><%= User.model_name.human %></th>
+			<th><%= Asset.model_name.human %></th>
 			<th><%= Deposit.human_attribute_name('quantity') %></th>
 		</tr>
 	</thead>

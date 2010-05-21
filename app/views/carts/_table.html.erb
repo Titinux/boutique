@@ -2,14 +2,14 @@
 	<col width="100%" />
 	<thead>
 		<tr>
-			<th><%= Asset.human_name.pluralize %></th>
+			<th><%= Asset.model_name.human.pluralize %></th>
 			<th><%= t('cart.quantity') %></th>
 		</tr>
 	</thead>
 	<tbody>
 		<% cart.each do |cart_line| %>
 			<% flash.now[:warning] = 'Products with a quantity to 0 won\'t appear in the order.' if cart_line[1].to_i == 0 %>
-			
+
 			<%= render :partial => 'row', :locals => { :cart_line => cart_line } %>
 		<% end %>
 	</tbody>

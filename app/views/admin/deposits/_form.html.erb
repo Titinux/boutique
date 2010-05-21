@@ -1,11 +1,11 @@
 <%= f.error_messages %>
 
 <p>
-  <%= f.label :user_id, User.human_name %>
+  <%= f.label :user_id, User.model_name.human %>
   <%= f.collection_select :user_id, User.find(:all), :id, :name %>
 </p>
 <p>
-  <%= f.label :asset_id, Asset.human_name %>
+  <%= f.label :asset_id, Asset.model_name.human %>
   <%= f.collection_select :asset_id, Asset.find(:all), :id, :name %>
 </p>
 <p>

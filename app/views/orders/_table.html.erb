@@ -2,7 +2,7 @@
 	<col width="100%" />
 	<thead>
 		<tr>
-			<th><%= Asset.human_name.pluralize %></th>
+			<th><%= Asset.model_name.human.pluralize %></th>
 			<th class="number"><%= Order.human_attribute_name('quantity') %></th>
 			<th class="currency"><%= Order.human_attribute_name('uPrice') %></th>
 			<th class="currency"><%= Order.human_attribute_name('price') %></th>
