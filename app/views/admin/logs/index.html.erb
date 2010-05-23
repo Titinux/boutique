@@ -1,7 +1,0 @@
-<h2><%= t('log.listing') %></h2>
-
-<%= render :partial => 'filter' %>
-
-<%= will_paginate @logs %>
-
-<%= render :partial => 'table', :object => @logs, :as => :logs %>

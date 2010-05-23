@@ -1,0 +1,40 @@
+= render :partial => 'shared/user_sidebar'
+
+= block :title => t('user.myPersonnalInformations') do
+  %p
+    = User.human_attribute_name('name')
+    \:
+    = @user.name
+
+  %p
+    = User.human_attribute_name('dofusNicknames')
+    \:
+    = @user.dofusNicknames
+
+  %p
+    = User.human_attribute_name('email')
+    \:
+    = @user.email
+
+  - unless @user.guild.blank?
+    %p
+      = Guild.model_name.human
+      \:
+      = @user.guild.name
+
+  - if @user.gatherer
+    %p= User.human_attribute_name('gatherer')
+
+  - if @user.admin
+    %p= User.human_attribute_name('admin')
+
+  = link_to_edit edit_user_path
+
+
+= block :title => t('user.myPigMoneybox') do
+  = t 'user.amount'
+  \:
+  = number_to_currency(@user.pigMoneyBox)
+
+= block :title => t('user.myOrders') do
+  = render :partial => 'orders_table', :locals => { :orders => @user.orders.ongoing }

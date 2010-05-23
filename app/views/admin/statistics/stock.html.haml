@@ -1,0 +1,15 @@
+%h2= t('statistics.stockStatistics')
+
+%table>
+  %tr>
+    %th= t('statistics.asset')
+    %th= t('statistics.stock')
+    %th= t('statistics.orderVolume')
+    %th= t('statistics.difference')
+
+  - Statistics.stockStats.each do |asset|
+    %tr{ :class => "#{cycle('even', 'odd')}" }
+      %td= asset.name %></td>
+      %td.number= asset.stock %></td>
+      %td.number= asset.orderQuantity %></td>
+      %td{ :class => "number #{'negative' if (asset.stock - asset.orderQuantity) < 0}"}= asset.stock - asset.orderQuantity

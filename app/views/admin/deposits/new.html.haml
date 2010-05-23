@@ -1,0 +1,6 @@
+%h2= t('deposit.new')
+
+- form_for(@deposit, :url => admin_deposits_path, :html => { :method => :post }) do |f|
+  = render :partial => 'admin/deposits/form', :locals => { :f => f, :bt_name => t('create') }
+
+= link_to_back admin_deposits_path

@@ -1,0 +1,12 @@
+%table
+  %col{ :width => '100%' }
+  %thead>
+    %tr>
+      %th Asset
+      %th Quantity
+
+  %body
+    - deposit_table.each do |deposit|
+      %tr{ :class => "#{cycle('even', 'odd')}" }
+        %td= deposit.asset.name
+        %td.number= deposit.quantity

@@ -1,0 +1,18 @@
+- pile = 0
+
+- @configElements.each do |configElement|
+  - if configElement.level > pile
+    = "<ul>" * (configElement.level - pile)
+    - pile = configElement.level
+
+  - if configElement.level < pile
+    = "</ul>" * (pile - configElement.level)
+    - pile = configElement.level
+
+  %li= link_to configElement.name, edit_admin_config_tree_path(configElement, :edit => 'tree')
+  - unless configElement.form_kind.blank?
+    \:
+    = configElement.value
+    = link_to '(Edit)', edit_admin_config_tree_path(configElement)
+
+= "</ul>" * (pile)

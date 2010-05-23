@@ -1,0 +1,6 @@
+%h2= t('user.editing')
+
+- form_for(@user, :url => user_path, :builder => CustomFormBuilder) do |f|
+  = render :partial => 'form', :locals => { :f => f, :bt_name => t('update') }
+
+= link_to_back user_path

@@ -1,0 +1,26 @@
+- form_for([:admin, asset]) do |f|
+  = f.error_messages
+
+  %p
+    = f.label :name
+    = f.text_field :name
+    %span.required Required
+
+  %p
+    = f.label :category_id
+    = f.collection_select(:category_id, Category.find(:all), :id, :name)
+
+  %p
+    = f.label :pictureUri
+    = f.text_field :pictureUri
+
+  %p
+    = f.label :unitaryPrice
+    = f.text_field :unitaryPrice
+
+  %p
+    = f.label :floatPrice
+    = f.check_box :floatPrice
+
+  %p
+    = f.submit bt_name

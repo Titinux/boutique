@@ -1,0 +1,25 @@
+%table
+  %thead
+    %tr
+      %th= User.human_attribute_name('name')
+      %th= User.human_attribute_name('guild')
+      %th= User.human_attribute_name('pigMoneyBox')
+      %th= User.human_attribute_name('gatherer')
+      %th= User.human_attribute_name('admin')
+      %th= t('action').pluralize
+
+  %tbody
+    - users.each do |user|
+      %tr{ :class => "#{cycle('even', 'odd')}" }
+        %td= user.name
+        %td
+          - unless user.guild.blank?
+            = user.guild.name
+
+        %td.currency= number_to_currency(user.pigMoneyBox)
+        %td= user.gatherer
+        %td= user.admin
+        %td.actions
+          = link_to_show admin_user_path(user)
+          = link_to_edit edit_admin_user_path(user)
+          = link_to_destroy admin_user_path(user)

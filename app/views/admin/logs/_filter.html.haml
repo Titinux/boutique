@@ -1,0 +1,39 @@
+- form_tag admin_logs_path, { :method => :get, :class => :horizontal } do
+  %fieldset
+    %legend= "#{t('filters')} :"
+
+    %ol>
+      %li>
+        = label_tag :id
+        = text_field_tag(:id, params[:id])
+
+      %li
+        = label_tag :level, Log.human_attribute_name(:level)
+        = select_tag("level", my_select_options(Log.all.map {|log| [ log.level, log.level ] }.uniq.sort, :selected => params[:level], :include_blank => true) )
+
+      %li
+        = label_tag :user, User.model_name.human
+        = select_tag("user", my_select_options(Log.all.map {|log| [ log.user, log.user ] }.uniq.sort {|item_a, item_b| item_a[0] <=> item_b[0] }, :selected => params[:user], :include_blank => true) )
+
+      %li
+        = label_tag :logAction, Log.human_attribute_name(:action)
+        = select_tag("logAction", my_select_options(Log.all.map {|log| [log.action, log.action ] }.uniq.sort, :selected => params[:logAction], :include_blank => true) )
+
+      %li
+        = label_tag :objectType, Log.human_attribute_name(:objectType)
+        = select_tag("objectType", my_select_options(Log.all.map {|log| [log.objectType, log.objectType ] }.uniq.sort, :selected => params[:objectType], :include_blank => true) )
+
+      %li
+        = label_tag :objectId, Log.human_attribute_name(:objectId)
+        = text_field_tag(:objectId, params[:objectId])
+
+      %li
+        = label_tag :startDate, t(:startDate)
+        = text_field_tag(:startDate, params[:startDate])
+
+      %li
+        = label_tag :endDate, t(:endDate)
+        = text_field_tag(:endDate, params[:endDate])
+
+
+    = submit_tag t('filter'), :name => nil

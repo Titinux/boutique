@@ -1,0 +1,49 @@
+%p
+  = User.human_attribute_name('name')
+  \:
+  =h @user.name
+
+%p
+  = User.human_attribute_name('dofusNicknames')
+  \:
+  = @user.dofusNicknames
+
+%p
+  = User.human_attribute_name('guild')
+  \:
+  = !@user.guild.blank? ? @user.guild.name : 'None'
+
+%p
+  = User.human_attribute_name('email')
+  \:
+  = @user.email
+
+%p
+  = User.human_attribute_name('pigMoneyBox')
+  \:
+  = number_to_currency(@user.pigMoneyBox)
+
+%p
+  = User.human_attribute_name('gatherer')
+  \:
+  = @user.gatherer
+
+%p
+  = User.human_attribute_name('admin')
+  \:
+  = @user.admin
+
+%p
+  = User.human_attribute_name('activated')
+  \:
+  = @user.activated
+
+%p
+  = t('created_at')
+  \:
+  = l(@user.created_at)
+
+= render :partial => 'admin/users/deposit_table', :object => @user.deposits.validated, :as => :deposits
+
+= link_to_back admin_users_path
+= link_to_edit edit_admin_user_path(@user)

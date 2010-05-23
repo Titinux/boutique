@@ -1,9 +1,0 @@
-<%= f.error_messages %>
-
-<p>
-  <%= f.collection_select(:asset_id, Asset.find(:all), :id, :name) %>
-  <%= f.text_field :quantity_modifier %>
-</p>
-<p>
-  <%= f.submit bt_name %>
-</p>

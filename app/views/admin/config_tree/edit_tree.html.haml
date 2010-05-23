@@ -1,0 +1,18 @@
+%h2 Editing config element
+
+- form_for([:admin, @configElement]) do |f|
+  = f.error_messages
+
+  %p
+    = f.label :name
+    = f.text_field :name
+
+  %p
+    = f.label :form_kind
+    = f.text_field :form_kind
+
+  %p= f.submit "Update"
+
+= link_to 'Back', admin_config_tree_index_path
+
+

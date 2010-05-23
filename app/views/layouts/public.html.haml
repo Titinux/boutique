@@ -1,0 +1,43 @@
+!!! 5
+
+%html
+  %head
+    %meta{ :'http-equiv' => 'content-type',        :content => 'text/html;charset=UTF-8'}
+    %meta{ :'http-equiv' => 'Content-Script-Type', :content => 'text/javascript'}
+    %meta{ :'http-equiv' => 'Content-Style-Type',  :content => 'text/css'}
+
+    %link{ :rel => 'icon', :type => 'image/png', :href => "#{image_path('global/favicon.png')}"}
+
+    %title Boutique
+
+    = stylesheet_link_merged :base
+    = javascript_include_merged :base
+
+  %body
+    %div#page
+      %div#header
+        %p#header_text
+          Marchands d'Hyze's shop<br />
+          = image_tag 'global/blason.png'
+
+      %div#topbar
+        = makeMenu('public')
+
+      %div#center
+        %div#sidebar
+          = yield :sidebar
+
+        %div#main_part
+          - if flash[:notice]
+            %p.flash.notice= flash[:notice]
+
+          - if flash[:warning]
+            %p.flash.warning= flash[:warning]
+
+          - if flash[:error]
+            %p.flash.error= flash[:error]
+
+          = yield
+
+      %div#footer
+        Illustrations Ankama (c) 2009. Programme J.Horhant H.Cheguillaume. Tous droits réservés.

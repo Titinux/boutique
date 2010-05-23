@@ -1,0 +1,20 @@
+= block :title => t('order.commandId', :id => @order.id) do
+  %p
+    = Order.human_attribute_name('state')
+    \:
+    = orderStatusHash[@order.state]
+
+  %p
+    = Order.human_attribute_name('totalAmount')
+    \:
+    = number_to_currency(@order.totalAmount)
+
+  = block :title => t('order.details') do
+    = render :partial => 'table', :locals => { :order => @order }
+
+  - if @order.state == 'WAIT_ESTIMATE_VALIDATION'
+    = link_to orderActionHash['ACCEPT_ESTIMATE'], orderAction_path(@order, :op => 'ACCEPT_ESTIMATE'), :method => :put
+    |
+    = link_to orderActionHash['REFUSE_ESTIMATE'], orderAction_path(@order, :op => 'REFUSE_ESTIMATE'), :method => :put
+
+  = link_to_back user_path

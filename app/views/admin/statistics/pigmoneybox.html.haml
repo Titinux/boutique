@@ -1,0 +1,14 @@
+%h2= t('statistics.pigMoneyBoxStatistics')
+
+%p
+  = t('statistics.pigMoneyBox.sum')
+  \:
+  = number_to_currency(@stats[:sum])
+
+%table
+  %caption= t('statistics.pigMoneyBox.richests', {:count => @stats[:richests].size})
+  - @stats[:richests].each_with_index do |user, index|
+    %tr{ :class => "#{cycle('even', 'odd')}" }
+      %td= index + 1
+      %td= user.name
+      %td= number_to_currency(user.pigMoneyBox)

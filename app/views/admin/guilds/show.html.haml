@@ -1,0 +1,13 @@
+%p
+  = Guild.human_attribute_name('name')
+  \:
+  = @guild.name
+
+%p
+  = t('guild.blazon')
+  \:
+  - unless @guild.pictureUri.blank?
+    = image_tag(@guild.pictureUri, :alt => t('pictureOf', :subject => @guild.name))
+
+= link_to_back admin_guilds_path
+= link_to_edit edit_admin_guild_path(@guild)

@@ -1,0 +1,6 @@
+= content_for :sidebar do
+  = block :title => t('user.block') do
+    %ul
+      %li= link_to t('user.infos') , user_path
+      - if user_session.user.gatherer
+        %li= link_to Deposit.model_name.human , deposits_path

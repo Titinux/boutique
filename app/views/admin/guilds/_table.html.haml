@@ -1,0 +1,18 @@
+%table
+  %thead
+    %tr
+      %th= t('guild.blazon')
+      %th= Guild.human_attribute_name('name')
+      %th= t('action').pluralize
+
+  %tbody>
+    - guilds.each do |guild|
+      %tr{ :class => "#{cycle('even', 'odd')}" }
+        %td.picture
+          - unless guild.pictureUri.blank?
+            = image_tag(guild.pictureUri, :alt => t('pictureOf', :subject => guild.name), :width => 75, :height => 75)
+        %td= guild.name
+        %td.actions
+          = link_to_show admin_guild_path(guild)
+          = link_to_edit edit_admin_guild_path(guild)
+          = link_to_destroy admin_guild_path(guild)

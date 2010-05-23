@@ -1,0 +1,5 @@
+%h2= t('asset.new')
+
+= render :partial => 'form', :locals => { :asset => @asset, :bt_name => t('create') }
+
+= link_to_back admin_assets_path

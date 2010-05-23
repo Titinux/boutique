@@ -1,0 +1,12 @@
+%table
+  %col{:width => '100%'}
+  %thead
+    %tr
+      %th= Asset.model_name.human
+      %th= Deposit.human_attribute_name('quantity')
+
+  %tbody
+    - deposits.each do |deposit|
+      %tr{ :class => "#{cycle('even', 'odd')}" }
+        %td= deposit.asset.name
+        %td.number= deposit.quantity

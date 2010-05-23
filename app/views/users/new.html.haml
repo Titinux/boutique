@@ -1,0 +1,6 @@
+%h2= t('user.new')
+
+- form_for(@user, :url => user_path, :builder => CustomFormBuilder) do |f|
+  = render :partial => 'form', :locals => { :f => f, :bt_name => t('create') }
+
+= link_to t('back'), root_path

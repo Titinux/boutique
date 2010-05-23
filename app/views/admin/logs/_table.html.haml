@@ -1,0 +1,23 @@
+%table
+  %thead
+    %tr
+      %th= 'Id'
+      %th= Log.human_attribute_name('level')
+      %th= User.model_name.human
+      %th= Log.human_attribute_name('action')
+      %th= Log.human_attribute_name('objectType')
+      %th= Log.human_attribute_name('objectId')
+      %th= Log.human_attribute_name('created_at')
+
+  %tbody
+    - @logs.each do |log|
+      %tr{ :class => "#{cycle('even', 'odd')}" }
+        %td= log.id
+        %td= log.level
+        %td= log.user
+        %td= log.action
+        %td= log.objectType
+        %td= log.objectId
+        %td= l(log.created_at)
+        %td.actions
+          = link_to_show admin_log_path(log)

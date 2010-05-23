@@ -1,0 +1,24 @@
+%p
+  = User.human_attribute_name('name')
+  \:
+  = @order.user.name
+
+%p
+  = Order.human_attribute_name('state')
+  \:
+  = orderStatusHash[@order.state]
+
+= render :partial => 'admin/order_lines/table', :locals => { :order => @order }
+
+%p
+  = Order.human_attribute_name('totalAmount')
+  \:
+  = number_to_currency(@order.totalAmount)
+
+%p
+  = Order.human_attribute_name('dispatched')
+  \:
+  = @order.dispatched
+
+= link_to_back admin_orders_path
+= link_to_edit edit_admin_order_path(@order)

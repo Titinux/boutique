@@ -1,0 +1,22 @@
+%table
+  %thead
+    %tr
+      %th= Order.human_attribute_name('id')
+      %th= User.human_attribute_name('name')
+      %th= Order.human_attribute_name('state')
+      %th= Order.human_attribute_name('totalAmount')
+      %th= Order.human_attribute_name('dispatched')
+      %th= t('action').pluralize
+
+  %tbody
+    - orders.each do |order|
+      %tr{ :class => "#{cycle('even', 'odd')}" }
+        %td= order.id
+        %td= order.user.name
+        %td= orderStatusHash[order.state]
+        %td.currency= number_to_currency(order.totalAmount)
+        %td= order.dispatched
+        %td.actions
+          = link_to_show admin_order_path(order)
+          = link_to_edit edit_admin_order_path(order)
+          = link_to_destroy admin_order_path(order)

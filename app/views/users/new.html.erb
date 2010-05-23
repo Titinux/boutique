@@ -1,7 +1,0 @@
-<h2><%= t('user.new') %></h2>
-
-<% form_for(@user, :url => user_path, :builder => CustomFormBuilder) do |f| %>
-	<%= render :partial => 'form', :locals => { :f => f, :bt_name => t('create') } %>
-<% end %>
-
-<%= link_to t('back'), root_path %>

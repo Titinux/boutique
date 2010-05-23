@@ -1,0 +1,9 @@
+= render :partial => 'shared/user_sidebar'
+
+= block :title => t('deposit.validated') do
+  = render :partial => 'deposits/table', :locals => { :deposits => @validated_deposits }
+
+= block :title => t('deposit.waiting') do
+  = render :partial => 'deposits/table', :locals => { :deposits => @waiting_deposits }
+
+%p= link_to_add new_deposit_path, :text => t('deposit.new'), :format => :long

@@ -1,0 +1,6 @@
+%h2= t('guild.listing')
+
+= render :partial => 'table', :locals => { :guilds => @guilds }
+
+%br
+= link_to_add new_admin_guild_path, :text => t('guild.new'), :format => :long
