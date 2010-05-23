@@ -1,7 +1,7 @@
 class ConfigTree < ActiveRecord::Base
   set_table_name 'config_tree'
 
-  acts_as_nested_set
+  #acts_as_nested_set
 
   has_many :configValues
 
