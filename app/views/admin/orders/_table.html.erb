@@ -11,7 +11,18 @@
 	</thead>
 	<tbody>
 		<% orders.each do |order| -%>
-			<%= render :partial => 'row', :locals => { :order => order } %>
+      <tr class="<%= cycle('even', 'odd')%>">
+        <td><%=h order.id %></td>
+        <td><%=h order.user.name %></td>
+        <td><%=h orderStatusHash[order.state] %></td>
+        <td class="currency"><%=h number_to_currency(order.totalAmount) %></td>
+        <td><%= order.dispatched %></td>
+        <td class="actions">
+          <%= link_to_show admin_order_path(order) %>
+          <%= link_to_edit edit_admin_order_path(order) %>
+          <%= link_to_destroy admin_order_path(order) %>
+        </td>
+      </tr>
 		<% end -%>
 	</tbody>
 </table>

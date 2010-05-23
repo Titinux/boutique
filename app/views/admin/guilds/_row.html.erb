@@ -1,9 +1,0 @@
-<tr class="<%= cycle('even', 'odd')%>">
-  <td class="picture"><%= image_tag(guild.pictureUri, :alt => t('pictureOf', :subject => guild.name), :width => 75, :height => 75) unless guild.pictureUri.blank? %></td>
-  <td><%=h guild.name %></td>
-  <td class="actions">
-  	<%= link_to_show admin_guild_path(guild) %>
-  	<%= link_to_edit edit_admin_guild_path(guild) %>
-  	<%= link_to_destroy admin_guild_path(guild) %>
-	</td>
-</tr>

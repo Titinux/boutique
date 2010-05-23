@@ -9,7 +9,12 @@
 	</thead>
 	<tbody>
 		<% order.orderLines.each do |orderLine| %>
-		  <%= render :partial => 'admin/order_lines/row', :locals => { :order_line => orderLine } %>
+      <tr class="<%= cycle('even', 'odd')%>">
+        <td><%= order_line.asset.name %></td>
+        <td class="number"><%= order_line.quantity %></td>
+        <td class="currency"><%= order_line.unitaryPrice %></td>
+        <td class="currency"><%= number_to_currency(order_line.price) %></td>
+      </tr>
 		<% end %>
 	</tbody>
 </table>

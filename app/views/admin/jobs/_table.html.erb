@@ -15,7 +15,18 @@
   </thead>
   <tbody>
     <% jobs.each do |job| %>
-      <%= render :partial => 'admin/jobs/row', :locals => { :job => job } %>
+      <tr class="<%= cycle('even', 'odd')%>">
+        <td><%=h job.id %></td>
+        <td><%=h job.priority %></td>
+        <td><%=h job.attempts %></td>
+        <td><%=h truncate(job.handler, :length => 100) %></td>
+        <td><%=h truncate(job.last_error, :length => 100) %></td>
+        <td><%=h job.run_at %></td>
+        <td><%=h job.locked_at %></td>
+        <td><%=h job.failed_at %></td>
+        <td><%=h job.locked_by %></td>
+        <td><%=h job.created_at %></td>
+      </tr>
     <% end %>
   </tbody>
 </table>

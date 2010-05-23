@@ -1,8 +1,0 @@
-<tr class="<%= cycle('even', 'odd')%>">
-	<td><%= Asset.find(cart_line[0]).name %></td>
-	<td class="number"><%= cart_line[1] %></td>
-	<td>
-		<%= link_to t('edit'), edit_cart_path(cart_line[0]) %> |
-		<%= link_to t('destroy'), cart_path(cart_line[0]), :method => :delete %>
-	</td>
-</tr>

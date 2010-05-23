@@ -10,7 +10,11 @@
 	</thead>
 	<tbody>
 		<% orders.each do |order| -%>
-			<%= render :partial => 'orders_row', :locals => { :order => order } %>
+      <tr class="<%= cycle('even', 'odd') %>">
+        <td><%=h order.id %></td>
+        <td><%=h orderStatusHash[order.state] %></td>
+        <td class="actions"><%= link_to_show order_path(order) %></td>
+      </tr>
 		<% end -%>
 	</tbody>
 </table>

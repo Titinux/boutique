@@ -10,7 +10,12 @@
 	</thead>
 	<tbody>
 		<% order.orderLines.each do |order_line| %>
-			<%= render :partial => 'orders/row', :locals => { :order_line => order_line } %>
+      <tr class="<%= cycle('even', 'odd')%>">
+        <td><%=h order_line.asset.name %></td>
+        <td class="number"><%=h order_line.quantity %></td>
+        <td class="currency"><%=h order_line.unitaryPrice %></td>
+        <td class="currency"><%=h number_to_currency(order_line.price) %></td>
+      </tr>
 		<% end %>
 	</tbody>
 </table>

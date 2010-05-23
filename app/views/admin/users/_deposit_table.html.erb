@@ -7,6 +7,11 @@
 	  </tr>
 	</thead>
 	<tbody>
-    <%= render :partial => 'deposit_row', :collection => deposit_table, :as => :deposit %>
+    <% deposit_table.each do |deposit| %>
+      <tr class="<%= cycle('even', 'odd')%>">
+        <td><%=h deposit.asset.name %></td>
+        <td class="number"><%=h deposit.quantity %></td>
+      </tr>
+    <% end %>
 	</tbody>
 </table>

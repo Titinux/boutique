@@ -11,7 +11,22 @@
 	</thead>
 	<tbody>
 		<% users.each do |user| %>
-		<%= render :partial => 'admin/users/row', :locals => { :user => user } %>
+      <tr class="<%= cycle('even', 'odd')%>">
+        <td><%=h user.name %></td>
+        <td>
+          <% unless user.guild.blank? %>
+          <%=h user.guild.name %>
+          <% end %>
+        </td>
+        <td class="currency"><%=h number_to_currency(user.pigMoneyBox) %></td>
+        <td><%=h user.gatherer %></td>
+        <td><%=h user.admin %></td>
+        <td class="actions">
+          <%= link_to_show admin_user_path(user) %>
+          <%= link_to_edit edit_admin_user_path(user) %>
+          <%= link_to_destroy admin_user_path(user) %>
+        </td>
+      </tr>
 		<% end %>
 	</tbody>
 </table>
