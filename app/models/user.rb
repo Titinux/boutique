@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
 
   # Scopes
   default_scope :order => :name, :include => :guild
-  named_scope :admins, :conditions => {:admin => true}
+  scope :admins, :conditions => {:admin => true}
 
   # Callbacks
   before_create :makeActivationKey

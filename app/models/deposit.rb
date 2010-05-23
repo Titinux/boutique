@@ -24,11 +24,11 @@ class Deposit < ActiveRecord::Base
   # Scopes
   default_scope :include => :asset, :order => 'assets.name'
 
-  named_scope :deposits_of, lambda {|asset| { :conditions => ["asset_id = ?", asset.id]}}
-  named_scope :validated, lambda {|*args| { :conditions => ["validated = ?", (args.empty? ? true : args.first)]}}
+  scope :deposits_of, lambda {|asset| { :conditions => ["asset_id = ?", asset.id]}}
+  scope :validated, lambda {|*args| { :conditions => ["validated = ?", (args.empty? ? true : args.first)]}}
 
   # Default values
-  def after_initialize
+  def self.after_initialize
     #self.quantity ||= 0
     self.quantity_modifier ||= 0
   end
