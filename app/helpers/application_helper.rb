@@ -28,7 +28,7 @@ module ApplicationHelper
     out << '</div>'
     out << '</div>'
 
-    concat raw(out)
+    raw(out)
   end
 
   def makeMenu(name)
