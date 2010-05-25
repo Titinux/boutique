@@ -1,6 +1,6 @@
 Boutique::Application.routes.draw do |map|
-  match 'welcome' => 'boutique#welcome', :as => :welcome, :conditions => { :method => :get }
-  match 'categories' => 'boutique#category', :as => :categories, :conditions => { :method => :get }
+  get 'welcome' => 'boutique#welcome', :as => :welcome
+  get 'categories' => 'boutique#category', :as => :categories
 
   resources :carts, :as => :cart do
     collection do
@@ -9,22 +9,22 @@ Boutique::Application.routes.draw do |map|
     end
   end
 
-  match 'autenticate' => 'user_session#create', :as => :autenticate, :conditions => { :method => :post }
-  match 'login' => 'user_session#new', :as => :login, :conditions => { :method => :get }
-  match 'logout' => 'user_session#destroy', :as => :logout, :conditions => { :method => :delete }
+  post 'autenticate' => 'user_session#create', :as => :autenticate
+  get 'login' => 'user_session#new', :as => :login
+  delete 'logout' => 'user_session#destroy', :as => :logout
 
   map.resources :deposits, :except => [ :edit, :update, :destroy ]
 
-  match 'order/:id' => 'orders#show', :as => :order, :conditions => { :method => :get }
-  match 'order_action/:id' => 'orders#update', :as => :orderAction, :conditions =>{ :method => :put }
+  get 'order/:id' => 'orders#show', :as => :order
+  put 'order_action/:id' => 'orders#update', :as => :orderAction
 
-  match 'statistics' => 'statistics#index', :as => :statistics, :conditions => { :method => :get }
-  match 'statistics/:stattype' => 'statistics#show', :as => :statistic, :conditions => { :method => :get }
+  get 'statistics' => 'statistics#index', :as => :statistics
+  get 'statistics/:stattype' => 'statistics#show', :as => :statistic
 
   map.resource :user
-  match 'user/activate/:key' => 'users#activate', :as => :activate, :conditions => { :method => :get }
-  match 'user/passwordResetForm' => 'users#passwordResetForm', :as => :passwordResetForm, :conditions => { :method => :get }
-  match 'user/passwordReset' => 'users#passwordReset', :as => :passwordReset, :conditions => { :method => :post }
+  get 'user/activate/:key' => 'users#activate', :as => :activate
+  get 'user/passwordResetForm' => 'users#passwordResetForm', :as => :passwordResetForm
+  post 'user/passwordReset' => 'users#passwordReset', :as => :passwordReset
 
   # Partie admin du site.
   namespace :admin do
@@ -40,14 +40,14 @@ Boutique::Application.routes.draw do |map|
 
     resources :deposits, :except => [:edit, :update], :member => { :validate => :put }
 
-    match 'statistics' => 'admin/statistics#index', :as => :statistics, :conditions => { :method => :get }
-    match 'statistics/:stattype' => 'admin/statistics#show', :as => :statistic, :conditions => { :method => :get }
+    get 'statistics' => 'statistics#index', :as => :statistics
+    get 'statistics/:stattype' => 'statistics#show', :as => :statistic
 
     resources :jobs, :only => [:index]
 
     resources :logs, :only => [:index, :show]
 
-    root :to => 'admin/users#index', :conditions => { :method => :get }
+    root :to => 'users#index', :conditions => { :method => :get }
   end
 
   map.root :welcome
