@@ -6,7 +6,7 @@
       %th Quantity
 
   %body
-    - deposit_table.each do |deposit|
+    - deposits.each do |deposit|
       %tr{ :class => "#{cycle('even', 'odd')}" }
         %td= deposit.asset.name
         %td.number= deposit.quantity

@@ -43,7 +43,7 @@
   \:
   = l(@user.created_at)
 
-= render :partial => 'admin/users/deposit_table', :object => @user.deposits.validated, :as => :deposits
+= render :partial => 'admin/users/deposit_table', :locals => { :deposits => @user.deposits.validated }
 
 = link_to_back admin_users_path
 = link_to_edit edit_admin_user_path(@user)
