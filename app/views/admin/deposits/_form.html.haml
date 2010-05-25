@@ -1,20 +1,21 @@
-= f.error_messages
+= form_for(@deposit, :url => admin_deposits_path, :html => { :method => :post }) do |f|
+  = f.error_messages
 
-%p
-  = f.label :user_id, User.model_name.human
-  = f.collection_select :user_id, User.find(:all), :id, :name
+  %p
+    = f.label :user_id, User.model_name.human
+    = f.collection_select :user_id, User.find(:all), :id, :name
 
-%p
-  = f.label :asset_id, Asset.model_name.human
-  = f.collection_select :asset_id, Asset.find(:all), :id, :name
+  %p
+    = f.label :asset_id, Asset.model_name.human
+    = f.collection_select :asset_id, Asset.find(:all), :id, :name
 
-%p
-  = f.label :quantity_modifier, Deposit.human_attribute_name(:quantity)
-  = f.text_field :quantity_modifier, :value => f.object.quantity_modifier
+  %p
+    = f.label :quantity_modifier, Deposit.human_attribute_name(:quantity)
+    = f.text_field :quantity_modifier, :value => f.object.quantity_modifier
 
-%p
-  = f.label :validated, Deposit.human_attribute_name(:validated)
-  = f.check_box :validated
+  %p
+    = f.label :validated, Deposit.human_attribute_name(:validated)
+    = f.check_box :validated
 
-%p
-  = f.submit bt_name
+  %p
+    = f.submit @deposit.new_record? ? t('create') : t('update')

@@ -1,6 +1,6 @@
 %h2= t('asset.editing')
 
-= render :partial => 'form', :locals => { :asset => @asset, :bt_name => t('update') }
+= render :partial => 'form'
 
 = link_to_back admin_assets_path
 = link_to_show [:admin, @asset]

@@ -1,12 +1,13 @@
-= f.error_messages
+= form_for(@user, :url => user_path) do |f|
+  = f.error_messages
 
-- if f.object.new_record?
-  = f.text_field :name
+  - if f.object.new_record?
+    = f.text_field :name
 
-= f.text_field :dofusNicknames
-= f.password_field :password, :label_class => 'required'
-= f.password_field :password_confirmation, :label_class => 'required'
-= f.text_field :email
-= f.collection_select(:guild_id, Guild.find(:all), :id, :name, :include_blank => true)
+  = f.text_field :dofusNicknames
+  = f.password_field :password, :label_class => 'required'
+  = f.password_field :password_confirmation, :label_class => 'required'
+  = f.text_field :email
+  = f.collection_select(:guild_id, Guild.find(:all), :id, :name, :include_blank => true)
 
-= f.submit bt_name
+  = f.submit @user.new_record? ? t('create') : t('update')

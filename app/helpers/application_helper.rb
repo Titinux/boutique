@@ -6,7 +6,7 @@ module ApplicationHelper
     options[:partial] ||= method.to_s.singularize + '_form'
     options[:form_builder_local] ||= :f
 
-    form_builder.fields_for(method, options[:object], :builder => InLineFormBuilder, :child_index => 'NEW_RECORD') do |f|
+    form_builder.fields_for(method, options[:object], :child_index => 'NEW_RECORD') do |f|
       content_tag :div, render(:partial => options[:partial], :locals => { options[:form_builder_local] => f }), :class => 'Deposit', :id => "user_Deposit_NEW_RECORD"
     end
   end

@@ -1,21 +1,22 @@
-= f.error_messages
+= form_for([:admin, @order]) do |f|
+  = f.error_messages
 
-%p
-  = f.label :user_id
-  = f.collection_select(:user_id, User.find(:all), :id, :name)
+  %p
+    = f.label :user_id
+    = f.collection_select(:user_id, User.find(:all), :id, :name)
 
-%p
-  = f.label :state
-  = f.select :state, orderStatusHash.collect{|k, v| [v, k] }
+  %p
+    = f.label :state
+    = f.select :state, orderStatusHash.collect{|k, v| [v, k] }
 
-%table#order_lines
-  %tr
-    %th Asset
-    %th Quantity
-    %th Unitary price
+  %table#order_lines
+    %tr
+      %th Asset
+      %th Quantity
+      %th Unitary price
 
-  - @order.orderLines.each do |order_line|
-    = render :partial => 'order_line', :locals => { :form_line => order_line }
+    - @order.orderLines.each do |order_line|
+      = render :partial => 'order_line', :locals => { :form_line => order_line }
 
-%p= add_order_line_link 'Add a line'
-%p= f.submit bt_name
+  %p= add_order_line_link 'Add a line'
+  %p= f.submit @order.new_record? ? t('create') : t('update')
