@@ -1,128 +1,88 @@
 class OrdersMailer < ActionMailer::Base
-  
-  def order_created_admin(order)
-    admin_emails = []
-    
-    User.admins.each {|admin| admin_emails << admin.email }
+  # TODO Utiliser un paramètre pour spécifier l'adresse d'expédition des mails de la boutique.
+  default :from => 'no-reply@boutique.hyze.bagu.biz'
 
-    bcc admin_emails
-    # TODO Utiliser un paramètre pour spécifier l'adresse d'expédition des mails de la boutique.
-    from "no-reply@boutique.hyze.bagu.biz"
-    subject "New order from #{order.user.name}"
-    content_type "text/plain"
-    body :order => order
+  def order_created_admin(order)
+    @order = order
+
+    mail :bcc => admin_emails,
+         :subject => "New order from #{order.user.name}"
   end
 
   def order_created_user(order)
-    recipients order.user.email
-    
-    # TODO Utiliser un paramètre pour spécifier l'adresse d'expédition des mails de la boutique.
-    from "no-reply@boutique.hyze.bagu.biz"
-    subject "Order ##{order.id} confirmation"
-    content_type "text/plain"
-    body :order => order
+    @order = order
+
+    mail :to => order.user.email,
+         :subject => "Order ##{order.id} confirmation"
   end
 
   def wait_estimate_validation_user(order)
-    recipients order.user.email
-    
-    # TODO Utiliser un paramètre pour spécifier l'adresse d'expédition des mails de la boutique.
-    from "no-reply@boutique.hyze.bagu.biz"
-    subject "Your order ##{order.id} has been estimated"
-    content_type "text/plain"
-    body :order => order
+    @order = order
+
+    mail :to => order.user.email,
+         :subject => "Your order ##{order.id} has been estimated"
   end
 
   def order_in_preparation_admin(order)
-    admin_emails = []
-    
-    User.admins.each {|admin| admin_emails << admin.email }
+    @order = order
 
-    bcc admin_emails
-    # TODO Utiliser un paramètre pour spécifier l'adresse d'expédition des mails de la boutique.
-    from "no-reply@boutique.hyze.bagu.biz"
-    subject "Order ##{order.id} has been accepted"
-    content_type "text/plain"
-    body :order => order
+    mail :bcc => admin_emails,
+         :subject => "Order ##{order.id} has been accepted"
   end
 
   def order_in_preparation_user(order)
-    recipients order.user.email
-    
-    # TODO Utiliser un paramètre pour spécifier l'adresse d'expédition des mails de la boutique.
-    from "no-reply@boutique.hyze.bagu.biz"
-    subject "Your Order ##{order.id} is in preparation"
-    content_type "text/plain"
-    body :order => order
+    @order = order
+
+    mail :to => order.user.email,
+         :subject => "Your Order ##{order.id} is in preparation"
   end
 
   def order_canceled_admin(order)
-    admin_emails = []
-    
-    User.admins.each {|admin| admin_emails << admin.email }
+    @order = order
 
-    bcc admin_emails
-    # TODO Utiliser un paramètre pour spécifier l'adresse d'expédition des mails de la boutique.
-    from "no-reply@boutique.hyze.bagu.biz"
-    subject "Order ##{order.id} was canceled"
-    content_type "text/plain"
-    body :order => order
+    mail :bcc => admin_emails,
+         :subject => "Order ##{order.id} was canceled"
   end
 
   def order_canceled_user(order)
-    recipients order.user.email
-    
-    # TODO Utiliser un paramètre pour spécifier l'adresse d'expédition des mails de la boutique.
-    from "no-reply@boutique.hyze.bagu.biz"
-    subject "Order ##{order.id} was canceled"
-    content_type "text/plain"
-    body :order => order
+    @order = order
+
+    mail :to => order.user.email,
+         :subject => "Order ##{order.id} was canceled"
   end
 
   def order_ready_admin(order)
-    admin_emails = []
-    
-    User.admins.each {|admin| admin_emails << admin.email }
+    @order = order
 
-    bcc admin_emails
-    # TODO Utiliser un paramètre pour spécifier l'adresse d'expédition des mails de la boutique.
-    from "no-reply@boutique.hyze.bagu.biz"
-    subject "Order ##{order.id} is ready"
-    content_type "text/plain"
-    body :order => order
+    mail :bcc => admin_emails,
+         :subject => "Order ##{order.id} is ready"
   end
 
   def order_ready_user(order)
-    recipients order.user.email
-    
-    # TODO Utiliser un paramètre pour spécifier l'adresse d'expédition des mails de la boutique.
-    from "no-reply@boutique.hyze.bagu.biz"
-    subject "Your order ##{order.id} is ready"
-    content_type "text/plain"
-    body :order => order
+    @order = order
+
+    mail :to => order.user.email,
+         :subject => "Your order ##{order.id} is ready"
   end
 
   def order_achieved_admin(order)
-    admin_emails = []
-    
-    User.admins.each {|admin| admin_emails << admin.email }
+    @order = order
 
-    bcc admin_emails
-    # TODO Utiliser un paramètre pour spécifier l'adresse d'expédition des mails de la boutique.
-    from "no-reply@boutique.hyze.bagu.biz"
-    subject "Order ##{order.id} is finished"
-    content_type "text/plain"
-    body :order => order
+    mail :bcc => admin_emails,
+         :subject => "Order ##{order.id} is finished"
   end
 
   def order_achieved_user(order)
-    recipients order.user.email
-    
-    # TODO Utiliser un paramètre pour spécifier l'adresse d'expédition des mails de la boutique.
-    from "no-reply@boutique.hyze.bagu.biz"
-    subject "Your order ##{order.id} is now achieved"
-    content_type "text/plain"
-    body :order => order
+    @order = order
+
+    mail :to => order.user.email,
+         :subject => "Your order ##{order.id} is now achieved"
+  end
+
+  private
+
+  def admin_emails
+    User.admins.map(&:email)
   end
 
 end

@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
 
   # Scopes
   default_scope :order => :name, :include => :guild
-  scope :admins, :conditions => {:admin => true}
+  scope :admins, where(:admin => true)
 
   # Callbacks
   before_create :makeActivationKey
@@ -75,6 +75,6 @@ class User < ActiveRecord::Base
   end
 
   def send_activation_mail
-     UsersMailer.deliver_user_account_created(self)
+     UsersMailer.user_account_created(self).deliver
   end
 end
