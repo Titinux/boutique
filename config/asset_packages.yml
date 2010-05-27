@@ -1,13 +1,14 @@
---- 
-javascripts: 
-- base: 
+---
+javascripts:
+- base:
   - prototype
   - effects
   - controls
   - dragdrop
+  - rails
   - application
-stylesheets: 
-- base: 
+stylesheets:
+- base:
   - dispatch
 - admin:
   - dispatch

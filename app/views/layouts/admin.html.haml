@@ -7,6 +7,8 @@
     %meta{ :'http-equiv' => 'Content-Style-Type',  :content => 'text/css'}
 
     %link{ :rel => 'icon', :type => 'image/png', :href => "#{image_path('global/favicon.png')}"}
+    = csrf_meta_tag
+
     %title Boutique
 
     = stylesheet_link_merged :admin
