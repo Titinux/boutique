@@ -18,6 +18,7 @@ class Deposit < ActiveRecord::Base
   validate :coherant_quantity
 
   # Callbacks
+  after_initialize :set_default_values
   before_save :compute_quantity
   after_save :delete_me_if_empty
 
@@ -26,12 +27,6 @@ class Deposit < ActiveRecord::Base
 
   scope :deposits_of, lambda {|asset| { :conditions => ["asset_id = ?", asset.id]}}
   scope :validated, lambda {|*args| { :conditions => ["validated = ?", (args.empty? ? true : args.first)]}}
-
-  # Default values
-  def self.after_initialize
-    #self.quantity ||= 0
-    self.quantity_modifier ||= 0
-  end
 
   # Approve a deposit
   def approve
@@ -53,6 +48,13 @@ class Deposit < ActiveRecord::Base
   end
 
   private
+
+  # Default values
+  def set_default_values
+    self[:quantity] ||= 0
+    self.quantity_modifier ||= 0
+  end
+
 
   # Validation
   def quantity_modifier_must_be_an_integer

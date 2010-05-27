@@ -38,7 +38,11 @@ Boutique::Application.routes.draw do |map|
 
     resources :config_tree
 
-    resources :deposits, :except => [:edit, :update], :member => { :validate => :put }
+    resources :deposits, :except => [:edit, :update] do
+      member do
+        put :validate
+      end
+    end
 
     get 'statistics' => 'statistics#index', :as => :statistics
     get 'statistics/:stattype' => 'statistics#show', :as => :statistic
