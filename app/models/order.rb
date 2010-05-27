@@ -32,7 +32,7 @@ class Order < ActiveRecord::Base
 
   def save_lines
     orderLines.each do |line|
-      line.save(false)
+      line.save(:validate => false)
     end
   end
 
