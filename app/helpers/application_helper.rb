@@ -75,7 +75,7 @@ module ApplicationHelper
       out << ">#{item.first}</option>"
     end
 
-    out
+    out.html_safe
   end
 
   def hash_to_table(source)
