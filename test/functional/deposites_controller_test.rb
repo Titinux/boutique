@@ -37,14 +37,14 @@ class DepositsControllerTest < ActionController::TestCase
   end
 
   test "unautenticate shouldn't create deposits" do
-    post :create, :deposit => { :asset_id => assets(:Iron).id, :quantity => 25 }
+    post :create, :deposit => { :asset_id => assets(:Iron).to_param, :quantity => 25 }
     assert_redirected_to login_path
   end
 
   test "simple user shouldn't create deposits" do
     autenticate_as_simple_user
 
-    post :create, :deposit => { :asset_id => assets(:Iron).id, :quantity => 25 }
+    post :create, :deposit => { :asset_id => assets(:Iron).to_param, :quantity => 25 }
     assert_redirected_to root_path
   end
 
@@ -53,7 +53,7 @@ class DepositsControllerTest < ActionController::TestCase
 
     assert_difference("user_session.user.deposits.validated(false).count") do
       assert_no_difference("user_session.user.deposits.validated.count") do
-        post :create, :deposit => { :asset_id => assets(:Iron).id, :quantity_modifier => 25 }
+        post :create, :deposit => { :asset_id => assets(:Iron).to_param, :quantity_modifier => 25 }
         assert_redirected_to deposits_path
       end
     end

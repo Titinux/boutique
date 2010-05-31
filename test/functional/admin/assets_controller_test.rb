@@ -69,39 +69,39 @@ class Admin::AssetsControllerTest < ActionController::TestCase
   test "simple user shouldn't show asset" do
     autenticate_as_simple_user
 
-    get :show, :id => assets(:Iron).id
+    get :show, :id => assets(:Iron).to_param
     admin_section_forbidden
   end
 
   test "admin should show asset" do
     autenticate_as_admin
 
-    get :show, :id => assets(:Iron).id
+    get :show, :id => assets(:Iron).to_param
     assert_response :success
   end
 
   test "simple user shouldn't get edit" do
     autenticate_as_simple_user
 
-    get :edit, :id => assets(:Iron).id
+    get :edit, :id => assets(:Iron).to_param
     admin_section_forbidden
   end
 
   test "admin should get edit" do
     autenticate_as_admin
 
-    get :edit, :id => assets(:Iron).id
+    get :edit, :id => assets(:Iron).to_param
     assert_response :success
   end
 
   test "simple user shouldn't update asset" do
     autenticate_as_simple_user
 
-    put :update, :id => assets(:Chestnut).id, :asset => {
-                                :category => categories(:Ore),
-                                :pictureUri => '',
-                                :unitaryPrice => 5,
-                                :floatPrice => false
+    put :update, :id => assets(:Chestnut).to_param, :asset => {
+                               :category => categories(:Ore),
+                               :pictureUri => '',
+                               :unitaryPrice => 5,
+                               :floatPrice => false
                               }
     admin_section_forbidden
   end
@@ -109,21 +109,21 @@ class Admin::AssetsControllerTest < ActionController::TestCase
   test "admin should update asset" do
     autenticate_as_admin
 
-    put :update, :id => assets(:Chestnut).id, :asset => {
-                                :category => categories(:Ore),
-                                :pictureUri => '',
-                                :unitaryPrice => 5,
-                                :floatPrice => false
+    put :update, :id => assets(:Chestnut).to_param, :asset => {
+                               :category => categories(:Ore),
+                               :pictureUri => '',
+                               :unitaryPrice => 5,
+                               :floatPrice => false
                               }
 
-    assert_redirected_to admin_asset_path(assets(:Chestnut).id)
+    assert_redirected_to admin_asset_path(assets(:Chestnut).to_param)
   end
 
   test "simple user shouldn't destroy asset" do
     autenticate_as_simple_user
 
     assert_no_difference('Asset.count') do
-      delete :destroy, :id => assets(:Iron).id
+      delete :destroy, :id => assets(:Iron).to_param
     end
 
     admin_section_forbidden
@@ -133,7 +133,7 @@ class Admin::AssetsControllerTest < ActionController::TestCase
     autenticate_as_admin
 
     assert_difference('Asset.count', -1) do
-      delete :destroy, :id => assets(:Iron).id
+      delete :destroy, :id => assets(:Iron).to_param
     end
 
     assert_redirected_to admin_assets_path

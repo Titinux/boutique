@@ -36,7 +36,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
   test "simple user shouldn't create user" do
     assert_no_difference('User.count') do
       post :create, :user => { :name => 'Foobar user',
-                               :guild_id => guilds(:Famakna_food).id,
+                               :guild_id => guilds(:Famakna_food).to_param,
                                :email => 'foo@bar.com',
                                :admin => false,
                                :gatherer => false
@@ -53,7 +53,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
     assert_difference('User.count') do
       post :create, :user => { :name => 'Foobar user',
                                :password => '1234567',
-                               :guild_id => guilds(:Famakna_food).id,
+                               :guild_id => guilds(:Famakna_food).to_param,
                                :email => 'foo@bar.com',
                                :admin => false,
                                :gatherer => false
@@ -66,7 +66,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
   test "simple user should show user" do
     autenticate_as_simple_user
 
-    get :show, :id => users(:Tata).id
+    get :show, :id => users(:Tata).to_param
 
     admin_section_forbidden
   end
@@ -74,14 +74,14 @@ class Admin::UsersControllerTest < ActionController::TestCase
   test "admin should show user" do
     autenticate_as_admin
 
-    get :show, :id => users(:Tata).id
+    get :show, :id => users(:Tata).to_param
     assert_response :success
   end
 
   test "simple user should get edit" do
     autenticate_as_simple_user
 
-    get :edit, :id => users(:Tata).id
+    get :edit, :id => users(:Tata).to_param
 
     admin_section_forbidden
   end
@@ -89,14 +89,14 @@ class Admin::UsersControllerTest < ActionController::TestCase
   test "admin should get edit" do
     autenticate_as_admin
 
-    get :edit, :id => users(:Tata).id
+    get :edit, :id => users(:Tata).to_param
     assert_response :success
   end
 
   test "simple user shouldn't update user" do
     autenticate_as_simple_user
 
-    put :update, :id => users(:Tata).id, :user => { :email => 'foo@bar.com' }
+    put :update, :id => users(:Tata).to_param, :user => { :email => 'foo@bar.com' }
 
     admin_section_forbidden
   end
@@ -106,7 +106,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
     autenticate_as_admin
 
     assert_no_difference('User.count') do
-      put :update, :id => users(:Tata).id, :user => { :email => 'foo@bar.com' }
+      put :update, :id => users(:Tata).to_param, :user => { :email => 'foo@bar.com' }
     end
     assert_redirected_to admin_user_path(assigns(:user))
   end
@@ -115,7 +115,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
     autenticate_as_simple_user
 
     assert_no_difference('User.count') do
-      delete :destroy, :id => users(:Tata).id
+      delete :destroy, :id => users(:Tata).to_param
     end
 
     admin_section_forbidden
@@ -125,7 +125,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
     autenticate_as_admin
 
     assert_difference('User.count', -1) do
-      delete :destroy, :id => users(:Tata).id
+      delete :destroy, :id => users(:Tata).to_param
     end
 
     assert_redirected_to admin_users_path

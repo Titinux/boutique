@@ -5,14 +5,14 @@ class BoutiqueControllerTest < ActionController::TestCase
     get :welcome
     assert_response :success
   end
-  
+
   test "should view main category page" do
     get :category
     assert_response :success
   end
-  
+
   test "should view sub category page" do
-    get :category, { :cat => categories(:Ore).id}
+    get :category, { :cat => categories(:Ore).to_param }
     assert_response :success
   end
 end
