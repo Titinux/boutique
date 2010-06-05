@@ -4,4 +4,4 @@
 
 = will_paginate @logs
 
-= render :partial => 'table', :object => @logs, :as => :logs
+= render :partial => 'table', :locals => { :logs => @logs }

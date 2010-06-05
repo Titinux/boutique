@@ -12,7 +12,7 @@ class Admin::LogsController < Admin::AdminController
     conditions << "`objectId` = '#{params[:objectId]}'"     unless params[:objectId].blank?
     conditions << "`created_at` >= '#{DateTime.parse(params[:startDate])}'" unless params[:startDate].blank?
     conditions << "`created_at` <= '#{DateTime.parse(params[:endDate])}'"   unless params[:endDate].blank?
-    
+
     @logs = Log.paginate :page => params[:page], :per_page => 50, :conditions => conditions.join(' AND ')
 
     respond_to do |format|
