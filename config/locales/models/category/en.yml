@@ -1,0 +1,17 @@
+en:
+  activerecord:
+    models:
+      category: Categories
+
+    attributes:
+      category:
+        name: Name
+        pictureUri: Picture URI
+        parent: Parent category
+
+  # Category
+  category:
+    editing: Edit category
+    listing: Categories listing
+    new: New category
+    goParent: Go to parent category

@@ -1,0 +1,16 @@
+en:
+  activerecord:
+    models:
+      guild: Guild
+
+    attributes:
+      guild:
+        name: Guild name
+        pictureUri: Picture URI
+
+  # Guilds
+  guild:
+    editing: Edit guild
+    listing: Guilds listing
+    new: New guild
+    blazon: Blazon

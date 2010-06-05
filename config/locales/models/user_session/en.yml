@@ -1,0 +1,9 @@
+en:
+  # Sessions
+  userSession:
+    authenticate: Authentification/Register
+    logout: Logout
+    successfullLogin: Successfully logged in.
+    successfullLogout: Thank you for visiting our shop, we hope to see you soon.
+    youHaveToLog: You have to be logged in to view user informations.
+    youHaveToUnLog: This page is forbidden to logged users.

@@ -1,12 +1,3 @@
-en:
-  # Misc
-  picture: Picture
-  pictureOf: Picture of {{subject}}
-  filters: Filters
-  startDate: Start date
-  endDate: End date
-  created_at: Created at
-
 fr:
   # Misc
   picture: Image

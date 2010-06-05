@@ -1,0 +1,9 @@
+fr:
+  # Sessions
+  userSession:
+    authenticate: Identification/Enregistrement
+    logout: Déconnexion
+    successfullLogin: Bienvenue {{username}}.
+    successfullLogout: Merci d'avoir visité notre boutique, nous espérons vous revoir bientôt.
+    youHaveToLog: Vous devez vous connecter pour voir les informations utilisateur.
+    youHaveToUnLog: Cette page est interdite aux utilisateurs identifiés.

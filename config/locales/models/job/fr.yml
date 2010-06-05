@@ -1,0 +1,21 @@
+fr:
+  activerecord:
+    models:
+      job: Travail
+
+    attributes:
+      job:
+        id: Id
+        priority: Priorité
+        attempts: Nb. essais
+        handler: Handler
+        last_error: Dernière erreur
+        run_at: Lancé à
+        locked_at: Bloqué à
+        failed_at: Echoué à
+        locked_by: Bloqué par
+        created_at: Créé à
+
+  # Job
+  job:
+    listing: Liste des travaux

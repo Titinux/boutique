@@ -1,0 +1,6 @@
+en:
+  # Navigation
+  navigate:
+    welcomepage: Welcome Page
+    publicPart: Public part
+    adminPart: Administration panel

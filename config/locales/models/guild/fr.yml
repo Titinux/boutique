@@ -1,0 +1,16 @@
+fr:
+  activerecord:
+    models:
+      guild: Guilde
+
+    attributes:
+      guild:
+        name: Nom de la guilde
+        pictureUri: Uri du blason
+
+  # Guilds
+  guild:
+    editing: Editer la guilde
+    listing: Liste des guildes
+    new: Nouvelle guilde
+    blazon: Blason

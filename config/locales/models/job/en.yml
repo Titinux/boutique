@@ -1,0 +1,21 @@
+en:
+  activerecord:
+    models:
+      job: Job
+
+    attributes:
+      job:
+        id: Id
+        priority: Priority
+        attempts: Attempts
+        handler: Handler
+        last_error: Laster error
+        run_at: Run at
+        locked_at: Locked at
+        failed_at: Failed at
+        locked_by: Locked by
+        created_at: Created at
+
+  # Job
+  job:
+    listing: Listing jobs

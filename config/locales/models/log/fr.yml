@@ -1,21 +1,3 @@
-en:
-  activerecord:
-    models:
-      log: Log
-
-    attributes:
-      log:
-        level: Level
-        action: Action
-        objectType: Object type
-        objectId: Object Id
-        data: Data
-        created_at: Logged at
-
-  # Logs
-  log:
-    listing: Logs listing
-
 fr:
   activerecord:
     models:

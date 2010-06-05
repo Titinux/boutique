@@ -1,20 +1,3 @@
-en:
-  # Statistics
-  statistics:
-    stockStatistics: Stock statistics
-    ordersStatistics: Orders statistics
-    assetsStatistics: Assets statistics
-    pigMoneyBoxStatistics: Pig moneybox statistics
-    asset: Asset
-    stock: Stock
-    orderVolume: Order volume
-    difference: Difference
-    name: Statistics
-
-    pigMoneyBox:
-      sum : Sum of all pig moneyboxes
-      richests: The {{count}} richest people
-
 fr:
   # Statistics
   statistics:

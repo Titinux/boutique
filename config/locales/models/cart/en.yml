@@ -1,0 +1,12 @@
+en:
+  # Cart
+  cart:
+    quantity: Quantity
+    add: Add to cart
+    empty: Empty cart
+    cart_empty: Your cart is empty !
+    add_and_continue_shopping: Add to cart and continue shopping
+    add_and_view_cart: Add to cart and go to cart
+    name: Cart
+    updateSuccess: Asset was successfully updated.
+    addCartSuccess: Asset was successfully added to cart.

@@ -1,0 +1,47 @@
+en:
+  activerecord:
+    models:
+      order: Order
+
+    attributes:
+      order:
+        quantity: Quantity
+        uPrice: Unitary price
+        price: Price
+        totalAmount: Total amount
+        id: #
+        state: State
+        dispatched: Dispatched
+
+  # Order
+  order:
+    makeOrder: Make an order
+    youHaveToLog: You have to log in to make an order.
+    actions: Actions
+    details: Details
+    new: New order
+    listing: Listing order
+    editing: Editing order
+    cancelSucces: Order was successfully canceled.
+    cancelFail: Order can\'t be canceled.
+    estimate:
+      created: Estimate was successfully created.
+      accepted: Estimate was successfully accepted.
+      canceled: Estimate was successfully canceled.
+    modifyFail: Order can't be modified.
+    state:
+      waitEstimate: Waiting estimate
+      waitEstimateValidation: Waiting estimate validation
+      preparation: In preparation
+      waitDelivery: Waiting delivery
+      achieved: Achieved
+      canceled: Order canceled
+      error: Error
+    action:
+      create: Create estimate
+      accept: Accept this estimate
+      refuse: Refuse this estimate
+      prepared: Order prepared
+      delivered: Order delivered
+    createSuccess: Order was successfully created.
+    commandId: Order #{{id}}

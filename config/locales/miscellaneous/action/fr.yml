@@ -1,16 +1,3 @@
-en:
-  # Actions
-  back: Back
-  create: Create
-  destroy: Destroy
-  destroy_confirm: Are you sure ?
-  edit: Edit
-  show: Show
-  update: Update
-  login: Login
-  action: Action
-  filter: Apply filter
-
 fr:
   # Actions
   back: Retour

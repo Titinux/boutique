@@ -1,0 +1,6 @@
+fr:
+  # Navigation
+  navigate:
+    welcomepage: Page d'accueil
+    publicPart: Partie publique
+    adminPart: Administration

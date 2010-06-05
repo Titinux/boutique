@@ -1,0 +1,17 @@
+fr:
+  activerecord:
+    models:
+      category: Catégories
+
+    attributes:
+      category:
+        name: Nom
+        pictureUri: Uri de l'image
+        parent: Catégorie parente
+
+  # Category
+  category:
+    editing: Editer la catégorie
+    listing: Liste des catégories
+    new: Nouvelle catégorie
+    goParent: Aller à la catégorie parente

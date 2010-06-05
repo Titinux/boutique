@@ -1,0 +1,27 @@
+en:
+  activerecord:
+    models:
+      deposit: Deposits
+
+    attributes:
+      deposit:
+        quantity: Quantity
+        validated: Validated
+
+  # Deposit
+  deposit:
+    new: New Deposit
+    validated: My validated Deposits
+    waiting: My waiting Deposits
+    waitingDeposits: Waiting Deposits
+    validate: Validate
+    refuse: Refuse
+    created: Deposit was successfully created.
+    listing: Liste des dépôts
+    validation_success: Deposit was successfully validated.
+    validation_failure: Deposit can\'t be validated.
+
+    validation:
+      duplicate_is_forbidden: Duplicates are forbidden
+      stock_cant_be_negative: Stock amount can\'t be negative
+      withdrawal_cant_be_superior_to_deposits: Withdrawal amount can\'t be superior to deposits
