@@ -9,19 +9,19 @@
 
       %li
         = label_tag :level, Log.human_attribute_name(:level)
-        = select_tag("level", my_select_options(Log.all.map {|log| [ log.level, log.level ] }.uniq.sort, :selected => params[:level], :include_blank => true) )
+        = select_tag("level", my_select_options(Log.select('DISTINCT(`logs`.`level`)').order(:level).collect{|item| [item.level, item.level]}, :selected => params[:level], :include_blank => true) )
 
       %li
         = label_tag :user, User.model_name.human
-        = select_tag("user", my_select_options(Log.all.map {|log| [ log.user, log.user ] }.uniq.sort {|item_a, item_b| item_a[0] <=> item_b[0] }, :selected => params[:user], :include_blank => true) )
+        = select_tag("user", my_select_options(Log.select('DISTINCT(`logs`.`user`)').order(:user).collect{|item| [item.user, item.user]}, :selected => params[:user], :include_blank => true) )
 
       %li
         = label_tag :logAction, Log.human_attribute_name(:action)
-        = select_tag("logAction", my_select_options(Log.all.map {|log| [log.action, log.action ] }.uniq.sort, :selected => params[:logAction], :include_blank => true) )
+        = select_tag("logAction", my_select_options(Log.select('DISTINCT(`logs`.`action`)').order(:action).collect{|item| [item.action, item.action]}, :selected => params[:logAction], :include_blank => true) )
 
       %li
         = label_tag :objectType, Log.human_attribute_name(:objectType)
-        = select_tag("objectType", my_select_options(Log.all.map {|log| [log.objectType, log.objectType ] }.uniq.sort, :selected => params[:objectType], :include_blank => true) )
+        = select_tag("objectType", my_select_options(Log.select('DISTINCT(`logs`.`objectType`)').order(:objectType).collect{|item| [item.objectType, item.objectType]}, :selected => params[:objectType], :include_blank => true) )
 
       %li
         = label_tag :objectId, Log.human_attribute_name(:objectId)
