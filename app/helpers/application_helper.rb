@@ -96,5 +96,6 @@ module ApplicationHelper
     end
 
     out << "</table>"
+    out.html_safe
   end
 end
