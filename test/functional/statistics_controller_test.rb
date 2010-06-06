@@ -5,9 +5,9 @@ class StatisticsControllerTest < ActionController::TestCase
     get :index
     assert_response :success
   end
-  
+
   test "should show stock statistics" do
-    get :show, { :stattype => "stock" }
+    get :show, { :id => "stock" }
     assert_response :success
   end
 end

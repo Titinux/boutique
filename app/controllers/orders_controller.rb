@@ -1,10 +1,21 @@
 class OrdersController < ApplicationController
   layout 'public'
-  
-  before_filter :authentication, :order_owner_only
-  
-  # GET /order/1
-  # GET /order/1.xml
+
+  before_filter :authentication
+  before_filter :order_owner_only, :except => :index
+
+
+  def index
+    @orders = user_session.user.orders
+
+    respond_to do |format|
+      format.html
+      format.xml { render :xml => @orders}
+    end
+  end
+
+  # GET /user/order/1
+  # GET /user/order/1.xml
   def show
     respond_to do |format|
       format.html # show.html.erb
@@ -12,8 +23,8 @@ class OrdersController < ApplicationController
     end
   end
 
-  # PUT /order_action/1
-  # PUT /order_action/1.xml
+  # PUT /user/order/1
+  # PUT /user/order/1.xml
   def update
     respond_to do |format|
       if @order.modifyState(params[:op])
@@ -27,18 +38,18 @@ class OrdersController < ApplicationController
       end
     end
   end
-  
+
   private
-  
+
   def order_owner_only
     @order = Order.find(params[:id])
-    
+
     if @order.blank? or @order.user.id != user_session.user.id
       flash[:error] = 'Access forbidden !'
       redirect_to user_path
       return false
     end
-    
+
     true
   end
 end

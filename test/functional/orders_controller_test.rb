@@ -2,6 +2,19 @@ require 'test_helper'
 include Admin::OrdersHelper
 
 class OrdersControllerTest < ActionController::TestCase
+  test "unauthenticated user shouldn't view orders list" do
+    get :index
+
+    unautenticated_forbidden
+  end
+
+  test "authenticated user should view his orders list" do
+    autenticate_as_simple_user
+
+    get :index
+    assert_response :success
+  end
+
   test "unauthenticated user shouldn't view orders" do
     get :show, { :id => orders(:three).to_param }
 

@@ -23,10 +23,17 @@ class Deposit < ActiveRecord::Base
   after_save :delete_me_if_empty
 
   # Scopes
-  default_scope :include => :asset, :order => 'assets.name'
+  #default_scope includes(:asset), order('asset.name')
 
-  scope :deposits_of, lambda {|asset| { :conditions => ["asset_id = ?", asset.id]}}
-  scope :validated, lambda {|*args| { :conditions => ["validated = ?", (args.empty? ? true : args.first)]}}
+  # Scope
+  def self.deposits_of(asset)
+    where(:asset_id => asset.to_param)
+  end
+
+  # Scope
+  def self.validated( op = true)
+    where(:validated => op)
+  end
 
   # Approve a deposit
   def approve

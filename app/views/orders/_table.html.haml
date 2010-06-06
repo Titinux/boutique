@@ -1,16 +1,15 @@
 %table
-  %col{ :width => '100%'}
+  %col
+  %col{ :width => '100%' }
   %thead
     %tr
-      %th= Asset.model_name.human.pluralize
-      %th= Order.human_attribute_name('quantity')
-      %th= Order.human_attribute_name('uPrice')
-      %th= Order.human_attribute_name('price')
+      %th= Order.human_attribute_name('id')
+      %th= Order.human_attribute_name('state')
+      %th= t('order.actions')
 
-  %tbody>
-    - order.orderLines.each do |order_line|
+  %tbody
+    - orders.each do |order|
       %tr{ :class => "#{cycle('even', 'odd')}" }
-        %td= order_line.asset.name
-        %td.number= order_line.quantity
-        %td.currency= order_line.unitaryPrice
-        %td.currency= number_to_currency(order_line.price)
+        %td= order.id
+        %td= orderStatusHash[order.state]
+        %td.actions= link_to_show user_order_path(order)

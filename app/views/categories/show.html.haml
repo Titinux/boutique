@@ -1,0 +1,11 @@
+%div#category
+  = block :title => h(@category.name), :body_class => 'category' do
+    %p= link_to t('category.goParent'), @category.parent.blank? ? categories_path() :category_path(@category.parent)
+
+%div#assets
+  = render :partial => 'assets' , :locals => { :assets => @category.assets}
+
+%div#sub_categories
+  = render :partial => 'categories', :locals => { :categories => @category.subCategories }
+
+

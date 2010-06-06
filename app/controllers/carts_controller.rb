@@ -57,7 +57,7 @@ class CartsController < ApplicationController
         flash[:notice] = t('cart.addCartSuccess')
 
         if params[:add_and_continue_shopping].blank?
-          format.html { redirect_to(cart_index_path) }
+          format.html { redirect_to(carts_path) }
           format.xml  { render :xml => @asset, :status => :created, :location => @asset }
         else
           format.html { redirect_to(categories_path(:cat => @asset.category.id)) }
@@ -79,7 +79,7 @@ class CartsController < ApplicationController
       if @asset
         cart_session.edit_line(@asset.id, params[:quantity])
         flash[:notice] = t('cart.updateSuccess')
-        format.html { redirect_to(cart_index_path) }
+        format.html { redirect_to(carts_path) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -95,7 +95,7 @@ class CartsController < ApplicationController
     cart_session.drop_line(@asset.id)
 
     respond_to do |format|
-      format.html { redirect_to(cart_index_url) }
+      format.html { redirect_to(carts_url) }
       format.xml  { head :ok }
     end
   end
@@ -106,7 +106,7 @@ class CartsController < ApplicationController
     cart_session.empty_cart
 
     respond_to do |format|
-      format.html { redirect_to(cart_index_url) }
+      format.html { redirect_to(carts_url) }
       format.xml  { head :ok }
     end
   end
@@ -119,7 +119,7 @@ class CartsController < ApplicationController
         cart_session.to_order(user_session)
 
         flash[:notice] = t('order.createSuccess')
-        format.html { redirect_to(cart_index_path) }
+        format.html { redirect_to(carts_path) }
         format.xml  { head :ok }
       rescue Exception => e
         flash.now[:error] = e.message

@@ -13,5 +13,5 @@ class Asset < ActiveRecord::Base
   validates_numericality_of :unitaryPrice
 
   # Scopes
-  default_scope :order => :name, :include => :category
+  default_scope order(:name).includes(:category)
 end

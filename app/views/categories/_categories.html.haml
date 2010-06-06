@@ -1,0 +1,7 @@
+- categories.each do |category|
+  = block :class => 'mini', :title => h(category.name), :body_class => 'category' do
+    = image_tag category.pictureUri unless category.pictureUri.blank?
+    %br
+    = link_to category.name, category_path(category)
+
+%hr.spacer

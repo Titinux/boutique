@@ -8,15 +8,15 @@ class Admin::StatisticsController < Admin::AdminController
     end
   end
 
-  # GET /admin/statistics/:stattype
-  # GET /admin/statistics/:stattype.xml
+  # GET /admin/statistics/:id
+  # GET /admin/statistics/:id.xml
   def show
-    redirect_to :action => 'index' and return unless Statistics.respond_to?("#{params[:stattype].downcase}Stats")
+    redirect_to :action => 'index' and return unless Statistics.respond_to?("#{params[:id].downcase}Stats")
 
-    @stats = Statistics.send("#{params[:stattype].downcase}Stats")
+    @stats = Statistics.send("#{params[:id].downcase}Stats")
 
     respond_to do |format|
-      format.html { render :template => "admin/statistics/#{params[:stattype]}" }
+      format.html { render :template => "admin/statistics/#{params[:id]}" }
       format.xml  { render :xml => @stats }
     end
   end

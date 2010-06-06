@@ -54,7 +54,7 @@ class DepositsControllerTest < ActionController::TestCase
     assert_difference("user_session.user.deposits.validated(false).count") do
       assert_no_difference("user_session.user.deposits.validated.count") do
         post :create, :deposit => { :asset_id => assets(:Iron).to_param, :quantity_modifier => 25 }
-        assert_redirected_to deposits_path
+        assert_redirected_to user_deposits_path
       end
     end
   end

@@ -5,6 +5,6 @@ class Category < ActiveRecord::Base
   has_many :assets
 
   # Scopes
-  default_scope :order => :name
-  scope :mainCategories, :conditions => { :parent_id => nil }
+  default_scope order(:name)
+  scope :mainCategories, where(:parent_id => nil)
 end

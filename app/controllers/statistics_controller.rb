@@ -1,6 +1,6 @@
 class StatisticsController < ApplicationController
   layout 'public'
-  
+
   # GET /statistics
   # GET /statistics.xml
   def index
@@ -10,14 +10,14 @@ class StatisticsController < ApplicationController
     end
   end
 
-  # GET /statistics/:stattype
-  # GET /statistics/:stattype.xml
+  # GET /statistics/:id
+  # GET /statistics/:id.xml
   def show
-    redirect_to :action => 'index' and return unless Statistics.respond_to?("#{params[:stattype].downcase}Stats")
-    
+    redirect_to :action => 'index' and return unless Statistics.respond_to?("#{params[:id].downcase}Stats")
+
     respond_to do |format|
-      format.html { render :template => "statistics/#{params[:stattype]}" }
-      format.xml  { render :xml => @asset }
+      format.html { render :template => "statistics/#{params[:id]}" }
+      #format.xml  { render :xml => @asset }
     end
   end
 end

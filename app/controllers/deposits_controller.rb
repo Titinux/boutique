@@ -8,7 +8,7 @@ class DepositsController < ApplicationController
   # GET /deposits.xml
   def index
     @validated_deposits = user_session.user.deposits.validated
-    @waiting_deposits = user_session.user.deposits.validated(false)
+    @waiting_deposits   = user_session.user.deposits.validated(false)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,16 +16,6 @@ class DepositsController < ApplicationController
     end
   end
 
-  # GET /deposits/1
-  # GET /deposits/1.xml
-  def show
-    @deposit = Deposit.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @deposit }
-    end
-  end
 
   # GET /deposits/new
   # GET /deposits/new.xml
@@ -47,7 +37,7 @@ class DepositsController < ApplicationController
     respond_to do |format|
       if @deposit.save
         flash[:notice] = t('deposit.created')
-        format.html { redirect_to deposits_path }
+        format.html { redirect_to user_deposits_path }
         format.xml  { render :xml => @deposit, :status => :created, :location => @deposit }
       else
         format.html { render :action => :new }

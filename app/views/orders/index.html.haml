@@ -1,0 +1,4 @@
+= render :partial => 'shared/user_sidebar'
+
+= block :title => t('user.myOrders') do
+  = render :partial => 'table', :locals => { :orders => @orders }

@@ -35,6 +35,3 @@
   = t 'user.amount'
   \:
   = number_to_currency(@user.pigMoneyBox)
-
-= block :title => t('user.myOrders') do
-  = render :partial => 'orders_table', :locals => { :orders => @user.orders.ongoing }

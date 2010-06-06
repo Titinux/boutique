@@ -2,7 +2,7 @@
   :public => [
     {
       :name => I18n.t('navigate.welcomepage'),
-      :link => welcome_path
+      :link => root_path
     },
     {
       :name => Asset.model_name.human.pluralize,
@@ -83,17 +83,17 @@
     :public => [
       {
         :name => I18n.t('statistics.stockStatistics'),
-        :link => statistic_path('stock')
+        :link => statistic_path(:id => 'stock')
       }
     ],
     :admin => [
       {
         :name => I18n.t('statistics.stockStatistics'),
-        :link => admin_statistic_path('stock')
+        :link => admin_statistic_path(:id => 'stock')
       },
       {
         :name => I18n.t('statistics.pigMoneyBoxStatistics'),
-        :link => admin_statistic_path('pigmoneybox')
+        :link => admin_statistic_path(:id => 'pigmoneybox')
       }
     ]
   }

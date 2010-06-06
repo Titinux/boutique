@@ -6,4 +6,4 @@
 = block :title => t('deposit.waiting') do
   = render :partial => 'deposits/table', :locals => { :deposits => @waiting_deposits }
 
-%p= link_to_add new_deposit_path, :text => t('deposit.new'), :format => :long
+%p= link_to_add new_user_deposit_path, :text => t('deposit.new'), :format => :long

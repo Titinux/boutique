@@ -10,11 +10,11 @@
     = number_to_currency(@order.totalAmount)
 
   = block :title => t('order.details') do
-    = render :partial => 'table', :locals => { :order => @order }
+    = render :partial => 'order_lines_table', :locals => { :order => @order }
 
   - if @order.state == 'WAIT_ESTIMATE_VALIDATION'
-    = link_to orderActionHash['ACCEPT_ESTIMATE'], orderAction_path(@order, :op => 'ACCEPT_ESTIMATE'), :method => :put
+    = link_to orderActionHash['ACCEPT_ESTIMATE'], user_order_path(@order, :op => 'ACCEPT_ESTIMATE'), :method => :put
     |
-    = link_to orderActionHash['REFUSE_ESTIMATE'], orderAction_path(@order, :op => 'REFUSE_ESTIMATE'), :method => :put
+    = link_to orderActionHash['REFUSE_ESTIMATE'], user_order_path(@order, :op => 'REFUSE_ESTIMATE'), :method => :put
 
-  = link_to_back user_path
+  = link_to_back user_orders_path
