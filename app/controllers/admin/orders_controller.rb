@@ -1,9 +1,17 @@
 class Admin::OrdersController < Admin::AdminController
-  
+
   # GET /admin/orders
   # GET /admin/orders.xml
   def index
-    @orders = Order.find(:all)
+    @orders = Order.includes(:user, :orderLines)
+
+    @orders = @orders.where(:id => params[:id]) unless params[:id].blank?
+    @orders = @orders.where(:user_id => params[:user_id]) unless params[:user_id].blank?
+    @orders = @orders.where(:state => params[:state]) unless params[:state].blank?
+
+    if params[:id].blank? && params[:user_id].blank? && params[:state].blank?
+      @orders = @orders.ongoing
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -60,7 +68,7 @@ class Admin::OrdersController < Admin::AdminController
   # PUT /admin/orders/1.xml
   def update
     params[:order][:existing_line_attributes] ||= {}
-    
+
     @order = Order.find(params[:id])
 
     respond_to do |format|

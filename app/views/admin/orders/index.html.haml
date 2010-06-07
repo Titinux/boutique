@@ -1,5 +1,7 @@
 %h2= t('order.listing')
 
+= render :partial => 'filter'
+
 = render :partial => 'table', :locals => { :orders => @orders }
 
 %br

@@ -4,8 +4,8 @@ class Order < ActiveRecord::Base
   has_many :orderLines, :dependent => :delete_all
 
   # Scopes
-  scope :ongoing, where("state IN ('WAIT_ESTIMATE', 'WAIT_ESTIMATE_VALIDATION', 'IN_PREPARATION', 'WAIT_DELIVERY')")
-  default_scope  :order => 'id DESC'
+  scope :ongoing, where(:state => %W(WAIT_ESTIMATE WAIT_ESTIMATE_VALIDATION IN_PREPARATION WAIT_DELIVERY))
+  default_scope  :order => '`orders`.`id` DESC'
 
   # Callbacks
   after_update :save_lines
