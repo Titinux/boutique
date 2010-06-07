@@ -3,7 +3,14 @@ class Admin::UsersController < Admin::AdminController
   # GET /admin/users
   # GET /admin/users.xml
   def index
-    @users = User.find(:all)
+    @letter = params[:letter] || session[:admin_user_letter] || 'A'
+    session[:admin_user_letter] = @letter
+
+    if @letter == '*'
+      @users = User.where("NOT (`users`.`name` REGEXP '^[[:alpha:]]')")
+    else
+      @users = User.where("`users`.`name` LIKE '#{@letter}%'")
+    end
 
     respond_to do |format|
       format.html # index.html.erb

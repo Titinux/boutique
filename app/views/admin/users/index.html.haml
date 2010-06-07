@@ -1,5 +1,12 @@
 %h2= t('user.listing')
 
+%p.pagination
+  - (['*'] + ('A'..'Z').to_a).each do |letter|
+    - if letter.upcase == @letter.upcase
+      %em= letter
+    - else
+      = link_to letter, admin_users_path(:letter => letter )
+
 = render :partial => 'admin/users/table', :locals => { :users => @users }
 
 %br
