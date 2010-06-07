@@ -1,0 +1,37 @@
+div#topbar
+  height: 25px
+
+  font:
+    family: Verdana, Arial
+    size: 11px
+    weight: bold
+
+  color: $color1
+  vertical-align: middle
+  line-height: 25px
+
+  margin:
+    right: 11px
+    left: 11px
+
+  background:
+    image: url('/images/global/cellpic1.gif')
+    repeat: repeat-x
+
+  .admin
+    background:
+      image: none
+
+  li
+    float: left
+    list-style: none
+    padding: 0px 10px 0 0
+
+    &:first-child
+      padding-left: 10px
+
+  a
+    color: $color1
+    text-decoration: none
+    &:hover
+      color: $color4

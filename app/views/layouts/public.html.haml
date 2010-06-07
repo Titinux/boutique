@@ -2,41 +2,45 @@
 !!! 5
 %html{:'xml:lang' => 'fr', :xmlns => 'http://www.w3.org/1999/xhtml' }
   %head
-    %meta{ :'http-equiv' => 'content-type',        :content => 'text/html;charset=UTF-8'}
+    %meta{ :'http-equiv' => 'content-type', :content => 'text/html;charset=UTF-8'}
 
     %link{ :rel => 'icon', :type => 'image/png', :href => "#{image_path('global/favicon.png')}"}
     = csrf_meta_tag
 
-    %title Boutique
+    %title= t('siteTitle')
 
-    = stylesheet_link_merged :base
+    = stylesheet_link_tag 'public.css'
     = javascript_include_merged :base
 
   %body
-    %div#page
+    %div#global
       %div#header
-        %p#header_text
-          Marchands d'Hyze's shop<br />
+        %h1
+          = t('siteTitle')
+          %br
           = image_tag 'global/blason.png'
 
-      %div#topbar
+      %div#topbar.public
         = makeMenu('public')
 
       %div#center
-        %div#sidebar
-          = yield :sidebar
+        - if flash[:notice]
+          %p.flash.notice= flash[:notice]
 
-        %div#main_part
-          - if flash[:notice]
-            %p.flash.notice= flash[:notice]
+        - if flash[:warning]
+          %p.flash.warning= flash[:warning]
 
-          - if flash[:warning]
-            %p.flash.warning= flash[:warning]
+        - if flash[:error]
+          %p.flash.error= flash[:error]
 
-          - if flash[:error]
-            %p.flash.error= flash[:error]
+        - if content_for?(:sidebar)
+          %div#content
+            = yield
 
+          %div#sidebar
+            = yield :sidebar
+        - else
           = yield
 
       %div#footer
-        Illustrations Ankama (c) 2009. Programme J.Horhant H.Cheguillaume. Tous droits réservés.
+        = t('footerText')

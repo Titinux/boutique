@@ -7,9 +7,3 @@ javascripts:
   - dragdrop
   - rails
   - application
-stylesheets:
-- base:
-  - dispatch
-- admin:
-  - dispatch
-  - admin

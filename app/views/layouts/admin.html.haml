@@ -2,33 +2,45 @@
 !!! 5
 %html{:'xml:lang' => 'fr', :xmlns => 'http://www.w3.org/1999/xhtml' }
   %head
-    %meta{ :'http-equiv' => 'content-type',        :content => 'text/html;charset=UTF-8'}
+    %meta{ :'http-equiv' => 'content-type', :content => 'text/html;charset=UTF-8'}
 
     %link{ :rel => 'icon', :type => 'image/png', :href => "#{image_path('global/favicon.png')}"}
     = csrf_meta_tag
 
-    %title Boutique
+    %title Boutique - Admin panel
 
-    = stylesheet_link_merged :admin
+    = stylesheet_link_tag 'admin.css'
     = javascript_include_merged :base
 
     = javascript_tag do
       = yield(:jstemplates)
 
   %body
-    %h1 Admin Panel
+    %div#global
+      %div#header
+        %h1 Admin Panel
 
-    %div#topbaradmin
-      = makeMenu('admin')
+      %div#topbar.admin
+        = makeMenu('admin')
 
-    %div#main_part
-      - if flash[:notice]
-        %p.flash.notice= flash[:notice]
+      %div#center
+        - if flash[:notice]
+          %p.flash.notice= flash[:notice]
 
-      - if flash[:warning]
-        %p.flash.warning= flash[:warning]
+        - if flash[:warning]
+          %p.flash.warning= flash[:warning]
 
-      - if flash[:error]
-        %p.flash.error= flash[:error]
+        - if flash[:error]
+          %p.flash.error= flash[:error]
 
-      = yield
+        - if content_for?(:sidebar)
+          %div#content
+            = yield
+
+          %div#sidebar
+            = yield :sidebar
+        - else
+          = yield
+
+      %div#footer
+        = t('footerText')
