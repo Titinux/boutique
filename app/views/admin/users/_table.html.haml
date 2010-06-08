@@ -17,8 +17,8 @@
             = user.guild.name
 
         %td.currency= number_to_currency(user.pigMoneyBox)
-        %td= user.gatherer
-        %td= user.admin
+        %td.boolean= boolean_to_image(user.gatherer)
+        %td.boolean= boolean_to_image(user.admin)
         %td.actions
           = link_to_show admin_user_path(user)
           = link_to_edit edit_admin_user_path(user)

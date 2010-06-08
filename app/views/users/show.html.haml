@@ -22,11 +22,15 @@
       \:
       = @user.guild.name
 
-  - if @user.gatherer
-    %p= User.human_attribute_name('gatherer')
+  %p
+    = User.human_attribute_name('gatherer')
+    \:
+    = boolean_to_image(@user.gatherer)
 
-  - if @user.admin
-    %p= User.human_attribute_name('admin')
+  %p
+    = User.human_attribute_name('admin')
+    \:
+    = boolean_to_image(@user.admin)
 
   = link_to_edit edit_user_path
 

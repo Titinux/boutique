@@ -15,7 +15,7 @@
         %td= order.user.name
         %td= orderStatusHash[order.state]
         %td.currency= number_to_currency(order.totalAmount)
-        %td= order.dispatched
+        %td.boolean= boolean_to_image(order.dispatched)
         %td.actions
           = link_to_show admin_order_path(order)
           = link_to_edit edit_admin_order_path(order)
