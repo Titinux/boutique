@@ -12,6 +12,7 @@ fr:
         id: N°
         state: Etat
         dispatched: Répartie
+        created_at: Créée le
 
   # Order
   order:

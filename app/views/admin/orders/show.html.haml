@@ -1,3 +1,5 @@
+%h2= t('order.commandId', :id => @order.id)
+
 %p
   = User.human_attribute_name('name')
   \:
@@ -8,8 +10,6 @@
   \:
   = orderStatusHash[@order.state]
 
-= render :partial => 'admin/order_lines/table', :locals => { :order => @order }
-
 %p
   = Order.human_attribute_name('totalAmount')
   \:
@@ -18,7 +18,15 @@
 %p
   = Order.human_attribute_name('dispatched')
   \:
-  = @order.dispatched
+  = boolean_to_image(@order.dispatched)
+
+%p
+  = Order.human_attribute_name('created_at')
+  \:
+  = l(@order.created_at)
+
+= block :title => t('order.details') do
+  = render :partial => 'admin/order_lines/table', :locals => { :order => @order }
 
 = link_to_back admin_orders_path
 = link_to_edit edit_admin_order_path(@order)

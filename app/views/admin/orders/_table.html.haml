@@ -5,7 +5,7 @@
       %th= User.human_attribute_name('name')
       %th= Order.human_attribute_name('state')
       %th= Order.human_attribute_name('totalAmount')
-      %th= Order.human_attribute_name('dispatched')
+      %th= Order.human_attribute_name('created_at')
       %th= t('action').pluralize
 
   %tbody
@@ -15,7 +15,7 @@
         %td= order.user.name
         %td= orderStatusHash[order.state]
         %td.currency= number_to_currency(order.totalAmount)
-        %td.boolean= boolean_to_image(order.dispatched)
+        %td.date= l(order.created_at)
         %td.actions
           = link_to_show admin_order_path(order)
           = link_to_edit edit_admin_order_path(order)

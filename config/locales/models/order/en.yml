@@ -12,6 +12,7 @@ en:
         id: #
         state: State
         dispatched: Dispatched
+        created_at: Created at
 
   # Order
   order:
