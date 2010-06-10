@@ -1,15 +1,15 @@
 %table#order_lines
   %thead
     %tr
-      %th Asset
-      %th Quantity
-      %th Unitary Price
-      %th Price
+      %th= Asset.model_name.human
+      %th= Order.human_attribute_name :quantity
+      %th= Order.human_attribute_name :unitary_price
+      %th= Order.human_attribute_name :price
 
   %tbody
-    - order.orderLines.each do |order_line|
+    - order.lines.each do |order_line|
       %tr{ :class => "#{cycle('even', 'odd')}" }
         %td= order_line.asset.name
         %td.number= order_line.quantity
-        %td.currency= order_line.unitaryPrice
+        %td.currency= number_to_currency(order_line.unitaryPrice)
         %td.currency= number_to_currency(order_line.price)

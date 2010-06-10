@@ -3,7 +3,7 @@ class Admin::OrdersController < Admin::AdminController
   # GET /admin/orders
   # GET /admin/orders.xml
   def index
-    @orders = Order.includes(:user, :orderLines)
+    @orders = Order.includes(:user, :lines)
 
     @orders = @orders.where(:id => params[:id]) unless params[:id].blank?
     @orders = @orders.where(:user_id => params[:user_id]) unless params[:user_id].blank?
@@ -34,6 +34,7 @@ class Admin::OrdersController < Admin::AdminController
   # GET /admin/orders/new.xml
   def new
     @order = Order.new
+    @order.lines.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -44,7 +45,7 @@ class Admin::OrdersController < Admin::AdminController
   # GET /admin/orders/1/edit
   def edit
     @order = Order.find(params[:id])
-    @estimateRestriction = params[:estimate]
+    #@estimateRestriction = params[:estimate]
   end
 
   # POST /admin/orders
@@ -67,12 +68,10 @@ class Admin::OrdersController < Admin::AdminController
   # PUT /admin/orders/1
   # PUT /admin/orders/1.xml
   def update
-    params[:order][:existing_line_attributes] ||= {}
-
     @order = Order.find(params[:id])
 
     respond_to do |format|
-      if @order.update_attributes(params[:order]) && @order.modifyState(params[:op])
+      if @order.update_attributes(params[:order])
         flash[:notice] = 'Order was successfully updated.'
         format.html { redirect_to(([:admin, @order])) }
         format.xml  { head :ok }

@@ -9,3 +9,4 @@ gem 'rack-rack-contrib'
 
 gem 'delayed_job', '2.0.3'
 gem 'will_paginate', :git => 'http://github.com/mislav/will_paginate.git', :branch => 'rails3'
+gem 'simple_form', '1.2.0'

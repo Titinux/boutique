@@ -1,40 +1,27 @@
 class Order < ActiveRecord::Base
   belongs_to :user
+  has_many :lines, :class_name => 'OrderLine', :dependent => :delete_all
 
-  has_many :orderLines, :dependent => :delete_all
+  # Validations
+  validates :user_id, :presence => true
+  validates_associated :user
+
+  validates :state,   :presence => true
+  validates :lines,   :presence => true
+
+  validates_associated :lines
+
+  # Nested attributes
+  accepts_nested_attributes_for :lines, :allow_destroy => true
 
   # Scopes
   scope :ongoing, where(:state => %W(WAIT_ESTIMATE WAIT_ESTIMATE_VALIDATION IN_PREPARATION WAIT_DELIVERY))
   default_scope  :order => '`orders`.`id` DESC'
 
   # Callbacks
-  after_update :save_lines
 
+  # Attributes
   attr_reader(:message)
-
-  def new_line_attributes=(line_attributes)
-    line_attributes.each do |attributes|
-      orderLines.build(attributes)
-    end
-  end
-
-  def existing_line_attributes=(line_attributes)
-    orderLines.reject(&:new_record?).each do |line|
-      attributes = line_attributes[line.id.to_s]
-
-      if attributes
-        line.attributes = attributes
-      else
-        orderLines.delete(line)
-      end
-    end
-  end
-
-  def save_lines
-    orderLines.each do |line|
-      line.save(:validate => false)
-    end
-  end
 
   def modifyState(op)
     case op
@@ -93,18 +80,18 @@ class Order < ActiveRecord::Base
   end
 
   def totalAmount
-    amount = 0
+    amount = 0.0
 
-    orderLines.each do |orderLine|
-      amount += orderLine.quantity * orderLine.unitaryPrice
+    lines.each do |line|
+      amount += line.quantity * (line.unitaryPrice || 0)
     end
 
     amount
   end
 
   def available?
-    self.orderLines.each do |orderLine|
-      return false if(Deposit.stock(orderLine.asset) < orderLine.quantity)
+    self.lines.each do |line|
+      return false if(Deposit.stock(line.asset) < line.quantity)
     end
 
     return true

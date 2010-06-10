@@ -1,45 +1,15 @@
-= form_for([:admin, @user]) do |f|
+= simple_form_for([:admin, @user]) do |f|
   = f.error_messages
 
-  %p
-    = f.label :name
-    = f.text_field :name
+  = f.input :name
+  = f.input :password
+  = f.input :password_confirmation
+  = f.input :dofusNicknames
+  = f.input :email
+  = f.association :guild
+  = f.input :pigMoneyBox
+  = f.input :gatherer
+  = f.input :admin
+  = f.input :activated
 
-  %p
-    = f.label :password
-    = f.password_field :password
-
-  %p
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation
-
-  %p
-    = f.label :dofusNicknames
-    = f.text_field :dofusNicknames
-
-  %p
-    = f.label :email
-    = f.text_field :email
-
-  %p
-    = f.label :guild
-    = f.collection_select(:guild_id, Guild.find(:all), :id, :name, :include_blank => true)
-
-  %p
-    = f.label :pigMoneyBox
-    = f.text_field :pigMoneyBox #:differential => :addMoney
-
-  %p
-    = f.label :gatherer
-    = f.check_box :gatherer
-
-  %p
-    = f.label :admin
-    = f.check_box :admin
-
-  %p
-    = f.label :activated
-    = f.check_box :activated
-
-  %p
-    = f.submit @user.new_record? ? t('create') : t('update')
+  = f.button :submit

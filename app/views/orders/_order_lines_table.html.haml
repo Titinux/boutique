@@ -8,7 +8,7 @@
       %th= Order.human_attribute_name('price')
 
   %tbody>
-    - order.orderLines.each do |order_line|
+    - order.lines.each do |order_line|
       %tr{ :class => "#{cycle('even', 'odd')}" }
         %td= order_line.asset.name
         %td.number= order_line.quantity

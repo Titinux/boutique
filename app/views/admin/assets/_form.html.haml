@@ -1,26 +1,10 @@
-= form_for([:admin, @asset]) do |f|
+= simple_form_for([:admin, @asset]) do |f|
   = f.error_messages
 
-  %p
-    = f.label :name
-    = f.text_field :name
-    %span.required Required
+  = f.input :name
+  = f.association :category
+  = f.input :pictureUri
+  = f.input :unitaryPrice
+  = f.input :floatPrice
 
-  %p
-    = f.label :category_id
-    = f.collection_select(:category_id, Category.find(:all), :id, :name)
-
-  %p
-    = f.label :pictureUri
-    = f.text_field :pictureUri
-
-  %p
-    = f.label :unitaryPrice
-    = f.text_field :unitaryPrice
-
-  %p
-    = f.label :floatPrice
-    = f.check_box :floatPrice
-
-  %p
-    = f.submit @asset.new_record? ? t('create') : t('update')
+  = f.button :submit

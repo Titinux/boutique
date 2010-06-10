@@ -3,7 +3,7 @@
 
 Order details.
 --------------
-<%= render :partial => 'order_details', :locals => { :orderLines => @order.orderLines, :full => true } %>
+<%= render :partial => 'order_details', :locals => { :orderLines => @order.lines, :full => true } %>
 
 Total : <%= @order.totalAmount %>
 

@@ -1,8 +1,7 @@
-= form_for(@deposit, :url => user_deposits_path, :html => { :method => :post }) do |f|
+= simple_form_for(@deposit, :url => user_deposits_path, :html => { :method => :post }) do |f|
   = f.error_messages
 
-  %p
-    = f.collection_select(:asset_id, Asset.find(:all), :id, :name)
-    = f.text_field :quantity_modifier
+  = f.association :asset, :include_blank => false
+  = f.input :quantity_modifier, :label => Deposit.human_attribute_name('quantity'), :required => true
 
-  %p= f.submit @deposit.new_record? ? t('create') : t('update')
+  = f.button :submit

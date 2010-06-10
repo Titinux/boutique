@@ -3,7 +3,7 @@ New order from <%= @order.user.name %>.
 
 Order details.
 --------------
-<%= render :partial => 'order_details', :locals => { :orderLines => @order.orderLines } %>
+<%= render :partial => 'order_details', :locals => { :orderLines => @order.lines } %>
 
 
 

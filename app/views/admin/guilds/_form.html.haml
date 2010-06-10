@@ -1,14 +1,7 @@
-= form_for([:admin, @guild]) do |f|
+= simple_form_for([:admin, @guild]) do |f|
   = f.error_messages
 
-  %p
-    = f.label :name, Guild.human_attribute_name('name')
-    %br
-    = f.text_field :name
+  = f.input :name
+  = f.input :pictureUri
 
-  %p
-    = f.label :pictureUri, Guild.human_attribute_name('pictureUri')
-    %br
-    = f.text_field :pictureUri
-
-  %p= f.submit @guild.new_record? ? t('create') : t('update')
+  = f.button :submit

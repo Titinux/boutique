@@ -1,16 +1,8 @@
-=form_for([:admin, @category]) do |f|
+= simple_form_for([:admin, @category]) do |f|
   = f.error_messages
 
-  %p
-    = f.label :name, Category.human_attribute_name('name')
-    = f.text_field :name
+  = f.input :name
+  = f.association :parent
+  = f.input :pictureUri
 
-  %p
-    = f.label :parent_id, Category.human_attribute_name('parent')
-    = f.collection_select :parent_id, Category.find(:all), :id, :name, { :include_blank => true }
-
-  %p
-    = f.label :pictureUri, Category.human_attribute_name('pictureUri')
-    = f.text_field :pictureUri
-
-  %p= f.submit @category.new_record? ? t('create') : t('update')
+  = f.button :submit
