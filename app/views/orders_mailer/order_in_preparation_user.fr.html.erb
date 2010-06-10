@@ -4,7 +4,7 @@ Votre commande n°<%= @order.id %> est en préparation.
 
 Détails de la commande.
 -----------------------
-<%= render :partial => 'order_details', :locals => { :orderLines => @order.orderLines, :full => true } %>
+<%= render :partial => 'order_details', :locals => { :orderLines => @order.lines, :full => true } %>
 
 Total : <%= @order.totalAmount %>
 
