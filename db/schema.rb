@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100103150313) do
+ActiveRecord::Schema.define(:version => 20100609111710) do
 
   create_table "assets", :force => true do |t|
     t.string   "name",         :limit => 25,                                                 :null => false
@@ -90,10 +90,10 @@ ActiveRecord::Schema.define(:version => 20100103150313) do
   end
 
   create_table "order_lines", :force => true do |t|
-    t.integer  "order_id",     :null => false
-    t.integer  "asset_id",     :null => false
-    t.integer  "quantity",     :null => false
-    t.integer  "unitaryPrice", :null => false
+    t.integer  "order_id",                                    :null => false
+    t.integer  "asset_id",                                    :null => false
+    t.integer  "quantity",                                    :null => false
+    t.decimal  "unitaryPrice", :precision => 10, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end
