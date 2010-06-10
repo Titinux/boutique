@@ -2,8 +2,9 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
-# Auto-require default libraries and those for the current Rails environment.
-Bundler.require :default, Rails.env
+# If you have a Gemfile, require the gems listed there, including any gems
+# you've limited to :test, :development, or :production.
+Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 module Boutique
   class Application < Rails::Application
@@ -42,6 +43,6 @@ module Boutique
     #end
 
     # Configure sensitive parameters which will be filtered from the log file.
-    config.filter_parameters << :password
+    config.filter_parameters += [:password]
   end
 end
