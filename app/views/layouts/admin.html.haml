@@ -10,10 +10,6 @@
     %title Boutique - Admin panel
 
     = stylesheet_link_tag 'admin.css'
-    = javascript_include_merged :base
-
-    = javascript_tag do
-      = yield(:jstemplates)
 
   %body
     %div#global
@@ -44,3 +40,9 @@
 
       %div#footer
         = t('footerText')
+
+    - if content_for?(:jstemplates)
+      = javascript_tag do
+        = yield(:jstemplates)
+
+    = javascript_include_merged :base

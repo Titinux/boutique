@@ -2,7 +2,7 @@
 !!! 5
 %html{:'xml:lang' => 'fr', :xmlns => 'http://www.w3.org/1999/xhtml' }
   %head
-    %meta{ :'http-equiv' => 'content-type', :content => 'text/html;charset=UTF-8'}
+    %meta{ :'http-equiv' => 'content-type', :content => 'application/xhtml+xml;charset=UTF-8'}
 
     %link{ :rel => 'icon', :type => 'image/png', :href => "#{image_path('global/favicon.png')}"}
     = csrf_meta_tag
@@ -10,7 +10,6 @@
     %title= t('siteTitle')
 
     = stylesheet_link_tag 'public.css'
-    = javascript_include_merged :base
 
   %body
     %div#global
@@ -44,3 +43,5 @@
 
       %div#footer
         = t('footerText')
+
+    = javascript_include_merged :base
