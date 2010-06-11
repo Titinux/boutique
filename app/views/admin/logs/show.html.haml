@@ -1,44 +1,18 @@
-%p>
-  = Log.human_attribute_name('id')
-  \:
-  = @log.id
+%h2= t('log.showing', :id => @log.to_param)
 
-%p
-  = Log.human_attribute_name('created_at')
-  \:
-  = l(@log.created_at)
+= show_for @log do |l|
+  = l.attribute :id
+  = l.attribute :created_at
+  = l.attribute :level
+  = l.attribute :user
+  = l.attribute :action
+  = l.attribute :objectType
+  = l.attribute :objectId
 
-%p
-  = Log.human_attribute_name('level')
-  \:
-  = @log.level
-
-%p
-  = User.model_name.human
-  \:
-  = @log.user
-
-%p
-  = Log.human_attribute_name('action')
-  \:
-  = @log.action
-
-%p
-  = Log.human_attribute_name('objectType')
-  \:
-  = @log.objectType
-
-%p
-  = Log.human_attribute_name('objectId')
-  \:
-  = @log.objectId
-
-%p
-  = Log.human_attribute_name('data')
-  \:
-  - if @log.data.is_a? Hash
-    = hash_to_table(@log.data)
-  - else
-    = @log.data.inspect
+  = l.attribute :data do
+    - if @log.data.is_a? Hash
+      = hash_to_table(@log.data)
+    - else
+      = @log.data.inspect
 
 %p= link_to_back admin_logs_path

@@ -8,11 +8,12 @@ en:
         name: Name
         category: Category
         pictureUri: Picture Uri
-        unitaryprice: Unitary price
-        floatprice: Float price
+        unitaryPrice: Unitary price
+        floatPrice: Float price
 
   # Asset
   asset:
     editing: Edit asset
     listing: Listing assets
     new: New asset
+    showing: 'Asset : {{name}}'

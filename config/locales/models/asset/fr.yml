@@ -8,11 +8,12 @@ fr:
         name: Nom
         category: Categorie
         pictureUri: Uri de l'image
-        unitaryprice: Prix unitaire
-        floatprice: Prix flottant
+        unitaryPrice: Prix unitaire
+        floatPrice: Prix flottant
 
   # Asset
   asset:
     editing: Editer la ressource
     listing: Liste des ressources
     new: Nouvelle ressource
+    showing: 'Ressource : {{name}}'

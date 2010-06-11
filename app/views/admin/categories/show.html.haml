@@ -1,17 +1,9 @@
-%p
-  = Category.human_attribute_name('name')
-  \:
-  = @category.name
+%h2= t('category.showing', :name => @category.name)
 
-%p
-  = Category.human_attribute_name('parent')
-  \:
-  = @category.parent ? h(@category.parent.name) : 'none'
-
-%p
-  = t('picture')
-  \:
-  - unless @category.pictureUri.blank?
+= show_for @category do |c|
+  = c.attribute :name
+  = c.association :parent
+  = c.attribute :pictureUri do
     = image_tag(@category.pictureUri, :alt => t('pictureOf', :subject => @category.name))
 
 = link_to_back admin_categories_path

@@ -1,12 +1,8 @@
-%p
-  = Guild.human_attribute_name('name')
-  \:
-  = @guild.name
+%h2= t('guild.showing', :name => @guild.name)
 
-%p
-  = t('guild.blazon')
-  \:
-  - unless @guild.pictureUri.blank?
+= show_for @guild do |g|
+  = g.attribute :name
+  = g.attribute :pictureUri do
     = image_tag(@guild.pictureUri, :alt => t('pictureOf', :subject => @guild.name))
 
 = link_to_back admin_guilds_path

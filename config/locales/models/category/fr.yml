@@ -15,3 +15,4 @@ fr:
     listing: Liste des catégories
     new: Nouvelle catégorie
     goParent: Aller à la catégorie parente
+    showing: 'Catégorie : {{name}}'

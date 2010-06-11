@@ -17,11 +17,13 @@ en:
         password_confirmation: Password confirmation
         dofusNicknames: Dofus nicknames
         activated: Account activated
+        created_at: Créé le
 
   # Users
   user:
     editing: Edit user
     listing: Users listing
+    showing: 'User : {{name}}'
     new: New user
     block: User block
     infos: Informations

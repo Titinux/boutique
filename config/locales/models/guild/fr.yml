@@ -14,3 +14,4 @@ fr:
     listing: Liste des guildes
     new: Nouvelle guilde
     blazon: Blason
+    showing: 'Guilde : {{name}}'

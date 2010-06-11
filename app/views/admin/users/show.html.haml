@@ -1,47 +1,16 @@
-%p
-  = User.human_attribute_name('name')
-  \:
-  =h @user.name
+%h2= t('user.showing', :name => @user.name)
 
-%p
-  = User.human_attribute_name('dofusNicknames')
-  \:
-  = @user.dofusNicknames
-
-%p
-  = User.human_attribute_name('guild')
-  \:
-  = !@user.guild.blank? ? @user.guild.name : 'None'
-
-%p
-  = User.human_attribute_name('email')
-  \:
-  = @user.email
-
-%p
-  = User.human_attribute_name('pigMoneyBox')
-  \:
-  = number_to_currency(@user.pigMoneyBox)
-
-%p
-  = User.human_attribute_name('gatherer')
-  \:
-  = @user.gatherer
-
-%p
-  = User.human_attribute_name('admin')
-  \:
-  = @user.admin
-
-%p
-  = User.human_attribute_name('activated')
-  \:
-  = @user.activated
-
-%p
-  = t('created_at')
-  \:
-  = l(@user.created_at)
+= show_for @user do |u|
+  = u.attribute :name
+  = u.attribute :dofusNicknames
+  = u.association :guild, :using => :name
+  = u.attribute :email
+  = u.attribute :pigMoneyBox do
+    = number_to_currency(@user.pigMoneyBox)
+  = u.attribute :gatherer
+  = u.attribute :admin
+  = u.attribute :activated
+  = u.attribute :created_at
 
 = render :partial => 'admin/users/deposit_table', :locals => { :deposits => @user.deposits.validated }
 

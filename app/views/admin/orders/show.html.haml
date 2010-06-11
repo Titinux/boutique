@@ -1,29 +1,13 @@
 %h2= t('order.commandId', :id => @order.id)
 
-%p
-  = User.human_attribute_name('name')
-  \:
-  = @order.user.name
-
-%p
-  = Order.human_attribute_name('state')
-  \:
-  = orderStatusHash[@order.state]
-
-%p
-  = Order.human_attribute_name('totalAmount')
-  \:
-  = number_to_currency(@order.totalAmount)
-
-%p
-  = Order.human_attribute_name('dispatched')
-  \:
-  = boolean_to_image(@order.dispatched)
-
-%p
-  = Order.human_attribute_name('created_at')
-  \:
-  = l(@order.created_at)
+= show_for @order do |o|
+  = o.association :user, :using => :name
+  = o.attribute :state do
+    = orderStatusHash[@order.state]
+  = o.attribute :totalAmount do
+    = number_to_currency(@order.totalAmount)
+  = o.attribute :dispatched
+  = o.attribute :created_at
 
 = block :title => t('order.details') do
   = render :partial => 'admin/order_lines/table', :locals => { :order => @order }

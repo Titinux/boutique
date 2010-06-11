@@ -1,5 +1,4 @@
 %table
-  %col{ :width => '100%'}
   %thead
     %tr
       %th= Asset.model_name.human.pluralize
@@ -12,5 +11,5 @@
       %tr{ :class => "#{cycle('even', 'odd')}" }
         %td= order_line.asset.name
         %td.number= order_line.quantity
-        %td.currency= order_line.unitaryPrice
+        %td.currency= number_to_currency(order_line.unitaryPrice, :precision => 2)
         %td.currency= number_to_currency(order_line.price)

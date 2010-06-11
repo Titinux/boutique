@@ -15,3 +15,4 @@ en:
     listing: Categories listing
     new: New category
     goParent: Go to parent category
+    showing: 'Category : {{name}}'
