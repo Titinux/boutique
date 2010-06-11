@@ -1,18 +1,13 @@
 class CategoriesController < ApplicationController
-  layout 'public'
+  respond_to :html, :xml
 
   # GET /categories
   def index
-    @categories = Category.mainCategories
+    respond_with(@categories = Category.mainCategories)
   end
 
   # GET /category/1
   def show
-    @category = Category.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @category }
-    end
+    respond_with(@category = Category.find(params[:id]))
   end
 end

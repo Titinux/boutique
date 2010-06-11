@@ -1,13 +1,9 @@
 class Admin::JobsController < Admin::AdminController
-  
+  respond_to :html, :xml
+
   # GET /admin/jobs
   # GET /admin/jobs.xml
   def index
-    @jobs = Job.find(:all)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @jobs }
-    end
+    respond_with(@jobs = Job.all)
   end
 end

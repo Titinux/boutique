@@ -26,7 +26,7 @@ class OrdersControllerTest < ActionController::TestCase
 
     get :show, { :id => orders(:four).to_param }
 
-    assert flash[:error].include?('Access forbidden !')
+    assert flash[:error].include?('Order not found !')
     assert_redirected_to user_path
   end
 

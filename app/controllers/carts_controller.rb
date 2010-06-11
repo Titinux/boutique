@@ -1,17 +1,14 @@
 class CartsController < ApplicationController
-  layout 'public'
+  respond_to :html, :xml
 
   # GET /cart
   # GET /cart.xml
   def index
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @assets }
-    end
+    respond_with(@cart = cart_session.cart)
   end
 
-  # GET /admin/assets/1
-  # GET /admin/assets/1.xml
+  # GET /cart/1
+  # GET /cart/1.xml
   def show
     @asset = Asset.find(params[:id])
 

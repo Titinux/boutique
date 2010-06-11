@@ -1,7 +1,8 @@
 class Admin::LogsController < Admin::AdminController
+  respond_to :html, :xml
 
-  # GET /admin/guilds
-  # GET /admin/guilds.xml
+  # GET /admin/logs
+  # GET /admin/logs.xml
   def index
     conditions = []
 
@@ -15,20 +16,12 @@ class Admin::LogsController < Admin::AdminController
 
     @logs = Log.paginate :page => params[:page], :per_page => 50, :conditions => conditions.join(' AND ')
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @logs }
-    end
+    respond_with(@logs)
   end
 
-  # GET /admin/guilds/1
-  # GET /admin/guilds/1.xml
+  # GET /admin/logs/1
+  # GET /admin/logs/1.xml
   def show
-    @log = Log.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @log }
-    end
+    respond_with(@log = Log.find(params[:id]))
   end
 end

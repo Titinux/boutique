@@ -1,5 +1,5 @@
 class DepositsController < ApplicationController
-  layout 'public'
+  respond_to :html, :xml
 
   before_filter :authentication
   before_filter :gathererOnly
@@ -7,25 +7,14 @@ class DepositsController < ApplicationController
   # GET /deposits
   # GET /deposits.xml
   def index
-    @validated_deposits = user_session.user.deposits.validated
-    @waiting_deposits   = user_session.user.deposits.validated(false)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @validated_deposits + @waiting_deposits }
-    end
+    respond_with(@deposits = user_session.user.deposits)
   end
 
 
   # GET /deposits/new
   # GET /deposits/new.xml
   def new
-    @deposit = Deposit.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @deposit }
-    end
+    respond_with(@deposit = Deposit.new)
   end
 
   # POST /deposits
@@ -33,17 +22,9 @@ class DepositsController < ApplicationController
   def create
     @deposit = Deposit.find_or_new({ :user_id => user_session.user.id, :asset_id => params[:deposit][:asset_id], :validated => false})
     @deposit.quantity_modifier = params[:deposit][:quantity_modifier]
+    flash[:notice] = t('deposit.created') if @deposit.save
 
-    respond_to do |format|
-      if @deposit.save
-        flash[:notice] = t('deposit.created')
-        format.html { redirect_to user_deposits_path }
-        format.xml  { render :xml => @deposit, :status => :created, :location => @deposit }
-      else
-        format.html { render :action => :new }
-        format.xml  { render :xml => @deposit.errors, :status => :unprocessable_entity }
-      end
-    end
+    respond_with(@deposit, :location => user_deposits_path)
   end
 
   private

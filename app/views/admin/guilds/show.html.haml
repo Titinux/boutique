@@ -3,7 +3,8 @@
 = show_for @guild do |g|
   = g.attribute :name
   = g.attribute :pictureUri do
-    = image_tag(@guild.pictureUri, :alt => t('pictureOf', :subject => @guild.name))
+    - unless @guild.pictureUri.blank?
+      = image_tag(@guild.pictureUri, :alt => t('pictureOf', :subject => @guild.name))
 
 = link_to_back admin_guilds_path
 = link_to_edit edit_admin_guild_path(@guild)

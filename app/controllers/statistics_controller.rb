@@ -1,6 +1,5 @@
 class StatisticsController < ApplicationController
-  layout 'public'
-
+  
   # GET /statistics
   # GET /statistics.xml
   def index
