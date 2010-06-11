@@ -44,4 +44,8 @@
       %div#footer
         = t('footerText')
 
+    - if Rails.env == 'production'
+      = javascript_include_tag 'http://code.jquery.com/jquery-1.4.2.min.js'
+    - else
+      = javascript_include_tag 'http://code.jquery.com/jquery-1.4.2.js'
     = javascript_include_merged :base

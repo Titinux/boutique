@@ -1,9 +1,5 @@
 ---
 javascripts:
 - base:
-  - prototype
-  - effects
-  - controls
-  - dragdrop
   - rails
   - application
