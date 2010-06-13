@@ -1,4 +1,4 @@
-%h2= t('asset.showing', :name => @asset.name)
+= content_title t('asset.showing', :name => @asset.name)
 
 = show_for @asset do |a|
   = a.attribute :name

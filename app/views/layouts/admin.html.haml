@@ -29,6 +29,9 @@
         - if flash[:error]
           %p.flash.error= flash[:error]
 
+        - if content_for?(:content_title)
+          = yield :content_title
+
         - if content_for?(:sidebar)
           %div#content
             = yield

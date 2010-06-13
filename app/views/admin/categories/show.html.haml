@@ -1,4 +1,4 @@
-%h2= t('category.showing', :name => @category.name)
+= content_title t('category.showing', :name => @category.name)
 
 = show_for @category do |c|
   = c.attribute :name

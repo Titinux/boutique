@@ -84,4 +84,8 @@ module ApplicationHelper
     out << "</table>"
     out.html_safe
   end
+
+  def content_title(title)
+    content_for(:content_title, content_tag(:h2, title))
+  end
 end

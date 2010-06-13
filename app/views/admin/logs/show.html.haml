@@ -1,4 +1,4 @@
-%h2= t('log.showing', :id => @log.to_param)
+= content_title t('log.showing', :id => @log.to_param)
 
 = show_for @log do |l|
   = l.attribute :id

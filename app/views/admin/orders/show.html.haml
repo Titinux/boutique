@@ -1,4 +1,4 @@
-%h2= t('order.commandId', :id => @order.id)
+= content_title t('order.commandId', :id => @order.id)
 
 = show_for @order do |o|
   = o.association :user, :using => :name

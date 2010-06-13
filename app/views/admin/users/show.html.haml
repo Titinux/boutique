@@ -1,4 +1,4 @@
-%h2= t('user.showing', :name => @user.name)
+= content_title t('user.showing', :name => @user.name)
 
 = show_for @user do |u|
   = u.attribute :name

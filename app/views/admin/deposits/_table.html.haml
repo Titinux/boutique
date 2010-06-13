@@ -13,7 +13,6 @@
         %td= deposit.asset.name
         %td.number= deposit.quantity
         - unless deposit.validated
-          %td>
+          %td
             = link_to t('deposit.validate'), validate_admin_deposit_path(deposit), :method => :put
             = link_to t('deposit.refuse'), admin_deposit_path(deposit), :confirm => t('destroy_confirm'), :method => :delete
-

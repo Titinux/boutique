@@ -1,6 +1,7 @@
-%h2= t('deposit.listing')
+= content_title t('deposit.listing')
 
 = render :partial => 'admin/deposits/filter'
 
-%p= render :partial => 'table', :locals => { :deposits => @deposits }
+= render :partial => 'table', :locals => { :deposits => @deposits }
+
 %p= link_to t('deposit.new'), new_admin_deposit_path
