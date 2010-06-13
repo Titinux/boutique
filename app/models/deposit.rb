@@ -10,7 +10,6 @@ class Deposit < ActiveRecord::Base
 
   # Validations
   validates_presence_of :user_id, :asset_id
-  validates_associated  :user, :asset
 
   validates_numericality_of :quantity, :only_integer => true
 

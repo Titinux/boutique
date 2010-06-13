@@ -5,9 +5,9 @@ class Admin::DepositsController < Admin::AdminController
   # GET /deposits.xml
   def index
     @deposits = Deposit.scoped
-    @deposits = @deposits.where(:user_id,  params[:user_id])  unless params[:user_id].blank?
-    @deposits = @deposits.where(:asset_id, params[:asset_id]) unless params[:asset_id].blank?
-    @deposits = @deposits.where(:approved, params[:approved] || false)
+    @deposits = @deposits.where(:user_id =>  params[:user_id])  unless params[:user_id].blank?
+    @deposits = @deposits.where(:asset_id => params[:asset_id]) unless params[:asset_id].blank?
+    @deposits = @deposits.where(:validated => params[:approved] || false)
 
     respond_with(@deposits)
   end
@@ -25,7 +25,7 @@ class Admin::DepositsController < Admin::AdminController
     @deposit.quantity_modifier = params[:deposit][:quantity_modifier]
 
     flash[:notice] = t('deposit.created') if @deposit.save
-    respond_with(@deposit, :location => [:admin, @deposit])
+    respond_with(@deposit, :location => admin_deposits_path)
   end
 
   # DELETE /admin/deposits/1
