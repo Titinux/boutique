@@ -58,7 +58,7 @@ Boutique::Application.routes.draw do |map|
 
       resources :logs, :only => [:index, :show]
 
-      root :to => 'users#index'
+      root :to => 'admin#show'
     end
 
     root :to => 'boutique#show'

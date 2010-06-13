@@ -3,6 +3,9 @@ class Admin::AdminController < ApplicationController
 
   before_filter :autorization
 
+  def show
+  end
+
   private
 
   def autorization
