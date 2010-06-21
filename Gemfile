@@ -5,7 +5,7 @@ gem 'rails', '3.0.0.beta4'
 gem 'ruby-mysql', '2.9.3'
 gem 'haml', '3.0.4'
 #gem 'javan-whenever', :lib => false, :source => 'http://gems.github.com'
-gem 'rack-rack-contrib'
+gem 'rack-contrib', '1.0.1'
 
 gem 'delayed_job', '2.0.3'
 gem 'will_paginate', :git => 'http://github.com/mislav/will_paginate.git', :branch => 'rails3'
