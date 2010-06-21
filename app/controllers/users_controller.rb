@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  respond_to :html, :xml
-
   before_filter :authentication, :except => [:new, :create, :activate, :passwordReset, :passwordResetForm]
   before_filter :noAuthentication, :only => [:new, :create, :activate, :passwordReset, :passwordResetForm]
 
@@ -29,7 +27,7 @@ class UsersController < ApplicationController
     end
 
     @user = User.new(params[:user])
-    flash[:notice] = t('user.create_success') if @user.save
+    @user.save
 
     respond_with(@user)
   end
@@ -43,7 +41,7 @@ class UsersController < ApplicationController
       ! %w(email guild_id password password_confirmation dofusNicknames).include? key
     end
 
-    flash[:notice] = t('user.update_success') if @user.update_attributes(params[:user])
+    @user.update_attributes(params[:user])
 
     respond_with(@user, :location => user_path)
   end

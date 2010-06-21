@@ -1,6 +1,4 @@
 class Admin::DepositsController < Admin::AdminController
-  respond_to :html, :xml
-
   # GET /deposits
   # GET /deposits.xml
   def index
@@ -24,7 +22,7 @@ class Admin::DepositsController < Admin::AdminController
     @deposit = Deposit.find_or_new({ :user_id => params[:deposit][:user_id], :asset_id => params[:deposit][:asset_id], :validated => params[:deposit][:validated]})
     @deposit.quantity_modifier = params[:deposit][:quantity_modifier]
 
-    flash[:notice] = t('deposit.created') if @deposit.save
+    @deposit.save
     respond_with(@deposit, :location => admin_deposits_path)
   end
 
@@ -34,7 +32,7 @@ class Admin::DepositsController < Admin::AdminController
     @deposit = Deposit.find(params[:id])
     @deposit.destroy
 
-    respond_with(@deposit, :location => [:admin, @deposit])
+    respond_with(:admin, @deposit)
   end
 
   # PUT /admin/deposits/1/validate
@@ -43,6 +41,6 @@ class Admin::DepositsController < Admin::AdminController
     @deposit = Deposit.find(params[:id])
     @deposit.approve ? t('deposit.validation_success') : t('deposit.validation_failure')
 
-    respond_with(@deposit, :location => [:admin, @deposit])
+    respond_with(:admin, @deposit)
   end
 end

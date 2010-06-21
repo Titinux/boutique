@@ -1,7 +1,5 @@
 class Admin::OrdersController < Admin::AdminController
-  respond_to :html, :xml
-
-  # GET /admin/orders
+ # GET /admin/orders
   # GET /admin/orders.xml
   def index
     @orders = Order.includes(:user, :lines)
@@ -42,18 +40,18 @@ class Admin::OrdersController < Admin::AdminController
   # POST /admin/orders.xml
   def create
     @order = Order.new(params[:order])
-    flash[:notice] = 'Order was successfully created.' if @order.save
+    @order.save
 
-    respond_with(@order, :location => [:admin, @order])
+    respond_with(:admin, @order)
   end
 
   # PUT /admin/orders/1
   # PUT /admin/orders/1.xml
   def update
     @order = Order.find(params[:id])
-    flash[:notice] = 'Order was successfully updated.' if @order.update_attributes(params[:order])
+    @order.update_attributes(params[:order])
 
-    respond_with(@order, :location => [:admin, @order])
+    respond_with(:admin, @order)
   end
 
   # DELETE /admin/orders/1
@@ -62,6 +60,6 @@ class Admin::OrdersController < Admin::AdminController
     @order = Order.find(params[:id])
     @order.destroy
 
-    respond_with(@order, :location => [:admin, @order])
+    respond_with(:admin, @order)
   end
 end

@@ -1,6 +1,4 @@
 class Admin::AssetsController < Admin::AdminController
-  respond_to :html, :xml
-
   # GET /admin/assets
   # GET /admin/assets.xml
   def index
@@ -28,18 +26,18 @@ class Admin::AssetsController < Admin::AdminController
   # POST /admin/assets.xml
   def create
     @asset = Asset.new(params[:asset])
-    flash[:notice] = "Asset was successfully created." if @asset.save
+    @asset.save
 
-    respond_with(@asset, :location => [:admin, @asset])
+    respond_with(:admin, @asset)
   end
 
   # PUT /admin/assets/1
   # PUT /admin/assets/1.xml
   def update
     @asset = Asset.find(params[:id])
-    flash[:notice] = "Asset was successfully updated." if @asset.update_attributes(params[:asset])
+    @asset.update_attributes(params[:asset])
 
-    respond_with(@asset, :location => [:admin, @asset])
+    respond_with(:admin, @asset)
   end
 
   # DELETE /admin/assets/1
@@ -48,6 +46,6 @@ class Admin::AssetsController < Admin::AdminController
     @asset = Asset.find(params[:id])
     @asset.destroy
 
-    respond_with(@asset, :location => [:admin, @asset])
+    respond_with(:admin, @asset)
   end
 end

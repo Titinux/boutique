@@ -1,6 +1,4 @@
 class Admin::GuildsController < Admin::AdminController
-  respond_to :html, :xml
-
   # GET /admin/guilds
   # GET /admin/guilds.xml
   def index
@@ -28,18 +26,18 @@ class Admin::GuildsController < Admin::AdminController
   # POST /admin/guilds.xml
   def create
     @guild = Guild.new(params[:guild])
-    flash[:notice] = 'Guild was successfully created.' if @guild.save
+    @guild.save
 
-    respond_with(@guild, :location => [:admin, @guild])
+    respond_with(:admin, @guild)
   end
 
   # PUT /admin/guilds/1
   # PUT /admin/guilds/1.xml
   def update
     @guild = Guild.find(params[:id])
-    flash[:notice] = 'Guild was successfully updated.' if @guild.update_attributes(params[:guild])
+    @guild.update_attributes(params[:guild])
 
-    respond_with(@guild, :location => [:admin, @guild])
+    respond_with(:admin, @guild)
   end
 
   # DELETE /admin/guilds/1
@@ -48,6 +46,6 @@ class Admin::GuildsController < Admin::AdminController
     @guild = Guild.find(params[:id])
     @guild.destroy
 
-    respond_with(@guild, :location => [:admin, @guild])
+    respond_with(:admin, @guild)
   end
 end

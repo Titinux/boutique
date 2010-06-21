@@ -1,6 +1,4 @@
 class Admin::CategoriesController < Admin::AdminController
-  respond_to :html, :xml
-
   # GET /admin/categories
   # GET /admin/categories.xml
   def index
@@ -28,18 +26,18 @@ class Admin::CategoriesController < Admin::AdminController
   # POST /admin/categories.xml
   def create
     @category = Category.new(params[:category])
-    flash[:notice] = 'Category was successfully created.' if @category.save
+    @category.save
 
-    respond_with(@category, :location => [:admin, @category])
+    respond_with(:admin, @category)
 end
 
   # PUT /admin/categories/1
   # PUT /admin/categories/1.xml
   def update
     @category = Category.find(params[:id])
-    flash[:notice] = 'Category was successfully updated.' if @category.save
+    @category.save
 
-    respond_with(@category, :location => [:admin, @category])
+    respond_with(:admin, @category)
   end
 
   # DELETE /admin/categories/1
@@ -48,6 +46,6 @@ end
     @category = Category.find(params[:id])
     @category.destroy
 
-    respond_with(@category, :location => [:admin, @category])
+    respond_with(:admin, @category)
   end
 end

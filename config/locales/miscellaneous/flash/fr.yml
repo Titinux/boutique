@@ -1,0 +1,10 @@
+fr:
+  flash:
+    actions:
+      create:
+        notice: "La création à bien été effectuée."
+      update:
+        notice: "La mise à jour à bien été effectuée."
+      destroy:
+        notice: "Destruction effective."
+        alert: "La destruction est impossible."

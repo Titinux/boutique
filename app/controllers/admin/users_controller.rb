@@ -1,6 +1,4 @@
 class Admin::UsersController < Admin::AdminController
-  respond_to :html, :xml
-
   # GET /admin/users
   # GET /admin/users.xml
   def index
@@ -37,18 +35,18 @@ class Admin::UsersController < Admin::AdminController
   # POST /admin/users.xml
   def create
     @user = User.new(params[:user])
-    flash[:notice] = 'User was successfully created.' if @user.save
+    @user.save
 
-    respond_with(@user, :location => [:admin, @user])
+    respond_with(:admin, @user)
   end
 
   # PUT /admin/users/1
   # PUT /admin/users/1.xml
   def update
     @user = User.find(params[:id])
-    flash[:notice] = 'User was successfully updated.' if @user.update_attributes(params[:user])
+    @user.update_attributes(params[:user])
 
-    respond_with(@user, :location => [:admin, @user])
+    respond_with(:admin, @user)
   end
 
   # DELETE /admin/users/1
@@ -57,6 +55,6 @@ class Admin::UsersController < Admin::AdminController
     @user = User.find(params[:id])
     @user.destroy
 
-    respond_with(@user, :location => [:admin, @user])
+    respond_with(:admin, @user)
   end
 end

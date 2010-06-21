@@ -1,6 +1,4 @@
 class DepositsController < ApplicationController
-  respond_to :html, :xml
-
   before_filter :authentication
   before_filter :gathererOnly
 
@@ -22,7 +20,7 @@ class DepositsController < ApplicationController
   def create
     @deposit = Deposit.find_or_new({ :user_id => user_session.user.id, :asset_id => params[:deposit][:asset_id], :validated => false})
     @deposit.quantity_modifier = params[:deposit][:quantity_modifier]
-    flash[:notice] = t('deposit.created') if @deposit.save
+    @deposit.save
 
     respond_with(@deposit, :location => user_deposits_path)
   end
