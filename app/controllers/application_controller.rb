@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
 
   def authentication
     unless user_session.login?
-      flash[:error] = t('userSession.youHaveToLog')
+      flash[:alert] = t('userSession.youHaveToLog')
       session[:urlRequested] = request.url
       redirect_to login_path
       false

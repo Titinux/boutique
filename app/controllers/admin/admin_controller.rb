@@ -10,7 +10,7 @@ class Admin::AdminController < ApplicationController
 
   def autorization
     unless user_session.login? and user_session.user.admin
-      flash[:error] = 'You\'re not allowed to browse admin section'
+      flash[:alert] = 'You\'re not allowed to browse admin section'
       redirect_to root_path
       false
     end

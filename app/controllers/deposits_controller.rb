@@ -29,7 +29,7 @@ class DepositsController < ApplicationController
 
   def gathererOnly
     unless user_session.user.gatherer
-      flash[:error] = 'You can\'t view or make deposits if you\'re not gatherer'
+      flash[:alert] = 'You can\'t view or make deposits if you\'re not gatherer'
       redirect_to root_path
       false
     end

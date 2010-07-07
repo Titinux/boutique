@@ -26,8 +26,8 @@
         - if flash[:warning]
           %p.flash.warning= flash[:warning]
 
-        - if flash[:error]
-          %p.flash.error= flash[:error]
+        - if flash[:alert]
+          %p.flash.alert= flash[:alert]
 
         - if content_for?(:content_title)
           = yield :content_title

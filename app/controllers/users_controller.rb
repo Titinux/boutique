@@ -60,7 +60,7 @@ class UsersController < ApplicationController
         format.html { redirect_to login_path }
         format.xml  { head :ok }
       else
-        flash[:error] = 'This activation key doesn\'t match any account !'
+        flash[:alert] = 'This activation key doesn\'t match any account !'
         format.html { redirect_to root_path }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
@@ -80,7 +80,7 @@ class UsersController < ApplicationController
       UserTools::passwordReset(@user)
       flash[:notice] = t('user.newPasswordSent')
     else
-      flash[:error] = t('user.emailNotMatch')
+      flash[:alert] = t('user.emailNotMatch')
     end
 
     redirect_to root_path
@@ -90,7 +90,7 @@ class UsersController < ApplicationController
 
   def noAuthentication
     if user_session.login?
-      flash[:error] = t('userSession.youHaveToUnLog')
+      flash[:alert] = t('userSession.youHaveToUnLog')
       redirect_to root_path
       false
     end
