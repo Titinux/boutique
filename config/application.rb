@@ -14,9 +14,9 @@ module Boutique
 
     # Add additional load paths for your own custom dirs
     # config.load_paths += %W( #{config.root}/extras )
-    config.load_paths << "#{config.root}/app/builders"
-    config.load_paths << "#{config.root}/app/jobs"
-    config.load_paths << "#{config.root}/app/sweepers"
+    config.autoload_paths << "#{config.root}/app/builders"
+    config.autoload_paths << "#{config.root}/app/jobs"
+    config.autoload_paths << "#{config.root}/app/sweepers"
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named
