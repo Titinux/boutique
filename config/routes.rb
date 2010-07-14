@@ -1,4 +1,4 @@
-Boutique::Application.routes.draw do |map|
+Boutique::Application.routes.draw do
   scope '(:locale)', :locale => /en|fr/ do
     # User authentication
     devise_for :users, :path => 'profile', :skip => [:sessions] do
