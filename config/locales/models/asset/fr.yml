@@ -16,4 +16,4 @@ fr:
     editing: Editer la ressource
     listing: Liste des ressources
     new: Nouvelle ressource
-    showing: 'Ressource : {{name}}'
+    showing: 'Ressource : %{name}'

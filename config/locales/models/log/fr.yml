@@ -15,4 +15,4 @@ fr:
   # Logs
   log:
     listing: Liste des journaux
-    showing: 'Journal : {{id}}'
+    showing: 'Journal : %{id}'

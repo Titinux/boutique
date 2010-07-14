@@ -18,5 +18,5 @@ en:
   administrator:
     editing: Edit administrator
     listing: Administrator listing
-    showing: 'Administrator : {{name}}'
+    showing: 'Administrator : %{name}'
     new: New administrator

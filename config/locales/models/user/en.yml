@@ -25,7 +25,7 @@ en:
   user:
     editing: Edit user
     listing: Users listing
-    showing: 'User : {{name}}'
+    showing: 'User : %{name}'
     new: New user
     block: User block
     infos: Informations

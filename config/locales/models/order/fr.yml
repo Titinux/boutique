@@ -45,4 +45,4 @@ fr:
       prepared: Commande prête
       delivered: Commande livrée
     createSuccess: La commande a bien été créée.
-    commandId: Commande n°{{id}}
+    commandId: Commande n°%{id}

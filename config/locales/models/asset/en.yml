@@ -16,4 +16,4 @@ en:
     editing: Edit asset
     listing: Listing assets
     new: New asset
-    showing: 'Asset : {{name}}'
+    showing: 'Asset : %{name}'

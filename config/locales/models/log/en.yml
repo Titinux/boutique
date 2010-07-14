@@ -15,4 +15,4 @@ en:
   # Logs
   log:
     listing: Logs listing
-    showing: 'Log : {{id}}'
+    showing: 'Log : %{id}'

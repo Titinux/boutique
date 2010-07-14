@@ -17,5 +17,5 @@ fr:
   administrator:
     editing: Modification de l'administrator
     listing: Liste des administrateurs
-    showing: 'Administrateur : {{name}}'
+    showing: 'Administrateur : %{name}'
     new: Nouvel administrateur

@@ -1,7 +1,7 @@
 fr:
   # Misc
   picture: Image
-  pictureOf: Image de {{subject}}
+  pictureOf: Image de %{subject}
   filters: Filtres
   startDate: Date de début
   endDate: Date de fin

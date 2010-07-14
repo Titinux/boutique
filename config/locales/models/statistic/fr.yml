@@ -13,4 +13,4 @@ fr:
 
     pigMoneyBox:
       sum : Total de tout les cochons tirelire
-      richests: Les {{count}} personnes les plus riches
+      richests: Les %{count} personnes les plus riches

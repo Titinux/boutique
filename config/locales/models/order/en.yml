@@ -45,4 +45,4 @@ en:
       prepared: Order prepared
       delivered: Order delivered
     createSuccess: Order was successfully created.
-    commandId: Order #{{id}}
+    commandId: Order #%{id}

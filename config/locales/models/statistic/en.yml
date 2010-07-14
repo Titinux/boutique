@@ -13,4 +13,4 @@ en:
 
     pigMoneyBox:
       sum : Sum of all pig moneyboxes
-      richests: The {{count}} richest people
+      richests: The %{count} richest people
