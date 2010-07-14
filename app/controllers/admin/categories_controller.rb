@@ -35,7 +35,7 @@ end
   # PUT /admin/categories/1.xml
   def update
     @category = Category.find(params[:id])
-    @category.save
+    @category.update_attributes(params[:category])
 
     respond_with(:admin, @category)
   end
