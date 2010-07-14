@@ -1,0 +1,13 @@
+= content_title t('administrator.listing')
+
+%p.pagination
+  - (['*'] + ('A'..'Z').to_a).each do |letter|
+    - if letter.upcase == @letter.upcase
+      %em= letter
+    - else
+      = link_to letter, admin_administrators_path(:letter => letter )
+
+= render :partial => 'admin/administrators/table', :locals => { :administrators => @administrators }
+
+%br
+= link_to_add new_admin_administrator_path, :text => t('administrator.new'), :format => :long

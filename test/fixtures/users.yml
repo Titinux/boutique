@@ -1,103 +1,98 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-<% include Crypt %>
-
-# Admins
-Boule:
-  name: Boule
-  guild: Marchands_d_hyze
-  pigMoneyBox: 1000
-  admin: true
-  gatherer: true
-  email: boule@truc.com
-  password_salt: <%= salt = computeSalt %>
-  password_hash: <%= computePassword(salt, 'boule') %>
-  activationKey:
-  activated: true
-
-Bill:
-  name: Bill
-  guild: Marchands_d_hyze
-  pigMoneyBox: 1000
-  admin: true
-  gatherer: true
-  email: bill@truc.com
-  password_salt: <%= salt = computeSalt %>
-  password_hash: <%= computePassword(salt, 'bill') %>
-  activationKey:
-  activated: true
-
-# Tax collector
-Marchands_d_hyze:
-  name: Marchands d'Hyze
-  guild: Marchands_d_hyze
-  pigMoneyBox: 0
-  admin: false
-  gatherer: true
-  email: truc@truc.com
-  password_salt: 
-  password_hash: 
-  activationKey:
-  activated: false
-
-# Gatherer
-Toto:
-  name: Toto
-  guild: Marchands_d_hyze
-  pigMoneyBox: 0
-  admin: false
-  gatherer: true
-  email: toto@truc.com
-  password_salt: <%= salt = computeSalt %>
-  password_hash: <%= computePassword(salt, 'toto') %>
-  activationKey:
-  activated: true
-
-Tata:
-  name: Tata
-  guild: Marchands_d_hyze
-  pigMoneyBox: 0
-  admin: false
-  gatherer: true
-  email: tata@truc.com
-  password_salt: <%= salt = computeSalt %>
-  password_hash: <%= computePassword(salt, 'tata') %>
-  activationKey:
-  activated: true  
-
-# Clients
-Pim:
-  name: Pim
-  guild: Famakna_food
-  pigMoneyBox: 0
-  admin: false
-  gatherer: false
-  email: pim@truc.com
-  password_salt: <%= salt = computeSalt %>
-  password_hash: <%= computePassword(salt, 'pim') %>
-  activationKey:
-  activated: true
-
-Pam:
-  name: Pam
-  guild: Famakna_food
-  pigMoneyBox: 0
-  admin: false
-  gatherer: false
-  email: pam@truc.com
-  password_salt: <%= salt = computeSalt %>
-  password_hash: <%= computePassword(salt, 'pam') %>
-  activationKey:
-  activated: true
-
-Poum:
-  name: Poum
-  guild: Famakna_food
-  pigMoneyBox: 0
-  admin: false
-  gatherer: false
-  email: pam@truc.com
-  password_salt: <%= salt = computeSalt %>
-  password_hash: <%= computePassword(salt, 'poum') %>
-  activationKey: 9667661709257364838813232864938639864038496694630816628244506874
-  activated: false
+## Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+#
+## Admins
+#Boule:
+#  name: Boule
+#  guild: Marchands_d_hyze
+#  pigMoneyBox: 1000
+#  dofusNicknames: BoulePerso
+#  admin: true
+#  gatherer: true
+#  email: boule@truc.com
+#  password: 'boule'
+#  confirmation_token:
+#  confirmed_at: <%= Time.now %>
+##    t.string   "password_salt",                       :default => "",    :null => false
+##    t.string   "encrypted_password",   :limit => 128, :default => "",    :null => false
+#
+#
+#
+#Bill:
+#  name: Bill
+#  guild: Marchands_d_hyze
+#  pigMoneyBox: 1000
+#  admin: true
+#  gatherer: true
+#  email: bill@truc.com
+#  password: 'bill'
+#  confirmation_token:
+#  confirmed_at: <%= Time.now %>
+#
+## Tax collector
+#Marchands_d_hyze:
+#  name: Marchands d'Hyze
+#  guild: Marchands_d_hyze
+#  pigMoneyBox: 0
+#  admin: false
+#  gatherer: true
+#  email: truc@truc.com
+#  password:
+#  confirmation_token:
+#  confirmed_at:
+#
+## Gatherer
+#Toto:
+#  name: Toto
+#  guild: Marchands_d_hyze
+#  pigMoneyBox: 0
+#  admin: false
+#  gatherer: true
+#  email: toto@truc.com
+#  password: 'toto'
+#  confirmation_token:
+#  confirmed_at: <%= Time.now %>
+#
+#Tata:
+#  name: Tata
+#  guild: Marchands_d_hyze
+#  pigMoneyBox: 0
+#  admin: false
+#  gatherer: true
+#  email: tata@truc.com
+#  password: 'tata'
+#  confirmation_token:
+#  confirmed_at: <%= Time.now %>
+#
+## Clients
+#Pim:
+#  name: Pim
+#  guild: Famakna_food
+#  pigMoneyBox: 0
+#  admin: false
+#  gatherer: false
+#  email: pim@truc.com
+#  password: 'pim'
+#  confirmation_token:
+#  confirmed_at: <%= Time.now %>
+#
+#Pam:
+#  name: Pam
+#  guild: Famakna_food
+#  pigMoneyBox: 0
+#  admin: false
+#  gatherer: false
+#  email: pam@truc.com
+#  password: 'pam'
+#  confirmation_token:
+#  confirmed_at: <%= Time.now %>
+#
+#Poum:
+#  name: Poum
+#  guild: Famakna_food
+#  pigMoneyBox: 0
+#  admin: false
+#  gatherer: false
+#  email: pam@truc.com
+#  password: 'poum'
+#  confirmation_token: 9667661709257364838813232864938639864038496694630816628244506874
+#  confirmed_at:

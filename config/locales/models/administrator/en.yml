@@ -1,0 +1,22 @@
+en:
+  activerecord:
+    models:
+      administrator: Administrator
+
+    attributes:
+      administrator:
+        name: Username
+        email: Email
+        passwordSalt: Random adding to password
+        passwordHash: Password check sum
+        password: Password
+        password_confirmation: Password confirmation
+        created_at: Created at
+
+
+  # Administrators
+  administrator:
+    editing: Edit administrator
+    listing: Administrator listing
+    showing: 'Administrator : {{name}}'
+    new: New administrator

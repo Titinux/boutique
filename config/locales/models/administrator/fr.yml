@@ -1,0 +1,21 @@
+fr:
+  activerecord:
+    models:
+      administrator: Administrateur
+
+    attributes:
+      administrator:
+        name: Nom
+        email: E-mail
+        passwordSalt: Ajout aléatoire au mot de passe
+        passwordHash: Somme de contrôle du mot de passe
+        password: Mot de passe
+        password_confirmation: Confirmation du mot de passe
+        created_at: Créé le
+
+  # Administrators
+  administrator:
+    editing: Modification de l'administrator
+    listing: Liste des administrateurs
+    showing: 'Administrateur : {{name}}'
+    new: Nouvel administrateur

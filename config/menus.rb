@@ -18,23 +18,7 @@
     },
     {
       :name => I18n.t('user.profile'),
-      :link => user_path, :condition => user_session.login?
-    },
-    {
-      :name => I18n.t('navigate.adminPart'),
-      :link => admin_root_path,
-      :condition => (user_session.login? and user_session.user.admin)
-    },
-    {
-      :name => I18n.t('userSession.logout'),
-      :link => logout_path,
-      :link_opts => { :method => :delete },
-      :condition => user_session.login?
-    },
-    {
-      :name => I18n.t('userSession.authenticate'),
-      :link => login_path,
-      :condition => (not user_session.login?)
+      :link => user_path
     }
   ],
   :admin => [
@@ -45,6 +29,10 @@
     {
       :name => User.model_name.human,
       :link => admin_users_path
+    },
+    {
+      :name => Administrator.model_name.human.pluralize,
+      :link => admin_administrators_path
     },
     {
       :name => Category.model_name.human,
@@ -77,6 +65,10 @@
     {
       :name => I18n.t('navigate.publicPart'),
       :link => root_path
+    },
+    {
+      :name => I18n.t('devise.links.sign_out'),
+      :link => destroy_administrator_session_path
     }
   ],
   :statistics => {

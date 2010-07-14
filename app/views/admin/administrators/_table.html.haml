@@ -1,0 +1,16 @@
+%table
+  %thead
+    %tr
+      %th= Administrator.human_attribute_name('name')
+      %th= Administrator.human_attribute_name('email')
+      %th= t('action').pluralize
+
+  %tbody
+    - administrators.each do |administrator|
+      %tr{ :class => "#{cycle('even', 'odd')}" }
+        %td= administrator.name
+        %td= administrator.email
+        %td.actions
+          = link_to_show admin_administrator_path(administrator)
+          = link_to_edit edit_admin_administrator_path(administrator)
+          = link_to_destroy admin_administrator_path(administrator)

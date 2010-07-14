@@ -1,0 +1,11 @@
+= content_title t('devise.links.sign_in')
+
+Authenticate as admin !
+
+= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+  = f.input :name
+  = f.input :password
+
+  = f.button :submit
+
+= render :partial => 'devise/shared/links'

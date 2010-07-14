@@ -1,0 +1,5 @@
+%p= 'Bienvenue #{@resource.name} !'
+
+%p Vous pouvez confirmer votre inscription en cliquant sur le lien ci-dessous :
+
+%p= link_to 'Je confirme mon inscription', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token)

@@ -1,5 +1,16 @@
 Boutique::Application.routes.draw do |map|
-  scope '(:locale)' do
+  scope '(:locale)', :locale => /en|fr/ do
+    # User authentication
+    devise_for :users, :path => 'profile', :skip => [:sessions] do
+      scope :controller => 'devise/sessions', :as => :user_session do
+        get  :new,     :path => 'sign_in'
+        post :create,  :path => 'sign_in', :as => ""
+        get  :destroy, :path => 'sign_out'
+      end
+    end
+
+    # Administrator authentication
+    devise_for :administrators, :path => 'admin'
 
     # Front page
     resource :boutique, :only => [:show]
@@ -15,50 +26,45 @@ Boutique::Application.routes.draw do |map|
       end
     end
 
-    # Login system
-    post 'autenticate' => 'user_session#create', :as => :autenticate
-    get 'login' => 'user_session#new', :as => :login
-    delete 'logout' => 'user_session#destroy', :as => :logout
-
     # Statistics
     resources :statistics, :only => [ :index, :show ]
 
     # User profile
-    resource :user, :except => [ :index, :destroy ] do
-      match 'password/reset', :to => :edit_password,   :via => :get,  :as => 'edit_password'
-      match 'password',       :to => :update_password, :via => :post, :as => 'password'
-
-      match 'activate/:key', :to => :activate, :via => :get, :as => 'activate'
-
+    resource :user, :path => 'profile' do
       resources :orders, :only => [ :index, :show, :update ]
       resources :deposits, :only => [:index, :new, :create ]
     end
 
     # Partie admin du site.
-    namespace :admin do
-      resources :guilds
-      resources :users
+    authenticate(:administrator) do
+      namespace :admin do
+        # Administrators
+        resources :administrators
 
-      resources :categories
-      resources :assets
+        resources :guilds
+        resources :users
 
-      resources :orders
+        resources :categories
+        resources :assets
 
-      resources :config_tree
+        resources :orders
 
-      resources :deposits, :except => [:edit, :update] do
-        member do
-          put :validate
+        resources :config_tree
+
+        resources :deposits, :except => [:edit, :update] do
+          member do
+            put :validate
+          end
         end
+
+        resources :statistics, :only => [ :index, :show ]
+
+        resources :jobs, :only => [:index]
+
+        resources :logs, :only => [:index, :show]
+
+        root :to => 'admin#show'
       end
-
-      resources :statistics, :only => [ :index, :show ]
-
-      resources :jobs, :only => [:index]
-
-      resources :logs, :only => [:index, :show]
-
-      root :to => 'admin#show'
     end
 
     root :to => 'boutique#show'

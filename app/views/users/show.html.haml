@@ -8,8 +8,6 @@
     = u.association :guild, :using => :name
     = u.attribute :gatherer do
       = boolean_to_image(@user.gatherer)
-    = u.attribute :admin do
-      = boolean_to_image(@user.admin)
 
   = link_to_edit edit_user_path
 

@@ -1,0 +1,9 @@
+= content_title t('administrator.showing', :name => @administrator.name)
+
+= show_for @administrator do |u|
+  = u.attribute :name
+  = u.attribute :email
+  = u.attribute :created_at
+
+= link_to_back admin_administrators_path
+= link_to_edit edit_admin_administrator_path(@addministrator)

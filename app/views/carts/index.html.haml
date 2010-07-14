@@ -1,11 +1,8 @@
 - unless cart_session.cart.empty?
-  = render :partial => 'table', :locals => { :cart => @cart }
+  = render :partial => 'table', :locals => { :cart => cart_session.cart }
   = link_to t('cart.empty'), destroy_all_carts_path, :method => :delete
   |
-  - if user_session.login?
-    = link_to t('order.makeOrder'), to_order_carts_path, :method => :put
-  - else
-    = t('order.youHaveToLog')
+  = link_to t('order.makeOrder'), to_order_carts_path, :method => :put
 
 - else
   = t('cart.cart_empty')

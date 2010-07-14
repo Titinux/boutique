@@ -1,7 +1,7 @@
 # Edit this Gemfile to bundle your application's dependencies.
 source 'http://gemcutter.org'
 
-gem 'rails', '3.0.0.beta4'
+gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'ruby-mysql', '2.9.3'
 gem 'haml', '3.0.4'
 #gem 'javan-whenever', :lib => false, :source => 'http://gems.github.com'
@@ -12,3 +12,4 @@ gem 'will_paginate', :git => 'http://github.com/mislav/will_paginate.git', :bran
 gem 'simple_form', '1.2.0'
 gem 'show_for', '0.2.2'
 gem 'responders', '0.6.1'
+gem 'devise', :git => 'git://github.com/plataformatec/devise.git'

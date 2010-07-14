@@ -1,5 +1,14 @@
 class User < ActiveRecord::Base
-  include Crypt
+  devise :database_authenticatable, :confirmable, :validatable,
+         :timeoutable, :recoverable, :trackable, :lockable,
+         :encryptor => :boutique_encryptor,
+         :unlock_strategy => :email,
+         :timeout_in => 15.days
+
+  # Attributes
+  attr_accessible :name, :email, :password, :password_confirmation,
+                  :pigMoneyBox, :dofusNicknames, :guild_id, :gatherer,
+                  :locked_at
 
   # Associations
   belongs_to :guild
@@ -8,48 +17,19 @@ class User < ActiveRecord::Base
   has_many :orders
 
   #Validations
-  validates_length_of :name, :within => 3..25, :allow_blank => false
-  validates_uniqueness_of :name
+  validates :name, :presence => true, :uniqueness => true, :length => 3..25, :allow_blank => false
 
   validates_associated :guild
   validates_associated :deposits
 
-  validates_presence_of :password, :on => :create
-  validates_length_of :password, :within => 6..25, :allow_blank => true
-  validates_confirmation_of :password
-
   validates_length_of :dofusNicknames, :maximum => 255, :allow_blank => true
 
-  validates_presence_of :email
-  validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/
-
   # Scopes
-  default_scope :order => :name, :include => :guild
-  scope :admins, where(:admin => true)
+  default_scope :order => :name
 
-  # Callbacks
-  before_create :makeActivationKey
-  after_create :send_activation_mail
-
-  # Passwords can't be retrived
-  def password
-    @password ||= ''
-  end
-
-  # For a new password we generate salt and hash
-  def password=(pass)
-    return if pass.blank?
-
-    @password = pass
-
-    # Generate salt
-    salt = computeSalt
-
-    self.password_salt, self.password_hash = salt, computePassword(salt, pass)
-  end
-
-  def autenticate(password)
-    computePassword(self.password_salt, password) == self.password_hash
+  def self.find_for_database_authentication(conditions)
+    value = conditions[authentication_keys.first]
+    User.unscoped.where("name = ? or email = ?", value, value).first
   end
 
   def addMoney
@@ -61,20 +41,5 @@ class User < ActiveRecord::Base
     self.pigMoneyBox ||= 0
 
     self.pigMoneyBox += @addMoney
-  end
-
-  def activate
-    self.activationKey = nil
-    self.activated = true
-  end
-
-  private
-
-  def makeActivationKey
-    self.activationKey = Array.new(64){rand(10).to_s}.join
-  end
-
-  def send_activation_mail
-     UsersMailer.user_account_created(self).deliver
   end
 end

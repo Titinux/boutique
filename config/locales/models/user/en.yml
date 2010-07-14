@@ -12,12 +12,14 @@ en:
         admin: Admin.
         gatherer: Gatherer
         passwordSalt: Random adding to password
-        passwordHash: Password control sum
+        passwordHash: Password check sum
         password: Password
         password_confirmation: Password confirmation
         dofusNicknames: Dofus nicknames
         activated: Account activated
-        created_at: Créé le
+        created_at: Created at
+        locked_at?: Locked
+        confirmed_at?: Confirmed
 
   # Users
   user:
@@ -34,9 +36,4 @@ en:
     profile: Profile
     update_success: Your profile was successfully updated.
     create_success: Your profile was successfully created.
-    create_account: Create an account
-    idAndOrPasswordLost: Account name or/and password lost
-    sendMeMyIds: Send me my name and password
-    emailNotMatch: This email doesn't match any user !
-    newPasswordSent: Your account name and a new password have been sent to you.
     system: System

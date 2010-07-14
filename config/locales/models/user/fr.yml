@@ -18,6 +18,8 @@ fr:
         dofusNicknames: Pseudos Dofus
         activated: Compte activé
         created_at: Créé le
+        locked_at?: Bloqué
+        confirmed_at?: Confirmé
 
   # Users
   user:
@@ -34,9 +36,6 @@ fr:
     profile: Profil
     update_success: Votre profil a été correctement mis à jour.
     create_success: Votre compte a été correctement créé.
-    create_account: Créer un compte
-    idAndOrPasswordLost: Nom de compte ou/et mot de passe perdu
-    sendMeMyIds: Envoyez-moi mes identifiants
-    emailNotMatch: Cette adresse e-mail ne correspond à aucun utilisateur.
-    newPasswordSent: Votre nom de compte et un nouveau mot de passe vous ont été envoyés.
     system : Système
+    name_hint: Vous pouvez utiliser votre nom de compte ou votre addresse e-mail.
+

@@ -2,6 +2,9 @@
   = block :title => t('user.block') do
     %ul
       %li= link_to t('user.infos') , user_path
-      - if user_session.user.gatherer
+      - if current_user.gatherer
         %li= link_to Deposit.model_name.human , user_deposits_path
       %li= link_to Order.model_name.human.pluralize, user_orders_path
+
+      %li= link_to t('devise.links.sign_out'), destroy_user_session_path
+

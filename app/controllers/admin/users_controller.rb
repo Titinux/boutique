@@ -44,6 +44,10 @@ class Admin::UsersController < Admin::AdminController
   # PUT /admin/users/1.xml
   def update
     @user = User.find(params[:id])
+    params[:user].delete(:password) if params[:user][:password].blank?
+    params[:user].delete(:password_confirmation) if params[:user][:password_confirmation].blank?
+    params[:user][:locked_at] = params[:user][:locked_at] == '1' ? Time.now : nil
+
     @user.update_attributes(params[:user])
 
     respond_with(:admin, @user)

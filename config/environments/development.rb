@@ -27,5 +27,5 @@ Boutique::Application.configure do
   #  :domain => "boutique.hyze.bagu.biz"
   #}
 
-  #config.action_mailer.default_url_options = { :host => "localhost:10081" }
+  config.action_mailer.default_url_options = { :host => "localhost:3000" }
 end
