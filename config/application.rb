@@ -14,6 +14,7 @@ module Boutique
 
     # Add additional load paths for your own custom dirs
     # config.load_paths += %W( #{config.root}/extras )
+    config.autoload_paths << "#{config.root}/lib"
     config.autoload_paths << "#{config.root}/app/builders"
     config.autoload_paths << "#{config.root}/app/jobs"
     config.autoload_paths << "#{config.root}/app/sweepers"
