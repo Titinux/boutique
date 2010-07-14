@@ -1,29 +1,20 @@
-development:
+common: &common
   adapter: mysql
   encoding: utf8
   reconnect: false
-  database: Boutique_dev
   pool: 5
   username: Boutique
   password: x2c3z4r8
   socket: /var/run/mysqld/mysqld.sock
+
+development:
+  <<: *common
+  database: Boutique_dev
 
 production:
-  adapter: mysql
-  encoding: utf8
-  reconnect: false
+  <<: *common
   database: Boutique
-  pool: 5
-  username: Boutique
-  password: x2c3z4r8
-  socket: /var/run/mysqld/mysqld.sock
 
-test:
-  adapter: mysql
-  encoding: utf8
-  reconnect: false
+test: &test
+  <<: *common
   database: Boutique_test
-  pool: 5
-  username: Boutique
-  password: x2c3z4r8
-  socket: /var/run/mysqld/mysqld.sock
