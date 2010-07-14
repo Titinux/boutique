@@ -12,36 +12,29 @@
     = stylesheet_link_tag 'public.css'
 
   %body
-    %div#global
-      %div#header
+    #global{:class => [controller.controller_name, controller.action_name]}
+      #header
         %h1
           = t('siteTitle')
           %br
           = image_tag 'global/blason.png'
 
-      %div#topbar.public
+      #topbar.public
         = makeMenu('public')
 
-      %div#center
-        - if flash[:notice]
-          %p.flash.notice= flash[:notice]
-
-        - if flash[:warning]
-          %p.flash.warning= flash[:warning]
-
-        - if flash[:alert]
-          %p.flash.alert= flash[:alert]
+      #center
+        = render_flash_messages
 
         - if content_for?(:sidebar)
-          %div#content
+          #content
             = yield
 
-          %div#sidebar
+          #sidebar
             = yield :sidebar
         - else
           = yield
 
-      %div#footer
+      #footer
         = t('footerText')
 
     - if Rails.env == 'production'

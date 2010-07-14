@@ -7,6 +7,7 @@
   = f.input :password
   = f.input :password_confirmation
 
-  = f.button :submit, "Change my password"
+  .buttons
+    = f.button :submit, "Change my password"
 
 = render :partial => 'devise/shared/links'

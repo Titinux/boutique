@@ -1,10 +1,32 @@
 /* Flash
 
 .flash
-  font-weight: bold
+  padding: 5px 20px
+
+  text-align: center
+
+  background-color: $color1
+  border:
+    width: 1px
+    style: solid
+
+
+  -moz-border-radius: 20px
+
+  img
+    padding-right: 5px
+
   &.notice
     color: green
+
   &.warning
     color: orange
   &.alert
-    color: red
+    color: white
+    background: url('/images/backgrounds/alert.png') repeat fixed right top
+    border-color: orange
+
+    line-height: 2em
+
+  img
+    vertical-align: bottom

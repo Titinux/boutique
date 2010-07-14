@@ -1,5 +1,10 @@
 fr:
   flash:
+    names:
+      notice: Information
+      warning: Avertissement
+      alert: Erreur
+
     actions:
       create:
         notice: "La création à bien été effectuée."

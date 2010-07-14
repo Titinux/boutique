@@ -1,5 +1,10 @@
 en:
   flash:
+    names:
+      notice: Information
+      warning: Avertissement
+      alert: Erreur
+
     actions:
       create:
         notice: "{{resource_name}} was successfully created."

@@ -1,0 +1,92 @@
+// Pages
+html
+  font-size: 100% /* Évite un bug d'IE 6-7. (1) */
+  margin: 0
+  padding: 0
+
+body
+  margin: 0
+  padding: 0 /* Remettre à zéro si nécessaire. */
+  /* Pensez à utiliser une collection de polices (2), par ex:
+  font-family: Arial, Helvetica, FreeSans, sans-serif
+  font-size: .8em /* À adapter pour la police choisie. (3) */
+  line-height: 1.4em /* À adapter au design. (4) */
+  color: black
+  background: white
+
+
+// Titres
+h1, h2, h3, h4, h5, h6
+  margin: 1em 0 .5em 0 /* Rapproche le titre du texte. (5) */
+  line-height: 1.2em
+  font-weight: bold /* Valeur par défaut. (6) */
+  font-style: normal
+
+h1
+  margin: 0
+  font-size: 2em
+
+h2
+  font-size: 1.75em
+  text-align: center
+
+h3
+  font-size: 1.5em
+
+h4
+  font-size: 1.25em
+
+
+// Listes
+ul, ol
+  margin: .75em 0 .75em 32px
+  padding: 0
+
+
+// Paragraphes
+p
+  margin: .75em 0 /* Marges plus faibles que par défaut. (7) */
+
+address
+  margin: .75em 0
+  font-style: normal
+
+
+// Liens
+a
+  text-decoration: underline
+
+a:link
+  color: #11C
+
+a:visited
+  color: #339
+
+a:hover, a:focus, a:active
+  color: #00F
+
+// Pas de bordure pointillée ou halo lors du clic sur un lien
+a:active
+  outline: none
+
+// Pas de bordure autour des images dans les liens
+a img
+  border: none
+
+
+// Divers éléments de type en-ligne (8)
+em
+  font-style: italic
+
+strong
+  font-weight: bold
+
+
+// Formulaires
+form, fieldset
+  margin: 0
+  padding: 0
+  border: none
+
+input, button, select
+  vertical-align: middle /* Solution pb. d'alignement. (9) */
