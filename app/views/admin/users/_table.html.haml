@@ -5,7 +5,6 @@
       %th= User.human_attribute_name('guild')
       %th= User.human_attribute_name('pigMoneyBox')
       %th= User.human_attribute_name('gatherer')
-      %th= User.human_attribute_name('admin')
       %th= t('action').pluralize
 
   %tbody
@@ -18,7 +17,6 @@
 
         %td.currency= number_to_currency(user.pigMoneyBox)
         %td.boolean= boolean_to_image(user.gatherer)
-        %td.boolean= boolean_to_image(user.admin)
         %td.actions
           = link_to_show admin_user_path(user)
           = link_to_edit edit_admin_user_path(user)
