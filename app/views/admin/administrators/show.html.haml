@@ -4,6 +4,8 @@
   = u.attribute :name
   = u.attribute :email
   = u.attribute :created_at
+  = u.attribute :blocked do
+    = @administrator.blocked ? t('show_for.yes') + " (#{l(@administrator.locked_at)})" : t('show_for.no')
 
 = link_to_back admin_administrators_path
 = link_to_edit edit_admin_administrator_path(@addministrator)

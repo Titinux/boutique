@@ -46,7 +46,7 @@ class Admin::AdministratorsController < Admin::AdminController
     @administrator = Administrator.find(params[:id])
     params[:administrator].delete(:password) if params[:administrator][:password].blank?
     params[:administrator].delete(:password_confirmation) if params[:administrator][:password_confirmation].blank?
-    params[:administrator][:locked_at] = params[:administrator][:locked_at] == '1' ? Time.now : nil
+
     @administrator.update_attributes(params[:administrator])
 
     respond_with(:admin, @administrator)

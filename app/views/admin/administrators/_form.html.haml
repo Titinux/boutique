@@ -2,14 +2,18 @@
   = f.error_messages
 
   %fieldset
-    %legend= 'Identitiy'
+    %legend= 'Identity'
     = f.input :name
     = f.input :email
 
   %fieldset
-    %legend= 'Crendetials'
+    %legend= 'Credentials'
     = f.input :password
     = f.input :password_confirmation
+
+  %fieldset
+    %legend= 'Account state'
+    = f.input :blocked, :as => :boolean
 
   .buttons
     = f.button :submit

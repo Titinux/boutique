@@ -9,17 +9,11 @@
     = number_to_currency(@user.pigMoneyBox)
   = u.attribute :gatherer
   = u.attribute :created_at
-  = u.attribute :locked_at? do
-    - if @user.locked_at?
-      = t('show_for.yes') + " (#{l(@user.locked_at)})"
-    - else
-      = t('show_for.no')
+  = u.attribute :blocked do
+    = @user.blocked ? t('show_for.yes') + " (#{l(@user.locked_at)})" : t('show_for.no')
 
   = u.attribute :confirmed_at? do
-    - if @user.confirmed_at?
-      = t('show_for.yes') + " (#{l(@user.confirmed_at)})"
-    - else
-      = t('show_for.no')
+    = @user.confirmed_at? ? t('show_for.yes') + " (#{l(@user.confirmed_at?)})" : t('show_for.no')
 
 = render :partial => 'admin/users/deposit_table', :locals => { :deposits => @user.deposits.validated }
 

@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   # Attributes
   attr_accessible :name, :email, :password, :password_confirmation,
                   :pigMoneyBox, :dofusNicknames, :guild_id, :gatherer,
-                  :locked_at
+                  :blocked
 
   # Associations
   belongs_to :guild
@@ -41,5 +41,17 @@ class User < ActiveRecord::Base
     self.pigMoneyBox ||= 0
 
     self.pigMoneyBox += @addMoney
+  end
+
+  def blocked=(value)
+    if value == '1'
+      self.locked_at = Time.now unless self.blocked
+    else
+      self.locked_at = nil
+    end
+  end
+
+  def blocked
+    ! self.locked_at.nil?
   end
 end
