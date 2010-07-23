@@ -127,7 +127,6 @@ module Devise
     class BoutiqueEncryptor < Base
       def self.digest(password, stretches, salt, pepper)
         str = [password, salt].compact.flatten.join
-        debugger
         Digest::SHA256.hexdigest(str)
       end
     end
