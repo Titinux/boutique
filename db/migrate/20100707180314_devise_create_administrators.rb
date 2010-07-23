@@ -1,7 +1,7 @@
 class DeviseCreateAdministrators < ActiveRecord::Migration
   def self.up
     create_table(:administrators) do |t|
-      t.string :name, :null => false
+      t.string :name, :null => false, :limit => 25
       t.database_authenticatable :null => false
       t.trackable
       t.lockable :lock_strategy => :failed_attempts, :unlock_strategy => :none

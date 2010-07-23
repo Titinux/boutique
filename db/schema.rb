@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(:version => 20100707180314) do
 
   create_table "administrators", :force => true do |t|
-    t.string   "name",                                              :null => false
+    t.string   "name",               :limit => 25,                  :null => false
     t.string   "email",                             :default => "", :null => false
     t.string   "encrypted_password", :limit => 128, :default => "", :null => false
     t.string   "password_salt",                     :default => "", :null => false
@@ -140,7 +140,6 @@ ActiveRecord::Schema.define(:version => 20100707180314) do
     t.string   "name",                 :limit => 25,                     :null => false
     t.integer  "pigMoneyBox",                         :default => 0,     :null => false
     t.integer  "guild_id"
-    t.boolean  "admin",                               :default => false, :null => false
     t.string   "password_salt",                       :default => "",    :null => false
     t.string   "encrypted_password",   :limit => 128, :default => "",    :null => false
     t.datetime "created_at"
