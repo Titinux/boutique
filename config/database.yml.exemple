@@ -3,18 +3,21 @@ common: &common
   encoding: utf8
   reconnect: false
   pool: 5
-  username: Boutique
-  password: x2c3z4r8
+  username: <my_username>
+  password: <my_password>
   socket: /var/run/mysqld/mysqld.sock
 
 development:
   <<: *common
-  database: Boutique_dev
+  database: boutique_dev
 
 production:
   <<: *common
-  database: Boutique
+  database: boutique
 
 test: &test
   <<: *common
-  database: Boutique_test
+  database: boutique_test
+
+cucumber:
+  <<: *test

@@ -11,5 +11,7 @@ public/images
 .idea
 *~
 
+config/database.yml
+
 .htaccess
 public/stylesheets
