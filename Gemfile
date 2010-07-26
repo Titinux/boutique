@@ -3,7 +3,7 @@ source 'http://gemcutter.org'
 
 gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'ruby-mysql', '2.9.3'
-gem 'haml', '3.0.12'
+gem 'haml', '3.0.13'
 #gem 'javan-whenever', :lib => false, :source => 'http://gems.github.com'
 gem 'rack-contrib', '1.0.1'
 
