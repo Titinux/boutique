@@ -1,4 +1,4 @@
-module ImageHelper
+module ImagesHelper
   def boolean_to_image(value, *args)
     options = args.extract_options!
     options[:text] ||= value ? I18n.t('yes') : I18n.t('no')

@@ -13,3 +13,15 @@ gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'
 gem 'show_for', '0.2.2'
 gem 'responders', '0.6.1'
 gem 'devise', :git => 'git://github.com/plataformatec/devise.git'
+
+group :development, :test do
+  gem 'factory_girl_rails', '1.0'
+
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'cucumber-rails'
+  gem 'cucumber'
+  gem 'rspec-rails', '2.0.0.beta.18'
+  gem 'spork', :git => 'git://github.com/timcharper/spork.git', :branch => 'rails3'
+  gem 'launchy'
+end

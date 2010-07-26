@@ -5,7 +5,7 @@ class Administrator < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :email, :password, :password_confirmation, :blocked
 
-  validates :name, :presence => true, :uniqueness => true
+  validates :name, :uniqueness => true, :presence => true, :length => { :within => 3..25 }
 
   def blocked=(value)
     if value == '1'

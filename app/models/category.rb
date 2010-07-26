@@ -4,6 +4,9 @@ class Category < ActiveRecord::Base
 
   has_many :assets
 
+  # Validations
+  validates :name, :uniqueness => true, :presence => true, :length => { :within => 2..25 }
+
   # Scopes
   default_scope order(:name)
   scope :mainCategories, where(:parent_id => nil)
