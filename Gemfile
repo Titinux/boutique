@@ -13,6 +13,7 @@ gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'
 gem 'show_for', '0.2.2'
 gem 'responders', '0.6.1'
 gem 'devise', '1.1.1'
+gem 'escape_utils', '0.1.5'
 
 group :development, :test do
   gem 'factory_girl_rails', '1.0'
