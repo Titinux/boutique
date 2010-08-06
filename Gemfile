@@ -21,7 +21,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'cucumber-rails'
   gem 'cucumber'
-  gem 'rspec-rails', '2.0.0.beta.18'
+  gem 'rspec-rails', '2.0.0.beta.19'
   gem 'spork', :git => 'git://github.com/timcharper/spork.git', :branch => 'rails3'
   gem 'launchy'
 end
