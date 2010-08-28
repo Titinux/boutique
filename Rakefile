@@ -13,5 +13,5 @@ rescue LoadError
   STDERR.puts "Run `rake gems:install` to install delayed_job"
 end
 
-Rails::Application.load_tasks
+Boutique::Application.load_tasks
 
