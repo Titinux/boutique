@@ -8,22 +8,20 @@ Pour les récolteurs :
 
 * Voir la quantité de chaque ressources qu'il a mis dans le stock
 * Voir le montant des kamas à percevoir suites aux ventes
+* Voir de façon limitée les commandes actuelles.
 
 Pour les admin :
 
-* Consulter les stocks de chaque ressource et l'origine du stock
-* Ajouter des ressources dans les stocks
+* Gérer les utilisateurs, les catégories, les ressources, les commandes, etc.
+* Gérer les stocks de chaque ressource et l'origine de ces ressources
 * Clore une vente
-* Réaliser le paiement d'un récolteur
-* Fixer le prix des ressources (sert à faire un premier devis au client qui passe sa commande. Devis qui devra être validé par la suite)
 
 Pour les clients :
 
-* Passer une commande (visibilité sur le forum automatique)
+* Passer une commande
 * Voir les ressources actuellement en stock
-* Voir les stats de ventes (pub pour les nouveaux clients)
+* Voir les statistiques des ventes (pub pour les nouveaux clients)
 
 Pour l'outil :
 
-* Faire un devis indicatif lorsque le client passe une commande.
-* Répartir automatiquement les kamas lors de la clôture d'une vente.
+* Lors de la clôture d'une vente, retirer les ressources vendues et distribuer les kamas perçus.
