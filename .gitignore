@@ -10,7 +10,6 @@ public/images
 .loadpath
 .idea
 *~
-
 config/database.yml
 
 .htaccess

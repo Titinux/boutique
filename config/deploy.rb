@@ -65,9 +65,9 @@ namespace :deploy do
 end
 
 after "deploy:update_code" , "deploy:copy_database_configuration"
-after "deploy:update_code" , "assets:symlink"
-after "deploy:update_code",  "assets:package"
-after "deploy:symlink", "deploy:update_crontab"
+after "deploy:update_code" , "deploy:assets:symlink"
+after "deploy:update_code",  "deploy:assets:package"
+after "deploy:symlink",      "deploy:update_crontab"
 
 after "deploy:stop",    "delayed_job:stop"
 after "deploy:start",   "delayed_job:start"
