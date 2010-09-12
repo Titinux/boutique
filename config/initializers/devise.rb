@@ -9,8 +9,9 @@ Devise.setup do |config|
   # config.mailer = "Devise::Mailer"
 
   # ==> ORM configuration
-  # Load and configure the ORM. Supports :active_record (default), :mongoid
-  # (bson_ext recommended) and :data_mapper (experimental).
+  # Load and configure the ORM. Supports :active_record (default) and
+  # :mongoid (bson_ext recommended) by default. Other ORMs may be
+  # available as additional gems.
   require 'devise/orm/active_record'
 
   # ==> Configuration for any authentication mechanism
@@ -22,24 +23,27 @@ Devise.setup do |config|
   config.authentication_keys = [ :name ]
 
   # Tell if authentication through request.params is enabled. True by default.
-  config.params_authenticatable = true
+  # config.params_authenticatable = true
 
-  # Tell if authentication through HTTP Basic Auth is enabled. True by default.
-  config.http_authenticatable = false
+  # Tell if authentication through HTTP Basic Auth is enabled. False by default.
+  # config.http_authenticatable = false
 
-  # The realm used in Http Basic Authentication
+  # If http headers should be returned for AJAX requests. True by default.
+  # config.http_authenticatable_on_xhr = true
+
+  # The realm used in Http Basic Authentication. "Application" by default.
   # config.http_authentication_realm = "Application"
 
   # ==> Configuration for :database_authenticatable
-  # For bcrypt, this is the cost for hashing the password and defaults to 10. If
-  # using other encryptors, it sets how many times you want the password re-encrypted.
-  config.stretches = 10
-
   # Define which will be the encryption algorithm. Devise also supports encryptors
   # from others authentication tools as :clearance_sha1, :authlogic_sha512 (then
   # you should set stretches above to 20 for default behavior) and :restful_authentication_sha1
   # (then you should set stretches to 10, and copy REST_AUTH_SITE_KEY to pepper)
-  config.encryptor = :bcrypt
+  config.encryptor = :BoutiqueEncryptor
+
+  # For bcrypt, this is the cost for hashing the password and defaults to 10. If
+  # using other encryptors, it sets how many times you want the password re-encrypted.
+  config.stretches = 10
 
   # Setup a pepper to generate the encrypted password.
   config.pepper = "c4b57935e4c3a6b7bc7c523aad222dd6b546637662aa23af968b56442cd0f6fdaff1d1da0cd01d387fa483571605b91b5c307de5f150d09add7908183bcb618d"
@@ -57,8 +61,14 @@ Devise.setup do |config|
   # The time the user will be remembered without asking for credentials again.
   # config.remember_for = 2.weeks
 
+  # If true, a valid remember token can be re-used between multiple browsers.
+  # config.remember_across_browsers = true
+
+  # If true, extends the user's remember period when remembered via cookie.
+  # config.extend_remember_period = false
+
   # ==> Configuration for :validatable
-  # Range for password length
+  # Range for password length. Default is 6..20.
   config.password_length = 6..25
 
   # Regex to use to validate the email address
@@ -66,7 +76,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :timeoutable
   # The time you want to timeout the user session without activity. After this
-  # time the user will be asked for credentials again.
+  # time the user will be asked for credentials again. Default is 30 minutes.
   config.timeout_in = 1.hour
 
   # ==> Configuration for :lockable
@@ -87,7 +97,7 @@ Devise.setup do |config|
   config.maximum_attempts = 5
 
   # Time interval to unlock the account if :time is enabled as unlock_strategy.
-  #config.unlock_in = 1.hour
+  # config.unlock_in = 1.hour
 
   # ==> Configuration for :token_authenticatable
   # Defines name of the authentication token params key
@@ -95,9 +105,18 @@ Devise.setup do |config|
 
   # ==> Scopes configuration
   # Turn scoped views on. Before rendering "sessions/new", it will first check for
-  # "sessions/users/new". It's turned off by default because it's slower if you
+  # "users/sessions/new". It's turned off by default because it's slower if you
   # are using only default views.
   config.scoped_views = true
+
+  # Configure the default scope given to Warden. By default it's the first
+  # devise role declared in your routes (usually :user).
+  # config.default_scope = :user
+
+  # Configure sign_out behavior.
+  # Sign_out action can be scoped (i.e. /users/sign_out affects only :user scope).
+  # The default is true, which means any logout action will sign out all active scopes.
+  # config.sign_out_all_scopes = true
 
   # ==> Navigation configuration
   # Lists the formats that should be treated as navigational. Formats like
@@ -107,18 +126,25 @@ Devise.setup do |config|
   # should add them to the navigational formats lists. Default is [:html]
   config.navigational_formats = [:html]
 
+  # The default HTTP method used to sign out a resource. Default is :get.
+  # config.sign_out_via = :get
+
+  # ==> OAuth2
+  # Add a new OAuth2 provider. Check the README for more information on setting
+  # up on your models and hooks. By default this is not set.
+  # config.oauth :github, 'APP_ID', 'APP_SECRET',
+  #   :site              => 'https://github.com/',
+  #   :authorize_path    => '/login/oauth/authorize',
+  #   :access_token_path => '/login/oauth/access_token',
+  #   :scope             => %w(user public_repo)
+
   # ==> Warden configuration
-  # If you want to use other strategies, that are not (yet) supported by Devise,
-  # you can configure them inside the config.warden block. The example below
-  # allows you to setup OAuth, using http://github.com/roman/warden_oauth
+  # If you want to use other strategies, that are not supported by Devise, or
+  # change the failure app, you can configure them inside the config.warden block.
   #
   # config.warden do |manager|
-  #   manager.oauth(:twitter) do |twitter|
-  #     twitter.consumer_secret = <YOUR CONSUMER SECRET>
-  #     twitter.consumer_key  = <YOUR CONSUMER KEY>
-  #     twitter.options :site => 'http://twitter.com'
-  #   end
-  #   manager.default_strategies(:scope => :user).unshift :twitter_oauth
+  #   manager.failure_app = AnotherApp
+  #   manager.default_strategies(:scope => :user).unshift :some_external_strategy
   # end
 end
 
