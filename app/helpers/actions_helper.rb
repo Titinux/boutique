@@ -15,15 +15,26 @@ module ActionsHelper
   end
 
   def link_to_show(link, *args)
-    link_to_action link, t('show'), 'actions/show.png'
+    options = args.extract_options!
+    options[:text] ||= t('show')
+
+    link_to_action link, options[:text], 'actions/show.png', options
   end
 
   def link_to_edit(link, *args)
-    link_to_action link, t('edit'), 'actions/edit.png'
+    options = args.extract_options!
+    options[:text] ||= t('edit')
+
+    link_to_action link, options[:text], 'actions/edit.png', options
   end
 
   def link_to_destroy(link, *args)
-    link_to_action link, t('destroy'), 'actions/destroy.png', :confirm => t('destroy_confirm'), :method => :delete
+    options = args.extract_options!
+    options[:text] ||= t('destroy')
+    options[:confirm] = t('destroy_confirm')
+    options[:method] = :delete
+
+    link_to_action link, options[:text], 'actions/destroy.png', options
   end
 
   def link_to_add(link, *args)
@@ -34,6 +45,9 @@ module ActionsHelper
   end
 
   def link_to_back(link, *args)
-    link_to_action link, t('back'), 'actions/left_arrow.png'
+    options = args.extract_options!
+    options[:text] ||= t('back')
+
+    link_to_action link, options[:text], 'actions/left_arrow.png', options
   end
 end

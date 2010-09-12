@@ -7,7 +7,7 @@ describe Admin::AssetsController do
       { :get => "/admin/assets" }.should route_to(:controller => "admin/assets", :action => "index")
     end
 
-        it "recognizes and generates #new" do
+    it "recognizes and generates #new" do
       { :get => "/admin/assets/new" }.should route_to(:controller => "admin/assets", :action => "new")
     end
 
