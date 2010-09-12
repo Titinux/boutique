@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
 
   has_many :deposits
   has_many :orders
+  has_many :carts
 
   #Validations
   validates :name, :presence => true, :uniqueness => true, :length => 3..25, :allow_blank => false
@@ -53,5 +54,11 @@ class User < ActiveRecord::Base
 
   def blocked
     ! self.locked_at.nil?
+  end
+
+  def cart
+    cart = self.carts.where(:current => true).first
+
+    cart ||= self.carts.create(:current => true)
   end
 end

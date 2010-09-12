@@ -32,6 +32,7 @@ en:
     myPersonnalInformations: My personnal informations
     myPigMoneybox: My pig moneybox
     myOrders: My orders
+    myCarts: My carts
     amount: Amount
     profile: Profile
     update_success: Your profile was successfully updated.

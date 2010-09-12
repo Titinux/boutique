@@ -2,18 +2,13 @@
   %col{ :width => '100%' }
   %thead
     %tr
-      %th= Asset.model_name.human.pluralize
-      %th= t('cart.quantity')
-
+      %th= Cart.human_attribute_name(:name)
+      %th= t('action').pluralize
   %tbody
-    - cart.each do |cart_line|
-      - flash.now[:warning] = 'Products with a quantity to 0 won\'t appear in the order.' if cart_line[1].to_i == 0
-
+    - carts.each do |cart|
       %tr{ :class => "#{cycle('even', 'odd')}" }
-        %td= Asset.find(cart_line[0]).name
-        %td.number= cart_line[1]
-        %td
-          = link_to t('edit'), edit_cart_path(cart_line[0])
-          |
-          = link_to t('destroy'), cart_path(cart_line[0]), :method => :delete
-
+        %td= cart.name
+        %td.actions
+          = link_to_show user_cart_path(cart)
+          = link_to_edit edit_user_cart_path(cart)
+          = link_to_destroy user_cart_path(cart)

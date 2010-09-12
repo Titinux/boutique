@@ -1,12 +1,25 @@
 en:
+  activerecord:
+    models:
+      cart: Cart
+
+    attributes:
+      cart:
+        name: Name
+
   # Cart
   cart:
-    quantity: Quantity
+    editing: Edit cart
+    listing: Cart listing
+    showing: 'Cart : %{name}'
+    my_cart: My cart
     add: Add to cart
     empty: Empty cart
+    save: Save this cart
+    use_it: Use this cart
+    quick: Quickly fill the cart
     cart_empty: Your cart is empty !
     add_and_continue_shopping: Add to cart and continue shopping
     add_and_view_cart: Add to cart and go to cart
-    name: Cart
     updateSuccess: Asset was successfully updated.
     addCartSuccess: Asset was successfully added to cart.

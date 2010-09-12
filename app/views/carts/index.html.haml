@@ -1,8 +1,6 @@
-- unless cart_session.cart.empty?
-  = render :partial => 'table', :locals => { :cart => cart_session.cart }
-  = link_to t('cart.empty'), destroy_all_carts_path, :method => :delete
-  |
-  = link_to t('order.makeOrder'), to_order_carts_path, :method => :put
+= render :partial => 'shared/user_sidebar'
 
-- else
-  = t('cart.cart_empty')
+= block :title => t('user.myCarts') do
+  = render :partial => 'table', :locals => { :carts => @carts }
+
+= link_to_add new_user_cart_path, :text => 'Ajouter un panier', :format => :long

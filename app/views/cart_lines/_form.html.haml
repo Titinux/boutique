@@ -1,0 +1,7 @@
+= simple_form_for @cart_line do |f|
+  = f.association :asset, :prompt => nil
+  = f.input :quantity
+
+  .buttons
+    = f.button :submit, t('cart.add_and_continue_shopping'), :name => :submit_and_continue_shopping
+    = f.button :submit, t('cart.add_and_view_cart'), :name => :submit_and_view_cart

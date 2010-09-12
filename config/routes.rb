@@ -1,13 +1,7 @@
 Boutique::Application.routes.draw do
   scope '(:locale)', :locale => /en|fr/ do
     # User authentication
-    devise_for :users, :path => 'profile', :skip => [:sessions] do
-      scope :controller => 'devise/sessions', :as => :user_session do
-        get  :new,     :path => 'sign_in'
-        post :create,  :path => 'sign_in', :as => ""
-        get  :destroy, :path => 'sign_out'
-      end
-    end
+    devise_for :users, :path => 'profile'
 
     # Administrator authentication
     devise_for :administrators, :path => 'admin'
@@ -18,21 +12,29 @@ Boutique::Application.routes.draw do
     # Categories
     resources :categories, :only => [ :index, :show ]
 
-    # Cart
-    resources :carts, :as => :cart do
-      collection do
-        delete :destroy_all
-        put :to_order
-      end
-    end
-
     # Statistics
     resources :statistics, :only => [ :index, :show ]
+
+    authenticate(:user) do
+      # Cart
+      resource :cart, :controller => 'cart', :except => [ :index, :new ] do
+        get :to_order
+        get :save
+
+        resources :lines, :controller => 'cart_lines', :except => [ :index, :show ]
+      end
+    end
 
     # User profile
     resource :user, :path => 'profile' do
       resources :orders, :only => [ :index, :show, :update ]
       resources :deposits, :only => [:index, :new, :create ]
+      resources :carts do
+        member do
+          get :use_it
+          get :to_order
+        end
+      end
     end
 
     # Partie admin du site.

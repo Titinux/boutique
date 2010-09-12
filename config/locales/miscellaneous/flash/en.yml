@@ -14,3 +14,6 @@ en:
         notice: "%{resource_name} was successfully destroyed."
         alert: "%{resource_name} could not be destroyed."
 
+    cart_lines:
+      create:
+        notice: "Product was successfully added in your cart"

@@ -1,0 +1,12 @@
+en:
+  activerecord:
+    models:
+      cart_line: Line
+
+    attributes:
+      cart_line:
+        quantity: Quantity
+        _destroy: Supprimer
+
+  cart_line:
+    add: Add a line

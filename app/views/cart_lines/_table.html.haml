@@ -1,0 +1,17 @@
+%table
+  %col{ :width => '100%' }
+  %thead
+    %tr
+      %th= Asset.model_name.human
+      %th= CartLine.human_attribute_name(:quantity)
+      - if (defined? show_actions) && show_actions
+        %th= t('action').pluralize
+  %tbody
+    - cart.lines.each do |line|
+      %tr{ :class => "#{cycle('even', 'odd')}" }
+        %td= link_to line.asset.name, category_path(line.asset.category)
+        %td.number= line.quantity
+        - if (defined? show_actions) && show_actions
+          %td.actions
+            = link_to_edit edit_cart_line_path(line)
+            = link_to_destroy cart_line_path(line)

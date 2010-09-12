@@ -9,8 +9,8 @@
       :link => categories_path
     },
     {
-      :name => I18n.t('cart.name'),
-      :link => carts_path
+      :name => Cart.model_name.human,
+      :link => cart_path
     },
     {
       :name => I18n.t('statistics.name'),

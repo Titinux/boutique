@@ -1,128 +1,99 @@
 class CartsController < ApplicationController
   respond_to :html, :xml
 
-  # GET /cart
-  # GET /cart.xml
+  # GET /user/cart
+  # GET /user/cart.xml
   def index
-    respond_with(@cart = cart_session.cart)
+    respond_with(@carts = current_user.carts.where(:current => false))
   end
 
-  # GET /cart/1
-  # GET /cart/1.xml
+  # GET /user/cart/1
+  # GET /user/cart/1.xml
   def show
-    @asset = Asset.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @asset }
-    end
+    respond_with(@cart = current_user.carts.find(params[:id]))
   end
 
-  # GET /cart/new
-  # GET /cart/new.xml
+  # GET /user/cart/new
+  # GET /user/cart/new.xml
   def new
-   redirect_to welcome_path unless params[:asset_id]
+    @cart = current_user.carts.build
+    @cart.lines.build
 
-   @asset = Asset.find(params[:asset_id])
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @asset }
-    end
+    respond_with(@cart)
   end
 
-  # GET /cart/1/edit
+  # GET /user/cart/1/edit
   def edit
-    redirect_to welcome_path unless params[:id]
+    @cart = current_user.carts.find(params[:id])
 
-    @cart_line = cart_session.line(params[:id])
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @asset }
-    end
+    respond_with(@cart)
   end
 
-  # POST /cart
-  # POST /cart.xml
+  # POST /user/cart
+  # POST /user/cart.xml
   def create
-    @asset = Asset.find(params[:asset_id])
+    @cart = current_user.carts.build(params[:cart])
 
-    respond_to do |format|
-      if @asset
-        cart_session.add_line(@asset.id, params[:quantity])
-        flash[:notice] = t('cart.addCartSuccess')
-
-        if params[:add_and_continue_shopping].blank?
-          format.html { redirect_to(carts_path) }
-          format.xml  { render :xml => @asset, :status => :created, :location => @asset }
-        else
-          format.html { redirect_to(categories_path(:cat => @asset.category.id)) }
-          format.xml  { render :xml => @asset, :status => :created, :location => @asset }
-        end
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @asset.errors, :status => :unprocessable_entity }
-      end
+    if params[:addline].blank?
+      @cart.save
+      respond_with(:user, @cart)
+    else
+      @cart.lines.build
+      render :new
     end
   end
 
-  # PUT /cart/1
-  # PUT /cart/1.xml
+  # PUT /user/cart/1
+  # PUT /user/cart/1.xml
   def update
-    @asset = Asset.find(params[:id])
+    @cart = current_user.carts.find(params[:id])
+    @cart.attributes = params[:cart]
 
-    respond_to do |format|
-      if @asset
-        cart_session.edit_line(@asset.id, params[:quantity])
-        flash[:notice] = t('cart.updateSuccess')
-        format.html { redirect_to(carts_path) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @asset.errors, :status => :unprocessable_entity }
-      end
+    if params[:addline].blank?
+      @cart.save
+      respond_with(:user, @cart)
+    else
+      @cart.lines.build
+      render :edit
     end
   end
 
-  # DELETE /cart/1
-  # DELETE /cart/1.xml
+  # DELETE /user/cart/1
+  # DELETE /user/cart/1.xml
   def destroy
-    @asset = Asset.find(params[:id])
-    cart_session.drop_line(@asset.id)
+    @cart = current_user.carts.find(params[:id])
+    @cart.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(carts_url) }
-      format.xml  { head :ok }
+    respond_with(@cart, :location => user_carts_path)
+  end
+
+  # GET /user/cart/1/use_it
+  # GET /user/cart/1/use_it.xml
+  def use_it
+    @cart = current_user.carts.find(params[:id])
+
+    if @cart.copy_lines_to(current_user.cart)
+      flash[:notice] = t('flash.carts.use_it.notice')
+      redirect_to cart_path
+    else
+      flash[:alert] = t('flash.carts.use_it.alert')
+      redirect_to 'show'
     end
   end
 
-  # DELETE /cart/destroy_all
-  # DELETE /cart/destroy_all.xml
-  def destroy_all
-    cart_session.empty_cart
-
-    respond_to do |format|
-      format.html { redirect_to(carts_url) }
-      format.xml  { head :ok }
-    end
-  end
-
-  # PUT /cart/to_order
-  # PUT /cart/to_order
+  # PUT /user/cart/1/to_order
+  # PUT /user/cart/1/to_order.xml
   def to_order
-    respond_to do |format|
-      begin
-        cart_session.to_order(user_session)
+    @cart = current_user.carts.find(params[:id])
 
-        flash[:notice] = t('order.createSuccess')
-        format.html { redirect_to(carts_path) }
-        format.xml  { head :ok }
-      rescue Exception => e
-        flash.now[:error] = e.message
-        format.html { render :action => "index" }
-        format.xml  { render :xml => cart_session.errors, :status => :unprocessable_entity }
-      end
+    if @cart.to_order
+      flash[:notice] = t('flash.carts.to_order.notice')
+      redirect_to user_orders_path
+    else
+      flash[:alert] = t('flash.carts.to_order.alert')
+      render 'show'
     end
+
+
   end
 end

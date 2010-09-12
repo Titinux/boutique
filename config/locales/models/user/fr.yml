@@ -32,6 +32,7 @@ fr:
     myPersonnalInformations: Mes informations
     myPigMoneybox: Mon cochon tirelire
     myOrders: Mes commandes
+    myCarts: Mes paniers
     amount: Montant
     profile: Profil
     update_success: Votre profil a été correctement mis à jour.

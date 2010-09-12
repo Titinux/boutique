@@ -82,7 +82,7 @@ class OrdersMailer < ActionMailer::Base
   private
 
   def admin_emails
-    Administrator.map(&:email)
+    Administrator.select(:email).map(&:email)
   end
 
 end

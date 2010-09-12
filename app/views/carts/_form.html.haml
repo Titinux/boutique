@@ -1,0 +1,15 @@
+= simple_form_for([:user, cart]) do |f|
+  = f.error_messages
+
+  = f.input :name
+
+  %fieldset
+    %legend= CartLine.model_name.human.pluralize
+    = f.simple_fields_for(:lines) do |l|
+      = l.association :asset, :prompt => nil
+      = l.input :quantity
+      = l.input :_destroy, :as => :boolean
+
+  .buttons
+    = f.button :submit, :name => 'addline', :value => t('cart_line.add')
+    = f.button :submit

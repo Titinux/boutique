@@ -13,3 +13,16 @@ fr:
       destroy:
         notice: "Destruction effective."
         alert: "La destruction est impossible."
+
+    cart_lines:
+      create:
+        notice: "Votre produit a bien été ajouté au panier"
+
+    carts:
+      use_it:
+        notice: Les lignes de ce panier ont été ajoutée au panier courrant
+        alert: Un problème est survenu durant la copie vers le panier courrant
+
+      to_order:
+        notice: "Commande passée avec succès"
+        alert: "Problème lors du passage de la commande"

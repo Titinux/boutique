@@ -1,0 +1,12 @@
+= content_title t('cart.my_cart')
+
+- if @cart.lines.empty?
+  = t('cart.cart_empty')
+- else
+  = render 'cart_lines/table', :cart => @cart, :show_actions => true
+
+  %p= link_to_destroy cart_path, :text => t('cart.empty'), :format => :long
+  %p= link_to t('cart.quick'), edit_cart_path
+  %p= link_to t('cart.save'), save_cart_path
+  %p= link_to t('order.makeOrder'), to_order_cart_path
+

@@ -1,0 +1,14 @@
+= content_title t('cart.showing', :name => @cart.name)
+
+= show_for @cart do |c|
+  = c.attribute :name
+
+= render :partial => 'cart_lines/table', :locals => { :cart => @cart }
+
+%p= link_to t('order.makeOrder'), to_order_user_cart_path(@cart)
+%p= link_to t('cart.use_it'), use_it_user_cart_path(@cart)
+
+%p
+  = link_to_back user_carts_path
+  = link_to_edit edit_user_cart_path(@cart)
+
