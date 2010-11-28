@@ -39,4 +39,5 @@ fr:
     create_success: Votre compte a été correctement créé.
     system : Système
     name_hint: Vous pouvez utiliser votre nom de compte ou votre addresse e-mail.
-
+    have_acount: J'ai un compte
+    no_account_yet: Je n'ai pas encore de compte

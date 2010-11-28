@@ -1,4 +1,4 @@
-= content_title "Change your password"
+= content_title t('devise.passwords.change')
 
 = simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
   = devise_error_messages!
@@ -8,6 +8,6 @@
   = f.input :password_confirmation
 
   .buttons
-    = f.button :submit, "Change my password"
+    = f.button :submit, t('devise.passwords.change_button')
 
-= render :partial => 'devise/shared/links'
+= render :partial => 'users/shared/links'

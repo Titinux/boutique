@@ -1,11 +1,11 @@
-= content_title "Forgot your password ?"
+= content_title t('devise.passwords.forgotten')
 
 = simple_form_for(resource, :as => resource_name, :url => password_path(resource_name)) do |f|
   = devise_error_messages!
 
-  = f.input :name
+  = f.input :email
 
   .buttons
-    = f.button :submit, "Send me reset password instructions"
+    = f.button :submit, t('devise.passwords.send_instructions_button')
 
-= render :partial => 'devise/shared/links'
+= render :partial => 'users/shared/links'

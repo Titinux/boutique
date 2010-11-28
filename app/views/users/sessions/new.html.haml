@@ -1,6 +1,6 @@
 = content_title t('devise.links.sign_in')
 
-= block :title => 'J\'ai un compte', :class => 'sign_in' do
+= block :title => t('user.have_acount'), :class => 'sign_in' do
 
   = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
     = f.input :name, :hint => t('user.name_hint')
@@ -9,11 +9,8 @@
     .buttons
       = f.button :submit
 
-  %ul
-    %li= link_to t('devise.links.forgotten_password'), new_password_path(resource_name)
-    %li= link_to t('devise.links.activation_mail_not_received'), new_confirmation_path(resource_name)
-    %li= link_to t('devise.links.unlock_mail_not_received'), new_unlock_path(resource_name)
+  = render 'users/shared/links'
 
-= block :title => 'Je n\'ai pas encore de compte', :class => 'sign_up' do
+= block :title => t('user.no_account_yet'), :class => 'sign_up' do
   %ul
     %li= link_to t('devise.links.sign_up'), new_user_path

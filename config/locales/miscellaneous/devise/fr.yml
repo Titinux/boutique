@@ -20,9 +20,14 @@ fr:
     passwords:
       send_instructions: "Vous aller reçevoir un e-mail avec les instructions nécéssaires pour changer votre mot de passe dans quelques minutes."
       updated: "Votre mot de passe a bien été changé. Vous êtes maintenant authentifié."
+      forgotten: "Mot de passé oublié ?"
+      send_instructions_button: "Envoyez moi les instructions de changement"
+      change: "Modifier votre mot de passe"
+      change_button: "Modifier mon mot de passe"
     confirmations:
       send_instructions: "Vous aller reçevoir un e-mail avec les instructions vous permettant de confirmer votre compte dans quelques minutes."
       confirmed: "Votre compte a bien été confirmé. Vous êtes maintenant authentitfié."
+      resend: "Me renvoyer les instructions de confirmation"
     registrations:
       signed_up: "Votre compte à bien été créé. Vous allez recevoir d'ici quelques minutes un e-mail vous permettant d'activer ce compte."
       updated: "Votre compte a bien été mis à jour."

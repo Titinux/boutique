@@ -12,6 +12,7 @@ en:
         password: Password
         password_confirmation: Password confirmation
         created_at: Created at
+        blocked: Blocked
 
 
   # Administrators
@@ -20,3 +21,6 @@ en:
     listing: Administrator listing
     showing: 'Administrator : %{name}'
     new: New administrator
+    identity: Identity
+    credentials: Crédentials
+    account_status: Account status

@@ -1,0 +1,5 @@
+= "Welcome #{@resource.name} !"
+
+To confirm your registration, please copy the link below and paste it into your browser
+
+= confirmation_url(@resource, :confirmation_token => @resource.confirmation_token, :locale => 'en').html_safe

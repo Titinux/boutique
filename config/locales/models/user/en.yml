@@ -38,3 +38,6 @@ en:
     update_success: Your profile was successfully updated.
     create_success: Your profile was successfully created.
     system: System
+    name_hint: You can use your account name or your mail address.
+    have_acount: I have an account
+    no_account_yet: I did not have an account yet

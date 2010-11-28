@@ -12,10 +12,14 @@ fr:
         password: Mot de passe
         password_confirmation: Confirmation du mot de passe
         created_at: Créé le
+        blocked: Bloqué
 
   # Administrators
   administrator:
-    editing: Modification de l'administrator
+    editing: Modification de l'administrateur
     listing: Liste des administrateurs
     showing: 'Administrateur : %{name}'
     new: Nouvel administrateur
+    identity: Identité
+    credentials: Sécurité
+    account_status: Etat du compte

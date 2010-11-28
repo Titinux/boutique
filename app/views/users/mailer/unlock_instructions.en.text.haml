@@ -1,0 +1,7 @@
+= "Hello #{@resource.name} !"
+
+Your account has been locked due to an excessive amount of unsuccessful sign in attempts.
+
+To unlock your acount, please copy the link below and paste it to your browser.
+
+= unlock_url(@resource, :unlock_token => @resource.unlock_token, :locale => 'en').html_safe

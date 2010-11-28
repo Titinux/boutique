@@ -2,17 +2,17 @@
   = f.error_messages
 
   %fieldset
-    %legend= 'Identity'
+    %legend= t('administrator.identity')
     = f.input :name
     = f.input :email
 
   %fieldset
-    %legend= 'Credentials'
+    %legend= t('administrator.credentials')
     = f.input :password
     = f.input :password_confirmation
 
   %fieldset
-    %legend= 'Account state'
+    %legend= t('administrator.account_status')
     = f.input :blocked, :as => :boolean
 
   .buttons
