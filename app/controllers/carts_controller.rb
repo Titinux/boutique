@@ -1,6 +1,4 @@
 class CartsController < ApplicationController
-  respond_to :html, :xml
-
   # GET /user/cart
   # GET /user/cart.xml
   def index

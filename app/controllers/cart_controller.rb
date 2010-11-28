@@ -1,6 +1,4 @@
 class CartController < ApplicationController
-  respond_to :html, :xml
-
   # GET /cart
   # GET /cart.xml
   def show

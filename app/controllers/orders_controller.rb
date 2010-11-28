@@ -4,8 +4,6 @@ class OrdersController < ApplicationController
     redirect_to user_path
   end
 
-  before_filter :authenticate_user!
-
   def index
     respond_with(@orders = current_user.orders)
   end

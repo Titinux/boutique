@@ -1,7 +1,10 @@
 Boutique::Application.routes.draw do
-  scope '(:locale)', :locale => /en|fr/ do
+  scope ':locale', :locale => /en|fr/ do
     # User authentication
     devise_for :users, :path => 'profile'
+
+    # User creation
+    resource :user, :path => 'profile', :only => [:new, :create]
 
     # Administrator authentication
     devise_for :administrators, :path => 'admin'
@@ -15,6 +18,7 @@ Boutique::Application.routes.draw do
     # Statistics
     resources :statistics, :only => [ :index, :show ]
 
+    # User profile
     authenticate(:user) do
       # Cart
       resource :cart, :controller => 'cart', :except => [ :index, :new ] do
@@ -23,16 +27,15 @@ Boutique::Application.routes.draw do
 
         resources :lines, :controller => 'cart_lines', :except => [ :index, :show ]
       end
-    end
 
-    # User profile
-    resource :user, :path => 'profile' do
-      resources :orders, :only => [ :index, :show, :update ]
-      resources :deposits, :only => [:index, :new, :create ]
-      resources :carts do
-        member do
-          get :use_it
-          get :to_order
+      resource :user, :path => 'profile', :except => [:new, :create] do
+        resources :orders, :only => [ :index, :show, :update ]
+        resources :deposits, :only => [:index, :new, :create ]
+        resources :carts do
+          member do
+            get :use_it
+            get :to_order
+          end
         end
       end
     end
@@ -71,4 +74,6 @@ Boutique::Application.routes.draw do
 
     root :to => 'boutique#show'
   end
+
+  match '/', :to => redirect("/#{I18n.locale}")
 end

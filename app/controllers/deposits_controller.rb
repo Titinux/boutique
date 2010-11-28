@@ -1,5 +1,4 @@
 class DepositsController < ApplicationController
-  before_filter :authenticate_user!
   before_filter :gathererOnly
 
   # GET /deposits
