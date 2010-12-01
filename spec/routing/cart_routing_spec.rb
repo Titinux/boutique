@@ -4,27 +4,27 @@ describe CartController do
   describe "routing" do
 
     it "recognizes and generates #show" do
-      { :get => "/cart" }.should route_to(:controller => "cart", :action => "show")
+      { :get => "/fr/cart" }.should route_to(:locale => "fr", :controller => "cart", :action => "show")
     end
 
     it "recognizes and generates #edit" do
-      { :get => "/cart/edit" }.should route_to(:controller => "cart", :action => "edit")
+      { :get => "/fr/cart/edit" }.should route_to(:locale => "fr", :controller => "cart", :action => "edit")
     end
 
     it "recognizes and generates #update" do
-      { :put => "/cart" }.should route_to(:controller => "cart", :action => "update")
+      { :put => "/fr/cart" }.should route_to(:locale => "fr", :controller => "cart", :action => "update")
     end
 
     it "recognizes and generates #destroy" do
-      { :delete => "/cart" }.should route_to(:controller => "cart", :action => "destroy")
+      { :delete => "/fr/cart" }.should route_to(:locale => "fr", :controller => "cart", :action => "destroy")
     end
 
     it "recognizes and generates #save" do
-      { :get => "/cart/save" }.should route_to(:controller => "cart", :action => "save")
+      { :get => "/fr/cart/save" }.should route_to(:locale => "fr", :controller => "cart", :action => "save")
     end
 
     it "recognizes and generates #to_order" do
-      { :get => "/cart/to_order" }.should route_to(:controller => "cart", :action => "to_order")
+      { :get => "/fr/cart/to_order" }.should route_to(:locale => "fr", :controller => "cart", :action => "to_order")
     end
   end
 end
