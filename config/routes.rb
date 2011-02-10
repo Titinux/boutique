@@ -1,5 +1,7 @@
 Boutique::Application.routes.draw do
-  scope ':locale', :locale => /en|fr/ do
+  scope ':locale',
+        :constraints => { :locale => /[a-z]{2}/ } do
+
     # User authentication
     devise_for :users, :path => 'profile'
 
