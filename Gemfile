@@ -14,7 +14,6 @@ gem 'simple_form',   '~> 1.3.1'
 gem 'show_for',      '~> 0.2.4'
 gem 'responders',    '~> 0.6.2'
 gem 'devise',        '~> 1.1.5'
-gem 'escape_utils',  '~> 0.2.0'
 
 group :development, :test do
   gem 'factory_girl_rails', '~> 1.0.1'

@@ -3,14 +3,10 @@ module ActionsHelper
     options = args.extract_options!
     options[:format] ||= :short
 
-    out = ''
-
-    capture do
-      link_to(link, options.except(:format, :text)) do
-        out << image_tag(picture, :alt => text, :title => text)
-        out << text if options[:format] == :long
-        out
-      end
+    link_to(link, options.except(:format, :text)) do
+      out = image_tag(picture, :alt => text, :title => text)
+      out << text if options[:format] == :long
+      out
     end
   end
 
