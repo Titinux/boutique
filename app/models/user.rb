@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :confirmable, :validatable,
-         :timeoutable, :recoverable, :trackable, :lockable,
+         :timeoutable, :recoverable, :trackable, :lockable, :encryptable,
          :encryptor => :boutique_encryptor,
          :unlock_strategy => :email,
          :timeout_in => 15.days

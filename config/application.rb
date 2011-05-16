@@ -12,18 +12,18 @@ module Boutique
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
-    # Add additional load paths for your own custom dirs
-    # config.load_paths += %W( #{config.root}/extras )
+    # Custom directories with classes and modules you want to be autoloadable.
+    # config.autoload_paths += %W(#{config.root}/extras)
     config.autoload_paths << "#{config.root}/lib"
     config.autoload_paths << "#{config.root}/app/builders"
     config.autoload_paths << "#{config.root}/app/jobs"
     config.autoload_paths << "#{config.root}/app/sweepers"
 
     # Only load the plugins named here, in the order given (default is alphabetical).
-    # :all can be used as a placeholder for all plugins not explicitly named
+    # :all can be used as a placeholder for all plugins not explicitly named.
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
 
-    # Activate observers that should always be running
+    # Activate observers that should always be running.
     # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
     config.active_record.observers = :order_observer, :log_sweeper
 
@@ -32,20 +32,38 @@ module Boutique
     config.time_zone = 'Paris'
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
-    # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
-    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
+    # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
+    # config.i18n.default_locale = :de
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :fr
 
-    # Configure generators values. Many other options are available, be sure to check the documentation.
-    config.generators do |g|
-      g.orm             :active_record
-      g.template_engine :haml
-      g.test_framework  :rspec, :fixture => true
-      g.stylesheets     false
-      g.fixture_replacement :factory_girl, :dir => 'spec/factories'
-    end
+    # Please note that JavaScript expansions are *ignored altogether* if the asset
+    # pipeline is enabled (see config.assets.enabled below). Put your defaults in
+    # app/assets/javascripts/application.js in that case.
+    #
+    # JavaScript files you want as :defaults (application.js is always included).
+    # config.action_view.javascript_expansions[:defaults] = %w(prototype prototype_ujs)
+
+    # Configure the default encoding used in templates for Ruby 1.9.
+    config.encoding = "utf-8"
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+
+    # Enable IdentityMap for Active Record, to disable set to false or remove the line below.
+    config.active_record.identity_map = true
+
+    # Enable the asset pipeline
+    config.assets.enabled = true
+
+    # Configure generators values. Many other options are available, be sure to check the documentation.
+    config.generators do |g|
+      g.orm                 :active_record
+      g.template_engine     :haml
+      g.test_framework      :rspec, :fixture => true
+      g.stylesheets         false
+      g.stylesheet_engine   :sass
+      g.fixture_replacement :factory_girl, :dir => 'spec/factories'
+    end
   end
 end

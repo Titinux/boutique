@@ -2,15 +2,14 @@
 db/*.sqlite3
 log/*.log
 tmp/**/*
-
 .tmp_*
-public/images
 *_packaged.js
 *_packaged.css
 .loadpath
 .idea
 *~
 config/database.yml
-
 .htaccess
+app/assets/images
 public/stylesheets
+app/assets/stylesheets

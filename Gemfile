@@ -1,27 +1,49 @@
 # Edit this Gemfile to bundle your application's dependencies.
 source 'http://rubygems.org'
 
-gem 'rails',        '~> 3.0.4'
-gem 'mysql2',       '~> 0.2.6'
+# Rails
+gem 'rails',        '~> 3.1.0.beta1'
 
-gem 'haml',         '~> 3.0.24'
+# Asset template engines
+gem 'sass'
+gem 'coffee-script'
+gem 'uglifier'
+
+# Database
+gem 'mysql2'
+
+# Javascript
+gem 'jquery-rails'
+
+# Security
+gem 'devise'
+
+# Controllers
+gem 'responders'
+gem 'meta_search',   :git => 'git://github.com/ernie/meta_search.git'
+
+# Views
+gem 'haml'
+gem 'simple_form'
+gem 'show_for'
+
+# Others
 #gem 'javan-whenever', :lib => false, :source => 'http://gems.github.com'
-gem 'rack-contrib', '~> 1.1.0'
-
-gem 'delayed_job',   '~> 2.1.3'
-gem 'will_paginate', '~> 3.0.pre2'
-gem 'simple_form',   '~> 1.3.1'
-gem 'show_for',      '~> 0.2.4'
-gem 'responders',    '~> 0.6.2'
-gem 'devise',        '~> 1.1.5'
+gem 'rack-contrib'
+gem 'delayed_job'
 
 group :development, :test do
-  gem 'factory_girl_rails', '~> 1.0.1'
+  gem 'factory_girl_rails'
 
-  gem 'capybara',           '~> 0.4.0'
-  gem 'database_cleaner',   '~> 0.6.3'
-  gem 'cucumber-rails',     '~> 0.3.2'
-  gem 'rspec-rails',        '~> 2.4.1'
-  gem 'spork',              '~> 0.8.4'
-  gem 'launchy',            '~> 0.3.7'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'cucumber-rails'
+  gem 'rspec-rails'
+  gem 'spork'
+  gem 'launchy'
+end
+
+group :test do
+  # Pretty printed test output
+  gem 'turn', :require => false
 end
