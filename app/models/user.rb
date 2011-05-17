@@ -5,17 +5,20 @@ class User < ActiveRecord::Base
          :unlock_strategy => :email,
          :timeout_in => 15.days
 
-  # Attributes
-  attr_accessible :name, :email, :password, :password_confirmation,
-                  :pigMoneyBox, :dofusNicknames, :guild_id, :gatherer,
-                  :blocked
-
   # Associations
   belongs_to :guild
 
   has_many :deposits
   has_many :orders
   has_many :carts
+
+  # Attributes
+  attr_accessible :name, :email, :password, :password_confirmation,
+                  :pigMoneyBox, :dofusNicknames, :guild_id, :gatherer,
+                  :blocked
+
+  attr_searchable  :name, :gatherer
+  assoc_searchable :guild
 
   #Validations
   validates :name, :presence => true, :uniqueness => true, :length => 3..25, :allow_blank => false
@@ -24,9 +27,6 @@ class User < ActiveRecord::Base
   validates_associated :deposits
 
   validates_length_of :dofusNicknames, :maximum => 255, :allow_blank => true
-
-  # Scopes
-  default_scope :order => :name
 
   def self.find_for_database_authentication(conditions)
     value = conditions[authentication_keys.first]

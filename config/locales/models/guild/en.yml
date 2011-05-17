@@ -5,7 +5,7 @@ en:
 
     attributes:
       guild:
-        name: Guild name
+        name: Name
         pictureUri: Picture URI
 
   # Guilds

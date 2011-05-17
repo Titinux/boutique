@@ -13,3 +13,4 @@ en:
     submit:
       create: "Create a %{model}"
       update: "Confirm changes to %{model}"
+      search: 'Search'

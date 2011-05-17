@@ -26,6 +26,7 @@ gem 'meta_search',   :git => 'git://github.com/ernie/meta_search.git'
 gem 'haml'
 gem 'simple_form'
 gem 'show_for'
+gem 'kaminari'
 
 # Others
 #gem 'javan-whenever', :lib => false, :source => 'http://gems.github.com'

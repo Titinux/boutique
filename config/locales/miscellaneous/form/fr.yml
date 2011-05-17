@@ -13,3 +13,4 @@ fr:
     submit:
       create: "Créer"
       update: "Mettre à jour"
+      search: 'Chercher'

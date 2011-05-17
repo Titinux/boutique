@@ -5,7 +5,7 @@ fr:
 
     attributes:
       guild:
-        name: Nom de la guilde
+        name: Nom
         pictureUri: Uri du blason
 
   # Guilds

@@ -2,14 +2,8 @@ class Admin::UsersController < Admin::AdminController
   # GET /admin/users
   # GET /admin/users.xml
   def index
-    @letter = params[:letter] || session[:admin_user_letter] || 'A'
-    session[:admin_user_letter] = @letter
-
-    if @letter == '*'
-      @users = User.where("NOT (`users`.`name` REGEXP '^[[:alpha:]]')")
-    else
-      @users = User.where("`users`.`name` LIKE '#{@letter}%'")
-    end
+    @search = User.search(params[:search])
+    @users = @search.includes(:guild).page(params[:page])
 
     respond_with(@users)
   end

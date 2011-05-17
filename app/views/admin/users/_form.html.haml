@@ -1,6 +1,6 @@
 = simple_form_for([:admin, @user]) do |f|
   = f.input :name
-  = f.input :password
+  = f.input :password, :required => false
   = f.input :password_confirmation
   = f.input :dofusNicknames
   = f.input :email

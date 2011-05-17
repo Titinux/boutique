@@ -100,6 +100,8 @@ GEM
       thor (~> 0.14)
     json (1.5.1)
     json_pure (1.5.1)
+    kaminari (0.12.4)
+      rails (>= 3.0.0)
     launchy (0.4.0)
       configuration (>= 0.0.5)
       rake (>= 0.8.1)
@@ -196,6 +198,7 @@ DEPENDENCIES
   factory_girl_rails
   haml
   jquery-rails
+  kaminari
   launchy
   meta_search!
   mysql2
