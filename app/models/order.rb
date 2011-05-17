@@ -2,6 +2,12 @@ class Order < ActiveRecord::Base
   belongs_to :user
   has_many :lines, :class_name => 'OrderLine', :dependent => :delete_all
 
+  # Attributes
+  accepts_nested_attributes_for :lines, :allow_destroy => true
+  attr_searchable  :id
+  assoc_searchable :user
+  attr_reader(:message)
+
   # Validations
   validates :user_id, :presence => true
   validates_associated :user
@@ -10,18 +16,6 @@ class Order < ActiveRecord::Base
   validates :lines,   :presence => true
 
   validates_associated :lines
-
-  # Nested attributes
-  accepts_nested_attributes_for :lines, :allow_destroy => true
-
-  # Scopes
-  scope :ongoing, where(:state => %W(WAIT_ESTIMATE WAIT_ESTIMATE_VALIDATION IN_PREPARATION WAIT_DELIVERY))
-  default_scope  :order => '`orders`.`id` DESC'
-
-  # Callbacks
-
-  # Attributes
-  attr_reader(:message)
 
   def modifyState(op)
     case op

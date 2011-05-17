@@ -1,16 +1,9 @@
 class Admin::OrdersController < Admin::AdminController
- # GET /admin/orders
+  # GET /admin/orders
   # GET /admin/orders.xml
   def index
-    @orders = Order.includes(:user, :lines)
-
-    @orders = @orders.where(:id, params[:id]) unless params[:id].blank?
-    @orders = @orders.where(:user_id, params[:user_id]) unless params[:user_id].blank?
-    @orders = @orders.where(:state, params[:state]) unless params[:state].blank?
-
-    if params[:id].blank? && params[:user_id].blank? && params[:state].blank?
-      @orders = @orders.ongoing
-    end
+    @search = Order.search(params[:search])
+    @orders = @search.includes(:lines).page(params[:page]).order(:state)
 
     respond_with(@orders)
   end

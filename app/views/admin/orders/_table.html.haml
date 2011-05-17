@@ -1,11 +1,11 @@
 %table
   %thead
     %tr
-      %th= Order.human_attribute_name('id')
-      %th= User.human_attribute_name('name')
-      %th= Order.human_attribute_name('state')
-      %th= Order.human_attribute_name('totalAmount')
-      %th= Order.human_attribute_name('created_at')
+      %th= sort_link @search, :id
+      %th= sort_link @search, :user_name, User.model_name.human
+      %th= Order.human_attribute_name :state
+      %th= Order.human_attribute_name :totalAmount
+      %th= sort_link @search, :created_at
       %th= t('action').pluralize
 
   %tbody
