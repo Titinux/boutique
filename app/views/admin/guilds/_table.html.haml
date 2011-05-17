@@ -2,7 +2,7 @@
   %thead
     %tr
       %th= t('guild.blazon')
-      %th= Guild.human_attribute_name('name')
+      %th= sort_link @search, :name
       %th= t('action').pluralize
 
   %tbody>

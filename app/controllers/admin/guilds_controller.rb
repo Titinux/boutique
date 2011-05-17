@@ -2,7 +2,10 @@ class Admin::GuildsController < Admin::AdminController
   # GET /admin/guilds
   # GET /admin/guilds.xml
   def index
-    respond_with(@guilds = Guild.all)
+    @search = Guild.search(params[:search])
+    @guilds = @search.page(params[:page]).order(:name)
+
+    respond_with(@guilds)
   end
 
   # GET /admin/guilds/1

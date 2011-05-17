@@ -1,6 +1,15 @@
 = content_title t('guild.listing')
 
+%p.filter
+  = simple_form_for([:admin, @search]) do |f|
+    = f.input :name_contains, :label => Guild.human_attribute_name(:name), :required => false
+
+    .buttons
+      = f.button :submit, t('helpers.submit.search')
+
+= paginate @guilds
 = render :partial => 'table', :locals => { :guilds => @guilds }
+= paginate @guilds
 
 %br
 = link_to_add new_admin_guild_path, :text => t('guild.new'), :format => :long
