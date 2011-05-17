@@ -2,14 +2,8 @@ class Admin::AdministratorsController < Admin::AdminController
   # GET /admin/administrators
   # GET /admin/administrators.xml
   def index
-    @letter = params[:letter] || session[:admin_administrator_letter] || 'A'
-    session[:admin_administrator_letter] = @letter
-
-    if @letter == '*'
-      @administrators = Administrator.where("NOT (`administrators`.`name` REGEXP '^[[:alpha:]]')")
-    else
-      @administrators = Administrator.where("`administrators`.`name` LIKE '#{@letter}%'")
-    end
+    @search          = Administrator.search(params[:search])
+    @administrators  = @search.page(params[:page]).order(:name)
 
     respond_with(@administrators)
   end

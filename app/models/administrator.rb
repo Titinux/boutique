@@ -2,9 +2,11 @@ class Administrator < ActiveRecord::Base
   devise :database_authenticatable, :trackable, :validatable,
          :lockable, :timeoutable, :unlock_strategy => :none
 
-  # Setup accessible (or protected) attributes for your model
+  # Attributes
   attr_accessible :name, :email, :password, :password_confirmation, :blocked
+  attr_searchable  :name, :email
 
+  # Validations
   validates :name, :uniqueness => true, :presence => true, :length => { :within => 3..25 }
 
   def blocked=(value)

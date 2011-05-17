@@ -1,8 +1,8 @@
 %table
   %thead
     %tr
-      %th= Administrator.human_attribute_name('name')
-      %th= Administrator.human_attribute_name('email')
+      %th= sort_link @search, :name
+      %th= sort_link @search, :email
       %th= t('action').pluralize
 
   %tbody

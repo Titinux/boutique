@@ -1,13 +1,16 @@
 = content_title t('administrator.listing')
 
-%p.pagination
-  - (['*'] + ('A'..'Z').to_a).each do |letter|
-    - if letter.upcase == @letter.upcase
-      %em= letter
-    - else
-      = link_to letter, admin_administrators_path(:letter => letter )
+%p.filter
+  = simple_form_for([:admin, @search]) do |f|
+    = f.input :name_contains,  :label => Administrator.human_attribute_name(:name), :required => false
+    = f.input :email_contains, :label => Administrator.human_attribute_name(:email), :required => false
 
+    .buttons
+      = f.button :submit, t('helpers.submit.search')
+
+= paginate @administrators
 = render :partial => 'admin/administrators/table', :locals => { :administrators => @administrators }
+= paginate @administrators
 
 %br
 = link_to_add new_admin_administrator_path, :text => t('administrator.new'), :format => :long
