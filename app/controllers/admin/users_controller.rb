@@ -3,7 +3,7 @@ class Admin::UsersController < Admin::AdminController
   # GET /admin/users.xml
   def index
     @search = User.search(params[:search])
-    @users = @search.includes(:guild).page(params[:page])
+    @users = @search.includes(:guild).page(params[:page]).order(:name)
 
     respond_with(@users)
   end

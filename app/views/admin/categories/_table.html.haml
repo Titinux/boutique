@@ -1,8 +1,8 @@
 %table
   %thead
     %tr
-      %th= Category.human_attribute_name('name')
-      %th= Category.human_attribute_name('parent')
+      %th= sort_link @search, :name
+      %th= sort_link @search, :parent_name, Category.human_attribute_name(:parent)
       %th= t('picture')
       %th= t('action').pluralize
 

@@ -2,7 +2,10 @@ class Admin::CategoriesController < Admin::AdminController
   # GET /admin/categories
   # GET /admin/categories.xml
   def index
-    respond_with(@categories = Category.all)
+    @search     = Category.search(params[:search])
+    @categories = @search.page(params[:page]).order(:name)
+
+    respond_with(@categories)
   end
 
   # GET /admin/categories/1

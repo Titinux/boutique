@@ -1,6 +1,16 @@
 = content_title t('category.listing')
 
+%p.filter
+  = simple_form_for([:admin, @search]) do |f|
+    = f.input :name_contains, :label => Category.human_attribute_name(:name), :required => false
+    = f.input :parent_name_equals, :label => Category.human_attribute_name(:parent), :required => false
+
+    .buttons
+      = f.button :submit, t('helpers.submit.search')
+
+= paginate @categories
 = render :partial => 'table', :locals => { :categories => @categories }
+= paginate @categories
 
 %br
 = link_to_add new_admin_category_path, :text => t('category.new'), :format => :long
