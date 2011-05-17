@@ -27,7 +27,7 @@
       :link => admin_guilds_path
     },
     {
-      :name => User.model_name.human,
+      :name => User.model_name.human.pluralize,
       :link => admin_users_path
     },
     {
@@ -35,7 +35,7 @@
       :link => admin_administrators_path
     },
     {
-      :name => Category.model_name.human,
+      :name => Category.model_name.human.pluralize,
       :link => admin_categories_path
     },
     {

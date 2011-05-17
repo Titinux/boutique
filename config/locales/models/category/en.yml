@@ -1,7 +1,7 @@
 en:
   activerecord:
     models:
-      category: Categories
+      category: Category
 
     attributes:
       category:
