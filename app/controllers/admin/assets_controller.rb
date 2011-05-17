@@ -2,7 +2,10 @@ class Admin::AssetsController < Admin::AdminController
   # GET /admin/assets
   # GET /admin/assets.xml
   def index
-    respond_with(@assets = Asset.all)
+    @search = Asset.search(params[:search])
+    @assets = @search.includes(:category).page(params[:page]).order(:name)
+
+    respond_with(@assets)
   end
 
   # GET /admin/assets/1

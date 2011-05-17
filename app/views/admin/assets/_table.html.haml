@@ -1,8 +1,8 @@
 %table
   %thead
   %tr
-    %th= Asset.human_attribute_name('name')
-    %th= Asset.human_attribute_name('category')
+    %th= sort_link @search, :name
+    %th= sort_link @search, :category_name, Category.model_name.human
     %th= t('picture')
     %th= Asset.human_attribute_name('unitaryprice')
     %th= Asset.human_attribute_name('floatprice')
