@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
                   :blocked
 
   attr_searchable  :name, :gatherer
-  assoc_searchable :guild
+  assoc_searchable :guild, :deposits
 
   #Validations
   validates :name, :presence => true, :uniqueness => true, :length => 3..25, :allow_blank => false

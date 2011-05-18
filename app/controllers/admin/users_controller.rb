@@ -11,7 +11,11 @@ class Admin::UsersController < Admin::AdminController
   # GET /admin/users/1
   # GET /admin/users/1.xml
   def show
-    respond_with(@user = User.find(params[:id]))
+    @user = User.find(params[:id])
+    @search_deposits = @user.deposits.validated.search(params[:search])
+    @deposits = @search_deposits.includes(:user, :asset => :category).page(params[:page])
+
+    respond_with(@user)
   end
 
   # GET /admin/users/new

@@ -1,12 +1,13 @@
 %table
-  %col{ :width => '100%' }
   %thead>
     %tr>
-      %th Asset
-      %th Quantity
+      %th= sort_link @search_deposits, :asset_name, Asset.model_name.human
+      %th= sort_link @search_deposits, :asset_category_name, Category.model_name.human
+      %th= sort_link @search_deposits, :quantity
 
   %body
     - deposits.each do |deposit|
       %tr{ :class => "#{cycle('even', 'odd')}" }
         %td= deposit.asset.name
+        %td= deposit.asset.category.name
         %td.number= deposit.quantity
