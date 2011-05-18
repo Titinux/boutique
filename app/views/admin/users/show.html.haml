@@ -13,7 +13,7 @@
     = @user.blocked ? t('show_for.yes') + " (#{l(@user.locked_at)})" : t('show_for.no')
 
   = u.attribute :confirmed_at? do
-    = @user.confirmed_at? ? t('show_for.yes') + " (#{l(@user.confirmed_at?)})" : t('show_for.no')
+    = @user.confirmed? ? t('show_for.yes') + " (#{l(@user.confirmed_at)})" : t('show_for.no')
 
 = paginate @deposits
 = render :partial => 'admin/users/deposit_table', :locals => { :deposits => @deposits }
