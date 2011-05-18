@@ -4,6 +4,10 @@
   = simple_form_for([:admin, @search]) do |f|
     = f.input :id_equals, :label => Order.human_attribute_name(:id), :required => false
     = f.input :user_name_equals, :label => User.model_name.human, :required => false
+    = f.checks :state_in, orderStatusHash.invert, :class => 'checkboxy' do |check|
+      %div
+        = check.label
+        = check.box
 
     .buttons
       = f.button :submit, t('helpers.submit.search')

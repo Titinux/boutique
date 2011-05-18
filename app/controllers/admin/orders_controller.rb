@@ -2,8 +2,14 @@ class Admin::OrdersController < Admin::AdminController
   # GET /admin/orders
   # GET /admin/orders.xml
   def index
+    if params[:search].blank?
+      params[:search] = ActiveSupport::HashWithIndifferentAccess.new(:state_in => %W(WAIT_ESTIMATE WAIT_ESTIMATE_VALIDATION IN_PREPARATION WAIT_DELIVERY))
+    end
+
     @search = Order.search(params[:search])
-    @orders = @search.includes(:lines).page(params[:page]).order(:state)
+    @orders = @search.relation
+
+    @orders = @orders.includes(:lines).page(params[:page]).order(:state)
 
     respond_with(@orders)
   end
