@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     @user.save
 
-    respond_with(@user)
+    respond_with(@user, :location => root_path)
   end
 
   # PUT /user
