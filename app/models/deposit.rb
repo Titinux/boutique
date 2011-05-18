@@ -1,12 +1,13 @@
 class Deposit < ActiveRecord::Base
+  # Associations
   belongs_to :user
   belongs_to :asset
 
-  # Virtual attributes
+  # Attributes
   attr_accessor :quantity_modifier
-
-  # Attributes protection
   attr_accessible :user_id, :asset_id, :validated, :quantity_modifier
+  attr_searchable
+  assoc_searchable :user, :asset
 
   # Validations
   validates_presence_of :user_id, :asset_id
@@ -23,14 +24,10 @@ class Deposit < ActiveRecord::Base
   after_save :delete_me_if_empty
 
   # Scopes
-  #default_scope includes(:asset), order('asset.name')
-
-  # Scope
   def self.deposits_of(asset)
     where(:asset_id => asset.to_param)
   end
 
-  # Scope
   def self.validated( op = true)
     where(:validated => op)
   end

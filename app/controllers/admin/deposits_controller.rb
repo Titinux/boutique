@@ -2,10 +2,14 @@ class Admin::DepositsController < Admin::AdminController
   # GET /deposits
   # GET /deposits.xml
   def index
-    @deposits = Deposit.scoped
-    @deposits = @deposits.where(:user_id =>  params[:user_id])  unless params[:user_id].blank?
-    @deposits = @deposits.where(:asset_id => params[:asset_id]) unless params[:asset_id].blank?
-    @deposits = @deposits.where(:validated => params[:approved] || false)
+    @search = Deposit.search(params[:search])
+    @deposits = @search.relation
+
+    if params[:search].blank? || params[:search][:validated_is_true] != '1'
+      @deposits = @deposits.validated(false)
+    end
+
+    @deposits = @deposits.includes(:user, :asset => :category).page(params[:page])
 
     respond_with(@deposits)
   end

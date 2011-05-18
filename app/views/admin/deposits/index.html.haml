@@ -1,7 +1,17 @@
 = content_title t('deposit.listing')
 
-= render :partial => 'admin/deposits/filter'
+%p.filter
+  = simple_form_for([:admin, @search]) do |f|
+    = f.input :user_name_equals, :label => User.model_name.human, :required => false
+    = f.input :asset_name_equals, :label => Asset.model_name.human, :required => false
+    = f.input :asset_category_name_equals, :label => Category.model_name.human, :required => false
+    = f.input :validated_is_true, :label => Deposit.human_attribute_name(:validated), :as => :boolean
 
+    .buttons
+      = f.button :submit, t('helpers.submit.search')
+
+= paginate @deposits
 = render :partial => 'table', :locals => { :deposits => @deposits }
+= paginate @deposits
 
 %p= link_to t('deposit.new'), new_admin_deposit_path
