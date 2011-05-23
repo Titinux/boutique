@@ -2,7 +2,7 @@
 source 'http://rubygems.org'
 
 # Rails
-gem 'rails',        '~> 3.1.0.beta1'
+gem 'rails',        '~> 3.1.0.rc1'
 
 # Asset template engines
 gem 'sass'
@@ -28,6 +28,9 @@ gem 'simple_form'
 gem 'show_for'
 gem 'kaminari'
 
+# Use unicorn as the web server
+gem 'unicorn'
+
 # Others
 #gem 'javan-whenever', :lib => false, :source => 'http://gems.github.com'
 gem 'rack-contrib'
@@ -39,7 +42,8 @@ group :development, :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'cucumber-rails'
-  gem 'rspec-rails'
+  gem 'rspec-core', '2.6.2'
+  gem 'rspec-rails', '2.6.1.beta1'
   gem 'spork'
   gem 'launchy'
 end
