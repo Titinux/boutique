@@ -1,68 +1,74 @@
 require "spec_helper"
 
 describe Admin::AdministratorsController do
-
-  def mock_administrator(stubs={})
-    @mock_administrator ||= mock_model(Administrator, stubs).as_null_object
-  end
+  login_administrator
 
   describe "GET index" do
     it "assigns all administrators as @administrators" do
-      Administrator.stub(:where) { [mock_administrator] }
+      administrator = Factory :administrator
+
       get :index
-      assigns(:administrators).should eq([mock_administrator])
+      assigns(:administrators).to_a.should eq(Administrator.all.to_a)
     end
   end
 
   describe "GET show" do
     it "assigns the requested administrator as @administrator" do
-      Administrator.stub(:find).with("42") { mock_administrator }
-      get :show, :id => "42"
-      assigns(:administrator).should be(mock_administrator)
+      administrator = Factory :administrator
+
+      get :show, :id => administrator.id.to_s
+      assigns(:administrator).should eq(administrator)
     end
   end
 
   describe "GET new" do
     it "assigns a new administrator as @administrator" do
-      Administrator.stub(:new) { mock_administrator }
       get :new
-      assigns(:administrator).should be(mock_administrator)
+      assigns(:administrator).should be_a_new(Administrator)
     end
   end
 
   describe "GET edit" do
     it "assigns the requested administrator as @administrator" do
-      Administrator.stub(:find).with("37") { mock_administrator }
-      get :edit, :id => "37"
-      assigns(:administrator).should be(mock_administrator)
+      administrator = Factory :administrator
+
+      get :edit, :id => administrator.id.to_s
+      assigns(:administrator).should eq(administrator)
     end
   end
 
   describe "POST create" do
-
     describe "with valid params" do
+      it "creates a new administrator" do
+        expect {
+          post :create, :administrator => Factory.attributes_for(:administrator)
+        }.to change(Administrator, :count).by(1)
+      end
+
       it "assigns a newly created administrator as @administrator" do
-        Administrator.stub(:new).with({"these" => "params"}) { mock_administrator(:save => true) }
-        post :create, :administrator => {"these" => "params"}
-        assigns(:administrator).should be(mock_administrator)
+        post :create, :administrator => Factory.attributes_for(:administrator)
+        assigns(:administrator).should be_a(Administrator)
+        assigns(:administrator).should be_persisted
       end
 
       it "redirects to the created administrator" do
-        Administrator.stub(:new) { mock_administrator(:save => true) }
-        post :create, :administrator => {}
-        response.should redirect_to(admin_administrator_url(mock_administrator))
+        post :create, :administrator => Factory.attributes_for(:administrator)
+        response.should redirect_to([:admin, Administrator.last])
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved administrator as @administrator" do
-        Administrator.stub(:new).with({"these" => "params"}) { mock_administrator(:save => false) }
-        post :create, :administrator => {"these" => "params"}
-        assigns(:administrator).should be(mock_administrator)
+        Administrator.any_instance.stub(:save).and_return(false)
+
+        post :create, :administrator => {}
+        assigns(:administrator).should be_a_new(Administrator)
       end
 
       it "re-renders the 'new' template" do
-        Administrator.stub(:new) { mock_administrator(:save => false) }
+        Administrator.any_instance.stub(:save).and_return(false)
+        Administrator.any_instance.stub(:errors).and_return({"error" => "foo"})
+
         post :create, :administrator => {}
         response.should render_template("new")
       end
@@ -70,37 +76,45 @@ describe Admin::AdministratorsController do
   end
 
   describe "PUT update" do
-
     describe "with valid params" do
       it "updates the requested administrator" do
-        Administrator.should_receive(:find).with("42") { mock_administrator }
-        mock_administrator.should_receive(:update_attributes).with({"these" => "params"})
-        put :update, :id => "42", :administrator => {"these" => "params"}
+        administrator = Factory :administrator
+
+        Administrator.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
+        put :update, :id => administrator.id.to_s, :administrator => {'these' => 'params'}
       end
 
       it "assigns the requested administrator as @administrator" do
-        Administrator.stub(:find) { mock_administrator(:update_attributes => true) }
-        put :update, :id => "42", :administrator => {"these" => "params"}
-        assigns(:administrator).should be(mock_administrator)
+        administrator = Factory :administrator
+
+        put :update, :id => administrator.id.to_s, :administrator => Factory.attributes_for(:administrator)
+        assigns(:administrator).should eq(administrator)
       end
 
       it "redirects to the administrator" do
-        Administrator.stub(:find) { mock_administrator(:update_attributes => true) }
-        put :update, :id => "42", :administrator => {"these" => "params"}
-        response.should redirect_to(admin_administrator_url(mock_administrator))
+        administrator = Factory :administrator
+
+        put :update, :id => administrator.id.to_s, :administrator => Factory.attributes_for(:administrator)
+        response.should redirect_to([:admin, administrator])
       end
     end
 
     describe "with invalid params" do
       it "assigns the administrator as @administrator" do
-        Administrator.stub(:find) { mock_administrator(:update_attributes => false) }
-        put :update, :id => "42", :administrator => {"these" => "params"}
-        assigns(:administrator).should be(mock_administrator)
+        administrator = Factory :administrator
+
+        Administrator.any_instance.stub(:save).and_return(false)
+        put :update, :id => administrator.id.to_s, :administrator => {}
+        assigns(:administrator).should eq(administrator)
       end
 
       it "re-renders the 'edit' template" do
-        Administrator.stub(:find) { mock_administrator(:update_attributes => false) }
-        put :update, :id => "42", :administrator => {"these" => "params"}
+        administrator = Factory :administrator
+
+        Administrator.any_instance.stub(:save).and_return(false)
+        Administrator.any_instance.stub(:errors).and_return({'error' => 'foo'})
+
+        put :update, :id => administrator.id.to_s, :administrator => {}
         response.should render_template("edit")
       end
     end
@@ -108,14 +122,17 @@ describe Admin::AdministratorsController do
 
   describe "DELETE destroy" do
     it "destroys the requested administrator" do
-      Administrator.should_receive(:find).with("42") { mock_administrator }
-      mock_administrator.should_receive(:destroy)
-      delete :destroy, :id => "42"
+      administrator = Factory :administrator
+
+      expect {
+        delete :destroy, :id => administrator.id.to_s
+      }.to change(Administrator, :count).by(-1)
     end
 
     it "redirects to the administrators list" do
-      Administrator.stub(:find) { mock_administrator }
-      delete :destroy, :id => "1"
+      administrator = Factory :administrator
+
+      delete :destroy, :id => administrator.id.to_s
       response.should redirect_to(admin_administrators_url)
     end
   end

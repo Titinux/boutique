@@ -22,7 +22,7 @@ class Asset < ActiveRecord::Base
   has_many :order_lines
 
   # Attributes
-  attr_accessible :name, :category_id, :pictureUri, :floatPrice
+  attr_accessible :name, :category_id, :pictureUri, :unitaryPrice, :floatPrice
 
   attr_searchable  :name
   assoc_searchable :category

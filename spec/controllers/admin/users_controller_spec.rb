@@ -1,68 +1,72 @@
 require "spec_helper"
 
 describe Admin::UsersController do
-
-  def mock_user(stubs={})
-    @mock_user ||= mock_model(User, stubs).as_null_object
-  end
+  login_administrator
 
   describe "GET index" do
     it "assigns all users as @users" do
-      User.stub(:where) { [mock_user] }
+      user = Factory :user
+
       get :index
-      assigns(:users).should eq([mock_user])
+      assigns(:users).to_a.should eq([user])
     end
   end
 
   describe "GET show" do
     it "assigns the requested user as @user" do
-      User.stub(:find).with("42") { mock_user }
-      get :show, :id => "42"
-      assigns(:user).should be(mock_user)
+      user = Factory :user
+
+      get :show, :id => user.id.to_s
+      assigns(:user).should eq(user)
     end
   end
 
   describe "GET new" do
     it "assigns a new user as @user" do
-      User.stub(:new) { mock_user }
       get :new
-      assigns(:user).should be(mock_user)
+      assigns(:user).should be_a_new(User)
     end
   end
 
   describe "GET edit" do
     it "assigns the requested user as @user" do
-      User.stub(:find).with("37") { mock_user }
-      get :edit, :id => "37"
-      assigns(:user).should be(mock_user)
+      user = Factory :user
+      get :edit, :id => user.id.to_s
+      assigns(:user).should eq(user)
     end
   end
 
   describe "POST create" do
-
     describe "with valid params" do
+      it "creates a new User" do
+        expect {
+          post :create, :user => Factory.attributes_for(:user)
+        }.to change(User, :count).by(1)
+      end
+
       it "assigns a newly created user as @user" do
-        User.stub(:new).with({"these" => "params"}) { mock_user(:save => true) }
-        post :create, :user => {"these" => "params"}
-        assigns(:user).should be(mock_user)
+        post :create, :user => Factory.attributes_for(:user)
+        assigns(:user).should be_a(User)
+        assigns(:user).should be_persisted
       end
 
       it "redirects to the created user" do
-        User.stub(:new) { mock_user(:save => true) }
-        post :create, :user => {}
-        response.should redirect_to(admin_user_url(mock_user))
+        post :create, :user => Factory.attributes_for(:user)
+        response.should redirect_to([:admin, User.last])
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved user as @user" do
-        User.stub(:new).with({"these" => "params"}) { mock_user(:save => false) }
-        post :create, :user => {"these" => "params"}
-        assigns(:user).should be(mock_user)
+        User.any_instance.stub(:save).and_return(false)
+        post :create, :user => {}
+        assigns(:user).should be_a_new(User)
       end
 
       it "re-renders the 'new' template" do
-        User.stub(:new) { mock_user(:save => false) }
+        User.any_instance.stub(:save).and_return(false)
+        User.any_instance.stub(:errors).and_return({ 'error' => 'foo'})
+
         post :create, :user => {}
         response.should render_template("new")
       end
@@ -70,37 +74,44 @@ describe Admin::UsersController do
   end
 
   describe "PUT update" do
-
     describe "with valid params" do
       it "updates the requested user" do
-        User.should_receive(:find).with("42") { mock_user }
-        mock_user.should_receive(:update_attributes).with({"these" => "params"})
-        put :update, :id => "42", :user => {"these" => "params"}
+        user = Factory :user
+
+        User.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
+        put :update, :id => user.id.to_s, :user => {'these' => 'params'}
       end
 
       it "assigns the requested user as @user" do
-        User.stub(:find) { mock_user(:update_attributes => true) }
-        put :update, :id => "42", :user => {"these" => "params"}
-        assigns(:user).should be(mock_user)
+        user = Factory :user
+
+        put :update, :id => user.id.to_s, :user => Factory.attributes_for(:user)
+        assigns(:user).should eq(user)
       end
 
       it "redirects to the user" do
-        User.stub(:find) { mock_user(:update_attributes => true) }
-        put :update, :id => "42", :user => {"these" => "params"}
-        response.should redirect_to(admin_user_url(mock_user))
+        user = Factory :user
+
+        put :update, :id => user.id.to_s, :user => Factory.attributes_for(:user)
+        response.should redirect_to([:admin, user])
       end
     end
 
     describe "with invalid params" do
       it "assigns the user as @user" do
-        User.stub(:find) { mock_user(:update_attributes => false) }
-        put :update, :id => "42", :user => {"these" => "params"}
-        assigns(:user).should be(mock_user)
+        user = Factory :user
+        User.any_instance.stub(:save).and_return(false)
+
+        put :update, :id => user.id.to_s, :user => {}
+        assigns(:user).should eq(user)
       end
 
       it "re-renders the 'edit' template" do
-        User.stub(:find) { mock_user(:update_attributes => false) }
-        put :update, :id => "42", :user => {"these" => "params"}
+        user = Factory :user
+        User.any_instance.stub(:save).and_return(false)
+        User.any_instance.stub(:errors).and_return({ 'error' => 'foo'})
+
+        put :update, :id => user.id.to_s, :user => {}
         response.should render_template("edit")
       end
     end
@@ -108,14 +119,17 @@ describe Admin::UsersController do
 
   describe "DELETE destroy" do
     it "destroys the requested user" do
-      User.should_receive(:find).with("42") { mock_user }
-      mock_user.should_receive(:destroy)
-      delete :destroy, :id => "42"
+      user = Factory :user
+
+      expect {
+        delete :destroy, :id => user.id.to_s
+      }.to change(User, :count).by(-1)
     end
 
     it "redirects to the users list" do
-      User.stub(:find) { mock_user }
-      delete :destroy, :id => "1"
+      user = Factory :user
+
+      delete :destroy, :id => user.id.to_s
       response.should redirect_to(admin_users_url)
     end
   end

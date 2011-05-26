@@ -20,58 +20,54 @@ Boutique::Application.routes.draw do
     # Statistics
     resources :statistics, :only => [ :index, :show ]
 
+    # Cart
+    resource :cart, :controller => 'cart', :except => [ :index, :new ] do
+      get :to_order
+      get :save
+
+      resources :lines, :controller => 'cart_lines', :except => [ :index, :show ]
+    end
+
     # User profile
-    authenticate(:user) do
-      # Cart
-      resource :cart, :controller => 'cart', :except => [ :index, :new ] do
-        get :to_order
-        get :save
-
-        resources :lines, :controller => 'cart_lines', :except => [ :index, :show ]
-      end
-
-      resource :user, :path => 'profile', :except => [:new, :create] do
-        resources :orders, :only => [ :index, :show, :update ]
-        resources :deposits, :only => [:index, :new, :create ]
-        resources :carts do
-          member do
-            get :use_it
-            get :to_order
-          end
+    resource :user, :path => 'profile', :except => [:new, :create] do
+      resources :orders, :only => [ :index, :show, :update ]
+      resources :deposits, :only => [:index, :new, :create ]
+      resources :carts do
+        member do
+          get :use_it
+          get :to_order
         end
       end
     end
 
     # Partie admin du site.
-    authenticate(:administrator) do
-      namespace :admin do
-        # Administrators
-        resources :administrators
+    namespace :admin do
+      # Administrators
+      resources :administrators
 
-        resources :guilds
-        resources :users
+      resources :guilds
+      resources :users
 
-        resources :categories
-        resources :assets
+      resources :categories
+      resources :assets
 
-        resources :orders
+      resources :orders
 
-        resources :config_tree
+      resources :config_tree
 
-        resources :deposits, :except => [:edit, :update] do
-          member do
-            put :validate
-          end
+      resources :deposits, :except => [:edit, :update] do
+        member do
+          put :validate
         end
-
-        resources :statistics, :only => [ :index, :show ]
-
-        resources :jobs, :only => [:index]
-
-        resources :logs, :only => [:index, :show]
-
-        root :to => 'admin#show'
       end
+
+      resources :statistics, :only => [ :index, :show ]
+
+      resources :jobs, :only => [:index]
+
+      resources :logs, :only => [:index, :show]
+
+      root :to => 'admin#show'
     end
 
     root :to => 'boutique#show'

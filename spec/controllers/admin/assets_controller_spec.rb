@@ -1,106 +1,125 @@
 require "spec_helper"
 
 describe Admin::AssetsController do
-
-  def mock_asset(stubs={})
-    @mock_asset ||= mock_model(Asset, stubs).as_null_object
-  end
+  login_administrator
 
   describe "GET index" do
     it "assigns all assets as @assets" do
-      Asset.stub(:all) { [mock_asset] }
+      asset = Factory :asset
+
       get :index
-      assigns(:assets).should eq([mock_asset])
+      assigns(:assets).to_a.should eq([asset])
     end
   end
 
   describe "GET show" do
     it "assigns the requested asset as @asset" do
-      Asset.stub(:find).with("42") { mock_asset }
-      get :show, :id => "42"
-      assigns(:asset).should be(mock_asset)
+      asset = Factory :asset
+
+      get :show, :id => asset.id.to_s
+      assigns(:asset).should eq(asset)
     end
   end
 
   describe "GET new" do
     it "assigns a new asset as @asset" do
-      Asset.stub(:new) { mock_asset }
       get :new
-      assigns(:asset).should be(mock_asset)
+      assigns(:asset).should be_a_new(Asset)
     end
   end
 
   describe "GET edit" do
     it "assigns the requested asset as @asset" do
-      Asset.stub(:find).with("37") { mock_asset }
-      get :edit, :id => "37"
-      assigns(:asset).should be(mock_asset)
+      asset = Factory :asset
+
+      get :edit, :id => asset.id.to_s
+      assigns(:asset).should eq(asset)
     end
   end
 
   describe "POST create" do
-
     describe "with valid params" do
+      before(:each) do
+        category = Factory :category
+        @asset_attributes = Factory.attributes_for(:asset).merge(:category_id => category.id.to_s)
+      end
+
+      it "creates a new Asset" do
+        expect {
+          post :create, :asset => @asset_attributes
+        }.to change(Asset, :count).by(1)
+      end
+
       it "assigns a newly created asset as @asset" do
-        Asset.stub(:new).with({"these" => "params"}) { mock_asset(:save => true) }
-        post :create, :asset => {"these" => "params"}
-        assigns(:asset).should be(mock_asset)
+        post :create, :asset => @asset_attributes
+        assigns(:asset).should be_a(Asset)
+        assigns(:asset).should be_persisted
       end
 
       it "redirects to the created asset" do
-        Asset.stub(:new) { mock_asset(:save => true) }
-        post :create, :asset => {}
-        response.should redirect_to(admin_asset_url(mock_asset))
+        post :create, :asset => @asset_attributes
+
+        response.should redirect_to([:admin, Asset.last])
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved asset as @asset" do
-        Asset.stub(:new).with({"these" => "params"}) { mock_asset(:save => false) }
-        post :create, :asset => {"these" => "params"}
-        assigns(:asset).should be(mock_asset)
-      end      
+        Asset.any_instance.stub(:save).and_return(false)
+        post :create, :asset => {}
+
+        assigns(:asset).should be_a_new(Asset)
+      end
 
       it "re-renders the 'new' template" do
-        Asset.stub(:new) { mock_asset(:save => false) }
-        post :create, :asset => {}
+        Asset.any_instance.stub(:save).and_return(false)
+        Asset.any_instance.stub(:errors).and_return({'error' => 'foo'})
+
+        post :create, :user => {}
         response.should render_template("new")
       end
     end
   end
 
   describe "PUT update" do
-
     describe "with valid params" do
       it "updates the requested asset" do
-        Asset.should_receive(:find).with("42") { mock_asset }
-        mock_asset.should_receive(:update_attributes).with({"these" => "params"})
-        put :update, :id => "42", :asset => {"these" => "params"}
+        asset = Factory :asset
+
+        Asset.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
+        put :update, :id => asset.id.to_s, :asset => {'these' => 'params'}
       end
 
       it "assigns the requested asset as @asset" do
-        Asset.stub(:find) { mock_asset(:update_attributes => true) }
-        put :update, :id => "1"
-        assigns(:asset).should be(mock_asset)
+        asset = Factory :asset
+
+        put :update, :id => asset.id.to_s
+        assigns(:asset).should eq(asset)
       end
 
       it "redirects to the asset" do
-        Asset.stub(:find) { mock_asset(:update_attributes => true) }
-        put :update, :id => "1"
-        response.should redirect_to(admin_asset_url(mock_asset))
+        asset = Factory :asset
+
+        put :update, :id => asset.id.to_s, :asset => Factory.attributes_for(:asset)
+        response.should redirect_to([:admin, asset])
       end
     end
 
     describe "with invalid params" do
       it "assigns the asset as @asset" do
-        Asset.stub(:find) { mock_asset(:update_attributes => false) }
-        put :update, :id => "1"
-        assigns(:asset).should be(mock_asset)
+        asset = Factory :asset
+        Asset.any_instance.stub(:save).and_return(false)
+
+        put :update, :id => asset.id.to_s, :asset => {}
+        assigns(:asset).should eq(asset)
       end
 
       it "re-renders the 'edit' template" do
-        Asset.stub(:find) { mock_asset(:update_attributes => false) }
-        put :update, :id => "1"
+        asset = Factory :asset
+        Asset.any_instance.stub(:save).and_return(false)
+        Asset.any_instance.stub(:errors).and_return({ 'error' => 'foo'})
+
+        put :update, :id => asset.id.to_s, :asset => {}
         response.should render_template("edit")
       end
     end
@@ -108,14 +127,17 @@ describe Admin::AssetsController do
 
   describe "DELETE destroy" do
     it "destroys the requested asset" do
-      Asset.should_receive(:find).with("42") { mock_asset }
-      mock_asset.should_receive(:destroy)
-      delete :destroy, :id => "42"
+      asset = Factory :asset
+
+      expect {
+        delete :destroy, :id => asset.id.to_s
+      }.to change(Asset, :count).by(-1)
     end
 
     it "redirects to the assets list" do
-      Asset.stub(:find) { mock_asset }
-      delete :destroy, :id => "1"
+      asset = Factory :asset
+
+      delete :destroy, :id => asset.id.to_s
       response.should redirect_to(admin_assets_url)
     end
   end

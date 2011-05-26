@@ -16,6 +16,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class CartController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET /cart
   # GET /cart.xml
   def show
