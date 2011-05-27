@@ -1,0 +1,45 @@
+== Boutique
+
+Ce projet est une boutique en ligne pour la guilde des Marchands d'Hyze.
+
+La Boutique se présente comme un site de vente en ligne dans laquelle on peut passer des commandes pour des ressources Dofus.
+
+== Fonctionnalités
+
+=== Pour les récolteurs :
+
+* Voir la quantité de chaque ressources qu'il a mis dans le stock
+* Voir le montant des kamas à percevoir suites aux ventes
+* Voir de façon limitée les commandes actuelles.
+
+=== Pour les admin :
+
+* Gérer les utilisateurs, les catégories, les ressources, les commandes, etc.
+* Gérer les stocks de chaque ressource et l'origine de ces ressources
+* Clore une vente
+
+=== Pour les clients :
+
+* Passer une commande
+* Voir les ressources actuellement en stock
+* Voir les statistiques des ventes
+
+=== Pour l'outil :
+
+* Lors de la clôture d'une vente, retirer les ressources vendues et distribuer les kamas perçus.
+
+== Rapports de bug
+
+Si vous découvrez un problème avec Boutique vous pouvez nous soumettre un rapport de bug sur
+https://github.com/Titinux/boutique/issues ou mieux nous soumettre un patch qui corrige le problème.
+
+== Contributeurs
+
+* Jérémie Horhant (https://github.com/Titinux)
+* Hugues Cheguillaume (https://github.com/Bagu)
+
+== Licence
+
+L'intégralité du projet est placé sous la licence libre AGPLv3. Une copie de cette licence doit
+normalement se trouver à la racine de ce projet. Si ce n'était pas le cas vous pouvez la trouver
+à ici : http://www.gnu.org/licenses/agpl.html
