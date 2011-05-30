@@ -1,14 +1,14 @@
 Dear <%= @order.user.name %>,
 
-I confirm you that your order #<%= @order.id %> is in preparation.
+Your order <%= @order.id %> is now achieved.
 
 Order details.
 --------------
 <%= render :partial => 'order_details', :locals => { :orderLines => @order.lines, :full => true } %>
 
-Total : <%= @order.totalAmount %>
+Total : <%= number_to_currency(@order.totalAmount) %>
 
-We make every effort to deliver your order as soon as possible.
+We hope that you have appreciated our services and that we'll see you soon in our shop.
 
 
 

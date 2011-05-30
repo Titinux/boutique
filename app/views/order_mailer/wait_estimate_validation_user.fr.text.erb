@@ -5,11 +5,11 @@ Votre commande n°<%= @order.id %> a été estimée.
 
 Détails de la commande.
 -----------------------
-<%= render :partial => 'order_details', :locals => { :orderLines => @order.orderLines, :full => true } %>
+<%= render :partial => 'order_details', :locals => { :orderLines => @order.lines, :full => true } %>
 
-Montant total : <%= @order.totalAmount %>
+Montant total : <%= number_to_currency(@order.totalAmount) %>
 
-Merci d'aller sur <%= order_url(@order) %> pour valider ou refuser ce devis.
+Merci d'aller sur <%= user_order_url(@order, :locale => 'fr') %> pour valider ou refuser ce devis.
 Sans validation de votre part d'ici deux semaines, ce devis sera annulé.
 
 

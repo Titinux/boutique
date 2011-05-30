@@ -1,11 +1,11 @@
-Order #<%= @order.id %> for <%= @order.user.name %> is ready to deliver.
------------------------------------------
+Order #<%= @order.id %> for <%= @order.user.name %> is finished.
+----------------------------------------------
 
 Order details.
 --------------
 <%= render :partial => 'order_details', :locals => { :orderLines => @order.orderLines,  :full => true } %>
 
-Total : <%= @order.totalAmount %>
+Total : <%= number_to_currency(@order.totalAmount) %>
 
 
 

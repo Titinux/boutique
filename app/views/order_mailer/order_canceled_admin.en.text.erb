@@ -1,0 +1,12 @@
+<%= @order.user.name %> has canceled the order #<%= @order.id %>
+-------------------------------------
+
+Order details.
+--------------
+<%= render :partial => 'order_details', :locals => { :orderLines => @order.lines, :full => true } %>
+
+Total : <%= number_to_currency(@order.totalAmount) %>
+
+
+
+							-= Marchands d'Hyze team =-

@@ -5,9 +5,9 @@ We invite you to contact an admin of Marchands d'Hyze team to get your order.
 
 Order details.
 --------------
-<%= render :partial => 'order_details', :locals => { :orderLines => @order.orderLines, :full => true } %>
+<%= render :partial => 'order_details', :locals => { :orderLines => @order.lines, :full => true } %>
 
-Total : <%= @order.totalAmount %>
+Total : <%= number_to_currency(@order.totalAmount) %>
 
 
 

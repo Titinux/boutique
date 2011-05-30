@@ -1,11 +1,11 @@
 <%= @order.user.name %> has accepted the estimate.
 --------------------------------------------------
 
-Order details.
+Order #<%= @order.id %> details.
 --------------
 <%= render :partial => 'order_details', :locals => { :orderLines => @order.lines, :full => true } %>
 
-Total : <%= @order.totalAmount %>
+Total : <%= number_to_currency(@order.totalAmount) %>
 
 
 

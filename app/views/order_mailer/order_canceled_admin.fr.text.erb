@@ -3,7 +3,9 @@
 
 Détails de la commande.
 -----------------------
-<%= render :partial => 'order_details', :locals => { :orderLines => @order.lines } %>
+<%= render :partial => 'order_details', :locals => { :orderLines => @order.lines, :full => true } %>
+
+Total : <%= number_to_currency(@order.totalAmount) %>
 
 
 

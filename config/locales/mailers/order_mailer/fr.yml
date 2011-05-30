@@ -1,0 +1,17 @@
+fr:
+  mailer:
+    order:
+      admin:
+        order_created: "Nouvelle commande n°%{order_id} de %{user_name}"
+        order_in_preparation: "La commande n°%{order_id} de %{user_name} a été acceptée"
+        order_canceled: "La commande n°%{order_id} de %{user_name} a été annulée"
+        order_ready: "La commande n°%{order_id} pour %{user_name} est prête"
+        order_achieved: "La commande n°%{order_id} pour %{user_name} est terminée"
+
+      user:
+        order_created: "Confirmation de votre commande n°%{order_id}"
+        wait_estimate_validation: "Le devis de votre commande n°%{order_id} est prêt"
+        order_in_preparation: "Votre commande n°%{order_id} est en préparation"
+        order_canceled: "Votre commande n°%{order_id} a été annulée"
+        order_ready: "Votre commande n°%{order_id} est prête"
+        order_achieved: "Votre commande n°%{order_id} est terminée"

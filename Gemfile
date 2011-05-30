@@ -37,7 +37,8 @@ gem 'rack-contrib'
 gem 'delayed_job'
 
 group :development, :test do
-  gem 'factory_girl_rails'
+  gem 'factory_girl', :git => 'git://github.com/thoughtbot/factory_girl.git', :branch => '3_1_compatibility'
+  gem 'factory_girl_rails', '1.1.beta1'
 
   gem 'capybara'
   gem 'database_cleaner'

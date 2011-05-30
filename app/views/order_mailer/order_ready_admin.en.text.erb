@@ -1,0 +1,12 @@
+Order #<%= @order.id %> for <%= @order.user.name %> is ready to deliver.
+-----------------------------------------
+
+Order details.
+--------------
+<%= render :partial => 'order_details', :locals => { :orderLines => @order.lines,  :full => true } %>
+
+Total : <%= number_to_currency(@order.totalAmount) %>
+
+
+
+							-= Marchands d'Hyze team =-

@@ -1,0 +1,16 @@
+Bonjour <%= @order.user.name %>,
+
+La commande <%= @order.id %> est maintenant achevée.
+
+Détails de la commande.
+-----------------------
+<%= render :partial => 'order_details', :locals => { :orderLines => @order.lines, :full => true } %>
+
+Total : <%= number_to_currency(@order.totalAmount) %>
+
+Nous espérons que vous avez apprécié nos services et que nous vous reverrons
+bientôt dans notre boutique.
+
+
+
+							-= L'équipes des Marchands d'Hyze =-

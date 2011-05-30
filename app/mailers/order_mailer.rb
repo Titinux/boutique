@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-class OrdersMailer < ActionMailer::Base
+class OrderMailer < ActionMailer::Base
   # TODO Utiliser un paramètre pour spécifier l'adresse d'expédition des mails de la boutique.
   default :from => 'no-reply@boutique.hyze.bagu.biz'
 
@@ -23,77 +23,77 @@ class OrdersMailer < ActionMailer::Base
     @order = order
 
     mail :bcc => admin_emails,
-         :subject => "New order from #{order.user.name}"
+         :subject => t('mailer.order.admin.order_created', :order_id => order.id, :user_name => order.user.name)
   end
 
   def order_created_user(order)
     @order = order
 
     mail :to => order.user.email,
-         :subject => "Order ##{order.id} confirmation"
+         :subject => t('mailer.order.user.order_created', :order_id => order.id)
   end
 
   def wait_estimate_validation_user(order)
     @order = order
 
     mail :to => order.user.email,
-         :subject => "Your order ##{order.id} has been estimated"
+         :subject => t('mailer.order.user.wait_estimate_validation', :order_id => order.id)
   end
 
   def order_in_preparation_admin(order)
     @order = order
 
     mail :bcc => admin_emails,
-         :subject => "Order ##{order.id} has been accepted"
+         :subject => t('mailer.order.admin.order_in_preparation', :order_id => order.id, :user_name => order.user.name)
   end
 
   def order_in_preparation_user(order)
     @order = order
 
     mail :to => order.user.email,
-         :subject => "Your Order ##{order.id} is in preparation"
+         :subject => t('mailer.order.user.order_in_preparation', :order_id => order.id)
   end
 
   def order_canceled_admin(order)
     @order = order
 
     mail :bcc => admin_emails,
-         :subject => "Order ##{order.id} was canceled"
+         :subject => t('mailer.order.admin.order_canceled', :order_id => order.id, :user_name => order.user.name)
   end
 
   def order_canceled_user(order)
     @order = order
 
     mail :to => order.user.email,
-         :subject => "Order ##{order.id} was canceled"
+         :subject => t('mailer.order.user.order_canceled', :order_id => order.id)
   end
 
   def order_ready_admin(order)
     @order = order
 
     mail :bcc => admin_emails,
-         :subject => "Order ##{order.id} is ready"
+         :subject => t('mailer.order.admin.order_ready', :order_id => order.id, :user_name => order.user.name)
   end
 
   def order_ready_user(order)
     @order = order
 
     mail :to => order.user.email,
-         :subject => "Your order ##{order.id} is ready"
+         :subject => t('mailer.order.user.order_ready', :order_id => order.id)
   end
 
   def order_achieved_admin(order)
     @order = order
 
     mail :bcc => admin_emails,
-         :subject => "Order ##{order.id} is finished"
+         :subject => t('mailer.order.admin.order_achieved', :order_id => order.id, :user_name => order.user.name)
   end
 
   def order_achieved_user(order)
     @order = order
 
     mail :to => order.user.email,
-         :subject => "Your order ##{order.id} is now achieved"
+         :subject => t('mailer.order.user.order_achieved', :order_id => order.id)
   end
 
   private

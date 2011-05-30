@@ -1,0 +1,17 @@
+en:
+  mailer:
+    order:
+      admin:
+        order_created: "New order #%{order_id} from %{user_name}"
+        order_in_preparation: "Order %{order_id} from %{user_name} has been accepted"
+        order_canceled: "Order %{order_id} from %{user_name} was canceled"
+        order_ready: "Order %{order_id} for %{user_name} is ready"
+        order_achieved: "Order %{order_id} for %{user_name} is finished"
+
+      user:
+        order_created: "Order #%{order_id} confirmation"
+        wait_estimate_validation: "Your order #%{order_id} has been estimated"
+        order_in_preparation: "Your order #%{order_id} is in preparation"
+        order_canceled: "Your order #%{order_id} was canceled"
+        order_ready: "Your order #%{order_id} is ready"
+        order_achieved: "Your order #%{order_id} is now achieved"

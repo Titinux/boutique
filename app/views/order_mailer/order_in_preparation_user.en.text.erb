@@ -1,0 +1,15 @@
+Dear <%= @order.user.name %>,
+
+I confirm you that your order #<%= @order.id %> is in preparation.
+
+Order details.
+--------------
+<%= render :partial => 'order_details', :locals => { :orderLines => @order.lines, :full => true } %>
+
+Total : <%= number_to_currency(@order.totalAmount) %>
+
+We make every effort to deliver your order as soon as possible.
+
+
+
+							-= Marchands d'Hyze team =-
