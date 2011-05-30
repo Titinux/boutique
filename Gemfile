@@ -9,9 +9,6 @@ gem 'sass'
 gem 'coffee-script'
 gem 'uglifier'
 
-# Database
-gem 'mysql2'
-
 # Javascript
 gem 'jquery-rails'
 
@@ -37,6 +34,9 @@ gem 'rack-contrib'
 gem 'delayed_job'
 
 group :development, :test do
+  # Database
+  gem 'sqlite3'
+
   gem 'factory_girl', :git => 'git://github.com/thoughtbot/factory_girl.git', :branch => '3_1_compatibility'
   gem 'factory_girl_rails', '1.1.beta1'
 
@@ -52,4 +52,9 @@ end
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
+end
+
+group :production do
+  # Database
+  gem 'pg'
 end

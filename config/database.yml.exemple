@@ -1,23 +1,19 @@
 common: &common
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
+  adapter: sqlite3
   pool: 5
-  username: <my_username>
-  password: <my_password>
-  socket: /var/run/mysqld/mysqld.sock
+  timeout: 5000
 
 development:
   <<: *common
-  database: boutique_dev
+  database: db/development.sqlite3
 
 production:
   <<: *common
-  database: boutique
+  database: db/production.sqlite3
 
 test: &test
   <<: *common
-  database: boutique_test
+  database: db/test.sqlite3
 
 cucumber:
   <<: *test
