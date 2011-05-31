@@ -57,4 +57,7 @@ end
 group :production do
   # Database
   gem 'pg'
+
+  # Cache
+  gem 'dalli'
 end
