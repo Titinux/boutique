@@ -16,8 +16,6 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 = simple_form_for(cart, :url => cart_path) do |f|
-  = f.error_messages
-
   = f.simple_fields_for(:lines) do |l|
     = l.association :asset, :prompt => nil
     = l.input :quantity

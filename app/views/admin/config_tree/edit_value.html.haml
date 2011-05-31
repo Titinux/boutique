@@ -18,8 +18,6 @@
 %h2 Editing config element
 
 - form_for([:admin, @configElement]) do |f|
-  = f.error_messages
-
   - if @configElement.form_kind == 'string'
   %p
     = f.label :value

@@ -16,8 +16,6 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 = simple_form_for([:admin, @administrator]) do |f|
-  = f.error_messages
-
   %fieldset
     %legend= t('administrator.identity')
     = f.input :name

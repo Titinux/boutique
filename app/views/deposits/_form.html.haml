@@ -16,8 +16,6 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 = simple_form_for(@deposit, :url => user_deposits_path, :html => { :method => :post }) do |f|
-  = f.error_messages
-
   = f.association :asset, :include_blank => false
   = f.input :quantity_modifier, :label => Deposit.human_attribute_name('quantity'), :required => true
 

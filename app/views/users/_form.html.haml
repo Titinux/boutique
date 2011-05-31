@@ -16,8 +16,6 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 = simple_form_for @user, :url => user_path do |f|
-  = f.error_messages
-
   - unless f.object.persisted?
     = f.input :name
 

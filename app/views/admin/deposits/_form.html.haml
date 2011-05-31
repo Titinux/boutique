@@ -16,8 +16,6 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 = simple_form_for(@deposit, :url => admin_deposits_path, :html => { :method => :post }) do |f|
-  = f.error_messages
-
   = f.association :user
   = f.association :asset
   = f.input :quantity_modifier
