@@ -30,8 +30,7 @@ class MigrationToDevise < ActiveRecord::Migration
     change_column_default :users, 'password_salt', ''
     change_column :users, 'password_salt', :string, :null => false
 
-    User.update_all(['confirmed_at = ?', Time.now], 'activated = 1')
-    remove_column :users, 'activated'
+    User.update_all(['confirmed_at = ?', Time.now], ['activated = ?', true])
     remove_column :users, 'admin'
 
     add_index :users, :reset_password_token, :unique => true
