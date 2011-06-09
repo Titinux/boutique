@@ -2,7 +2,7 @@
 source 'http://rubygems.org'
 
 # Rails
-gem 'rails',        '~> 3.1.0.rc1'
+gem 'rails',        '~> 3.1.0.rc3'
 
 # Asset template engines
 gem 'sass'
