@@ -1,6 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+require 'rack/contrib'
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
@@ -68,5 +69,8 @@ module Boutique
       g.stylesheet_engine   :sass
       g.fixture_replacement :factory_girl, :dir => 'spec/factories'
     end
+
+    # Add middlewares
+    config.middleware.use Rack::Locale
   end
 end

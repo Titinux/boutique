@@ -73,5 +73,5 @@ Boutique::Application.routes.draw do
     root :to => 'boutique#show'
   end
 
-  match '/', :to => redirect("/#{I18n.locale}")
+  match '/', :to => redirect(proc { "/#{I18n.locale}" })
 end
