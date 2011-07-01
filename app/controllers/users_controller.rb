@@ -40,6 +40,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     @user.save
 
+    flash[:notice] = t('devise.confirmations.send_instructions')
     respond_with(@user, :location => root_path)
   end
 
