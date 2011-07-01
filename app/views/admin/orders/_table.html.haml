@@ -29,7 +29,7 @@
     - orders.each do |order|
       %tr{ :class => "#{cycle('even', 'odd')}" }
         %td= order.id
-        %td= order.user.name
+        %td= link_to order.user.name, [:admin, order.user], :title => order.user.dofusNicknames
         %td= orderStatusHash[order.state]
         %td.currency= number_to_currency(order.totalAmount)
         %td.date= l(order.created_at)
