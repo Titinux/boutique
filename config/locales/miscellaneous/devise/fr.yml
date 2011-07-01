@@ -35,6 +35,7 @@ fr:
     unlocks:
       send_instructions: "Vous aller reçevoir un e-mail vous permettant de débloquer votre compte dans quelques minutes."
       unlocked: "Votre compte a bien été débloqué. Vous êtes maitenant authentitifé."
+      resend: "Me renvoyer les instructions de débloquage"
     mailer:
       confirmation_instructions:
         subject: "Instructions de confirmation de votre compte"
