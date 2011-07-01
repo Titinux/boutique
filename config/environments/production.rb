@@ -60,4 +60,7 @@ Boutique::Application.configure do
   #}
 
   config.action_mailer.default_url_options = { :host => "boutique.hyze.bagu.biz" }
+
+  # Assets
+  config.assets.compress = true
 end

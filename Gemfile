@@ -2,10 +2,10 @@
 source 'http://rubygems.org'
 
 # Rails
-gem 'rails',        '~> 3.1.0.rc3'
+gem 'rails',        '~> 3.1.0.rc4'
 
 # Asset template engines
-gem 'sass'
+gem 'sass-rails', :require => 'sass'
 gem 'coffee-script'
 gem 'uglifier'
 
@@ -17,7 +17,7 @@ gem 'devise'
 
 # Controllers
 gem 'responders'
-gem 'meta_search',   :git => 'git://github.com/ernie/meta_search.git'
+gem 'meta_search', :git => 'git://github.com/ernie/meta_search.git'
 
 # Views
 gem 'haml'
