@@ -5,6 +5,7 @@ fr:
 
     attributes:
       cart_line:
+        asset: Ressource
         quantity: Quantité
         _destroy: Supprimer
 

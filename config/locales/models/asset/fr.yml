@@ -6,7 +6,7 @@ fr:
     attributes:
       asset:
         name: Nom
-        category: Categorie
+        category: Catégorie
         pictureUri: Uri de l'image
         unitaryPrice: Prix unitaire
         floatPrice: Prix flottant
