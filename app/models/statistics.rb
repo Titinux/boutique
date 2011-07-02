@@ -18,28 +18,48 @@
 class Statistics
 
   def self.stockStats
-    assets = Asset.find(:all, :include => [:deposits, :order_lines], :order => :name)
+    assets   = Asset.arel_table
+    deposits = Deposit.arel_table
+    orders   = Order.arel_table
+    lines    = OrderLine.arel_table
 
-    assets.each do |asset|
-      def asset.stock
-        @stock ||= self.deposits.validated.sum(:quantity)
-      end
+    stocks = deposits.
+                     project(deposits[:asset_id], deposits[:quantity].sum.as('stock')).
+                     where(deposits[:validated].eq(true)).
+                     group(deposits[:asset_id])
 
-      def asset.orderQuantity
-        @orderQuantity ||= self.order_lines.inject(0) do |sum, order_line|
-          order_line.order.blank? || ['IN_PREPARATION', 'WAIT_DELIVERY'].include?(order_line.order.state) ? (sum + order_line.quantity) : sum
-        end
-      end
+    ordereds = lines.
+                    project(lines[:asset_id], lines[:quantity].sum.as('ordered')).
+                    join(orders, Arel::Nodes::OuterJoin).on(orders[:id].eq(lines[:order_id])).
+                    where(orders[:state].in ['IN_PREPARATION', 'WAIT_DELIVERY']).
+                    group(lines[:asset_id])
+
+    s = Arel::Table.new('stocks')
+    o = Arel::Table.new('ordereds')
+    a = s[:stock] - o[:ordered]
+
+    query = assets.
+                  project(assets[:id], assets[:name], s[:stock], o[:ordered], "#{a.to_sql} AS \"available\"").
+                  join(  stocks.as('stocks'), Arel::Nodes::OuterJoin).on(assets[:id].eq(s[:asset_id])).
+                  join(ordereds.as('ordereds'), Arel::Nodes::OuterJoin).on(assets[:id].eq(o[:asset_id]))
+
+    out = ActiveRecord::Base.connection.execute(query.to_sql).to_a
+    out.each do |row|
+      row['stock'] ||= 0
+      row['ordered'] ||= 0
+      row['available'] ||= 0
     end
   end
 
   def self.pigmoneyboxStats
+    users = User.arel_table
+
+    sum_query = users.project(users[:pigMoneyBox].sum)
+
     out = {}
 
-    users = User.all(:order => 'pigMoneyBox DESC')
-
-    out[:sum]     = users.sum(&:pigMoneyBox)
-    out[:richests] = users.slice(0, 3)
+    out[:sum]      = ActiveRecord::Base.connection.execute(sum_query.to_sql).first['sum_id']
+    out[:richests] = User.order(users[:pigMoneyBox].desc).limit(3)
 
     out
   end

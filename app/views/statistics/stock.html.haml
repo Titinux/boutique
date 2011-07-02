@@ -26,7 +26,7 @@
 
   - Statistics.stockStats.each do |asset|
     %tr{ :class => "#{cycle('even', 'odd')}" }
-      %td= asset.name
-      %td.number= asset.stock
-      %td.number= asset.orderQuantity
-      %td{ :class => "number #{'negative' if (asset.stock - asset.orderQuantity) < 0}"}= asset.stock - asset.orderQuantity
+      %td= asset['name']
+      %td.number= number_with_delimiter(asset['stock'])
+      %td.number= number_with_delimiter(asset['ordered'])
+      %td{ :class => "number #{'negative' if (asset['available'] < 0)}"}= number_with_delimiter(asset['available'])
