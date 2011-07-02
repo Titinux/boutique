@@ -18,7 +18,7 @@ en:
         dofusNicknames: Dofus nicknames
         activated: Account activated
         created_at: Created at
-        locked_at?: Locked
+        blocked: Locked
         confirmed_at?: Confirmed
 
   # Users

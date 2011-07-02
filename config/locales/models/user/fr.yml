@@ -18,7 +18,7 @@ fr:
         dofusNicknames: Pseudos Dofus
         activated: Compte activé
         created_at: Créé le
-        locked_at?: Bloqué
+        blocked: Bloqué
         confirmed_at?: Confirmé
 
   # Users
