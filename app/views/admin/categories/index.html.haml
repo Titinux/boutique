@@ -20,7 +20,7 @@
 %p.filter
   = simple_form_for([:admin, @search]) do |f|
     = f.input :name_contains, :label => Category.human_attribute_name(:name), :required => false
-    = f.input :parent_name_equals, :label => Category.human_attribute_name(:parent), :required => false
+    = f.input :parent_name_contains, :label => Category.human_attribute_name(:parent), :required => false
 
     .buttons
       = f.button :submit, t('helpers.submit.search')
