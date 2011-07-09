@@ -45,9 +45,9 @@ class Statistics
 
     out = ActiveRecord::Base.connection.execute(query.to_sql).to_a
     out.each do |row|
-      row['stock'] ||= 0
-      row['ordered'] ||= 0
-      row['available'] ||= 0
+      row['stock']     = row['stock'].to_i
+      row['ordered']   = row['ordered'].to_i
+      row['available'] = row['available'].to_i
     end
   end
 
