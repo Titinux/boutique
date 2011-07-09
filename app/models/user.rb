@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
                   :pigMoneyBox, :dofusNicknames, :guild_id, :gatherer,
                   :blocked
 
-  attr_searchable  :name, :gatherer
+  attr_searchable  :name, :gatherer, :pigMoneyBox
   assoc_searchable :guild, :deposits
 
   #Validations
