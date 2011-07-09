@@ -18,8 +18,9 @@
 = content_title t('user.listing')
 
 %p.filter
-  = simple_form_for([:admin, @search]) do |f|
+  = simple_form_for([:admin, @search], :html => {:novalidate => true}) do |f|
     = f.input :name_contains, :label => User.human_attribute_name(:name), :required => false
+    = f.input :email_contains, :label => User.human_attribute_name(:email), :required => false
     = f.input :guild_name_equals, :label => Guild.model_name.human, :required => false
     = f.input :gatherer_is_true, :label => User.human_attribute_name(:gatherer), :as => :boolean
 
