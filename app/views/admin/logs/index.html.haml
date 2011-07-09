@@ -24,8 +24,8 @@
     = f.input :action_equals, :label => Log.human_attribute_name(:action), :required => false
     = f.input :objectType_equals, :label => Log.human_attribute_name(:objectType), :required => false
     = f.input :objectId_equals, :label => Log.human_attribute_name(:objectId), :required => false
-    = f.input :created_at_gt, :label => 'Apres', :required => false
-    = f.input :created_at_lt, :label => 'Avant', :required => false
+    = f.input :created_at_gt, :label => t('log.after'), :required => false
+    = f.input :created_at_lt, :label => t('log.before'), :required => false
 
     .buttons
       = f.button :submit, t('helpers.submit.search')

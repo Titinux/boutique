@@ -16,3 +16,5 @@ en:
   log:
     listing: Logs listing
     showing: 'Log : %{id}'
+    before: Before
+    after: After

@@ -16,3 +16,5 @@ fr:
   log:
     listing: Liste des journaux
     showing: 'Journal : %{id}'
+    before: Avant le
+    after: Après le
