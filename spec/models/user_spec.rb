@@ -15,3 +15,62 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+require 'spec_helper'
+
+describe User do
+  it 'is valid with valid attributes' do
+    Factory.build(:user).should be_valid
+  end
+
+  describe '#name' do
+    it 'should not be empty or nil' do
+      Factory.build(:user, :name => '').should_not be_valid
+      Factory.build(:asset, :name => nil).should_not be_valid
+    end
+
+    it 'size should be within 3 to 25 characters' do
+      Factory.build(:user, :name => 'f').should_not be_valid
+      Factory.build(:user, :name => 'f'*26).should_not be_valid
+    end
+
+    it 'should be unique' do
+      @user = Factory.create(:user, :name => 'category')
+      Factory.build(:user, :name => @user.name).should_not be_valid
+    end
+  end
+
+  describe '#email' do
+    it "should not be nil" do
+      Factory.build(:user, :email => nil).should_not be_valid
+    end
+
+    it 'should be well formed' do
+      %w(foo foo.bar.net foo@ foo@net @net foo,foo@bar.net).each do |value|
+        Factory.build(:user, :email => value).should_not be_valid
+      end
+    end
+  end
+
+  describe "#password" do
+    it 'should not be nil at the creation' do
+      Factory.build(:user, :password => nil).should_not be_valid
+    end
+
+    it 'could be nil in update' do
+      @user = Factory.create(:user)
+      @user.name += 'foo'
+      @user.password = nil
+      @user.password_confirmation = nil
+      @user.should be_valid
+    end
+
+    it 'length should be within 6 and 25 characters' do
+      Factory.build(:user, :password => 'f').should_not be_valid
+      Factory.build(:user, :password => 'f'*26).should_not be_valid
+    end
+  end
+
+  it 'is not valid if password_confirmation does not match the password' do
+    Factory.build(:user, :password_confirmation => 'foo').should_not be_valid
+  end
+end

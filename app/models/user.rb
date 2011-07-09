@@ -39,6 +39,7 @@ class User < ActiveRecord::Base
 
   #Validations
   validates :name, :presence => true, :uniqueness => true, :length => 3..25, :allow_blank => false
+  validates :email, :presence => true, :uniqueness => true
 
   validates_associated :guild
   validates_associated :deposits
