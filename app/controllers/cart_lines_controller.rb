@@ -32,7 +32,14 @@ class CartLinesController < ApplicationController
   # POST /cart
   # POST /cart.xml
   def create
-    @cart_line = current_user.cart.lines.build(params[:cart_line])
+    @cart_line = current_user.cart.lines.find_by_asset_id(params[:cart_line][:asset_id])
+
+    if @cart_line
+      @cart_line.quantity += params[:cart_line][:quantity].to_i
+    else
+      @cart_line = current_user.cart.lines.build(params[:cart_line])
+    end
+
     @cart_line.save
 
     if params[:submit_and_view_cart].blank?
