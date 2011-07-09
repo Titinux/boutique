@@ -8,8 +8,6 @@ en:
         name: Name
         category: Category
         pictureUri: Picture Uri
-        unitaryPrice: Unitary price
-        floatPrice: Float price
 
   # Asset
   asset:

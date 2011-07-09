@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100906191051) do
+ActiveRecord::Schema.define(:version => 20110709130341) do
 
   create_table "administrators", :force => true do |t|
     t.string   "name",               :limit => 25,                  :null => false
@@ -32,11 +32,9 @@ ActiveRecord::Schema.define(:version => 20100906191051) do
   add_index "administrators", ["name"], :name => "index_administrators_on_name", :unique => true
 
   create_table "assets", :force => true do |t|
-    t.string   "name",         :limit => 25,                                                 :null => false
-    t.integer  "category_id",                                                                :null => false
+    t.string   "name",        :limit => 25, :null => false
+    t.integer  "category_id",               :null => false
     t.string   "pictureUri"
-    t.decimal  "unitaryPrice",               :precision => 10, :scale => 2, :default => 0.0, :null => false
-    t.boolean  "floatPrice",                                                                 :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

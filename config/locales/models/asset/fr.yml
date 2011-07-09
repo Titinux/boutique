@@ -8,8 +8,6 @@ fr:
         name: Nom
         category: Catégorie
         pictureUri: Uri de l'image
-        unitaryPrice: Prix unitaire
-        floatPrice: Prix flottant
 
   # Asset
   asset:

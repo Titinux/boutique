@@ -42,18 +42,4 @@ describe Asset do
   it "should belong to a category" do
     Factory.build(:asset, :category => nil).should_not be_valid
   end
-
-  describe '#unitaryPrice' do
-    it "should not be nil" do
-      Factory.build(:asset, :unitaryPrice => nil).should_not be_valid
-    end
-
-    it "must be numerical" do
-      Factory.build(:asset, :unitaryPrice => 'foo').should_not be_valid
-    end
-
-    it "must be greater or equal to 0" do
-      Factory.build(:asset, :unitaryPrice => -1).should_not be_valid
-    end
-  end
 end
