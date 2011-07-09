@@ -16,6 +16,7 @@ en:
     waitingDeposits: Waiting Deposits
     validate: Validate
     refuse: Refuse
+    confirm_refuse: Do you really want to refuse the deposit of %{quantity} %{asset} by %{user} ?
     created: Deposit was successfully created.
     listing: Liste des dépôts
     validation_success: Deposit was successfully validated.

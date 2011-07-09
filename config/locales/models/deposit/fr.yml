@@ -16,6 +16,7 @@ fr:
     waitingDeposits: Dépôts en attente
     validate: Valider
     refuse: Refuser
+    confirm_refuse: Voulez-vous vraiment refuser le dépôt de %{quantity} %{asset} par %{user} ?
     created: Votre dépôt a bien été pris en compte.
     listing: Liste des dépôts
     validation_success: Le dépôt à bien été validé.
