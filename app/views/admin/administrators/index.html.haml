@@ -18,7 +18,7 @@
 = content_title t('administrator.listing')
 
 %p.filter
-  = simple_form_for([:admin, @search]) do |f|
+  = simple_form_for([:admin, @search], :html => {:novalidate => true}) do |f|
     = f.input :name_contains,  :label => Administrator.human_attribute_name(:name), :required => false
     = f.input :email_contains, :label => Administrator.human_attribute_name(:email), :required => false
 
