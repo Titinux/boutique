@@ -16,7 +16,7 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 = content_for :sidebar do
-  = block :title => t('user.block') do
+  = frame :title => t('user.block') do
     %ul
       %li= link_to t('user.infos') , user_path
       - if current_user.gatherer

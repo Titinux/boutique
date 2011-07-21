@@ -17,7 +17,7 @@
 
 = content_title t('devise.links.sign_in')
 
-= block :title => t('user.have_acount'), :class => 'sign_in' do
+= frame :title => t('user.have_acount'), :class => 'sign_in' do
 
   = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
     = f.input :name, :hint => t('user.name_hint')
@@ -28,6 +28,6 @@
 
   = render 'users/shared/links'
 
-= block :title => t('user.no_account_yet'), :class => 'sign_up' do
+= frame :title => t('user.no_account_yet'), :class => 'sign_up' do
   %ul
     %li= link_to t('devise.links.sign_up'), new_user_path

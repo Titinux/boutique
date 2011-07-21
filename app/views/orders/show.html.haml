@@ -15,7 +15,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-= block :title => t('order.commandId', :id => @order.id) do
+= frame :title => t('order.commandId', :id => @order.id) do
   = show_for @order do |o|
     = o.attribute :state do
       = orderStatusHash[@order.state]
@@ -23,7 +23,7 @@
     = o.attribute :totalAmount do
       = number_to_currency(@order.totalAmount)
 
-  = block :title => t('order.details') do
+  = frame :title => t('order.details') do
     = render :partial => 'order_lines_table', :locals => { :order => @order }
 
   - if @order.state == 'WAIT_ESTIMATE_VALIDATION'

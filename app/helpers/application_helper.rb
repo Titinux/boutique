@@ -16,20 +16,21 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 module ApplicationHelper
-  def block(*args, &block)
+  def frame(*args)
     options = args.extract_options!
     options[:class] ||= ''
     options[:body_class] ||= ''
 
-    out = ''
-    out << '<div class="block ' + options[:class] + '">'
-    out << '<div class="block_header">' + options[:title] + '</div>'
-    out << '<div class="block_body ' + options[:body_class] + '">'
-    out << capture(&block)
-    out << '</div>'
-    out << '</div>'
-
-    raw(out)
+    capture_haml do
+      haml_tag ['div', 'frame', options[:class]].join('.'), :data => options[:data] do
+        haml_tag 'div.frame_header' do
+          haml_concat options[:title]
+        end
+        haml_tag ['div', 'frame_body', options[:body_class]].join('.') do
+          yield if block_given?
+        end
+      end
+    end
   end
 
   def makeMenu(name)

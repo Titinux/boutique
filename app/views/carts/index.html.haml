@@ -17,7 +17,7 @@
 
 = render :partial => 'shared/user_sidebar'
 
-= block :title => t('user.myCarts') do
+= frame :title => t('user.myCarts') do
   = render :partial => 'table', :locals => { :carts => @carts }
 
 = link_to_add new_user_cart_path, :text => 'Ajouter un panier', :format => :long
