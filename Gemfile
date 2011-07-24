@@ -37,14 +37,12 @@ group :development, :test do
   # Database
   gem 'sqlite3'
 
-  gem 'factory_girl', :git => 'git://github.com/thoughtbot/factory_girl.git', :branch => '3_1_compatibility'
-  gem 'factory_girl_rails', '1.1.beta1'
+  gem 'factory_girl_rails'
 
   gem 'capybara'
   gem 'database_cleaner'
   gem 'cucumber-rails'
-  gem 'rspec-core', '2.6.2'
-  gem 'rspec-rails', '2.6.1.beta1'
+  gem 'rspec-rails'
   gem 'spork'
   gem 'launchy'
 end
