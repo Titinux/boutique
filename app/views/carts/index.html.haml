@@ -15,9 +15,10 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-= render :partial => 'shared/user_sidebar'
-
 = frame :title => t('user.myCarts') do
   = render :partial => 'table', :locals => { :carts => @carts }
 
 = link_to_add new_user_cart_path, :text => 'Ajouter un panier', :format => :long
+
+= content_for :sidebar do
+  = render_cell :widget, :user

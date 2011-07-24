@@ -42,16 +42,19 @@
       #center
         = render_flash_messages
 
-        - if content_for?(:content_title)
-          = yield :content_title
-
         - if content_for?(:sidebar)
           #content
+            - if content_for?(:content_title)
+              = yield :content_title
+
             = yield
 
           #sidebar
             = yield :sidebar
         - else
+          - if content_for?(:content_title)
+            = yield :content_title
+
           = yield
 
       #footer

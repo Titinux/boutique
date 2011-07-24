@@ -15,7 +15,8 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-= render :partial => 'shared/user_sidebar'
-
 = frame :title => t('user.myOrders') do
   = render :partial => 'table', :locals => { :orders => @orders }
+
+= content_for :sidebar do
+  = render_cell :widget, :user

@@ -18,6 +18,7 @@ gem 'devise'
 # Controllers
 gem 'responders'
 gem 'meta_search', :git => 'git://github.com/ernie/meta_search.git'
+gem 'cells'
 
 # Views
 gem 'haml'

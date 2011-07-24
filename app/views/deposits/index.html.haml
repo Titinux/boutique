@@ -15,8 +15,6 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-= render :partial => 'shared/user_sidebar'
-
 = frame :title => t('deposit.waiting') do
   = render :partial => 'deposits/table', :locals => { :deposits => @deposits.validated(false) }
 
@@ -24,3 +22,6 @@
   = render :partial => 'deposits/table', :locals => { :deposits => @deposits.validated }
 
 %p= link_to_add new_user_deposit_path, :text => t('deposit.new'), :format => :long
+
+= content_for :sidebar do
+  = render_cell :widget, :user

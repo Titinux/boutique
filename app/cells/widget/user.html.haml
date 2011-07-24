@@ -15,14 +15,14 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-= content_for :sidebar do
-  = frame :title => t('user.block') do
-    %ul
+= frame :title => t('user.block'), :class => 'widget.user' do
+  %ul
+    - if @user
       %li= link_to t('user.infos') , user_path
-      - if current_user.gatherer
+      - if @user.gatherer
         %li= link_to Deposit.model_name.human, user_deposits_path
-      %li= link_to Cart.model_name.human.pluralize, user_carts_path
+      %li= link_to Cart.model_name.human.pluralize, user_cart_path(:id => 'current')
       %li= link_to Order.model_name.human.pluralize, user_orders_path
-
       %li= link_to t('devise.links.sign_out'), destroy_user_session_path
-
+    - else
+      %li= link_to t('devise.links.sign_in'), new_user_session_path, :class => 'sign_in_link'
