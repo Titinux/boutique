@@ -13,6 +13,7 @@ en:
         state: State
         dispatched: Dispatched
         created_at: Created at
+        comment: Comment
 
   # Order
   order:

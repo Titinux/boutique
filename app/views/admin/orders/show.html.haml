@@ -25,6 +25,7 @@
     = number_to_currency(@order.totalAmount)
   = o.attribute :dispatched
   = o.attribute :created_at
+  = o.attribute :comment
 
 = frame :title => t('order.details') do
   = render :partial => 'admin/order_lines/table', :locals => { :order => @order }

@@ -18,54 +18,46 @@
 class CartLinesController < ApplicationController
   before_filter :authenticate_user!
 
-  # GET /cart/new
-  # GET /cart/new.xml
   def new
-    respond_with(@cart_line = current_user.cart.lines.build(:asset_id => params[:asset_id]))
+    @cart_line = NewCartLine.new(:user => current_user, :cart_id => current_user.cart.id, :asset_id => params[:asset_id])
+
+    respond_with(@cart_line)
   end
 
-  # GET /cart/1/edit
   def edit
-    respond_with(@cart_line = current_user.cart.lines.find(params[:id]))
+    cart = current_user.carts.find(params[:cart_id])
+
+    respond_with(@cart_line = cart.lines.find(params[:id]))
   end
 
-  # POST /cart
-  # POST /cart.xml
   def create
-    @cart_line = current_user.cart.lines.find_by_asset_id(params[:cart_line][:asset_id])
+    @cart_line = NewCartLine.new(params[:new_cart_line].merge(:user => current_user))
 
-    if @cart_line
-      @cart_line.quantity += params[:cart_line][:quantity].to_i
-    else
-      @cart_line = current_user.cart.lines.build(params[:cart_line])
+    if @cart_line.save
+      flash[:notice] = t('flash.cart_lines.create.notice',
+                         :count => @cart_line.quantity,
+                         :asset => @cart_line.asset.name,
+                         :cart  => @cart_line.cart.name)
+
+      @cart_line.cart.touch
     end
 
-    @cart_line.save
-
-    if params[:submit_and_view_cart].blank?
-      location = category_path(@cart_line.asset.category)
-    else
-      location = cart_path
-    end
-
-    respond_with(@cart_line, :location => location)
+    respond_with(@cart_line, :location => category_path(@cart_line.asset.category))
   end
 
-  # PUT /cart/1
-  # PUT /cart/1.xml
   def update
-    @cart_line = current_user.cart.lines.find(params[:id])
+    cart = current_user.carts.find(params[:cart_id])
+    @cart_line = cart.lines.find(params[:id])
     @cart_line.update_attributes(params[:cart_line])
 
-    respond_with(@cart_line, :location => cart_path)
+    respond_with(@cart_line, :location => cart_path(cart))
   end
 
-  # DELETE /cart/1
-  # DELETE /cart/1.xml
   def destroy
-    @cart = current_user.cart.lines.find(params[:id])
-    @cart.destroy
+    cart = current_user.carts.find(params[:cart_id])
+    @cart_line = cart.lines.find(params[:id])
+    @cart_line.destroy
 
-    respond_with(@cart, :location => cart_path)
+    respond_with(@cart_line, :location => cart_path(cart))
   end
 end

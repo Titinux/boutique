@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110709130341) do
+ActiveRecord::Schema.define(:version => 20110726113037) do
 
   create_table "administrators", :force => true do |t|
     t.string   "name",               :limit => 25,                  :null => false
@@ -48,9 +48,8 @@ ActiveRecord::Schema.define(:version => 20110709130341) do
   end
 
   create_table "carts", :force => true do |t|
-    t.integer  "user_id",                       :null => false
+    t.integer  "user_id",    :null => false
     t.string   "name"
-    t.boolean  "current",    :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -138,6 +137,7 @@ ActiveRecord::Schema.define(:version => 20110709130341) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "dispatched",               :default => false, :null => false
+    t.text     "comment"
   end
 
   create_table "sessions", :force => true do |t|

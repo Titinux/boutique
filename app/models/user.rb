@@ -75,8 +75,6 @@ class User < ActiveRecord::Base
   end
 
   def cart
-    cart = self.carts.where(:current => true).first
-
-    cart ||= self.carts.create(:current => true)
+    self.carts.order(:updated_at).last || self.carts.create(:name => I18n.t('cart.default_name'))
   end
 end

@@ -27,7 +27,7 @@
     },
     {
       :name => Cart.model_name.human,
-      :link => cart_path
+      :link => cart_path(:id => 'current')
     },
     {
       :name => I18n.t('statistics.name'),

@@ -27,14 +27,29 @@ class OrdersController < ApplicationController
     respond_with(@orders = current_user.orders)
   end
 
-  # GET /user/order/1
-  # GET /user/order/1.xml
   def show
     respond_with(@order = current_user.orders.find(params[:id]))
   end
 
-  # PUT /user/order/1
-  # PUT /user/order/1.xml
+  def new
+    @cart = current_user.carts.find(params[:cart_id])
+    @order = @cart.to_order
+
+    respond_with(@order)
+  end
+
+  def create
+    @cart = current_user.carts.find(params[:order][:cart][:id])
+    @order = @cart.to_order
+    @order.comment = params[:order][:comment]
+
+    if @order.save
+      @cart.destroy if params[:order][:cart][:remove_after_ordered] == '1'
+    end
+
+    respond_with(@order, :location => user_orders_path)
+  end
+
   def update
     @order = current_user.orders.find(params[:id])
 

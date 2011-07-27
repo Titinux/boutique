@@ -32,4 +32,12 @@ class WidgetCell < Cell::Rails
       render
     end
   end
+
+  def carts
+    if user_signed_in?
+      @carts = current_user.carts
+
+      render
+    end
+  end
 end

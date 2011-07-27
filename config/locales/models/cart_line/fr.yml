@@ -2,12 +2,33 @@ fr:
   activerecord:
     models:
       cart_line: Ligne
+      new_cart_line: Ligne
 
     attributes:
       cart_line:
+        cart: Panier
         asset: Ressource
         quantity: Quantité
-        _destroy: Supprimer
 
-  cart_line:
-    add: Ajouter une ligne
+  flash:
+    cart_lines:
+      create:
+        notice:
+          one: %{count} %{asset} a été ajouté à votre panier %{cart}.
+          other: %{count} %{asset} ont été ajoutés à votre panier %{cart}.
+
+  activemodel:
+    models:
+      new_cart_line: Ligne
+
+    attributes:
+      new_cart_line:
+        cart_id: Panier
+        cart_name: Nouveau panier
+        quantity: Quantité
+
+  simple_form:
+    hints:
+      new_cart_line:
+        cart_id: Choisissez un panier existant
+        cart_name: ou créez-en un nouveau

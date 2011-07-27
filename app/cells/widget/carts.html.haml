@@ -15,12 +15,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-= simple_form_for(cart, :url => cart_path) do |f|
-  = f.simple_fields_for(:lines) do |l|
-    = l.association :asset, :prompt => nil
-    = l.input :quantity
-    = l.input :_destroy, :as => :boolean
-
-  .buttons
-    = f.button :submit, :name => 'addline', :value => t('cart_line.add')
-    = f.button :submit
+= frame :title => t('cart.my_carts'), :class => 'widget.carts' do
+  %ul
+    - @carts.each do |cart|
+      %li= link_to cart.name, cart_path(cart)

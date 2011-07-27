@@ -15,4 +15,8 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-= render 'form'
+= simple_form_for @cart_line, :url => cart_line_path(@cart_line.cart, @cart_line) do |f|
+  = f.input :quantity
+
+  .buttons
+    = f.button :submit

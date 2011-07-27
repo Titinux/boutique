@@ -5,9 +5,29 @@ en:
 
     attributes:
       cart_line:
+        cart: Cart
         asset: Asset
         quantity: Quantity
-        _destroy: Supprimer
 
-  cart_line:
-    add: Add a line
+  flash:
+    cart_lines:
+      create:
+        notice:
+          one: %{count} %{asset} has been added to your cart %{cart}.
+          other: %{count} %{asset} have been added to your cart %{cart}.
+
+  activemodel:
+    models:
+      new_cart_line: Line
+
+    attributes:
+      new_cart_line:
+        cart_id: Cart
+        cart_name: New cart
+        quantity: Quantity
+
+  simple_form:
+    hints:
+      new_cart_line:
+        cart_id: Choose an existing cart
+        cart_name: or create a new one

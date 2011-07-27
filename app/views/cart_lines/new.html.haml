@@ -15,4 +15,19 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-= render 'form'
+= simple_form_for @cart_line, :url => cart_lines_path do |f|
+  = f.input :asset_id, :as => :hidden
+
+  %fieldset
+    %legend= Cart.model_name.human
+
+    = f.input :cart_id, :collection => @cart_line.user.carts, :prompt => false, :required => false
+    = f.input :cart_name
+
+  %fieldset
+    %legend= "#{Asset.model_name.human} ( #{@cart_line.asset.name} )"
+
+    = f.input :quantity
+
+  .buttons
+    = f.button :submit, t('cart.add')

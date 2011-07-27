@@ -44,11 +44,6 @@ describe Cart do
       Factory.build(:cart, :name => nil).should_not be_valid
     end
 
-    it 'could be empty or nil for current cart' do
-      Factory.build(:current_cart, :name => '').should be_valid
-      Factory.build(:current_cart, :name => nil).should be_valid
-    end
-
     it 'size should be within 2 to 30 characters' do
       Factory.build(:category, :name => 'f').should_not be_valid
       Factory.build(:category, :name => 'f'*31).should_not be_valid

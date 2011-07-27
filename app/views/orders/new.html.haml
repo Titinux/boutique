@@ -1,0 +1,23 @@
+= content_title t('order.new')
+
+%table
+  %thead
+    %tr
+      %th= Asset.model_name.human.pluralize
+      %th= Order.human_attribute_name('quantity')
+
+  %tbody>
+    - @order.lines.each do |order_line|
+      %tr{ :class => "#{cycle('even', 'odd')}" }
+        %td= order_line.asset.name
+        %td.number= order_line.quantity
+
+= simple_form_for [:user, @order] do |f|
+  = f.input :comment, :input_html => { :cols => 40, :rows => 7 }
+
+  = f.simple_fields_for :cart do |ff|
+    = ff.input :id, :as => :hidden, :input_html => { :value => @cart.id }
+    = ff.input :remove_after_ordered, :as => :boolean, :label => t('cart.remove_after_ordered'), :input_html => { :checked => @cart.name == t('cart.default_name') }
+
+  .buttons
+    = f.button :submit

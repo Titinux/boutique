@@ -13,6 +13,7 @@ fr:
         state: Etat
         dispatched: Répartie
         created_at: Créée le
+        comment: Commentaire
 
   # Order
   order:

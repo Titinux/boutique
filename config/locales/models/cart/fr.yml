@@ -16,10 +16,11 @@ fr:
     add: Ajouter au panier
     empty: Vider le panier
     save: Sauver ce panier
-    use_it: Utiliser ce panier
-    quick: Remplir le panier rapidement
     cart_empty: Votre panier est vide !
-    add_and_continue_shopping: Ajouter et continuer les courses
-    add_and_view_cart: Ajouter et aller au panier
     updateSuccess: La ressource a été mise à jour.
-    addCartSuccess: La ressource a été ajouté au panier.
+    addCartSuccess:
+      one: %{count} %{asset} a été ajouté au panier.
+      other: %{count} %{asset} ont été ajoutés au panier.
+    my_carts: Mes paniers
+    default_name: Panier par défaut
+    remove_after_ordered: Supprimer le panier après la commande

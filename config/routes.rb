@@ -21,23 +21,16 @@ Boutique::Application.routes.draw do
     resources :statistics, :only => [ :index, :show ]
 
     # Cart
-    resource :cart, :controller => 'cart', :except => [ :index, :new ] do
-      get :to_order
-      get :save
-
-      resources :lines, :controller => 'cart_lines', :except => [ :index, :show ]
+    resources :carts, :except => [ :index, :new, :create ] do
+      resources :lines, :controller => 'CartLines', :only => [:edit, :update, :destroy]
     end
+
+    resources :cart_lines, :only => [ :new, :create ]
 
     # User profile
     resource :user, :path => 'profile', :except => [:new, :create] do
-      resources :orders, :only => [ :index, :show, :update ]
+      resources :orders, :only => [ :index, :show, :update, :new, :create ]
       resources :deposits, :only => [:index, :new, :create ]
-      resources :carts do
-        member do
-          get :use_it
-          get :to_order
-        end
-      end
     end
 
     # Partie admin du site.
