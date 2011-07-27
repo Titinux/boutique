@@ -17,7 +17,7 @@
 
 = simple_form_for(@deposit, :url => user_deposits_path, :html => { :method => :post }) do |f|
   = f.association :asset
-  = f.input :quantity_modifier, :label => Deposit.human_attribute_name('quantity'), :required => true
+  = f.input :quantity_modifier, :required => true
 
   .buttons
     = f.button :submit

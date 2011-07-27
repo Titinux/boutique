@@ -7,6 +7,9 @@ en:
       deposit:
         quantity: Quantity
         validated: Validated
+        user: User
+        asset: Asset
+        quantity_modifier: Quantity
 
   # Deposit
   deposit:
