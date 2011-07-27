@@ -24,7 +24,7 @@ class OrdersController < ApplicationController
   end
 
   def index
-    respond_with(@orders = current_user.orders)
+    respond_with(@orders = current_user.orders.order(Order.arel_table[:id].desc))
   end
 
   def show
