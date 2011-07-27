@@ -133,10 +133,6 @@ fr:
   helpers:
     select:
       prompt: "Veuillez sélectionner"
-    submit:
-      create: "Créer un %{model}"
-      update: "Modifier ce %{model}"
-      submit: "Enregistrer ce %{model}"
 
   attributes:
     created_at: "Créé le"
