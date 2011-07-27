@@ -15,77 +15,87 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-set :application, "boutique.hyze.bagu.biz"
-set :repository,  "git://github.com/titinux/boutique.git"
+$:.unshift(File.expand_path('./lib', ENV['rvm_path'])) # Add RVM's lib directory to the load path.
 
-# If you aren't deploying to /u/apps/#{application} on the target
-# servers (which is the default), you can specify the actual location
-# via the :deploy_to variable:
-set :deploy_to, "/var/www/#{application}"
+require 'rvm/capistrano'
+#require 'bundler/capistrano'
 
-# If you aren't using Subversion to manage your source code, specify
-# your SCM below:
-set :scm, :git
+load    'config/deploy/capistrano_database'
+load    'config/deploy/rvmrc'
 
-role :app, "192.168.11.2"
-role :web, "192.168.11.2"
-role :db,  "192.168.11.2", :primary => true
+set :bundle_flags, "--deployment"
 
-set :user, 'root'
+set :application, 'boutique'
+set :repository,  'git://github.com/Titinux/boutique.git'
+
+# Servers settings
+role :app, 'Haruna.lan'
+role :web, 'Haruna.lan'
+role :db,  'Haruna.lan', :primary => true
+
+set :user, "hyze.fr"
 set :use_sudo, false
 set :rails_env, 'production'
 
-namespace :deploy do
-  desc "Copy database configration file in the application"
-  task :copy_database_configuration do
-    production_db_config = "#{deploy_to}/config/production.database.yml"
-    run "cp #{production_db_config} #{release_path}/config/database.yml"
+# Deployment location
+set :deploy_to, "/home/hyze.fr/web_apps/#{application}"
+
+# SCM
+set :scm, :git
+#set :branch, '1.1'
+set :deploy_via, :remote_cache
+
+# RVM
+set :rvm_type, :user
+set :rvm_ruby_string, '1.9.2-p180@boutique'
+
+namespace :bundle do
+  task :install do
+    desc "Bundle production gems"
+    run "cd #{release_path} && bundle install --without development test"
   end
 end
 
 namespace :deploy do
-  namespace :assets do
-    desc "Make symlinks"
-    task :symlink, :roles => :app do
-      assets.create_dirs
-      run "rm -rf #{release_path}/public/images && ln -nfs #{shared_path}/images #{release_path}/public/images"
-    end
-
-    desc "Create directories"
-    task :create_dirs, :roles => :app do
-      %w(index pictures).each do |name|
-        run "mkdir -p #{shared_path}/#{name}"
-      end
-    end
-
-    desc "Create asset packages for production"
-    task :package, :roles => [:web] do
-      run <<-EOF
-        cd #{release_path} && rake asset:packager:build_all
-      EOF
-    end
+  task :start do
+    desc 'Start unicorn server'
+    run "unicorn -c #{deploy_to}/current/config/unicorn.rb -E production -D"
   end
-end
 
-namespace :deploy do
-  desc "Restarting passenger with restart.txt"
+  task :stop do
+    desc 'Stop unicorn server'
+    run "if [ -f #{shared_path}/pids/unicorn.pid ]; then kill -s QUIT `cat #{shared_path}/pids/unicorn.pid` fi"
+  end
+
   task :restart, :roles => :app, :except => { :no_release => true } do
-    run "touch #{current_path}/tmp/restart.txt"
+    desc 'Reload unicorn server'
+    run "kill -s USR2 `cat #{shared_path}/pids/unicorn.pid`"
+  end
+
+  task :asset_symlink, :except => { :no_release => true } do
+    run "rm -rf #{release_path}/app/assets/images"
+    run "ln -nfs #{shared_path}/images #{release_path}/app/assets/images"
+  end
+
+  task :sockets, :except => { :no_release => true } do
+    run "ln -nfs #{shared_path}/sockets #{release_path}/tmp/sockets"
   end
 end
 
-namespace :deploy do
-  desc "Update the crontab file"
-  task :update_crontab, :roles => :db do
-    run "cd #{release_path} && whenever --update-crontab #{application}"
-  end
-end
+after "deploy:finalize_update", "deploy:sockets"
+after "deploy:finalize_update", "deploy:asset_symlink"
+after "deploy:update_code", "bundle:install"
 
-after "deploy:update_code" , "deploy:copy_database_configuration"
-after "deploy:update_code" , "deploy:assets:symlink"
-after "deploy:update_code",  "deploy:assets:package"
-after "deploy:symlink",      "deploy:update_crontab"
+#namespace :deploy do
+#  desc "Update the crontab file"
+#  task :update_crontab, :roles => :db do
+#    run "cd #{release_path} && whenever --update-crontab #{application}"
+#  end
+#end
 
-after "deploy:stop",    "delayed_job:stop"
-after "deploy:start",   "delayed_job:start"
-after "deploy:restart", "delayed_job:restart"
+#after "deploy:symlink",      "deploy:update_crontab"
+
+#after "deploy:stop",    "delayed_job:stop"
+#after "deploy:start",   "delayed_job:start"
+#after "deploy:restart", "delayed_job:restart"
+
