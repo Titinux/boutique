@@ -18,15 +18,31 @@
 = simple_form_for([:admin, @order]) do |f|
   = f.association :user, :include_blank => false
   = f.input :state, :collection => orderStatusHash.collect{|k, v| [v, k]}, :include_blank => false
+  = f.input :comment, :input_html => { :cols => 40, :rows => 7 }
 
   %table#order_lines
-    %tr
-      %th= Asset.model_name.human
-      %th= OrderLine.human_attribute_name :quantity
-      %th= OrderLine.human_attribute_name :unitary_price
+    %thead
+      %tr
+        %th= Asset.model_name.human
+        %th= OrderLine.human_attribute_name :quantity
+        %th= OrderLine.human_attribute_name :unitaryPrice
+        %th= t('action').pluralize
 
-    = f.simple_fields_for :lines do |fl|
-      = render 'line_fields', :f => fl
+    %tbody
+      = f.simple_fields_for :lines, :lines do |fl|
+        %tr
+          = render 'line_fields', :f => fl
+          %td
+            = fl.input :_destroy, :as => :hidden, :input_html => { :class => 'remove_fields' }
+            = link_to_function(t('destroy'), "Boutique.remove_fields(this, 'tr')")
 
   .buttons
     = f.button :submit
+
+  %script#order_line_template{:type => "text/x-jquery-tmpl"}
+    = f.simple_fields_for :lines, OrderLine.new, :child_index => '${new_id}' do |flt|
+      %tr
+        = render 'line_fields', :f => flt
+        %td= link_to_function(t('destroy'), "Boutique.remove_fields(this, 'tr')")
+
+%p= link_to_function t('order.add_line'), "Boutique.add_nested_form('#order_line_template', '#order_lines tbody')"

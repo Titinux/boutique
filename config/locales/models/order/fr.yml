@@ -5,15 +5,13 @@ fr:
 
     attributes:
       order:
-        quantity: Quantité
-        uPrice: Prix à l'unité
-        price: Prix
         totalAmount: Montant total
         id: N°
         state: Etat
         dispatched: Répartie
         created_at: Créée le
         comment: Commentaire
+        user: Utilisateur
 
   # Order
   order:
@@ -47,3 +45,4 @@ fr:
       delivered: Commande livrée
     createSuccess: La commande a bien été créée.
     commandId: Commande n°%{id}
+    add_line: Ajouter une ligne

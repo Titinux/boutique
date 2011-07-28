@@ -19,9 +19,9 @@
   %thead
     %tr
       %th= Asset.model_name.human
-      %th= Order.human_attribute_name :quantity
-      %th= Order.human_attribute_name :unitary_price
-      %th= Order.human_attribute_name :price
+      %th= OrderLine.human_attribute_name :quantity
+      %th= OrderLine.human_attribute_name :unitaryPrice
+      %th= OrderLine.human_attribute_name :price
 
   %tbody
     - order.lines.each do |order_line|

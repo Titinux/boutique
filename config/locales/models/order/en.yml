@@ -5,15 +5,13 @@ en:
 
     attributes:
       order:
-        quantity: Quantity
-        uPrice: Unitary price
-        price: Price
         totalAmount: Total amount
         id: #
         state: State
         dispatched: Dispatched
         created_at: Created at
         comment: Comment
+        user: user
 
   # Order
   order:
@@ -46,4 +44,5 @@ en:
       prepared: Order prepared
       delivered: Order delivered
     createSuccess: Order was successfully created.
-    commandId: Order #%{id}
+    commandId: 'Order #%{id}'
+    add_line: Add line

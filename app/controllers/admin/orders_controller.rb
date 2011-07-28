@@ -16,8 +16,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class Admin::OrdersController < Admin::AdminController
-  # GET /admin/orders
-  # GET /admin/orders.xml
   def index
     if params[:search].blank?
       params[:search] = ActiveSupport::HashWithIndifferentAccess.new(:state_in => %W(WAIT_ESTIMATE WAIT_ESTIMATE_VALIDATION IN_PREPARATION WAIT_DELIVERY))
@@ -31,29 +29,21 @@ class Admin::OrdersController < Admin::AdminController
     respond_with(@orders)
   end
 
-  # GET /admin/orders/1
-  # GET /admin/orders/1.xml
   def show
     respond_with(@order = Order.find(params[:id]))
   end
 
-  # GET /admin/orders/new
-  # GET /admin/orders/new.xml
   def new
     @order = Order.new
-    @order.lines.build
 
     respond_with(@order)
   end
 
-  # GET /admin/orders/1/edit
   def edit
     respond_with(@order = Order.find(params[:id]))
     #@estimateRestriction = params[:estimate]
   end
 
-  # POST /admin/orders
-  # POST /admin/orders.xml
   def create
     @order = Order.new(params[:order])
     @order.save
@@ -61,8 +51,6 @@ class Admin::OrdersController < Admin::AdminController
     respond_with(:admin, @order)
   end
 
-  # PUT /admin/orders/1
-  # PUT /admin/orders/1.xml
   def update
     @order = Order.find(params[:id])
     @order.update_attributes(params[:order])
@@ -70,8 +58,6 @@ class Admin::OrdersController < Admin::AdminController
     respond_with(:admin, @order)
   end
 
-  # DELETE /admin/orders/1
-  # DELETE /admin/orders/1.xml
   def destroy
     @order = Order.find(params[:id])
     @order.destroy

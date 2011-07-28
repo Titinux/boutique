@@ -1,0 +1,7 @@
+fr:
+  activerecord:
+    attributes:
+      order_line:
+        quantity: Quantité
+        unitaryPrice: Prix à l'unité
+        price: Prix
