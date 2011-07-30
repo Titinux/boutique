@@ -22,7 +22,7 @@ class DepositsController < ApplicationController
   # GET /deposits
   # GET /deposits.xml
   def index
-    respond_with(@deposits = current_user.deposits)
+    respond_with(@deposits = current_user.deposits.joins(:asset).order(Asset.arel_table[:name]))
   end
 
 

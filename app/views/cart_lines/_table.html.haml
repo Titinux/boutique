@@ -23,7 +23,7 @@
       %th= CartLine.human_attribute_name(:quantity)
       %th= t('action').pluralize
   %tbody
-    - cart.lines.each do |line|
+    - cart.lines.joins(:asset).order(Asset.arel_table[:name]).each do |line|
       %tr{ :class => "#{cycle('even', 'odd')}" }
         %td= link_to line.asset.name, category_path(line.asset.category)
         %td.number= line.quantity

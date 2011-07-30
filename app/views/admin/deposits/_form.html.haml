@@ -16,8 +16,8 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 = simple_form_for(@deposit, :url => admin_deposits_path, :html => { :method => :post }) do |f|
-  = f.association :user
-  = f.association :asset
+  = f.association :user, :collection => User.order(:name), :prompt => false
+  = f.association :asset, :collection => Asset.order(:name), :prompt => false
   = f.input :quantity_modifier
   = f.input :validated
 

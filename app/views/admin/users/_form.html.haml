@@ -21,7 +21,7 @@
   = f.input :password_confirmation
   = f.input :dofusNicknames
   = f.input :email
-  = f.association :guild
+  = f.association :guild, :collection => Guild.order(:name)
   = f.input :pigMoneyBox
   = f.input :gatherer
   = f.input :blocked, :as => :boolean

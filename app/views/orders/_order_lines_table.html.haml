@@ -19,12 +19,12 @@
   %thead
     %tr
       %th= Asset.model_name.human.pluralize
-      %th= Order.human_attribute_name('quantity')
-      %th= Order.human_attribute_name('uPrice')
-      %th= Order.human_attribute_name('price')
+      %th= OrderLine.human_attribute_name :quantity
+      %th= OrderLine.human_attribute_name :unitaryPrice
+      %th= OrderLine.human_attribute_name :price
 
   %tbody>
-    - order.lines.each do |order_line|
+    - order.lines.joins(:asset).order(Asset.arel_table[:name]).each do |order_line|
       %tr{ :class => "#{cycle('even', 'odd')}" }
         %td= order_line.asset.name
         %td.number= order_line.quantity

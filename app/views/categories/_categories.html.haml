@@ -15,8 +15,8 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-- categories.each do |category|
-  = frame :class => 'mini', :title => h(category.name), :body_class => 'category' do
+- categories.order(:name).each do |category|
+  = frame :class => 'mini', :title => category.name, :body_class => 'category' do
     = image_tag category.pictureUri unless category.pictureUri.blank?
     %br
     = link_to category.name, category_path(category)

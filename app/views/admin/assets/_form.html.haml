@@ -17,7 +17,7 @@
 
 = simple_form_for([:admin, @asset]) do |f|
   = f.input :name
-  = f.association :category
+  = f.association :category, :collection => Category.order(:name), :prompt => false
   = f.input :pictureUri
 
   .buttons

@@ -22,5 +22,5 @@
     %p= t('cart.cart_empty')
   -else
     %ul
-      - @cart.lines.each do |line|
+      - @cart.lines.joins(:asset).order(Asset.arel_table[:name]).each do |line|
         %li= [line.quantity, line.asset.name].join(' ')
