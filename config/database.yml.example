@@ -13,7 +13,7 @@ production:
 
 test: &test
   <<: *common
-  database: db/test.sqlite3
+  database: ":memory:"
 
 cucumber:
   <<: *test
