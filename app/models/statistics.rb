@@ -48,7 +48,9 @@ class Statistics
     out.each do |row|
       row['stock']     = row['stock'].to_i
       row['ordered']   = row['ordered'].to_i
-      row['available'] = row['available'].to_i
+
+      #TODO Utiliser le résultat de la requête directement dès qu'Arel disposera de la fonction coalesce
+      row['available'] = row['stock'] - row['ordered']
     end
   end
 
