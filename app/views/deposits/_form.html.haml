@@ -16,7 +16,7 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 = simple_form_for(@deposit, :url => user_deposits_path, :html => { :method => :post }) do |f|
-  = f.association :asset
+  = f.association :asset, :collection => Asset.order(:name)
   = f.input :quantity_modifier, :required => true
 
   .buttons
