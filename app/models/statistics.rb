@@ -41,7 +41,8 @@ class Statistics
     query = assets.
                   project(assets[:id], assets[:name], s[:stock], o[:ordered], "#{a.to_sql} AS \"available\"").
                   join(  stocks.as('stocks'), Arel::Nodes::OuterJoin).on(assets[:id].eq(s[:asset_id])).
-                  join(ordereds.as('ordereds'), Arel::Nodes::OuterJoin).on(assets[:id].eq(o[:asset_id]))
+                  join(ordereds.as('ordereds'), Arel::Nodes::OuterJoin).on(assets[:id].eq(o[:asset_id])).
+                  order(assets[:name])
 
     out = ActiveRecord::Base.connection.execute(query.to_sql).to_a
     out.each do |row|
