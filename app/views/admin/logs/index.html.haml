@@ -20,7 +20,7 @@
 %p.filter
   = simple_form_for([:admin, @search]) do |f|
     = f.input :id_equals, :label => Log.human_attribute_name(:id), :required => false
-    = f.input :user_equals, :label => User.model_name.human, :required => false
+    = f.input :user_contains, :label => User.model_name.human, :required => false
     = f.input :action_equals, :label => Log.human_attribute_name(:action), :required => false
     = f.input :objectType_equals, :label => Log.human_attribute_name(:objectType), :required => false
     = f.input :objectId_equals, :label => Log.human_attribute_name(:objectId), :required => false
