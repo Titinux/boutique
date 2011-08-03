@@ -29,9 +29,9 @@ class Deposit < ActiveRecord::Base
   # Validations
   validates_presence_of :user_id, :asset_id
 
-  validates_numericality_of :quantity, :only_integer => true
+  validates :quantity, :numericality => { :only_integer => true }
+  validates :quantity_modifier, :numericality => { :only_integer => true }
 
-  validate :quantity_modifier_must_be_an_integer
   validate :not_duplicate
   validate :coherant_quantity
 
@@ -65,7 +65,7 @@ class Deposit < ActiveRecord::Base
   end
 
   def self.find_or_new(params)
-    Deposit.find(:first, :conditions => params) || Deposit.new(params)
+    Deposit.where(params).first || Deposit.new(params)
   end
 
   private
@@ -78,28 +78,21 @@ class Deposit < ActiveRecord::Base
 
 
   # Validation
-  def quantity_modifier_must_be_an_integer
-    unless self.quantity_modifier.to_i.to_s == self.quantity_modifier.to_s
-      errors.add(:quantity, I18n.t('validation.must_be_an_integer'))
-    end
-  end
-
-  # Validation
   def not_duplicate
-    unless Deposit.find(:all, :conditions =>{ :user_id => self.user_id, :asset_id => self.asset_id, :validated => self.validated }).reject {|d| d.id == self.id }.blank?
-      errors.add_to_base(I18n.t('deposit.validation.duplicate_is_forbidden'))
+    unless Deposit.where({ :user_id => self.user_id, :asset_id => self.asset_id, :validated => self.validated }).reject {|d| d.id == self.id }.blank?
+      errors.add :base, I18n.t('deposit.validation.duplicate_is_forbidden')
     end
   end
 
   # Validation
   def coherant_quantity
     final_quantity = self.quantity.to_i + self.quantity_modifier.to_i
-    potential_user_stock = Deposit.find(:all, :conditions => { :user_id => self.user_id, :asset_id => self.asset_id }).sum(&:quantity)
+    potential_user_stock = Deposit.where({ :user_id => self.user_id, :asset_id => self.asset_id }).sum(:quantity)
 
     if self.validated?
-      errors.add_to_base(I18n.t('deposit.validation.stock_cant_be_negative')) if final_quantity < 0
+      errors.add :base, I18n.t('deposit.validation.stock_cant_be_negative') if final_quantity < 0
     else
-      errors.add_to_base(I18n.t('deposit.validation.withdrawal_cant_be_superior_to_deposits')) if self.quantity_modifier.to_i + potential_user_stock < 0
+      errors.add :base, I18n.t('deposit.validation.withdrawal_cant_be_superior_to_deposits') if self.quantity_modifier.to_i + potential_user_stock < 0
     end
   end
 

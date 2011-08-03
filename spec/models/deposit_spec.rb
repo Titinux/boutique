@@ -53,7 +53,7 @@ describe Deposit do
   end
 
   it 'should be destroy after save if quantity equal to 0' do
-    @deposit = Factory.build(:deposit, :quantity => 0)
+    @deposit = Factory.build(:deposit, :quantity => 0, :quantity_modifier => 0)
     @deposit.save
 
     @deposit.destroyed?.should == true

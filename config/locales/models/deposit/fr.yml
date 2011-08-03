@@ -29,3 +29,7 @@ fr:
       duplicate_is_forbidden: Les doublons sont interdits
       stock_cant_be_negative: La valeur du stock ne peut être négative
       withdrawal_cant_be_superior_to_deposits: La valeur du retrait ne peux excéder les dépôts
+
+    prompts:
+      user: Choisissez un utilisateur
+      asset: Choisisssez une ressource

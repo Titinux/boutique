@@ -40,10 +40,12 @@ class Admin::DepositsController < Admin::AdminController
   # POST /admin/deposits
   # POST /admin/deposits.xml
   def create
-    @deposit = Deposit.find_or_new({ :user_id => params[:deposit][:user_id], :asset_id => params[:deposit][:asset_id], :validated => params[:deposit][:validated]})
-    @deposit.quantity_modifier = params[:deposit][:quantity_modifier]
+    validated = params[:deposit][:validated] == '1'
 
+    @deposit = Deposit.find_or_new({ :user_id => params[:deposit][:user_id], :asset_id => params[:deposit][:asset_id], :validated => validated})
+    @deposit.quantity_modifier = params[:deposit][:quantity_modifier]
     @deposit.save
+
     respond_with(@deposit, :location => admin_deposits_path)
   end
 
