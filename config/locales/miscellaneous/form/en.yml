@@ -14,3 +14,9 @@ en:
       create: "Create a %{model}"
       update: "Confirm changes to %{model}"
       search: 'Search'
+
+  form:
+    errors:
+      title:
+        one: One error prohibited this record from being saved
+        other: %{count} errors prohibited this record from being saved

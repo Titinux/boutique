@@ -31,7 +31,7 @@ form
     color: $color4
 
   .error
-    color: red
+    color: $color_red
 
   .field_with_errors
     display: inline-block
@@ -56,27 +56,26 @@ form
 
   .required
     abbr
-      color: red
+      color: $color_red
 
-#errorExplanation
+#errors
   width: 400px
-  border: 2px solid red
-  padding: 7px
-  padding-bottom: 12px
+  border: 2px solid $color_red
   margin-bottom: 20px
   background-color: #f0f0f0
-  h2
+  margin: 0 auto
+
+  p
     text-align: left
     font-weight: bold
-    padding: 5px 5px 5px 15px
-    font-size: 12px
-    margin: -7px
-    background-color: #cc0000
-    color: #ffffff
-  p
-    color: #333333
-    margin-bottom: 0
     padding: 5px
+    font-size: 12px
+    background-color: $color_red
+    color: #ffffff
+    margin-top: 0
+
   ul li
+    color: #333333
+    padding: 5px
     font-size: 12px
     list-style: square

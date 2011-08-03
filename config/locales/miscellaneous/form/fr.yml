@@ -14,3 +14,9 @@ fr:
       create: "Créer"
       update: "Mettre à jour"
       search: 'Chercher'
+
+  form:
+    errors:
+      title:
+        one: Une erreur empêche l'enregistrement
+        other: %{count} erreurs empêchent l'enregistrement
