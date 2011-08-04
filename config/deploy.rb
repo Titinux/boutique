@@ -42,7 +42,7 @@ set :deploy_to, "/home/hyze.fr/web_apps/#{application}"
 
 # SCM
 set :scm, :git
-#set :branch, '1.1'
+set :branch, '1.1'
 set :deploy_via, :remote_cache
 
 # RVM
