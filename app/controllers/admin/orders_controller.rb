@@ -24,7 +24,7 @@ class Admin::OrdersController < Admin::AdminController
     @search = Order.search(params[:search])
     @orders = @search.relation
 
-    @orders = @orders.includes(:lines).page(params[:page]).order(:state)
+    @orders = @orders.includes(:lines, :user).page(params[:page]).order(Order.arel_table[:id].desc)
 
     respond_with(@orders)
   end
