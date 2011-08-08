@@ -52,13 +52,13 @@ Boutique::Application.configure do
   # Mail options
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
-  #config.action_mailer.smtp_settings = {
-  #  :address => "127.0.0.1",
-  #  :port => 25,
-  #  :domain => "boutique.hyze.bagu.biz"
-  #}
+  config.action_mailer.smtp_settings = {
+    :address => "mail.titinux.net",
+    :port => 25,
+    :domain => "boutique.hyze.fr"
+  }
 
-  config.action_mailer.default_url_options = { :host => "boutique.hyze.bagu.biz" }
+  config.action_mailer.default_url_options = { :host => "boutique.hyze.fr" }
 
   # Assets
   config.assets.compress = true
