@@ -20,6 +20,7 @@ fr:
         created_at: Créé le
         blocked: Bloqué
         confirmed_at?: Confirmé
+        confirmed?: Confirmé
 
   # Users
   user:
