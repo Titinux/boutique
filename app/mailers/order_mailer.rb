@@ -17,7 +17,7 @@
 
 class OrderMailer < ActionMailer::Base
   # TODO Utiliser un paramètre pour spécifier l'adresse d'expédition des mails de la boutique.
-  default :from => 'no-reply@boutique.hyze.bagu.biz'
+  default :from => 'no-reply@boutique.hyze.fr'
 
   def order_created_admin(order)
     @order = order
