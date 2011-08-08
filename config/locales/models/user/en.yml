@@ -20,6 +20,7 @@ en:
         created_at: Created at
         blocked: Locked
         confirmed_at?: Confirmed
+        confirmed?: Confirmed
 
   # Users
   user:

@@ -24,6 +24,8 @@
   = f.association :guild, :collection => Guild.order(:name)
   = f.input :pigMoneyBox
   = f.input :gatherer
+  - unless @user.confirmed?
+    = f.input :confirmed?, :as => :boolean
   = f.input :blocked, :as => :boolean
 
   .buttons
