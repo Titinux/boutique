@@ -3,6 +3,7 @@ source 'http://rubygems.org'
 
 # Rails
 gem 'rails', '~> 3.1.0.rc5'
+gem 'arel', '2.1.4' # Ne pas utiliser la version 2.1.5
 
 # Asset template engines
 gem 'sass-rails', :require => 'sass'
@@ -42,10 +43,7 @@ group :development, :test do
 
   gem 'capybara'
   gem 'database_cleaner'
-  gem 'cucumber-rails'
   gem 'rspec-rails'
-  gem 'spork'
-  gem 'launchy'
 end
 
 group :test do

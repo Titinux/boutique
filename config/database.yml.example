@@ -13,7 +13,4 @@ production:
 
 test: &test
   <<: *common
-  database: ":memory:"
-
-cucumber:
-  <<: *test
+  database: db/test.sqlite3
