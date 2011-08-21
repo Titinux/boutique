@@ -8,10 +8,10 @@
     <% longestPrice = orderLines.inject(0) {|memo, orderLine| memo >= number_to_currency(orderLine.price).length ? memo : number_to_currency(orderLine.price).length } -%>
 <% end %>
 
-<% longestAsset = longestAsset >= 'Asset'.length ? longestAsset : 'Asset'.length -%>
-<% longestQt    = longestQt >= 'Quantity'.length ? longestQt : 'Quantity'.length -%>
-<% longestUp    = longestAsset >= 'Unitary price'.length ? longestAsset : 'Unitary price'.length -%>
-<% longestPrice = longestQt >= 'Price'.length ? longestQt : 'Price'.length -%>
+<% longestAsset = longestAsset >= Asset.model_name.human.length ? longestAsset : Asset.model_name.human.length -%>
+<% longestQt    = longestQt >= OrderLine.human_attribute_name(:quantity).length ? longestQt : OrderLine.human_attribute_name(:quantity).length -%>
+<% longestUp    = longestAsset >= OrderLine.human_attribute_name(:unitaryPrice).length ? longestAsset : OrderLine.human_attribute_name(:unitaryPrice).length -%>
+<% longestPrice = longestQt >= OrderLine.human_attribute_name(:price).length ? longestQt : OrderLine.human_attribute_name(:price).length -%>
 <% longestAsset += 4 -%>
 <% longestQt    += 4 -%>
 <% longestUp    += 4 -%>
@@ -19,7 +19,7 @@
 
 <% unless full -%>
 <%= ''.ljust(longestAsset, '-') %>---<%= ''.ljust(longestQt, '-') %>
-<%= Asset.model_name.human.center(longestAsset) %> | <%= Order.human_attribute_name(:quantity).center(longestQt) %>
+<%= Asset.model_name.human.center(longestAsset) %> | <%= OrderLine.human_attribute_name(:quantity).center(longestQt) %>
 <%= ''.ljust(longestAsset, '-') %>-+-<%= ''.ljust(longestQt, '-') %>
 <% orderLines.each do |orderLine| -%>
 <%= orderLine.asset.name.ljust(longestAsset) %> | <%= orderLine.quantity.to_s.rjust(longestQt) %>
@@ -27,7 +27,7 @@
 <%= ''.ljust(longestAsset, '-') %>---<%= ''.ljust(longestQt, '-') %>
 <% else -%>
 <%= ''.ljust(longestAsset, '-') %>---<%= ''.ljust(longestQt, '-') %>---<%= ''.ljust(longestUp, '-') %>---<%= ''.ljust(longestPrice, '-') %>
-<%= Asset.model_name.human.center(longestAsset) %> | <%= Order.human_attribute_name(:quantity).center(longestQt) %> | <%= Order.human_attribute_name(:uPrice).center(longestUp) %> | <%= Order.human_attribute_name(:price).center(longestPrice) %>
+<%= Asset.model_name.human.center(longestAsset) %> | <%= OrderLine.human_attribute_name(:quantity).center(longestQt) %> | <%= OrderLine.human_attribute_name(:unitaryPrice).center(longestUp) %> | <%= OrderLine.human_attribute_name(:price).center(longestPrice) %>
 <%= ''.ljust(longestAsset, '-') %>-+-<%= ''.ljust(longestQt, '-') %>-+-<%= ''.ljust(longestUp, '-') %>-+-<%= ''.ljust(longestPrice, '-') %>
 <% orderLines.each do |orderLine| -%>
 <%= orderLine.asset.name.ljust(longestAsset) %> | <%= orderLine.quantity.to_s.rjust(longestQt) %> | <%= number_to_currency(orderLine.unitaryPrice).rjust(longestUp) %> | <%= number_to_currency(orderLine.price).rjust(longestPrice) %>
