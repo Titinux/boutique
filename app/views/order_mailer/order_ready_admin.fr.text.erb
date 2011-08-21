@@ -3,6 +3,8 @@ La commande n°<%= @order.id %> pour <%= @order.user.name %> est prête à être
 
 Détails de la commande.
 -----------------------
+
+Commentaire : <%= @order.comment %>
 <%= render :partial => 'order_details', :locals => { :orderLines => @order.lines,  :full => true } %>
 
 Total : <%= number_to_currency(@order.totalAmount) %>
