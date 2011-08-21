@@ -22,7 +22,7 @@ class Admin::DepositsController < Admin::AdminController
     @search = Deposit.search(params[:search])
     @deposits = @search.relation
 
-    if params[:search].blank? || params[:search][:validated_is_true] != '1'
+    if params[:search].nil? || params[:search][:validated_is_true].nil? || params[:search][:validated_is_true] == '0' || params[:search][:validated_is_true] == 'false'
       @deposits = @deposits.validated(false)
     end
 
