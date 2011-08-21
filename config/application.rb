@@ -8,7 +8,7 @@ require 'rack/contrib'
 Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 module Boutique
-  VERSION = "1.1.0".freeze
+  VERSION = "1.1.1.alpha".freeze
 
   class Application < Rails::Application
 
