@@ -3,6 +3,8 @@ Order #<%= @order.id %> for <%= @order.user.name %> is ready to deliver.
 
 Order details.
 --------------
+
+Comment : <%= @order.comment %>
 <%= render :partial => 'order_details', :locals => { :orderLines => @order.lines,  :full => true } %>
 
 Total : <%= number_to_currency(@order.totalAmount) %>

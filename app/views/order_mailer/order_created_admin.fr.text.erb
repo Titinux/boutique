@@ -3,6 +3,8 @@ Nouvelle commande n°<%= @order.id %> de <%= @order.user.name %>.
 
 Détails de la commande.
 -----------------------
+
+Commentaire : <%= @order.comment %>
 <%= render :partial => 'order_details', :locals => { :orderLines => @order.lines } %>
 
 
