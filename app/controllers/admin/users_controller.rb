@@ -18,7 +18,7 @@
 class Admin::UsersController < Admin::AdminController
   def index
     @search = User.search(params[:search])
-    @users = @search.includes(:guild).page(params[:page]).order(:name)
+    @users = @search.includes(:guild).page(params[:page]).order(User.arel_table[:name])
 
     respond_with(@users)
   end
