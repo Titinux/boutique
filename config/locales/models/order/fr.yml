@@ -10,6 +10,7 @@ fr:
         state: Etat
         dispatched: Répartie
         created_at: Créée le
+        updated_at: Modifiée le
         comment: Commentaire
         user: Utilisateur
 

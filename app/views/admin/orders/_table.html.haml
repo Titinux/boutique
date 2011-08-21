@@ -22,7 +22,7 @@
       %th= sort_link @search, :user_name, User.model_name.human
       %th= Order.human_attribute_name :state
       %th= Order.human_attribute_name :totalAmount
-      %th= sort_link @search, :created_at
+      %th= sort_link @search, :updated_at
       %th= t('action').pluralize
 
   %tbody
@@ -32,7 +32,7 @@
         %td= link_to order.user.name, [:admin, order.user], :title => order.user.dofusNicknames
         %td= orderStatusHash[order.state]
         %td.currency= number_to_currency(order.totalAmount)
-        %td.date= l(order.created_at)
+        %td.date= l(order.updated_at)
         %td.actions
           = link_to_show admin_order_path(order)
           = link_to_edit edit_admin_order_path(order)
