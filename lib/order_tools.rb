@@ -19,7 +19,7 @@ module OrderTools
   class OrderDispatchException < Exception; end
 
   def self.available?(order)
-    order.orderLines.each do |line|
+    order.lines.each do |line|
       return false if(Deposit.stock(line.asset) < line.quantity)
     end
 
@@ -40,15 +40,15 @@ module OrderTools
       # TODO : Utiliser une option pour gérer le montant de la taxe.
       taxe = (100 - 1.to_f) / 100
 
-      order.orderLines.each do |orderLine|
-        assetQuantity = orderLine.quantity
-        deposits = Deposit.find(:all, :conditions => { :asset_id => orderLine.asset.id, :validated => true} , :order => 'quantity DESC')
+      order.lines.each do |line|
+        assetQuantity = line.quantity
+        deposits = Deposit.find(:all, :conditions => { :asset_id => line.asset.id, :validated => true} , :order => 'quantity DESC')
 
         deposits.size.downto(1) do |i|
           deposit = deposits[i-1]
 
           qt = [deposit.quantity, (assetQuantity / i).to_i].min
-          money = (qt * orderLine.unitaryPrice * taxe).to_i
+          money = (qt * line.unitaryPrice * taxe).to_i
 
           deposit.user.pigMoneyBox += money
           deposit.user.save!
