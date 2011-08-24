@@ -29,8 +29,12 @@ class Deposit < ActiveRecord::Base
   # Validations
   validates_presence_of :user_id, :asset_id
 
-  validates :quantity, :numericality => { :only_integer => true }
-  validates :quantity_modifier, :numericality => { :only_integer => true }
+  validates :quantity, :numericality => { :only_integer => true,
+                                          :greater_than_or_equal_to => -1000000,
+                                          :less_than_or_equal_to => 1000000 }
+
+  validates :quantity_modifier, :numericality => { :only_integer => true,
+                                                   :less_than_or_equal_to => 1000000 }
 
   validate :not_duplicate
   validate :coherant_quantity

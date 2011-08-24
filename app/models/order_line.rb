@@ -24,7 +24,7 @@ class OrderLine < ActiveRecord::Base
   validates :asset_id, :presence => true
   validates_associated :asset
 
-  validates :quantity, :presence => true, :numericality => { :only_integer => true, :greater_than => 0 }
+  validates :quantity, :presence => true, :numericality => { :only_integer => true, :greater_than => 0, :less_than_or_equal_to => 1000000 }
   validates :unitaryPrice, :numericality => { :greater_than_or_equal_to => 0 }, :allow_nil => true
 
   def price
