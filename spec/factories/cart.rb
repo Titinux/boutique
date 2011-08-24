@@ -15,12 +15,8 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-Factory.define :current_cart, :class => Cart do |f|
+Factory.define :cart do |f|
+  f.name 'My cart'
   f.association :user, :factory => :user
-  f.current true
 end
 
-Factory.define :cart, :parent => :current_cart do |f|
-  f.sequence(:name)  {|n| "cart#{n}" }
-  f.current false
-end

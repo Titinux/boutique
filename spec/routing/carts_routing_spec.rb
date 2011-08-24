@@ -47,9 +47,5 @@ describe CartsController do
     it "routes to #destroy" do
       { :delete => "/fr/carts/42" }.should route_to("carts#destroy", :locale => "fr", :id => "42")
     end
-
-    it "routes to #to_order" do
-      { :get => "/fr/carts/42/to_order" }.should route_to("carts#to_order", :locale => "fr", :id => "42")
-    end
   end
 end
