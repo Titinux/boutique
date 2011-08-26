@@ -34,8 +34,9 @@ describe User do
     end
 
     it 'should be unique' do
-      @user = Factory.create(:user, :name => 'category')
-      Factory.build(:user, :name => @user.name).should_not be_valid
+      @user = Factory.create(:user, :name => 'user')
+      Factory.build(:user, :name => 'user').should_not be_valid
+      Factory.build(:user, :name => 'User').should_not be_valid
     end
   end
 
@@ -48,6 +49,12 @@ describe User do
       %w(foo foo.bar.net foo@ foo@net @net foo,foo@bar.net).each do |value|
         Factory.build(:user, :email => value).should_not be_valid
       end
+    end
+
+    it 'should be unique' do
+      @user = Factory.create(:user, :email => 'user@foo.bar')
+      Factory.build(:user, :email => 'user@foo.bar').should_not be_valid
+      Factory.build(:user, :email => 'User@Foo.Bar').should_not be_valid
     end
   end
 

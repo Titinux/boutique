@@ -34,8 +34,9 @@ describe Administrator do
     end
 
     it 'should be unique' do
-      @administrator = Factory.create(:administrator, :name => 'category')
-      Factory.build(:administrator, :name => @administrator.name).should_not be_valid
+      @administrator = Factory.create(:administrator, :name => 'administrator')
+      Factory.build(:administrator, :name => 'administrator').should_not be_valid
+      Factory.build(:administrator, :name => 'Administrator').should_not be_valid
     end
   end
 
@@ -48,6 +49,12 @@ describe Administrator do
       %w(foo foo.bar.net foo@ foo@net @net foo,foo@bar.net).each do |value|
         Factory.build(:administrator, :email => value).should_not be_valid
       end
+    end
+
+    it 'should be unique' do
+      @administrator = Factory.create(:administrator, :email => 'administrator@foo.bar')
+      Factory.build(:administrator, :email => 'administrator@foo.bar').should_not be_valid
+      Factory.build(:administrator, :email => 'Administrator@Foo.Bar').should_not be_valid
     end
   end
 

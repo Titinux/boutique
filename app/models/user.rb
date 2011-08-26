@@ -38,8 +38,8 @@ class User < ActiveRecord::Base
   assoc_searchable :guild, :deposits
 
   #Validations
-  validates :name, :presence => true, :uniqueness => true, :length => 3..25, :allow_blank => false
-  validates :email, :presence => true, :uniqueness => true
+  validates :name,  :presence => true, :uniqueness => { :case_sensitive => false }, :length => 3..25, :allow_blank => false
+  validates :email, :presence => true, :uniqueness => { :case_sensitive => false }
 
   validates_associated :guild
   validates_associated :deposits
@@ -48,7 +48,8 @@ class User < ActiveRecord::Base
 
   def self.find_for_database_authentication(conditions)
     value = conditions[authentication_keys.first]
-    User.unscoped.where("name = ? or email = ?", value, value).first
+    table = self.arel_table
+    User.unscoped.where(table[:name].lower.eq(table.lower(value)).or(table[:email].lower.eq(table.lower(value)))).first
   end
 
   def addMoney
