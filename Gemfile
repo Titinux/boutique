@@ -2,8 +2,8 @@
 source 'http://rubygems.org'
 
 # Rails
-gem 'rails', '~> 3.1.0.rc5'
-gem 'arel', '2.1.4' # Ne pas utiliser la version 2.1.5
+gem 'rails', '~> 3.1.0.rc8'
+gem 'arel'
 
 # Asset template engines
 gem 'sass-rails', :require => 'sass'
@@ -14,7 +14,7 @@ gem 'uglifier'
 gem 'jquery-rails'
 
 # Security
-gem 'devise'
+gem 'devise', :git => 'git://github.com/plataformatec/devise.git' # Dependency to bcrypt ~> 3.0.0
 
 # Controllers
 gem 'responders'
