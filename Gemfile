@@ -35,6 +35,10 @@ gem 'unicorn'
 gem 'rack-contrib'
 gem 'delayed_job'
 
+group :development do
+  gem 'pry'
+end
+
 group :development, :test do
   # Database
   gem 'sqlite3'
