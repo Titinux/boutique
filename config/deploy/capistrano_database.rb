@@ -22,7 +22,7 @@ capistrano-ext/multistaging to avoid multiple db:setup calls \
 when running deploy:setup for all stages one by one.
 DESC
       task :setup, :except => { :no_release => true } do
-        location = fetch(:template_dir, "config/deploy") + '/database.yml.erb'
+        location = fetch(:template_dir, "config/deploy/templates") + '/database.yml.erb'
         template = File.read(location) if File.file?(location)
 
         config = ERB.new(template)

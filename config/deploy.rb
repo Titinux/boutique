@@ -18,15 +18,17 @@
 $:.unshift(File.expand_path('./lib', ENV['rvm_path'])) # Add RVM's lib directory to the load path.
 
 require 'rvm/capistrano'
-#require 'bundler/capistrano'
 
 load    'config/deploy/capistrano_database'
 load    'config/deploy/rvmrc'
 
+set :stages, %w(production staging)
+set :default_stage, "staging"
+require 'capistrano/ext/multistage'
+
 set :bundle_flags, "--deployment"
 
 set :application, 'boutique'
-set :repository,  'git://github.com/Titinux/boutique.git'
 
 # Servers settings
 role :app, 'Haruna.lan'
@@ -35,19 +37,13 @@ role :db,  'Haruna.lan', :primary => true
 
 set :user, "hyze.fr"
 set :use_sudo, false
-set :rails_env, 'production'
-
-# Deployment location
-set :deploy_to, "/home/hyze.fr/web_apps/#{application}"
 
 # SCM
 set :scm, :git
-#set :branch, '1.1'
 set :deploy_via, :remote_cache
 
 # RVM
 set :rvm_type, :user
-set :rvm_ruby_string, '1.9.2-p180@boutique'
 
 namespace :bundle do
   task :install do

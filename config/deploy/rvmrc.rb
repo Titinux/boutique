@@ -3,7 +3,7 @@ namespace :deploy do
 Make the .rvmrc file
 DESC
     task :rvmrc, :except => { :no_release => true } do
-      location = fetch(:template_dir, "config/deploy") + '/rvmrc.erb'
+      location = fetch(:template_dir, "config/deploy/templates") + '/rvmrc.erb'
       template = File.read(location) if File.file?(location)
 
       config = ERB.new(template)

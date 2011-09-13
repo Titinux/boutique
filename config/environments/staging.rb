@@ -28,7 +28,7 @@ Boutique::Application.configure do
   # config.logger = SyslogLogger.new
 
   # Use a different cache store in production
-  config.cache_store = :dalli_store, '127.0.0.1:11211', { :namespace => 'boutique.hyze.fr' }
+  config.cache_store = :dalli_store, '127.0.0.1:11211', { :namespace => 'staging.boutique.hyze.fr' }
 
   # Enable serving of images, stylesheets, and javascripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
@@ -55,10 +55,10 @@ Boutique::Application.configure do
   config.action_mailer.smtp_settings = {
     :address => "mail.titinux.net",
     :port => 25,
-    :domain => "boutique.hyze.fr"
+    :domain => "staging.boutique.hyze.fr"
   }
 
-  config.action_mailer.default_url_options = { :host => "boutique.hyze.fr" }
+  config.action_mailer.default_url_options = { :host => "staging.boutique.hyze.fr" }
 
   # Assets
   config.assets.compress = true
