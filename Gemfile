@@ -2,7 +2,7 @@
 source 'http://rubygems.org'
 
 # Rails
-gem 'rails', '~> 3.1.0.rc8'
+gem 'rails', '3.1.0'
 gem 'arel'
 
 # Asset template engines
