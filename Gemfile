@@ -14,7 +14,7 @@ gem 'uglifier'
 gem 'jquery-rails'
 
 # Security
-gem 'devise', :git => 'git://github.com/plataformatec/devise.git' # Dependency to bcrypt ~> 3.0.0
+gem 'devise'
 
 # Controllers
 gem 'responders'
