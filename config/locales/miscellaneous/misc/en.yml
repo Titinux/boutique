@@ -7,7 +7,7 @@ en:
   endDate: End date
   created_at: Created at
   siteTitle: "Marchands d'Hyze's shop"
-  footerText: "Illustrations by Ankama (c) 2011. Software by J.Horhant & H.Cheguillaume. All rights reverved."
+  footerText: "Illustrations by Ankama (c) 2011. Software by J.Horhant & H.Cheguillaume. All rights reserved."
   version: "(Version : %{version})"
   'yes': Yes
   'no': No
