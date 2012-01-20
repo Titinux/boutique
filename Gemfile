@@ -33,7 +33,7 @@ gem 'unicorn'
 # Others
 #gem 'javan-whenever', :lib => false, :source => 'http://gems.github.com'
 gem 'rack-contrib'
-gem 'delayed_job'
+gem 'delayed_job_active_record'
 
 group :development, :test do
   # Database

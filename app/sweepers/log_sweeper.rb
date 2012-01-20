@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class LogSweeper < ActionController::Caching::Sweeper
-  observe Asset, Category, Deposit, Guild, Job, Order, OrderLine, User
+  observe Asset, Category, Deposit, Guild, Delayed::Job, Order, OrderLine, User
 
   def after_create(record)
     LogTools::log_me(record, { :user => current_user_name, :action => 'create' })

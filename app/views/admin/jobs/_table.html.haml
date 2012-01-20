@@ -18,16 +18,16 @@
 %table
   %thead
   %tr
-    %th= Job.human_attribute_name('id')
-    %th= Job.human_attribute_name('priority')
-    %th= Job.human_attribute_name('attempts')
-    %th= Job.human_attribute_name('handler')
-    %th= Job.human_attribute_name('last_error')
-    %th= Job.human_attribute_name('run_at')
-    %th= Job.human_attribute_name('locked_at')
-    %th= Job.human_attribute_name('failed_at')
-    %th= Job.human_attribute_name('locked_by')
-    %th= Job.human_attribute_name('created_at')
+    %th= Delayed::Job.human_attribute_name('id')
+    %th= Delayed::Job.human_attribute_name('priority')
+    %th= Delayed::Job.human_attribute_name('attempts')
+    %th= Delayed::Job.human_attribute_name('handler')
+    %th= Delayed::Job.human_attribute_name('last_error')
+    %th= Delayed::Job.human_attribute_name('run_at')
+    %th= Delayed::Job.human_attribute_name('locked_at')
+    %th= Delayed::Job.human_attribute_name('failed_at')
+    %th= Delayed::Job.human_attribute_name('locked_by')
+    %th= Delayed::Job.human_attribute_name('created_at')
 
   %tbody
     - jobs.each do |job|

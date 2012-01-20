@@ -16,9 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class Admin::JobsController < Admin::AdminController
-  # GET /admin/jobs
-  # GET /admin/jobs.xml
   def index
-    respond_with(@jobs = Job.all)
+    respond_with(@jobs = Delayed::Job.all)
   end
 end

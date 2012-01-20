@@ -72,7 +72,7 @@
       :link => admin_statistics_path
     },
     {
-      :name => Job.model_name.human.pluralize,
+      :name => Delayed::Job.model_name.human.pluralize,
       :link => admin_jobs_path
     },
     {

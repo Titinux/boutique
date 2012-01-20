@@ -1,10 +1,10 @@
 en:
   activerecord:
     models:
-      job: Job
+      "delayed/backend/active_record/job": Job
 
     attributes:
-      job:
+      "delayed/backend/active_record/job":
         id: Id
         priority: Priority
         attempts: Attempts
