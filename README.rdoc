@@ -38,6 +38,8 @@ https://github.com/Titinux/boutique/issues ou mieux nous soumettre un patch qui 
 * Jérémie Horhant (https://github.com/Titinux)
 * Hugues Cheguillaume (https://github.com/Bagu)
 
+== Build status {<img src="https://secure.travis-ci.org/Titinux/boutique.png" />}[http://travis-ci.org/Titinux/boutique]
+
 == Licence
 
 L'intégralité du projet est placé sous la licence libre AGPLv3. Une copie de cette licence doit
