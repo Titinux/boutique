@@ -21,8 +21,6 @@ Factory.define :user do |u|
 
   u.password "user_password"
   u.password_confirmation {|a| a.password }
-
-  u.confirmed_at { DateTime.now }
 end
 
 Factory.define :gatherer, :parent => :user do |f|

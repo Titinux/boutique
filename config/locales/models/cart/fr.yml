@@ -11,7 +11,7 @@ fr:
   cart:
     editing: Modification du panier
     listing: Liste des panier
-    showing: 'Panier : %{name}'
+    showing: "Panier : %{name}"
     my_cart: Mon panier
     add: Ajouter au panier
     empty: Vider le panier
@@ -19,8 +19,8 @@ fr:
     cart_empty: Votre panier est vide !
     updateSuccess: La ressource a été mise à jour.
     addCartSuccess:
-      one: %{count} %{asset} a été ajouté au panier.
-      other: %{count} %{asset} ont été ajoutés au panier.
+      one: "%{count} %{asset} a été ajouté au panier."
+      other: "%{count} %{asset} ont été ajoutés au panier."
     my_carts: Mes paniers
     default_name: Panier par défaut
     remove_after_ordered: Supprimer le panier après la commande

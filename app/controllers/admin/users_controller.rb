@@ -40,19 +40,25 @@ class Admin::UsersController < Admin::AdminController
   end
 
   def create
+    user_confirmed = params[:user].delete(:confirmed)
+
     @user = User.new(params[:user])
     @user.save
+
+    @user.confirm! if user_confirmed == '1'
 
     respond_with(:admin, @user)
   end
 
   def update
+    user_confirmed = params[:user].delete(:confirmed)
+
     @user = User.find(params[:id])
     params[:user].delete(:password) if params[:user][:password].blank?
     params[:user].delete(:password_confirmation) if params[:user][:password_confirmation].blank?
 
-    @user.confirm! if params[:user][:confirmed] == '1'
-    @user.update_attributes(params[:user].except(:confirmed))
+    @user.update_attributes(params[:user])
+    @user.confirm! if user_confirmed == '1'
 
     respond_with(:admin, @user)
   end

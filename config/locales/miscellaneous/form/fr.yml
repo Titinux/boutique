@@ -1,10 +1,10 @@
 fr:
   simple_form:
-    "yes": 'Oui'
-    "no": 'Non'
+    "yes": "Oui"
+    "no": "Non"
     required:
-      text: 'Ce champs est obligatoire'
-      mark: '*'
+      text: "Ce champs est obligatoire"
+      mark: "*"
       # You can uncomment the line below if you need to overwrite the whole required html.
       # When using html, text and mark won't be used.
       # html: '<abbr title="required">*</abbr>'
@@ -13,10 +13,10 @@ fr:
     submit:
       create: "Créer"
       update: "Mettre à jour"
-      search: 'Chercher'
+      search: "Chercher"
 
   form:
     errors:
       title:
         one: Une erreur empêche l'enregistrement
-        other: %{count} erreurs empêchent l'enregistrement
+        other: "%{count} erreurs empêchent l'enregistrement"

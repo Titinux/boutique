@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class ConfigTree < ActiveRecord::Base
-  set_table_name 'config_tree'
+  self.table_name = 'config_tree'
 
   #acts_as_nested_set
 

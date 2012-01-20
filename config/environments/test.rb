@@ -39,4 +39,7 @@ Boutique::Application.configure do
 
   # Mailer configs
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  # Raise exception on mass assignment protection for Active Record models
+  config.active_record.mass_assignment_sanitizer = :strict
 end

@@ -11,7 +11,7 @@ en:
   cart:
     editing: Edit cart
     listing: Cart listing
-    showing: 'Cart : %{name}'
+    showing: "Cart : %{name}"
     my_cart: My cart
     add: Add to cart
     empty: Empty cart
@@ -19,8 +19,8 @@ en:
     cart_empty: Your cart is empty !
     updateSuccess: Asset was successfully updated.
     addCartSuccess:
-      one: %{count} %{asset} has been added to cart.
-      other: %{count} %{asset} have been added to cart.
+      one: "%{count} %{asset} has been added to cart."
+      other: "%{count} %{asset} have been added to cart."
     my_carts: My carts
     default_name: Default cart
     remove_after_ordered: Delete the cart after ordered

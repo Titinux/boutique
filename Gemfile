@@ -2,13 +2,13 @@
 source 'http://rubygems.org'
 
 # Rails
-gem 'rails', '3.1.0'
-gem 'arel'
+gem 'rails', '3.2.0.rc2'
 
-# Asset template engines
-gem 'sass-rails', :require => 'sass'
-gem 'coffee-script'
-gem 'uglifier'
+group :assets do
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
+end
 
 # Javascript
 gem 'jquery-rails'
@@ -35,22 +35,19 @@ gem 'unicorn'
 gem 'rack-contrib'
 gem 'delayed_job'
 
-group :development do
-  gem 'pry'
-end
-
 group :development, :test do
   # Database
   gem 'sqlite3'
 
   gem 'factory_girl_rails'
-
-  gem 'capybara'
-  gem 'database_cleaner'
   gem 'rspec-rails'
+  gem 'pry-rails'
 end
 
 group :test do
+  gem 'capybara'
+  gem 'database_cleaner'
+
   # Pretty printed test output
   gem 'turn', :require => false
 end

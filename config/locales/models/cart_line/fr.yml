@@ -14,8 +14,8 @@ fr:
     cart_lines:
       create:
         notice:
-          one: %{count} %{asset} a été ajouté à votre panier %{cart}.
-          other: %{count} %{asset} ont été ajoutés à votre panier %{cart}.
+          one: "%{count} %{asset} a été ajouté à votre panier %{cart}."
+          other: "%{count} %{asset} ont été ajoutés à votre panier %{cart}."
 
   activemodel:
     models:

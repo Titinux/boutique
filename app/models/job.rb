@@ -16,5 +16,5 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class Job < ActiveRecord::Base
-  set_table_name :delayed_jobs
+  self.table_name = 'delayed_jobs'
 end

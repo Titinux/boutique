@@ -13,8 +13,8 @@ en:
     cart_lines:
       create:
         notice:
-          one: %{count} %{asset} has been added to your cart %{cart}.
-          other: %{count} %{asset} have been added to your cart %{cart}.
+          one: "%{count} %{asset} has been added to your cart %{cart}."
+          other: "%{count} %{asset} have been added to your cart %{cart}."
 
   activemodel:
     models:
