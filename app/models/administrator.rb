@@ -21,7 +21,7 @@ class Administrator < ActiveRecord::Base
 
   # Attributes
   attr_accessible :name, :email, :password, :password_confirmation, :blocked
-  attr_searchable  :name, :email
+  attr_searchable :name, :email
 
   # Validations
   validates :name,  :presence => true, :uniqueness => { :case_sensitive => false }, :length => { :within => 3..25 }, :allow_blank => false

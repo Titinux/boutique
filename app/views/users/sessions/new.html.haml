@@ -19,7 +19,7 @@
 
 = frame :title => t('user.have_acount'), :class => 'sign_in' do
 
-  = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+  = simple_form_for(resource, :as => resource_name, :url => new_user_session_path) do |f|
     = f.input :name, :hint => t('user.name_hint'), :input_html => { :maxlength => 50 }
     = f.input :password, :input_html => { :size => 25 }
 

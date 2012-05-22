@@ -15,6 +15,7 @@ gem 'jquery-rails'
 
 # Security
 gem 'devise'
+gem 'devise-encryptable'
 
 # Controllers
 gem 'responders'

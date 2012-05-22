@@ -15,10 +15,13 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+require Rails.root.join('lib', 'devise', 'encryptors', 'user')
+
 class User < ActiveRecord::Base
   devise :database_authenticatable, :confirmable, :validatable,
          :timeoutable, :recoverable, :trackable, :lockable, :encryptable,
-         :encryptor => :boutique_encryptor,
+         :reconfirmable => true,
+         :encryptor => :user_encryptor,
          :unlock_strategy => :email,
          :timeout_in => 15.days
 

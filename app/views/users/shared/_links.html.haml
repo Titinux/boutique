@@ -16,6 +16,6 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 %ul
-  %li= link_to t('devise.links.forgotten_password'), new_password_path(resource_name)
-  %li= link_to t('devise.links.activation_mail_not_received'), new_confirmation_path(resource_name)
-  %li= link_to t('devise.links.unlock_mail_not_received'), new_unlock_path(resource_name)
+  %li= link_to t('devise.links.forgotten_password'), new_user_password_path
+  %li= link_to t('devise.links.activation_mail_not_received'), new_user_confirmation_path
+  %li= link_to t('devise.links.unlock_mail_not_received'), new_user_unlock_path

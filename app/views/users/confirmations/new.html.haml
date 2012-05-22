@@ -22,6 +22,7 @@
 
   = f.input :email
 
-  = f.button :submit, t('devise.confirmations.resend')
+  .buttons
+    = f.button :submit, t('devise.confirmations.resend')
 
 = render 'users/shared/links'
