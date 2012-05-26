@@ -18,6 +18,7 @@
 class WidgetCell < Cell::Rails
   include Devise::Controllers::Helpers
   helper  ApplicationHelper
+  helper  ActionsHelper
 
   def user
     @user = current_user
@@ -39,5 +40,9 @@ class WidgetCell < Cell::Rails
 
       render
     end
+  end
+
+  def deposits
+    render
   end
 end

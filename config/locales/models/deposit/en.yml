@@ -24,6 +24,7 @@ en:
     listing: Deposits listing
     validation_success: Deposit was successfully validated.
     validation_failure: Deposit can\'t be validated.
+    block: Deposit block
 
     validation:
       duplicate_is_forbidden: Duplicates are forbidden

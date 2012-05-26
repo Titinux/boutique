@@ -24,6 +24,7 @@ fr:
     listing: Liste des dépôts
     validation_success: Le dépôt à bien été validé.
     validation_failure: Le dépôt n'a pas pu être validé.
+    block: Bloc des dépôts
 
     validation:
       duplicate_is_forbidden: Les doublons sont interdits
