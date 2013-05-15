@@ -20,8 +20,8 @@
 %p.filter
   = simple_form_for([:admin, @search]) do |f|
     = f.input :user_name_contains, :label => User.model_name.human, :required => false
-    = f.input :asset_name_contains, :label => Asset.model_name.human, :required => false
     = f.input :asset_category_name_contains, :label => Category.model_name.human, :required => false
+    = f.input :asset_name_contains, :label => Asset.model_name.human, :required => false
     = f.input :validated, :label => Deposit.human_attribute_name(:validated), :as => :boolean
 
     .buttons

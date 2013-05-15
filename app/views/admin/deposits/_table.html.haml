@@ -19,16 +19,16 @@
   %thead
     %tr
       %th= sort_link @search, :user_name, User.model_name.human
-      %th= sort_link @search, :asset_name, Asset.model_name.human
       %th= sort_link @search, :asset_category_name, Category.model_name.human
+      %th= sort_link @search, :asset_name, Asset.model_name.human
       %th= sort_link @search, :quantity
 
   %tbody
     - deposits.each do |deposit|
       %tr{ :class => "#{cycle('even', 'odd')}" }
         %td= deposit.user.name
-        %td= deposit.asset.name
         %td= deposit.asset.category.name
+        %td= deposit.asset.name
         %td.number= number_with_delimiter(deposit.quantity)
         %td.actions
           - unless deposit.validated
