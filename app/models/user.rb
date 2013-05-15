@@ -41,8 +41,8 @@ class User < ActiveRecord::Base
   assoc_searchable :guild, :deposits
 
   #Validations
-  validates :name,  :presence => true, :uniqueness => { :case_sensitive => false }, :length => 3..25, :allow_blank => false
-  validates :email, :presence => true, :uniqueness => { :case_sensitive => false }
+  validates :name,  presence: true, uniqueness: { case_sensitive: false }, length: 3..25, allow_blank: false
+  validates :email, email: true, presence: true, uniqueness: { case_sensitive: false }
 
   validates_associated :guild
   validates_associated :deposits

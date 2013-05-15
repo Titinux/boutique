@@ -24,8 +24,8 @@ class Administrator < ActiveRecord::Base
   attr_searchable :name, :email
 
   # Validations
-  validates :name,  :presence => true, :uniqueness => { :case_sensitive => false }, :length => { :within => 3..25 }, :allow_blank => false
-  validates :email, :presence => true, :uniqueness => { :case_sensitive => false }
+  validates :name,  presence: true, uniqueness: { case_sensitive: false }, length: { within: 3..25 }, allow_blank: false
+  validates :email, presence: true, uniqueness: { case_sensitive: false }, length: { within: 3..25 }, email: true
 
   def blocked=(value)
     if value == '1'
