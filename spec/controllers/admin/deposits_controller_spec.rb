@@ -69,14 +69,14 @@ describe Admin::DepositsController do
       it "assigns a newly created but unsaved deposit as @deposit" do
         subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
-        post :create, :deposit => {}
+        post :create, :deposit => { "name" => "invalid value" }
         assigns(:deposit).should be_a_new(Deposit)
       end
 
       it "re-renders the 'new' template" do
         subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
-        post :create, :deposit => {}
+        post :create, :deposit => { "name" => "invalid value" }
         response.should render_template("new")
       end
     end

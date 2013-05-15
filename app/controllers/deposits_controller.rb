@@ -35,14 +35,21 @@ class DepositsController < ApplicationController
   # POST /deposits
   # POST /deposits.xml
   def create
-    @deposit = Deposit.find_or_new({ :user_id => current_user.id, :asset_id => params[:deposit][:asset_id], :validated => false})
-    @deposit.quantity_modifier = params[:deposit][:quantity_modifier]
+    deposits = current_user.deposits
+
+    @deposit = deposits.where(deposit_params.except(:quantity_modifier)).first || deposits.build(deposit_params)
+    @deposit.quantity_modifier = deposit_params[:quantity_modifier] if @deposit.persisted?
     @deposit.save
 
     respond_with(@deposit, :location => user_deposits_path)
   end
 
   private
+
+  def deposit_params
+    safe_params = params.require(:deposit).permit(:asset_id, :quantity_modifier)
+    safe_params.merge(validated: false)
+  end
 
   def gathererOnly
     unless current_user.gatherer

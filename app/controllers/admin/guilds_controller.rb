@@ -45,7 +45,7 @@ class Admin::GuildsController < Admin::AdminController
   # POST /admin/guilds
   # POST /admin/guilds.xml
   def create
-    @guild = Guild.new(params[:guild])
+    @guild = Guild.new(guild_params)
     @guild.save
 
     respond_with(:admin, @guild)
@@ -55,7 +55,7 @@ class Admin::GuildsController < Admin::AdminController
   # PUT /admin/guilds/1.xml
   def update
     @guild = Guild.find(params[:id])
-    @guild.update_attributes(params[:guild])
+    @guild.update_attributes(guild_params)
 
     respond_with(:admin, @guild)
   end
@@ -68,4 +68,10 @@ class Admin::GuildsController < Admin::AdminController
 
     respond_with(:admin, @guild)
   end
+
+  private
+
+    def guild_params
+      params.require(:guild).permit(:name, :pictureUri)
+    end
 end

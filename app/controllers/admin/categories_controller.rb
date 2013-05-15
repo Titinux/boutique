@@ -45,7 +45,7 @@ class Admin::CategoriesController < Admin::AdminController
   # POST /admin/categories
   # POST /admin/categories.xml
   def create
-    @category = Category.new(params[:category])
+    @category = Category.new(category_params)
     @category.save
 
     respond_with(:admin, @category)
@@ -55,7 +55,7 @@ end
   # PUT /admin/categories/1.xml
   def update
     @category = Category.find(params[:id])
-    @category.update_attributes(params[:category])
+    @category.update_attributes(category_params)
 
     respond_with(:admin, @category)
   end
@@ -68,4 +68,10 @@ end
 
     respond_with(:admin, @category)
   end
+
+  private
+
+    def category_params
+      params.require(:category).permit(:name, :parent_id, :pictureUri)
+    end
 end

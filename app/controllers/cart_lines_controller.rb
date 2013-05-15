@@ -48,7 +48,7 @@ class CartLinesController < ApplicationController
   def update
     cart = current_user.carts.find(params[:cart_id])
     @cart_line = cart.lines.find(params[:id])
-    @cart_line.update_attributes(params[:cart_line])
+    @cart_line.update_attributes(cart_line_params)
 
     respond_with(@cart_line, :location => cart_path(cart))
   end
@@ -59,5 +59,11 @@ class CartLinesController < ApplicationController
     @cart_line.destroy
 
     respond_with(@cart_line, :location => cart_path(cart))
+  end
+
+  private
+
+  def cart_line_params
+    params.require(:cart_line).permit(:quantity)
   end
 end

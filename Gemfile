@@ -16,6 +16,7 @@ end
 # Security
 gem 'devise'
 gem 'devise-encryptable'
+gem 'strong_parameters'
 
 # Controllers
 gem 'responders'

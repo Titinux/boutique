@@ -74,14 +74,14 @@ describe Admin::UsersController do
       it "assigns a newly created but unsaved user as @user" do
         subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
-        post :create, :user => {}
+        post :create, :user => { "name" => "invalid value" }
         assigns(:user).should be_a_new(User)
       end
 
       it "re-renders the 'new' template" do
         subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
-        post :create, :user => {}
+        post :create, :user => { "name" => "invalid value" }
         response.should render_template("new")
       end
     end
@@ -90,8 +90,8 @@ describe Admin::UsersController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested user" do
-        User.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => user.to_param, :user => {'these' => 'params'}
+        User.any_instance.should_receive(:update_attributes).with({'name' => 'params'})
+        put :update, :id => user.to_param, :user => {'name' => 'params'}
       end
 
       it "assigns the requested user as @user" do
@@ -109,14 +109,14 @@ describe Admin::UsersController do
       it "assigns the user as @user" do
         subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
-        put :update, :id => user.to_param, :user => {}
+        put :update, :id => user.to_param, :user => { "name" => "invalid value" }
         assigns(:user).should eq(user)
       end
 
       it "re-renders the 'edit' template" do
         subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
-        put :update, :id => user.to_param, :user => {}
+        put :update, :id => user.to_param, :user => { "name" => "invalid value" }
         response.should render_template("edit")
       end
     end

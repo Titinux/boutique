@@ -23,7 +23,6 @@ class Category < ActiveRecord::Base
   has_many :assets
 
   # Attributes
-  attr_accessible :name, :parent_id, :pictureUri
   attr_searchable :name
 
   # Validations

@@ -45,7 +45,7 @@ class Admin::OrdersController < Admin::AdminController
   end
 
   def create
-    @order = Order.new(params[:order])
+    @order = Order.new(order_params)
     @order.save
 
     respond_with(:admin, @order)
@@ -53,7 +53,7 @@ class Admin::OrdersController < Admin::AdminController
 
   def update
     @order = Order.find(params[:id])
-    @order.update_attributes(params[:order])
+    @order.update_attributes(order_params)
 
     respond_with(:admin, @order)
   end
@@ -64,4 +64,11 @@ class Admin::OrdersController < Admin::AdminController
 
     respond_with(:admin, @order)
   end
+
+  private
+
+    def order_params
+      params.require(:order).permit(:user_id, :state, :comment,
+                                    lines_attributes: [:asset_id, :quantity, :unitaryPrice, :_destroy, :id])
+    end
 end

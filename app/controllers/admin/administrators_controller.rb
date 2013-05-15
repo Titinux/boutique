@@ -45,7 +45,7 @@ class Admin::AdministratorsController < Admin::AdminController
   # POST /admin/administrators
   # POST /admin/administrators.xml
   def create
-    @administrator = Administrator.new(params[:administrator])
+    @administrator = Administrator.new(administrator_params)
     @administrator.save
 
     respond_with(:admin, @administrator)
@@ -55,10 +55,10 @@ class Admin::AdministratorsController < Admin::AdminController
   # PUT /admin/administrators/1.xml
   def update
     @administrator = Administrator.find(params[:id])
-    params[:administrator].delete(:password) if params[:administrator][:password].blank?
-    params[:administrator].delete(:password_confirmation) if params[:administrator][:password_confirmation].blank?
+    administrator_params.delete(:password) if administrator_params[:password].blank?
+    administrator_params.delete(:password_confirmation) if administrator_params[:password_confirmation].blank?
 
-    @administrator.update_attributes(params[:administrator])
+    @administrator.update_attributes(administrator_params)
 
     respond_with(:admin, @administrator)
   end
@@ -70,5 +70,11 @@ class Admin::AdministratorsController < Admin::AdminController
     @administrator.destroy
 
     respond_with(:admin, @administrator)
+  end
+
+  private
+
+  def administrator_params
+    params.require(:administrator).permit(:name, :email, :password, :password_confirmation)
   end
 end

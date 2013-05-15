@@ -72,16 +72,16 @@ describe Admin::GuildsController do
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved guild as @guild" do
-        subject.responder.any_instance.stub(:has_errors?).and_return(true)
+        Guild.any_instance.stub(:valid?).and_return(false)
 
-        post :create, :guild => {}
+        post :create, :guild => { "name" => "invalid value" }
         assigns(:guild).should be_a_new(Guild)
       end
 
       it "re-renders the 'new' template" do
         subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
-        post :create, :guild => {}
+        post :create, :guild => { "name" => "invalid value" }
         response.should render_template("new")
       end
     end
@@ -90,8 +90,8 @@ describe Admin::GuildsController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested guild" do
-        Guild.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => guild.to_param, :guild => {'these' => 'params'}
+        Guild.any_instance.should_receive(:update_attributes).with({'name' => 'params'})
+        put :update, :id => guild.to_param, :guild => {'name' => 'params'}
       end
 
       it "assigns the requested guild as @guild" do
@@ -107,16 +107,17 @@ describe Admin::GuildsController do
 
     describe "with invalid params" do
       it "assigns the guild as @guild" do
-        subject.responder.any_instance.stub(:has_errors?).and_return(true)
+        guild
+        Guild.any_instance.stub(:valid?).and_return(false)
 
-        put :update, :id => guild.to_param, :guild => {}
+        put :update, :id => guild.to_param, :guild => { "name" => "invalid value" }
         assigns(:guild).should eq(guild)
       end
 
       it "re-renders the 'edit' template" do
         subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
-        put :update, :id => guild.to_param, :guild => {}
+        put :update, :id => guild.to_param, :guild => { "name" => "invalid value" }
         response.should render_template("edit")
       end
     end

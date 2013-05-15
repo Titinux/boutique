@@ -74,16 +74,16 @@ describe Admin::CategoriesController do
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved category as @category" do
-        subject.responder.any_instance.stub(:has_errors?).and_return(true)
+        Category.any_instance.stub(:valid?).and_return(false)
 
-        post :create, :category => {}
+        post :create, :category => { "name" => "invalid value" }
         assigns(:category).should be_a_new(Category)
       end
 
       it "re-renders the 'new' template" do
         subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
-        post :create, :category => {}
+        post :create, :category => { "name" => "invalid value" }
         response.should render_template("new")
       end
     end
@@ -92,8 +92,8 @@ describe Admin::CategoriesController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested category" do
-        Category.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => category.to_param, :category => {'these' => 'params'}
+        Category.any_instance.should_receive(:update_attributes).with({'name' => 'params'})
+        put :update, :id => category.to_param, :category => {'name' => 'params'}
       end
 
       it "assigns the requested category as @category" do
@@ -109,16 +109,17 @@ describe Admin::CategoriesController do
 
     describe "with invalid params" do
       it "assigns the category as @category" do
-        subject.responder.any_instance.stub(:has_errors?).and_return(true)
+        category
+        Category.any_instance.stub(:valid?).and_return(false)
 
-        put :update, :id => category.to_param, :category => {}
+        put :update, :id => category.to_param, :category => { "name" => "invalid value" }
         assigns(:category).should eq(category)
       end
 
       it "re-renders the 'edit' template" do
         subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
-        put :update, :id => category.to_param, :category => {}
+        put :update, :id => category.to_param, :category => { "name" => "invalid value" }
         response.should render_template("edit")
       end
     end

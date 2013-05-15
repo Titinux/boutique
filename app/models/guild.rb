@@ -21,7 +21,6 @@ class Guild < ActiveRecord::Base
   has_many :users
 
   # Attributes
-  attr_accessible :name, :pictureUri
   attr_searchable :name
 
   # Validation

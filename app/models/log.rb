@@ -19,9 +19,6 @@ class Log < ActiveRecord::Base
   # Validations
   validates_presence_of :level, :user, :action, :objectType, :objectId
 
-  # Mass assignment security
-  attr_accessible :level, :user, :action, :objectType, :objectId, :data
-
   # Attributes
   attr_searchable  :id, :user, :action, :objectType, :objectId, :created_at
 

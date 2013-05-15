@@ -37,10 +37,10 @@ class Admin::DepositsController < Admin::AdminController
   # POST /admin/deposits
   # POST /admin/deposits.xml
   def create
-    validated = params[:deposit][:validated] == '1'
+    validated = deposit_params[:validated] == '1'
 
-    @deposit = Deposit.find_or_new({ :user_id => params[:deposit][:user_id], :asset_id => params[:deposit][:asset_id], :validated => validated})
-    @deposit.quantity_modifier = params[:deposit][:quantity_modifier]
+    @deposit = Deposit.find_or_new({ :user_id => deposit_params[:user_id], :asset_id => deposit_params[:asset_id], :validated => validated})
+    @deposit.quantity_modifier = deposit_params[:quantity_modifier]
     @deposit.save
 
     respond_with(@deposit, :location => admin_deposits_path)
@@ -63,4 +63,10 @@ class Admin::DepositsController < Admin::AdminController
 
     respond_with(:admin, @deposit)
   end
+
+  private
+
+    def deposit_params
+      params.require(:deposit).permit(:user_id, :asset_id, :quantity_modifier, :validated)
+    end
 end

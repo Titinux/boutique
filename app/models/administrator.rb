@@ -20,7 +20,6 @@ class Administrator < ActiveRecord::Base
          :lockable, :timeoutable, :unlock_strategy => :none
 
   # Attributes
-  attr_accessible :name, :email, :password, :password_confirmation, :blocked
   attr_searchable :name, :email
 
   # Validations

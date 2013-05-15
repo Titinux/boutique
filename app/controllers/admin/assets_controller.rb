@@ -45,7 +45,7 @@ class Admin::AssetsController < Admin::AdminController
   # POST /admin/assets
   # POST /admin/assets.xml
   def create
-    @asset = Asset.new(params[:asset])
+    @asset = Asset.new(asset_params)
     @asset.save
 
     respond_with(:admin, @asset)
@@ -55,7 +55,7 @@ class Admin::AssetsController < Admin::AdminController
   # PUT /admin/assets/1.xml
   def update
     @asset = Asset.find(params[:id])
-    @asset.update_attributes(params[:asset])
+    @asset.update_attributes(asset_params)
 
     respond_with(:admin, @asset)
   end
@@ -67,5 +67,11 @@ class Admin::AssetsController < Admin::AdminController
     @asset.destroy
 
     respond_with(:admin, @asset)
+  end
+
+  private
+
+  def asset_params
+    params.require(:asset).permit(:name, :category_id, :pictureUri)
   end
 end

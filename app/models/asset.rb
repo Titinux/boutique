@@ -21,9 +21,6 @@ class Asset < ActiveRecord::Base
   has_many :deposits
   has_many :order_lines
 
-  # Attributes
-  attr_accessible :name, :category_id, :pictureUri
-
   attr_searchable  :name
   assoc_searchable :category
 

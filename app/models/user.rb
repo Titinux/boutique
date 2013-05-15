@@ -33,10 +33,6 @@ class User < ActiveRecord::Base
   has_many :carts
 
   # Attributes
-  attr_accessible :name, :email, :password, :password_confirmation,
-                  :pigMoneyBox, :dofusNicknames, :guild_id, :gatherer,
-                  :blocked
-
   attr_searchable  :name, :email, :gatherer, :pigMoneyBox
   assoc_searchable :guild, :deposits
 
