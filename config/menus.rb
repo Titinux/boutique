@@ -85,7 +85,8 @@
     },
     {
       :name => I18n.t('devise.links.sign_out'),
-      :link => destroy_administrator_session_path
+      :link => destroy_administrator_session_path,
+      :link_opts => { method: :delete }
     }
   ],
   :statistics => {
