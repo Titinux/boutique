@@ -25,6 +25,7 @@ class Deposit < ActiveRecord::Base
   attr_accessible :user_id, :asset_id, :validated, :quantity_modifier
   attr_searchable
   assoc_searchable :user, :asset
+  search_methods :validated
 
   # Validations
   validates_presence_of :user_id, :asset_id
@@ -50,6 +51,8 @@ class Deposit < ActiveRecord::Base
   end
 
   def self.validated( op = true)
+    op = [1, '1', true, 'true'].include?(op)
+
     where(:validated => op)
   end
 

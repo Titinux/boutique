@@ -19,14 +19,11 @@ class Admin::DepositsController < Admin::AdminController
   # GET /deposits
   # GET /deposits.xml
   def index
-    @search = Deposit.search(params[:search])
+    search = {"meta_sort" => "asset_name.asc", "validated" => '0'}.merge(params[:search] || {})
+
+    @search   = Deposit.includes(:user, :asset => :category).page(params[:page])
+    @search   = @search.search(search)
     @deposits = @search.relation
-
-    if params[:search].nil? || params[:search][:validated_is_true].nil? || params[:search][:validated_is_true] == '0' || params[:search][:validated_is_true] == 'false'
-      @deposits = @deposits.validated(false)
-    end
-
-    @deposits = @deposits.includes(:user, :asset => :category).page(params[:page])
 
     respond_with(@deposits)
   end

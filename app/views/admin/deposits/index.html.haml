@@ -22,7 +22,7 @@
     = f.input :user_name_contains, :label => User.model_name.human, :required => false
     = f.input :asset_name_contains, :label => Asset.model_name.human, :required => false
     = f.input :asset_category_name_contains, :label => Category.model_name.human, :required => false
-    = f.input :validated_is_true, :label => Deposit.human_attribute_name(:validated), :as => :boolean
+    = f.input :validated, :label => Deposit.human_attribute_name(:validated), :as => :boolean
 
     .buttons
       = f.button :submit, t('helpers.submit.search')
