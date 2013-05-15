@@ -80,3 +80,20 @@ form
     padding: 5px
     font-size: 12px
     list-style: square
+
+// Disabled and read-only inputs
+input[disabled],
+select[disabled],
+textarea[disabled],
+input[readonly],
+select[readonly],
+textarea[readonly]
+  cursor: not-allowed
+  background-color: #eeeeee
+
+// Explicitly reset the colors here
+input[type="radio"][disabled],
+input[type="checkbox"][disabled],
+input[type="radio"][readonly],
+input[type="checkbox"][readonly]
+  background-color: transparent

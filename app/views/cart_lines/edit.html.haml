@@ -16,7 +16,8 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 = simple_form_for @cart_line, :url => cart_line_path(@cart_line.cart, @cart_line) do |f|
-  = f.input :quantity
+  = f.association :asset, prompt: false, disabled: true
+  = f.input       :quantity
 
   .buttons
     = f.button :submit
