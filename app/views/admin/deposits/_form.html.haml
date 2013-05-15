@@ -19,7 +19,7 @@
 
   = f.association :user, :collection => User.order(:name), :prompt => t('deposit.prompts.user')
   = f.association :asset, :collection => Asset.order(:name), :prompt => t('deposit.prompts.asset')
-  = f.input :quantity_modifier
+  = f.input :quantity_modifier, input_html: { autocomplete: 'off' }
   = f.input :validated
 
   .buttons
