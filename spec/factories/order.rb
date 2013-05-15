@@ -15,35 +15,37 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-Factory.define :order do |o|
-  o.association :user, :factory => :user
-  o.state 'WAIT_ESTIMATE'
+FactoryGirl.define do
+  factory :order do
+    association :user, :factory => :user
+    state 'WAIT_ESTIMATE'
 
-  o.lines {|l| [Factory.build(:order_line)]}
-end
-
-Factory.define :estimated_order, :parent => :order do |o|
-  o.state 'WAIT_ESTIMATE_VALIDATION'
-  o.lines do |l|
-    [
-      Factory.build(:estimated_order_line),
-      Factory.build(:estimated_order_line)
-    ]
+    lines {|l| [FactoryGirl.build(:order_line)]}
   end
-end
 
-Factory.define :in_preparation_order, :parent => :estimated_order do |o|
-  o.state 'IN_PREPARATION'
-end
+  factory :estimated_order, :parent => :order do
+    state 'WAIT_ESTIMATE_VALIDATION'
+    lines do |l|
+      [
+        FactoryGirl.build(:estimated_order_line),
+        FactoryGirl.build(:estimated_order_line)
+      ]
+    end
+  end
 
-Factory.define :canceled_order, :parent => :estimated_order do |o|
-  o.state 'ORDER_CANCELED'
-end
+  factory :in_preparation_order, :parent => :estimated_order do
+    state 'IN_PREPARATION'
+  end
 
-Factory.define :ready_order, :parent => :estimated_order do |o|
-  o.state 'WAIT_DELIVERY'
-end
+  factory :canceled_order, :parent => :estimated_order do
+    state 'ORDER_CANCELED'
+  end
 
-Factory.define :achieved_order, :parent => :estimated_order do |o|
-  o.state 'ACHIEVED'
+  factory :ready_order, :parent => :estimated_order do
+    state 'WAIT_DELIVERY'
+  end
+
+  factory :achieved_order, :parent => :estimated_order do
+    state 'ACHIEVED'
+  end
 end

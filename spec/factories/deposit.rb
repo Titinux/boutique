@@ -15,9 +15,11 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-Factory.define :deposit do |f|
-  f.association :user, :factory => :user
-  f.association :asset, :factory => :asset
-  f.quantity_modifier 500
-  f.validated false
+FactoryGirl.define do
+  factory :deposit do
+    association :user, :factory => :user
+    association :asset, :factory => :asset
+    quantity_modifier 500
+    validated false
+  end
 end

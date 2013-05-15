@@ -20,12 +20,12 @@ require "spec_helper"
 describe Admin::DepositsController do
   login_administrator
 
+  let(:deposit) { create(:deposit) }
+
   describe "GET index" do
     it "assigns all deposits as @deposits" do
-      deposit = Factory :deposit
-
       get :index
-      assigns(:deposits).to_a.should eq([deposit])
+      assigns(:deposits).should eq([deposit])
     end
   end
 
@@ -39,13 +39,11 @@ describe Admin::DepositsController do
   describe "POST create" do
     describe "with valid params" do
       before(:each) do
-        user  = Factory :user
-        asset = Factory :asset
+        user  = deposit.user
+        asset = create(:asset)
 
-        @deposit_attributes = Factory.attributes_for(:deposit).merge({
-                                                                    :user_id => user.id.to_s,
-                                                                    :asset_id => asset.id.to_s
-                                                                    })
+        @deposit_attributes = attributes_for(:deposit).merge({ :user_id => user.to_param,
+                                                               :asset_id => asset.to_param })
       end
 
       it "creates a new Deposit" do
@@ -56,6 +54,7 @@ describe Admin::DepositsController do
 
       it "assigns a newly created deposit as @deposit" do
         post :create, :deposit => @deposit_attributes
+
         assigns(:deposit).should be_a(Deposit)
         assigns(:deposit).should be_persisted
       end
@@ -68,14 +67,14 @@ describe Admin::DepositsController do
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved deposit as @deposit" do
-        Deposit.any_instance.stub(:save).and_return(false)
+        subject.responder.any_instance.stub(:has_errors?).and_return(true)
+
         post :create, :deposit => {}
         assigns(:deposit).should be_a_new(Deposit)
       end
 
       it "re-renders the 'new' template" do
-        Deposit.any_instance.stub(:save).and_return(false)
-        Deposit.any_instance.stub(:errors).and_return({ 'error' => 'foo'})
+        subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
         post :create, :deposit => {}
         response.should render_template("new")
@@ -85,17 +84,15 @@ describe Admin::DepositsController do
 
   describe "DELETE destroy" do
     it "destroys the requested deposit" do
-      deposit = Factory :deposit
+      deposit
 
       expect {
-        delete :destroy, :id => deposit.id.to_s
+        delete :destroy, :id => deposit.to_param
       }.to change(Deposit, :count).by(-1)
     end
 
     it "redirects to the deposits list" do
-      deposit = Factory :deposit
-
-      delete :destroy, :id => deposit.id.to_s
+      delete :destroy, :id => deposit.to_param
       response.should redirect_to(admin_deposits_url)
     end
   end

@@ -15,6 +15,8 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-Factory.define :category do |f|
-  f.sequence(:name)  {|n| "category#{n}" }
+FactoryGirl.define do
+  factory :category do
+    sequence(:name)  {|n| "category#{n}" }
+  end
 end

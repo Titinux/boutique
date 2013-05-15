@@ -20,20 +20,18 @@ require "spec_helper"
 describe Admin::GuildsController do
   login_administrator
 
+  let(:guild) { create(:guild) }
+
   describe "GET index" do
     it "assigns all guilds as @guilds" do
-      guild = Factory :guild
-
       get :index
-      assigns(:guilds).to_a.should eq([guild])
+      assigns(:guilds).should eq([guild])
     end
   end
 
   describe "GET show" do
     it "assigns the requested guild as @guild" do
-      guild = Factory :guild
-
-      get :show, :id => guild.id.to_s
+      get :show, :id => guild.to_param
       assigns(:guild).should eq(guild)
     end
   end
@@ -47,8 +45,7 @@ describe Admin::GuildsController do
 
   describe "GET edit" do
     it "assigns the requested guild as @guild" do
-      guild = Factory :guild
-      get :edit, :id => guild.id.to_s
+      get :edit, :id => guild.to_param
       assigns(:guild).should eq(guild)
     end
   end
@@ -57,32 +54,32 @@ describe Admin::GuildsController do
     describe "with valid params" do
       it "creates a new Guild" do
         expect {
-          post :create, :guild => Factory.attributes_for(:guild)
+          post :create, :guild => attributes_for(:guild)
         }.to change(Guild, :count).by(1)
       end
 
       it "assigns a newly created guild as @guild" do
-        post :create, :guild => Factory.attributes_for(:guild)
+        post :create, :guild => attributes_for(:guild)
         assigns(:guild).should be_a(Guild)
         assigns(:guild).should be_persisted
       end
 
       it "redirects to the created guild" do
-        post :create, :guild => Factory.attributes_for(:guild)
+        post :create, :guild => attributes_for(:guild)
         response.should redirect_to([:admin, Guild.last])
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved guild as @guild" do
-        Guild.any_instance.stub(:save).and_return(false)
+        subject.responder.any_instance.stub(:has_errors?).and_return(true)
+
         post :create, :guild => {}
         assigns(:guild).should be_a_new(Guild)
       end
 
       it "re-renders the 'new' template" do
-        Guild.any_instance.stub(:save).and_return(false)
-        Guild.any_instance.stub(:errors).and_return({ 'error' => 'foo'})
+        subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
         post :create, :guild => {}
         response.should render_template("new")
@@ -93,42 +90,33 @@ describe Admin::GuildsController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested guild" do
-        guild = Factory :guild
-
         Guild.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => guild.id.to_s, :guild => {'these' => 'params'}
+        put :update, :id => guild.to_param, :guild => {'these' => 'params'}
       end
 
       it "assigns the requested guild as @guild" do
-        guild = Factory :guild
-
-        put :update, :id => guild.id.to_s, :guild => Factory.attributes_for(:guild)
+        put :update, :id => guild.to_param, :guild => attributes_for(:guild)
         assigns(:guild).should eq(guild)
       end
 
       it "redirects to the guild" do
-        guild = Factory :guild
-
-        put :update, :id => guild.id.to_s, :guild => Factory.attributes_for(:guild)
+        put :update, :id => guild.to_param, :guild => attributes_for(:guild)
         response.should redirect_to([:admin, guild])
       end
     end
 
     describe "with invalid params" do
       it "assigns the guild as @guild" do
-        guild = Factory :guild
-        Guild.any_instance.stub(:save).and_return(false)
+        subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
-        put :update, :id => guild.id.to_s, :guild => {}
+        put :update, :id => guild.to_param, :guild => {}
         assigns(:guild).should eq(guild)
       end
 
       it "re-renders the 'edit' template" do
-        guild = Factory :guild
-        Guild.any_instance.stub(:save).and_return(false)
-        Guild.any_instance.stub(:errors).and_return({ 'error' => 'foo'})
+        subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
-        put :update, :id => guild.id.to_s, :guild => {}
+        put :update, :id => guild.to_param, :guild => {}
         response.should render_template("edit")
       end
     end
@@ -136,17 +124,15 @@ describe Admin::GuildsController do
 
   describe "DELETE destroy" do
     it "destroys the requested guild" do
-      guild = Factory :guild
+      guild
 
       expect {
-        delete :destroy, :id => guild.id.to_s
+        delete :destroy, :id => guild.to_param
       }.to change(Guild, :count).by(-1)
     end
 
     it "redirects to the guilds list" do
-      guild = Factory :guild
-
-      delete :destroy, :id => guild.id.to_s
+      delete :destroy, :id => guild.to_param
       response.should redirect_to(admin_guilds_url)
     end
   end

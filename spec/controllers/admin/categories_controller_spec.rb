@@ -20,20 +20,18 @@ require "spec_helper"
 describe Admin::CategoriesController do
   login_administrator
 
+  let(:category) { create(:category) }
+
   describe "GET index" do
     it "assigns all categories as @categories" do
-      category = Factory :category
-
       get :index
-      assigns(:categories).to_a.should eq([category])
+      assigns(:categories).should eq([category])
     end
   end
 
   describe "GET show" do
     it "assigns the requested category as @category" do
-      category = Factory :category
-
-      get :show, :id => category.id.to_s
+      get :show, :id => category.to_param
       assigns(:category).should eq(category)
     end
   end
@@ -47,8 +45,7 @@ describe Admin::CategoriesController do
 
   describe "GET edit" do
     it "assigns the requested category as @category" do
-      category = Factory :category
-      get :edit, :id => category.id.to_s
+      get :edit, :id => category.to_param
       assigns(:category).should eq(category)
     end
   end
@@ -56,33 +53,35 @@ describe Admin::CategoriesController do
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Category" do
+        category
+
         expect {
-          post :create, :category => Factory.attributes_for(:category)
+          post :create, :category => attributes_for(:category)
         }.to change(Category, :count).by(1)
       end
 
       it "assigns a newly created category as @category" do
-        post :create, :category => Factory.attributes_for(:category)
+        post :create, :category => attributes_for(:category)
         assigns(:category).should be_a(Category)
         assigns(:category).should be_persisted
       end
 
       it "redirects to the created category" do
-        post :create, :category => Factory.attributes_for(:category)
+        post :create, :category => attributes_for(:category)
         response.should redirect_to([:admin, Category.last])
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved category as @category" do
-        Category.any_instance.stub(:save).and_return(false)
+        subject.responder.any_instance.stub(:has_errors?).and_return(true)
+
         post :create, :category => {}
         assigns(:category).should be_a_new(Category)
       end
 
       it "re-renders the 'new' template" do
-        Category.any_instance.stub(:save).and_return(false)
-        Category.any_instance.stub(:errors).and_return({ 'error' => 'foo'})
+        subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
         post :create, :category => {}
         response.should render_template("new")
@@ -93,42 +92,33 @@ describe Admin::CategoriesController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested category" do
-        category = Factory :category
-
         Category.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => category.id.to_s, :category => {'these' => 'params'}
+        put :update, :id => category.to_param, :category => {'these' => 'params'}
       end
 
       it "assigns the requested category as @category" do
-        category = Factory :category
-
-        put :update, :id => category.id.to_s, :category => Factory.attributes_for(:category)
+        put :update, :id => category.to_param, :category => attributes_for(:category)
         assigns(:category).should eq(category)
       end
 
       it "redirects to the category" do
-        category = Factory :category
-
-        put :update, :id => category.id.to_s, :category => Factory.attributes_for(:category)
+        put :update, :id => category.to_param, :category => attributes_for(:category)
         response.should redirect_to([:admin, category])
       end
     end
 
     describe "with invalid params" do
       it "assigns the category as @category" do
-        category = Factory :category
-        Category.any_instance.stub(:save).and_return(false)
+        subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
-        put :update, :id => category.id.to_s, :category => {}
+        put :update, :id => category.to_param, :category => {}
         assigns(:category).should eq(category)
       end
 
       it "re-renders the 'edit' template" do
-        category = Factory :category
-        Category.any_instance.stub(:save).and_return(false)
-        Category.any_instance.stub(:errors).and_return({ 'error' => 'foo'})
+        subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
-        put :update, :id => category.id.to_s, :category => {}
+        put :update, :id => category.to_param, :category => {}
         response.should render_template("edit")
       end
     end
@@ -136,17 +126,15 @@ describe Admin::CategoriesController do
 
   describe "DELETE destroy" do
     it "destroys the requested category" do
-      category = Factory :category
+      category
 
       expect {
-        delete :destroy, :id => category.id.to_s
+        delete :destroy, :id => category.to_param
       }.to change(Category, :count).by(-1)
     end
 
     it "redirects to the categories list" do
-      category = Factory :category
-
-      delete :destroy, :id => category.id.to_s
+      delete :destroy, :id => category.to_param
       response.should redirect_to(admin_categories_url)
     end
   end

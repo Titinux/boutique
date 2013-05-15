@@ -19,27 +19,27 @@ require 'spec_helper'
 
 describe Asset do
   it "is valid with valid attributes" do
-    Factory.build(:asset).should be_valid
+    build(:asset).should be_valid
   end
 
   describe '#name' do
     it 'should not be empty or nil' do
-      Factory.build(:asset, :name => '').should_not be_valid
-      Factory.build(:asset, :name => nil).should_not be_valid
+      build(:asset, :name => '').should_not be_valid
+      build(:asset, :name => nil).should_not be_valid
     end
 
     it 'size should be within 2 to 25 characters' do
-      Factory.build(:asset, :name => 'f').should_not be_valid
-      Factory.build(:asset, :name => 'f'*26).should_not be_valid
+      build(:asset, :name => 'f').should_not be_valid
+      build(:asset, :name => 'f'*26).should_not be_valid
     end
 
     it 'should be unique' do
-      @asset = Factory.create(:asset, :name => 'category')
-      Factory.build(:asset, :name => @asset.name).should_not be_valid
+      @asset = create(:asset, :name => 'category')
+      build(:asset, :name => @asset.name).should_not be_valid
     end
   end
 
   it "should belong to a category" do
-    Factory.build(:asset, :category => nil).should_not be_valid
+    build(:asset, :category => nil).should_not be_valid
   end
 end

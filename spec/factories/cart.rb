@@ -15,8 +15,10 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-Factory.define :cart do |f|
-  f.name 'My cart'
-  f.association :user, :factory => :user
+FactoryGirl.define do
+  factory :cart do
+    name 'My cart'
+    association :user, :factory => :user
+  end
 end
 

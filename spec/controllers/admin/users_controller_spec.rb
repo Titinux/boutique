@@ -20,20 +20,18 @@ require "spec_helper"
 describe Admin::UsersController do
   login_administrator
 
+  let(:user) { create(:user) }
+
   describe "GET index" do
     it "assigns all users as @users" do
-      user = Factory :user
-
       get :index
-      assigns(:users).to_a.should eq([user])
+      assigns(:users).should eq([user])
     end
   end
 
   describe "GET show" do
     it "assigns the requested user as @user" do
-      user = Factory :user
-
-      get :show, :id => user.id.to_s
+      get :show, :id => user.to_param
       assigns(:user).should eq(user)
     end
   end
@@ -47,8 +45,7 @@ describe Admin::UsersController do
 
   describe "GET edit" do
     it "assigns the requested user as @user" do
-      user = Factory :user
-      get :edit, :id => user.id.to_s
+      get :edit, :id => user.to_param
       assigns(:user).should eq(user)
     end
   end
@@ -57,32 +54,32 @@ describe Admin::UsersController do
     describe "with valid params" do
       it "creates a new User" do
         expect {
-          post :create, :user => Factory.attributes_for(:user)
+          post :create, :user => attributes_for(:user)
         }.to change(User, :count).by(1)
       end
 
       it "assigns a newly created user as @user" do
-        post :create, :user => Factory.attributes_for(:user)
+        post :create, :user => attributes_for(:user)
         assigns(:user).should be_a(User)
         assigns(:user).should be_persisted
       end
 
       it "redirects to the created user" do
-        post :create, :user => Factory.attributes_for(:user)
+        post :create, :user => attributes_for(:user)
         response.should redirect_to([:admin, User.last])
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved user as @user" do
-        User.any_instance.stub(:save).and_return(false)
+        subject.responder.any_instance.stub(:has_errors?).and_return(true)
+
         post :create, :user => {}
         assigns(:user).should be_a_new(User)
       end
 
       it "re-renders the 'new' template" do
-        User.any_instance.stub(:save).and_return(false)
-        User.any_instance.stub(:errors).and_return({ 'error' => 'foo'})
+        subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
         post :create, :user => {}
         response.should render_template("new")
@@ -93,42 +90,33 @@ describe Admin::UsersController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested user" do
-        user = Factory :user
-
         User.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => user.id.to_s, :user => {'these' => 'params'}
+        put :update, :id => user.to_param, :user => {'these' => 'params'}
       end
 
       it "assigns the requested user as @user" do
-        user = Factory :user
-
-        put :update, :id => user.id.to_s, :user => Factory.attributes_for(:user)
+        put :update, :id => user.to_param, :user => attributes_for(:user)
         assigns(:user).should eq(user)
       end
 
       it "redirects to the user" do
-        user = Factory :user
-
-        put :update, :id => user.id.to_s, :user => Factory.attributes_for(:user)
+        put :update, :id => user.to_param, :user => attributes_for(:user)
         response.should redirect_to([:admin, user])
       end
     end
 
     describe "with invalid params" do
       it "assigns the user as @user" do
-        user = Factory :user
-        User.any_instance.stub(:save).and_return(false)
+        subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
-        put :update, :id => user.id.to_s, :user => {}
+        put :update, :id => user.to_param, :user => {}
         assigns(:user).should eq(user)
       end
 
       it "re-renders the 'edit' template" do
-        user = Factory :user
-        User.any_instance.stub(:save).and_return(false)
-        User.any_instance.stub(:errors).and_return({ 'error' => 'foo'})
+        subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
-        put :update, :id => user.id.to_s, :user => {}
+        put :update, :id => user.to_param, :user => {}
         response.should render_template("edit")
       end
     end
@@ -136,17 +124,15 @@ describe Admin::UsersController do
 
   describe "DELETE destroy" do
     it "destroys the requested user" do
-      user = Factory :user
+      user
 
       expect {
-        delete :destroy, :id => user.id.to_s
+        delete :destroy, :id => user.to_param
       }.to change(User, :count).by(-1)
     end
 
     it "redirects to the users list" do
-      user = Factory :user
-
-      delete :destroy, :id => user.id.to_s
+      delete :destroy, :id => user.to_param
       response.should redirect_to(admin_users_url)
     end
   end

@@ -15,14 +15,16 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-Factory.define :user do |u|
-  u.sequence(:name)  {|n| "user#{n}" }
-  u.email  {|a| "#{a.name}@example.com" }
+FactoryGirl.define do
+  factory :user do
+    sequence(:name)  {|n| "user#{n}" }
+    email  {|a| "#{a.name}@example.com" }
 
-  u.password "user_password"
-  u.password_confirmation {|a| a.password }
-end
+    password "user_password"
+    password_confirmation {|a| a.password }
+  end
 
-Factory.define :gatherer, :parent => :user do |f|
-  f.gatherer true
+  factory :gatherer, :parent => :user do
+    gatherer true
+  end
 end

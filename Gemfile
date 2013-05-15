@@ -2,16 +2,16 @@
 source 'http://rubygems.org'
 
 # Rails
-gem 'rails', '3.2.3'
+gem 'rails', '3.2.13'
 
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
-end
 
-# Javascript
-gem 'jquery-rails'
+  # Javascript
+  gem 'jquery-rails'
+end
 
 # Security
 gem 'devise'
@@ -35,6 +35,11 @@ gem 'unicorn'
 #gem 'javan-whenever', :lib => false, :source => 'http://gems.github.com'
 gem 'rack-contrib'
 gem 'delayed_job_active_record'
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+end
 
 group :development, :test do
   # Database

@@ -15,10 +15,12 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-Factory.define :administrator do |f|
-  f.sequence(:name)  {|n| "admin#{n}" }
-  f.email  {|a| "#{a.name}@example.com" }
+FactoryGirl.define do
+  factory :administrator do
+    sequence(:name)  {|n| "admin#{n}" }
+    email  {|a| "#{a.name}@example.com" }
 
-  f.password "admin_password"
-  f.password_confirmation {|a| a.password }
+    password "admin_password"
+    password_confirmation {|a| a.password }
+  end
 end

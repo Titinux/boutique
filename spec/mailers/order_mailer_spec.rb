@@ -21,8 +21,8 @@ include ActionView::Helpers::NumberHelper
 describe OrderMailer do
   describe 'order_created_admin' do
     before(:each) do
-      @order = Factory :order
-      5.times { Factory :administrator }
+      @order = build(:order)
+      5.times { create(:administrator) }
     end
 
     it 'should send exactly one email' do
@@ -80,7 +80,7 @@ describe OrderMailer do
 
   describe 'order_created_user' do
     before(:each) do
-      @order = Factory :order
+      @order = build(:order)
     end
 
     it 'should send exactly one email' do
@@ -123,7 +123,7 @@ describe OrderMailer do
 
   describe 'wait_estimate_validation_user' do
     before(:each) do
-      @order = Factory :estimated_order
+      @order = build(:estimated_order)
     end
 
     it 'should send exactly one email' do
@@ -180,8 +180,8 @@ describe OrderMailer do
 
   describe 'order_in_preparation_admin' do
     before(:each) do
-      @order = Factory :in_preparation_order
-      5.times { Factory :administrator }
+      @order = build(:in_preparation_order)
+      5.times { create(:administrator) }
     end
 
     it 'should send exactly one email' do
@@ -247,7 +247,7 @@ describe OrderMailer do
 
   describe 'order_in_preparation_user' do
     before(:each) do
-      @order = Factory :in_preparation_order
+      @order = build(:in_preparation_order)
       @email = OrderMailer.order_in_preparation_user(@order).deliver
     end
 
@@ -290,8 +290,8 @@ describe OrderMailer do
 
   describe 'order_canceled_admin' do
     before(:each) do
-      @order = Factory :canceled_order
-      5.times { Factory :administrator }
+      @order = build(:canceled_order)
+      5.times { create(:administrator) }
     end
 
     it 'should send exactly one email' do
@@ -357,7 +357,7 @@ describe OrderMailer do
 
   describe 'order_canceled_user' do
     before(:each) do
-      @order = Factory :canceled_order
+      @order = build(:canceled_order)
       @email = OrderMailer.order_canceled_user(@order).deliver
     end
 
@@ -387,8 +387,8 @@ describe OrderMailer do
 
   describe 'order_ready_admin' do
     before(:each) do
-      @order = Factory :ready_order
-      5.times { Factory :administrator }
+      @order = build(:ready_order)
+      5.times { create(:administrator) }
     end
 
     it 'should send exactly one email' do
@@ -454,7 +454,7 @@ describe OrderMailer do
 
   describe 'order_ready_user' do
     before(:each) do
-      @order = Factory :ready_order
+      @order = build(:ready_order)
       @email = OrderMailer.order_ready_user(@order).deliver
     end
 
@@ -497,8 +497,8 @@ describe OrderMailer do
 
   describe 'order_achieved_admin' do
     before(:each) do
-      @order = Factory :achieved_order
-      5.times { Factory :administrator }
+      @order = build(:achieved_order)
+      5.times { create(:administrator) }
     end
 
     it 'should send exactly one email' do
@@ -564,7 +564,7 @@ describe OrderMailer do
 
   describe 'order_achieved_user' do
     before(:each) do
-      @order = Factory :achieved_order
+      @order = build(:achieved_order)
       @email = OrderMailer.order_achieved_user(@order).deliver
     end
 

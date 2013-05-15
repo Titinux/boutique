@@ -15,13 +15,15 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-Factory.define :order_line do |ol|
-  #ol.association :order, :factory => :order
-  ol.association :asset, :factory => :asset
+FactoryGirl.define do
+  factory :order_line do
+    #association :order, :factory => :order
+    association :asset, :factory => :asset
 
-  ol.quantity { rand(500)+1 }
-end
+    quantity { rand(500)+1 }
+  end
 
-Factory.define :estimated_order_line, :parent => :order_line do |ol|
-  ol.unitaryPrice { rand(250)+1 }
+  factory :estimated_order_line, :parent => :order_line do
+    unitaryPrice { rand(250)+1 }
+  end
 end

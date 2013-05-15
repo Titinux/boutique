@@ -15,7 +15,9 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-Factory.define :asset do |f|
-  f.sequence(:name)  {|n| "asset#{n}" }
-  f.association :category, :factory => :category
+FactoryGirl.define do
+  factory :asset do
+    sequence(:name)  {|n| "asset#{n}" }
+    association :category, :factory => :category
+  end
 end
