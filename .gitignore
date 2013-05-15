@@ -11,3 +11,4 @@ config/database.yml
 .htaccess
 app/assets/images
 public/stylesheets
+*.sublime-*
