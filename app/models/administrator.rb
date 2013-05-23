@@ -19,9 +19,6 @@ class Administrator < ActiveRecord::Base
   devise :database_authenticatable, :trackable, :validatable,
          :lockable, :timeoutable, :unlock_strategy => :none
 
-  # Attributes
-  attr_searchable :name, :email
-
   # Validations
   validates :name,  presence: true, uniqueness: { case_sensitive: false }, length: { within: 3..25 }, allow_blank: false
   validates :email, presence: true, uniqueness: { case_sensitive: false }, length: { within: 3..25 }, email: true

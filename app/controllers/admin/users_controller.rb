@@ -17,16 +17,21 @@
 
 class Admin::UsersController < Admin::AdminController
   def index
-    @search = User.search(params[:search])
-    @users = @search.includes(:guild).page(params[:page]).order(User.arel_table[:name])
+    search_params = {"s" => "name asc"}.merge(params[:q] || {})
+
+    @q = User.includes(:guild).search(search_params)
+    @users = @q.result.page(params[:page])
 
     respond_with(@users)
   end
 
   def show
     @user = User.find(params[:id])
-    @search_deposits = @user.deposits.validated.search(params[:search])
-    @deposits = @search_deposits.includes(:user, :asset => :category).page(params[:page])
+
+    search_params = {"s" => "asset_name asc"}.merge(params[:q] || {})
+
+    @search_deposits = @user.deposits.includes(asset: :category).validated.search(search_params)
+    @deposits = @search_deposits.result.page(params[:page])
 
     respond_with(@user)
   end

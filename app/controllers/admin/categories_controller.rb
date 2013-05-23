@@ -19,8 +19,10 @@ class Admin::CategoriesController < Admin::AdminController
   # GET /admin/categories
   # GET /admin/categories.xml
   def index
-    @search     = Category.search(params[:search])
-    @categories = @search.page(params[:page]).order(:name)
+    search_params = {"s" => "name asc"}.merge(params[:q] || {})
+
+    @q          = Category.search(search_params)
+    @categories = @q.result.page(params[:page])
 
     respond_with(@categories)
   end

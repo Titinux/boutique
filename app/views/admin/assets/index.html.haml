@@ -18,9 +18,9 @@
 = content_title t('asset.listing')
 
 %p.filter
-  = simple_form_for([:admin, @search]) do |f|
-    = f.input :name_contains, :label => Asset.human_attribute_name(:name), :required => false
-    = f.input :category_name_contains, :label => Category.model_name.human, :required => false
+  = simple_form_for(@q, url: admin_assets_path, method: :get) do |f|
+    = f.input :name_cont, :label => Asset.human_attribute_name(:name), :required => false
+    = f.input :category_name_cont, :label => Category.model_name.human, :required => false
 
     .buttons
       = f.button :submit, t('helpers.submit.search')

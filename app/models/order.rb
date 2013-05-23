@@ -21,8 +21,6 @@ class Order < ActiveRecord::Base
 
   # Attributes
   accepts_nested_attributes_for :lines, :allow_destroy => true
-  attr_searchable  :id, :state, :updated_at
-  assoc_searchable :user
   attr_reader(:message)
 
   # Validations

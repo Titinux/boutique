@@ -18,13 +18,13 @@
 %table
   %thead
     %tr
-      %th= sort_link @search, :id
-      %th= sort_link @search, :level
-      %th= sort_link @search, :user, User.model_name.human
-      %th= sort_link @search, :action
-      %th= sort_link @search, :objectType
-      %th= sort_link @search, :objectId
-      %th= sort_link @search, :created_at
+      %th= sort_link @q, :id
+      %th= sort_link @q, :level
+      %th= sort_link @q, :user, User.model_name.human
+      %th= sort_link @q, :action
+      %th= sort_link @q, :objectType
+      %th= sort_link @q, :objectId
+      %th= sort_link @q, :created_at
       %th= t('action').pluralize
 
   %tbody

@@ -22,9 +22,6 @@ class Deposit < ActiveRecord::Base
 
   # Attributes
   attr_accessor :quantity_modifier
-  attr_searchable
-  assoc_searchable :user, :asset
-  search_methods :validated
 
   # Validations
   validates_presence_of :user_id, :asset_id

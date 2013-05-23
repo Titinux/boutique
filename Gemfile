@@ -20,7 +20,7 @@ gem 'strong_parameters'
 
 # Controllers
 gem 'responders'
-gem 'meta_search', :git => 'git://github.com/ernie/meta_search.git'
+gem 'ransack'
 gem 'cells'
 
 # Views

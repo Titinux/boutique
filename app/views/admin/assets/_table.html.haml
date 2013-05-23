@@ -18,8 +18,8 @@
 %table
   %thead
   %tr
-    %th= sort_link @search, :name
-    %th= sort_link @search, :category_name, Category.model_name.human
+    %th= sort_link @q, :name
+    %th= sort_link @q, :category_name, Category.model_name.human
     %th= t('picture')
     %th= t('action').pluralize
 

@@ -22,9 +22,6 @@ class Category < ActiveRecord::Base
 
   has_many :assets
 
-  # Attributes
-  attr_searchable :name
-
   # Validations
   validates :name, :uniqueness => true, :presence => true, :length => { :within => 2..25 }
 

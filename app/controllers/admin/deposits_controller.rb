@@ -19,11 +19,12 @@ class Admin::DepositsController < Admin::AdminController
   # GET /deposits
   # GET /deposits.xml
   def index
-    search = {"meta_sort" => "asset_name.asc", "validated" => '0'}.merge(params[:search] || {})
+    search = {"meta_sort" => "asset_name.asc", "validated" => '0'}.merge(params[:q] || {})
 
-    @search   = Deposit.includes(:user, :asset => :category).page(params[:page])
-    @search   = @search.search(search)
-    @deposits = @search.relation
+    #@search   = Deposit.includes(:user, :asset => :category).page(params[:page])
+
+    @q        = Deposit.includes(:user, :asset => :category).validated(true).order(Asset.arel_table[:name].desc).search(params[:q])
+    @deposits = @q.result.page(params[:page])
 
     respond_with(@deposits)
   end

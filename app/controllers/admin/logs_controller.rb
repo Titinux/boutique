@@ -19,8 +19,10 @@ class Admin::LogsController < Admin::AdminController
   # GET /admin/logs
   # GET /admin/logs.xml
   def index
-    @search = Log.search(params[:search])
-    @logs = @search.page(params[:page]).order('created_at DESC')
+    search_params = {"s" => "created_at desc"}.merge(params[:q] || {})
+
+    @q    = Log.search(search_params)
+    @logs = @q.result.page(params[:page]).order('created_at desc')
 
     respond_with(@logs)
   end

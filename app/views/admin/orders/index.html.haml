@@ -18,9 +18,9 @@
 = content_title t('order.listing')
 
 %p.filter
-  = simple_form_for([:admin, @search]) do |f|
-    = f.input :id_equals, :label => Order.human_attribute_name(:id), :required => false
-    = f.input :user_name_contains, :label => User.model_name.human, :required => false
+  = simple_form_for(@q, url: admin_orders_path, method: :get) do |f|
+    = f.input :id_eq, :label => Order.human_attribute_name(:id), :required => false
+    = f.input :user_name_cont, :label => User.model_name.human, :required => false
     = f.input :state_in, collection: orderStatusHash.invert, as: :check_boxes, required: false, label: false
 
     .buttons

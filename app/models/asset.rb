@@ -21,9 +21,6 @@ class Asset < ActiveRecord::Base
   has_many :deposits
   has_many :order_lines
 
-  attr_searchable  :name
-  assoc_searchable :category
-
   # Validations
   validates :name, :uniqueness => true, :presence => true, :length => { :within => 2..25 }
   validates_presence_of :category_id

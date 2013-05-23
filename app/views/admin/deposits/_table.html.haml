@@ -18,10 +18,10 @@
 %table
   %thead
     %tr
-      %th= sort_link @search, :user_name, User.model_name.human
-      %th= sort_link @search, :asset_category_name, Category.model_name.human
-      %th= sort_link @search, :asset_name, Asset.model_name.human
-      %th= sort_link @search, :quantity
+      %th= sort_link @q, :user_name, User.model_name.human
+      %th= sort_link @q, :asset_category_name, Category.model_name.human
+      %th= sort_link @q, :asset_name, Asset.model_name.human
+      %th= sort_link @q, :quantity
 
   %tbody
     - deposits.each do |deposit|

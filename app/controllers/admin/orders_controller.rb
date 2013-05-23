@@ -17,14 +17,12 @@
 
 class Admin::OrdersController < Admin::AdminController
   def index
-    if params[:search].blank?
-      params[:search] = ActiveSupport::HashWithIndifferentAccess.new(:state_in => %W(WAIT_ESTIMATE WAIT_ESTIMATE_VALIDATION IN_PREPARATION WAIT_DELIVERY))
-    end
+    search_params = { "s" => "id asc",
+                      "state_in" => %W(WAIT_ESTIMATE WAIT_ESTIMATE_VALIDATION IN_PREPARATION WAIT_DELIVERY)
+                    }.merge(params[:q] || {})
 
-    @search = Order.search(params[:search])
-    @orders = @search.relation
-
-    @orders = @orders.includes(:lines, :user).page(params[:page]).order(Order.arel_table[:id].desc)
+    @q = Order.includes(:lines, :user).search(search_params)
+    @orders = @q.result.page(params[:page])
 
     respond_with(@orders)
   end

@@ -19,8 +19,10 @@ class Admin::AssetsController < Admin::AdminController
   # GET /admin/assets
   # GET /admin/assets.xml
   def index
-    @search = Asset.search(params[:search])
-    @assets = @search.includes(:category).page(params[:page]).order(:name)
+    search_params = {"s" => "name asc"}.merge(params[:q] || {})
+
+    @q      = Asset.includes(:category).search(search_params)
+    @assets = @q.result.page(params[:page])
 
     respond_with(@assets)
   end

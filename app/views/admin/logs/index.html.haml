@@ -18,12 +18,12 @@
 = content_title t('log.listing')
 
 %p.filter
-  = simple_form_for([:admin, @search]) do |f|
-    = f.input :id_equals, :label => Log.human_attribute_name(:id), :required => false
-    = f.input :user_contains, :label => User.model_name.human, :required => false
-    = f.input :action_equals, :label => Log.human_attribute_name(:action), :required => false
-    = f.input :objectType_equals, :label => Log.human_attribute_name(:objectType), :required => false
-    = f.input :objectId_equals, :label => Log.human_attribute_name(:objectId), :required => false
+  = simple_form_for(@q, url: admin_logs_path) do |f|
+    = f.input :id_eq, :label => Log.human_attribute_name(:id), :required => false
+    = f.input :user_cont, :label => User.model_name.human, :required => false
+    = f.input :action_eq, :label => Log.human_attribute_name(:action), :required => false
+    = f.input :objectType_eq, :label => Log.human_attribute_name(:objectType), :required => false
+    = f.input :objectId_eq, :label => Log.human_attribute_name(:objectId), :required => false
     = f.input :created_at_gt, :label => t('log.after'), :required => false
     = f.input :created_at_lt, :label => t('log.before'), :required => false
 

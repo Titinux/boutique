@@ -18,10 +18,10 @@
 %table
   %thead
     %tr
-      %th= sort_link @search, :name
-      %th= sort_link @search, :guild_name, Guild.model_name.human
-      %th= sort_link @search, :pigMoneyBox
-      %th= sort_link @search, :gatherer
+      %th= sort_link @q, :name
+      %th= sort_link @q, :guild_name, Guild.model_name.human
+      %th= sort_link @q, :pigMoneyBox
+      %th= sort_link @q, :gatherer
       %th= t('action').pluralize
 
   %tbody

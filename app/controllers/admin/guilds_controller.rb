@@ -19,8 +19,10 @@ class Admin::GuildsController < Admin::AdminController
   # GET /admin/guilds
   # GET /admin/guilds.xml
   def index
-    @search = Guild.search(params[:search])
-    @guilds = @search.page(params[:page]).order(:name)
+    search_params = {"s" => "name asc"}.merge(params[:q] || {})
+
+    @q      = Guild.search(search_params)
+    @guilds = @q.result.page(params[:page])
 
     respond_with(@guilds)
   end

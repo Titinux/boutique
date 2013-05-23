@@ -18,9 +18,9 @@
 = content_title t('category.listing')
 
 %p.filter
-  = simple_form_for([:admin, @search]) do |f|
-    = f.input :name_contains, :label => Category.human_attribute_name(:name), :required => false
-    = f.input :parent_name_contains, :label => Category.human_attribute_name(:parent), :required => false
+  = simple_form_for(@q, url: admin_categories_path, method: :get) do |f|
+    = f.input :name_cont, :label => Category.human_attribute_name(:name), :required => false
+    = f.input :parent_name_cont, :label => Category.human_attribute_name(:parent), :required => false
 
     .buttons
       = f.button :submit, t('helpers.submit.search')

@@ -19,8 +19,10 @@ class Admin::AdministratorsController < Admin::AdminController
   # GET /admin/administrators
   # GET /admin/administrators.xml
   def index
-    @search          = Administrator.search(params[:search])
-    @administrators  = @search.page(params[:page]).order(:name)
+    search_params = {"s" => "name asc"}.merge(params[:q] || {})
+
+    @q               = Administrator.search(search_params)
+    @administrators  = @q.result.page(params[:page])
 
     respond_with(@administrators)
   end
@@ -76,5 +78,9 @@ class Admin::AdministratorsController < Admin::AdminController
 
   def administrator_params
     params.require(:administrator).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def search_params
+
   end
 end

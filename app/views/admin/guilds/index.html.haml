@@ -18,8 +18,8 @@
 = content_title t('guild.listing')
 
 %p.filter
-  = simple_form_for([:admin, @search]) do |f|
-    = f.input :name_contains, :label => Guild.human_attribute_name(:name), :required => false
+  = simple_form_for(@q, url: admin_guilds_path, method: :get) do |f|
+    = f.input :name_cont, :label => Guild.human_attribute_name(:name), :required => false
 
     .buttons
       = f.button :submit, t('helpers.submit.search')
