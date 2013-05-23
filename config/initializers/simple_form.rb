@@ -28,20 +28,19 @@ SimpleForm.setup do |config|
     # extensions by default, you can change `b.optional` to `b.use`.
 
     # Calculates maxlength from length validations for string inputs
-    b.use :maxlength
+    b.optional :maxlength
 
     # Calculates pattern from format validations for string inputs
     b.optional :pattern
 
     # Calculates min and max from length validations for numeric inputs
-    b.use :min_max
+    b.optional :min_max
 
     # Calculates readonly automatically from readonly attributes
-    b.use :readonly
+    b.optional :readonly
 
     ## Inputs
-    b.use :label
-    b.use :input
+    b.use :label_input
     b.use :hint,  :wrap_with => { :tag => :span, :class => :hint }
     b.use :error, :wrap_with => { :tag => :span, :class => :error }
   end
@@ -87,7 +86,7 @@ SimpleForm.setup do |config|
   # You can wrap each item in a collection of radio/check boxes with a tag,
   # defaulting to :span. Please note that when using :boolean_style = :nested,
   # SimpleForm will force this option to be a label.
-  # config.item_wrapper_tag = :span
+  config.item_wrapper_tag = :div
 
   # You can define a class to use in all item wrappers. Defaulting to none.
   # config.item_wrapper_class = nil
@@ -118,6 +117,10 @@ SimpleForm.setup do |config|
   # to match as key, and the input type that will be used when the field name
   # matches the regexp as value.
   # config.input_mappings = { /count/ => :integer }
+
+  # Custom wrappers for input types. This should be a hash containing an input
+  # type as key and the wrapper that will be used for all inputs with specified type.
+  # config.wrapper_mappings = { :string => :prepend }
 
   # Default priority for time_zone inputs.
   # config.time_zone_priority = nil
