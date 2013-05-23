@@ -31,6 +31,7 @@ class Deposit < ActiveRecord::Base
                                           :less_than_or_equal_to => 1000000 }
 
   validates :quantity_modifier, :numericality => { :only_integer => true,
+                                                   :greater_than_or_equal_to => -1000000,
                                                    :less_than_or_equal_to => 1000000 }
 
   validate :not_duplicate
@@ -78,7 +79,6 @@ class Deposit < ActiveRecord::Base
     self[:quantity] ||= 0
     self.quantity_modifier ||= 0
   end
-
 
   # Validation
   def not_duplicate
