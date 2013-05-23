@@ -79,8 +79,4 @@ class Admin::AdministratorsController < Admin::AdminController
   def administrator_params
     params.require(:administrator).permit(:name, :email, :password, :password_confirmation)
   end
-
-  def search_params
-
-  end
 end
