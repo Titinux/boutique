@@ -7,7 +7,7 @@ fr:
   endDate: Date de fin
   created_at: Créé le
   siteTitle: "La boutique des Marchands d'Hyze"
-  footerText: "Illustrations Ankama (c) 2011. Programme J.Horhant H.Cheguillaume. Tous droits réservés."
+  footerText: "Illustrations Ankama (c) 2013. Programme J.Horhant H.Cheguillaume. Tous droits réservés."
   version: "(Version : %{version})"
   'yes': Oui
   'no': Non
