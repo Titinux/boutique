@@ -16,8 +16,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class Admin::AdministratorsController < Admin::AdminController
-  # GET /admin/administrators
-  # GET /admin/administrators.xml
   def index
     search_params = {"s" => "name asc"}.merge(params[:q] || {})
 
@@ -27,25 +25,18 @@ class Admin::AdministratorsController < Admin::AdminController
     respond_with(@administrators)
   end
 
-  # GET /admin/administrators/1
-  # GET /admin/administrators/1.xml
   def show
     respond_with(@administrator = Administrator.find(params[:id]))
   end
 
-  # GET /admin/administrators/new
-  # GET /admin/administrators/new.xml
   def new
     respond_with(@administrator = Administrator.new)
   end
 
-  # GET /edit/administrators/1/edit
   def edit
     respond_with(@administrator = Administrator.find(params[:id]))
   end
 
-  # POST /admin/administrators
-  # POST /admin/administrators.xml
   def create
     @administrator = Administrator.new(administrator_params)
     @administrator.save
@@ -53,8 +44,6 @@ class Admin::AdministratorsController < Admin::AdminController
     respond_with(:admin, @administrator)
   end
 
-  # PUT /admin/administrators/1
-  # PUT /admin/administrators/1.xml
   def update
     @administrator = Administrator.find(params[:id])
     administrator_params.delete(:password) if administrator_params[:password].blank?
@@ -65,8 +54,6 @@ class Admin::AdministratorsController < Admin::AdminController
     respond_with(:admin, @administrator)
   end
 
-  # DELETE /admin/administrators/1
-  # DELETE /admin/administrators/1.xml
   def destroy
     @administrator = Administrator.find(params[:id])
     @administrator.destroy

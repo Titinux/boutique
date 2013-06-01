@@ -19,21 +19,14 @@ class DepositsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :gathererOnly
 
-  # GET /deposits
-  # GET /deposits.xml
   def index
     respond_with(@deposits = current_user.deposits.joins(:asset).order(Asset.arel_table[:name]))
   end
 
-
-  # GET /deposits/new
-  # GET /deposits/new.xml
   def new
     respond_with(@deposit = Deposit.new)
   end
 
-  # POST /deposits
-  # POST /deposits.xml
   def create
     deposits = current_user.deposits
 

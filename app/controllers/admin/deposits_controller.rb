@@ -16,8 +16,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class Admin::DepositsController < Admin::AdminController
-  # GET /deposits
-  # GET /deposits.xml
   def index
     search_params = {"s" => "asset_name asc", "validated_false" => '1'}.merge(params[:q] || {})
 
@@ -27,14 +25,10 @@ class Admin::DepositsController < Admin::AdminController
     respond_with(@deposits)
   end
 
-  # GET /admin/deposits/new
-  # GET /admin/deposits/new.xml
   def new
     respond_with(@deposit = Deposit.new)
   end
 
-  # POST /admin/deposits
-  # POST /admin/deposits.xml
   def create
     validated = deposit_params[:validated] == '1'
 
@@ -45,8 +39,6 @@ class Admin::DepositsController < Admin::AdminController
     respond_with(@deposit, :location => admin_deposits_path)
   end
 
-  # DELETE /admin/deposits/1
-  # DELETE /admin/deposits/1.xml
   def destroy
     @deposit = Deposit.find(params[:id])
 
@@ -57,8 +49,6 @@ class Admin::DepositsController < Admin::AdminController
     respond_with(:admin, @deposit)
   end
 
-  # PUT /admin/deposits/1/validate
-  # PUT /admin/deposits/1/validate.xml
   def validate
     @deposit = Deposit.find(params[:id])
     if @deposit.approve

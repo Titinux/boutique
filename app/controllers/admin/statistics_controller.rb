@@ -16,8 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class Admin::StatisticsController < Admin::AdminController
-  # GET /admin/statistics
-  # GET /admin/statistics.xml
+
   def index
     respond_to do |format|
       format.html # index.html.erb
@@ -25,8 +24,6 @@ class Admin::StatisticsController < Admin::AdminController
     end
   end
 
-  # GET /admin/statistics/:id
-  # GET /admin/statistics/:id.xml
   def show
     redirect_to :action => 'index' and return unless Statistics.respond_to?("#{params[:id].downcase}Stats")
 

@@ -17,8 +17,6 @@
 
 class Admin::ConfigTreeController < Admin::AdminController
 
-  # GET /admin/config_tree
-  # GET /admin/config_tree.xml
   def index
     @configElements = ConfigTree.root.all_children
 
@@ -28,7 +26,6 @@ class Admin::ConfigTreeController < Admin::AdminController
     end
   end
 
-  # GET /admin/configtree
   def edit
     @configElement = ConfigTree.find(params[:id])
 
@@ -39,8 +36,6 @@ class Admin::ConfigTreeController < Admin::AdminController
     end
   end
 
-  # PUT /admin/config_tree/1
-  # PUT /admin/config_tree/1.xml
   def update
     @configElement = ConfigTree.find(params[:id])
 

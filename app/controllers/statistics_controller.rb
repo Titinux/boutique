@@ -17,8 +17,6 @@
 
 class StatisticsController < ApplicationController
 
-  # GET /statistics
-  # GET /statistics.xml
   def index
     respond_to do |format|
       format.html # index.html.erb
@@ -26,8 +24,6 @@ class StatisticsController < ApplicationController
     end
   end
 
-  # GET /statistics/:id
-  # GET /statistics/:id.xml
   def show
     redirect_to :action => 'index' and return unless Statistics.respond_to?("#{params[:id].downcase}Stats")
 
