@@ -11,7 +11,7 @@ if defined?(Bundler)
 end
 
 module Boutique
-  VERSION = "1.2.0.alpha".freeze
+  VERSION = "1.2.0.rc1".freeze
 
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
