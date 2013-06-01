@@ -17,7 +17,7 @@
 
 = simple_form_for(@deposit, :url => admin_deposits_path, :html => { :method => :post }) do |f|
 
-  = f.association :user, :collection => User.order(:name), :prompt => t('deposit.prompts.user')
+  = f.association :user, :collection => User.order(:name), :prompt => t('deposit.prompts.user'), autofocus: true
   = f.association :asset, :collection => Asset.order(:name), :prompt => t('deposit.prompts.asset')
   = f.input :quantity_modifier, input_html: { autocomplete: 'off' }
   = f.input :validated
