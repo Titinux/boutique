@@ -20,11 +20,12 @@ fr:
     waitingDeposits: Dépôts en attente
     validate: Valider
     refuse: Refuser
-    confirm_refuse: Voulez-vous vraiment refuser le dépôt de %{quantity} %{asset} par %{user} ?
+    confirm_refuse: "Voulez-vous vraiment refuser le dépôt de %{quantity} %{asset} par %{user} ?"
     created: Votre dépôt a bien été pris en compte.
     listing: Liste des dépôts
-    validation_success: Le dépôt à bien été validé.
-    validation_failure: Le dépôt n'a pas pu être validé.
+    validation_success: "Le dépôt de %{quantity} %{asset} par %{user} a bien été validé."
+    validation_failure: "Le dépôt de %{quantity} %{asset} par %{user} n'a pas pu être validé."
+    destroy_success: "Le dépôt de %{quantity} %{asset} par %{user} a bien été supprimé."
     block: Bloc des dépôts
 
     validation:

@@ -49,7 +49,10 @@ class Admin::DepositsController < Admin::AdminController
   # DELETE /admin/deposits/1.xml
   def destroy
     @deposit = Deposit.find(params[:id])
-    @deposit.destroy
+
+    if @deposit.destroy
+      flash[:notice] = t('deposit.destroy_success', { user: @deposit.user.name, asset: @deposit.asset.name, quantity: @deposit.quantity })
+    end
 
     respond_with(:admin, @deposit)
   end
@@ -58,7 +61,11 @@ class Admin::DepositsController < Admin::AdminController
   # PUT /admin/deposits/1/validate.xml
   def validate
     @deposit = Deposit.find(params[:id])
-    @deposit.approve ? t('deposit.validation_success') : t('deposit.validation_failure')
+    if @deposit.approve
+      flash[:notice] = t('deposit.validation_success', { user: @deposit.user.name, asset: @deposit.asset.name, quantity: @deposit.quantity })
+    else
+      flash[:error] = t('deposit.validation_failure', { user: @deposit.user.name, asset: @deposit.asset.name, quantity: @deposit.quantity })
+    end
 
     respond_with(:admin, @deposit)
   end
