@@ -17,10 +17,10 @@
 
 - assets.order(:name).each do |asset|
   %div.asset
-    - unless asset.pictureUri.blank?
-      = image_tag asset.pictureUri
+    = link_to new_cart_line_path(:asset_id => asset.id) do
+      = image_tag asset.pictureUri unless asset.pictureUri.blank?
       %br
+      = asset.name
+      %br
+      = t('cart.add')
 
-    = asset.name
-    %br
-    = link_to t('cart.add'), new_cart_line_path(:asset_id => asset.id)
