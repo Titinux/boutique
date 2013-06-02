@@ -1,9 +1,0 @@
-<%= rails_env %>:
-  adapter: postgresql
-  pool: 5
-  timeout: 5000
-
-  host: Akane.lan
-  database: <%= database %>
-  username: <%= user %>
-  password: <%= Capistrano::CLI.ui.ask("Enter database password: ") %>

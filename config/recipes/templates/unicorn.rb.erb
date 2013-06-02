@@ -1,0 +1,32 @@
+worker_processes <%= unicorn_workers %>
+working_directory "<%= current_path %>"
+
+user "<%= user %>", "<%= user %>"
+
+preload_app true
+
+timeout 30
+
+listen "<%= unicorn_socket %>", :backlog => 64
+
+pid "<%= unicorn_pid %>"
+
+stdout_path "<%= unicorn_out_log %>"
+stderr_path "<%= unicorn_err_log %>"
+
+before_fork do |server, worker|
+    ActiveRecord::Base.connection.disconnect!
+
+    old_pid = "#{server.config[:pid]}.oldbin"
+    if File.exists?(old_pid) && server.pid != old_pid
+        begin
+            Process.kill("QUIT", File.read(old_pid).to_i)
+        rescue Errno::ENOENT, Errno::ESRCH
+            # someone else did our job for us
+        end
+    end
+end
+
+after_fork do |server, worker|
+  ActiveRecord::Base.establish_connection
+end

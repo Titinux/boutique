@@ -15,83 +15,57 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-$:.unshift(File.expand_path('./lib', ENV['rvm_path'])) # Add RVM's lib directory to the load path.
+require "bundler/capistrano"
 
-require 'rvm/capistrano'
+load "deploy/assets"
 
-load    'config/deploy/capistrano_database'
-load    'config/deploy/rvmrc'
+load "config/recipes/base"
+load "config/recipes/unicorn"
+load "config/recipes/postgresql"
+load "config/recipes/app_config"
+load "config/recipes/rbenv"
+load "config/recipes/check"
 
-set :stages, %w(production staging)
-set :default_stage, "staging"
-require 'capistrano/ext/multistage'
+role :web, 'hyze.lan'
+role :app, 'hyze.lan'
+role :db,  'hyze.lan', :primary => true
 
-set :bundle_flags, "--deployment"
-
-set :application, 'boutique'
-
-# Servers settings
-role :app, 'Haruna.lan'
-role :web, 'Haruna.lan'
-role :db,  'Haruna.lan', :primary => true
-
-set :user, "hyze.fr"
+set :user, "hyze"
+set :application, "boutique"
+set :deploy_to, "/home/#{user}/public/#{application}"
+set :deploy_via, :remote_cache
 set :use_sudo, false
 
-# SCM
-set :scm, :git
-set :deploy_via, :remote_cache
+set :scm, "git"
+set :repository, "git://github.com/Titinux/boutique.git"
+set :branch, "1.2"
 
-# RVM
-set :rvm_type, :user
+default_run_options[:pty] = true
+set :ssh_options, {forward_agent: true}
 
-namespace :bundle do
-  task :install do
-    desc "Bundle production gems"
-    run "cd #{release_path} && bundle install --without development test"
+namespace :cache do
+  desc "Set right permissions on directories"
+  task :permissions do
+    run "chmod 777 #{release_path}/public"
   end
 end
 
-namespace :deploy do
-  task :start do
-    desc 'Start unicorn server'
-    run "unicorn -c #{deploy_to}/current/config/unicorn.rb -E production -D"
+namespace :uploads do
+  desc "Symlink uploads path"
+  task :symlink do
+    run "ln -nfs #{shared_path}/uploads #{release_path}/public/uploads"
   end
+end
 
-  task :stop do
-    desc 'Stop unicorn server'
-    run "if [ -f #{shared_path}/pids/unicorn.pid ]; then kill -s QUIT `cat #{shared_path}/pids/unicorn.pid` fi"
-  end
-
-  task :restart, :roles => :app, :except => { :no_release => true } do
-    desc 'Reload unicorn server'
-    run "kill -s USR2 `cat #{shared_path}/pids/unicorn.pid`"
-  end
-
-  task :asset_symlink, :except => { :no_release => true } do
+namespace :assets do
+  task :symlink, :except => { :no_release => true } do
     run "rm -rf #{release_path}/app/assets/images"
     run "ln -nfs #{shared_path}/images #{release_path}/app/assets/images"
   end
-
-  task :sockets, :except => { :no_release => true } do
-    run "ln -nfs #{shared_path}/sockets #{release_path}/tmp/sockets"
-  end
 end
 
-after "deploy:finalize_update", "deploy:sockets"
-after "deploy:finalize_update", "deploy:asset_symlink"
-after "deploy:update_code", "bundle:install"
+after "deploy", "deploy:cleanup" # keep only the last 5 releases
 
-#namespace :deploy do
-#  desc "Update the crontab file"
-#  task :update_crontab, :roles => :db do
-#    run "cd #{release_path} && whenever --update-crontab #{application}"
-#  end
-#end
-
-#after "deploy:symlink",      "deploy:update_crontab"
-
-#after "deploy:stop",    "delayed_job:stop"
-#after "deploy:start",   "delayed_job:start"
-#after "deploy:restart", "delayed_job:restart"
-
+after "deploy:finalize_update", "uploads:symlink"
+after "deploy:finalize_update", "assets:symlink"
+after "deploy:finalize_update", "cache:permissions"
