@@ -8,6 +8,7 @@ tmp/**/*
 .idea
 *~
 config/database.yml
+config/application.yml
 .htaccess
 app/assets/images
 public/stylesheets
