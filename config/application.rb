@@ -77,5 +77,10 @@ module Boutique
 
     # Add middlewares
     config.middleware.use Rack::Locale
+
+    # Mailer config
+    CONFIG[:action_mailer].each_pair do |key, value|
+      config.action_mailer.send("#{key}=".to_sym, value)
+    end
   end
 end
