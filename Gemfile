@@ -37,6 +37,7 @@ gem 'unicorn'
 #gem 'javan-whenever', :lib => false, :source => 'http://gems.github.com'
 gem 'rack-contrib'
 gem 'delayed_job_active_record'
+gem 'daemons'
 
 group :development do
   gem 'better_errors'
