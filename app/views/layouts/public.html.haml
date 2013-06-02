@@ -15,14 +15,13 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-!!! XML
 !!! 5
-%html{:'xml:lang' => 'fr', :xmlns => 'http://www.w3.org/1999/xhtml' }
+%html{ lang: I18n.locale.to_s }
   %head
-    %meta{ :'http-equiv' => 'content-type', :content => 'application/xhtml+xml;charset=UTF-8'}
+    %meta{ charset: 'utf-8' }
 
     %link{ :rel => 'icon', :type => 'image/png', :href => "#{image_path('global/favicon.png')}"}
-    = csrf_meta_tag
+    = csrf_meta_tags
 
     %title= t('siteTitle')
 
