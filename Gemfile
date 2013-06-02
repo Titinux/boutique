@@ -15,6 +15,7 @@ end
 
 # Security
 gem 'devise'
+gem 'devise-i18n'
 gem 'devise-encryptable'
 gem 'strong_parameters'
 
