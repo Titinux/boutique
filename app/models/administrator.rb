@@ -21,7 +21,7 @@ class Administrator < ActiveRecord::Base
 
   # Validations
   validates :name,  presence: true, uniqueness: { case_sensitive: false }, length: { within: 3..25 }, allow_blank: false
-  validates :email, presence: true, uniqueness: { case_sensitive: false }, length: { within: 3..25 }, email: true
+  validates :email, presence: true, uniqueness: { case_sensitive: false }, length: { within: 3..255 }, email: true
 
   def blocked=(value)
     if value == '1'
