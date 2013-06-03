@@ -31,13 +31,13 @@ class CartLinesController < ApplicationController
   end
 
   def create
-    @cart_line = NewCartLine.new(params[:new_cart_line].merge(:user => current_user))
+    @cart_line = NewCartLine.new(new_cart_line_params.merge(:user => current_user))
 
     if @cart_line.save
       flash[:notice] = t('flash.cart_lines.create.notice',
-                         :count => @cart_line.quantity,
-                         :asset => @cart_line.asset.name,
-                         :cart  => @cart_line.cart.name)
+                         count: @cart_line.quantity.to_i,
+                         asset: @cart_line.asset.name,
+                         cart:  @cart_line.cart.name)
 
       @cart_line.cart.touch
     end
@@ -62,6 +62,10 @@ class CartLinesController < ApplicationController
   end
 
   private
+
+  def new_cart_line_params
+    params.require(:new_cart_line).permit(:asset_id, :cart_id, :cart_name, :quantity)
+  end
 
   def cart_line_params
     params.require(:cart_line).permit(:quantity)
