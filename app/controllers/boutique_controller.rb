@@ -16,13 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class BoutiqueController < ApplicationController
-  layout 'public'
 
   def show
-    @categories = Category.all
-
-    respond_to do |format|
-      format.html
-    end
   end
 end
