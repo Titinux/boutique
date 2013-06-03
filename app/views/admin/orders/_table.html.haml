@@ -31,7 +31,7 @@
         %td= order.id
         %td= link_to order.user.name, [:admin, order.user], :title => order.user.dofusNicknames
         %td= orderStatusHash[order.state]
-        %td.currency= number_to_currency(order.totalAmount)
+        %td.currency= number_to_currency(order.totalAmount, unit: 'K', precision: 0)
         %td.date= l(order.updated_at)
         %td.actions
           = link_to_show admin_order_path(order)

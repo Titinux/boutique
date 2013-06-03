@@ -21,7 +21,7 @@
       = orderStatusHash[@order.state]
 
     = o.attribute :totalAmount do
-      = number_to_currency(@order.totalAmount)
+      = number_to_currency(@order.totalAmount, unit: 'K', precision: 0)
 
     = o.attribute :comment
 

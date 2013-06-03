@@ -7,7 +7,7 @@ Détails de la commande.
 -----------------------
 <%= render :partial => 'order_details', :locals => { :orderLines => @order.lines, :full => true } %>
 
-Total : <%= number_to_currency(@order.totalAmount) %>
+Total : <%= number_to_currency(@order.totalAmount, unit: 'K', precision: 0) %>
 
 
 

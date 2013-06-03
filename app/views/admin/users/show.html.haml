@@ -23,7 +23,7 @@
   = u.association :guild, :using => :name
   = u.attribute :email
   = u.attribute :pigMoneyBox do
-    = number_to_currency(@user.pigMoneyBox)
+    = number_to_currency(@user.pigMoneyBox, unit: 'K', precision: 0)
   = u.attribute :gatherer
   = u.attribute :created_at
   = u.attribute :blocked do

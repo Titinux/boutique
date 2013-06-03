@@ -159,15 +159,15 @@ describe OrderMailer do
         @order.lines.each do |line|
           email.body.should match(/#{line.asset.name}/)
           email.body.should match(/#{line.quantity}/)
-          email.body.should match(/#{number_to_currency(line.unitaryPrice)}/)
-          email.body.should match(/#{number_to_currency(line.price)}/)
+          email.body.should match(/#{number_to_currency(line.unitaryPrice, unit: 'K', precision: 0)}/)
+          email.body.should match(/#{number_to_currency(line.price, unit: 'K', precision: 0)}/)
         end
       end
 
       it 'should contain order total' do
         email = OrderMailer.wait_estimate_validation_user(@order).deliver
 
-        email.body.should match(/#{number_to_currency(@order.totalAmount)}/)
+        email.body.should match(/#{number_to_currency(@order.totalAmount, unit: 'K', precision: 0)}/)
       end
 
       it 'should contain a link to the order in the user profile' do
@@ -232,15 +232,15 @@ describe OrderMailer do
         @order.lines.each do |line|
           email.body.should match(/#{line.asset.name}/)
           email.body.should match(/#{line.quantity}/)
-          email.body.should match(/#{number_to_currency(line.unitaryPrice)}/)
-          email.body.should match(/#{number_to_currency(line.price)}/)
+          email.body.should match(/#{number_to_currency(line.unitaryPrice, unit: 'K', precision: 0)}/)
+          email.body.should match(/#{number_to_currency(line.price, unit: 'K', precision: 0)}/)
         end
       end
 
       it 'should contain order total' do
         email = OrderMailer.order_in_preparation_admin(@order).deliver
 
-        email.body.should match(/#{number_to_currency(@order.totalAmount)}/)
+        email.body.should match(/#{number_to_currency(@order.totalAmount, unit: 'K', precision: 0)}/)
       end
     end
   end
@@ -277,13 +277,13 @@ describe OrderMailer do
         @order.lines.each do |line|
           @email.body.should match(/#{line.asset.name}/)
           @email.body.should match(/#{line.quantity}/)
-          @email.body.should match(/#{number_to_currency(line.unitaryPrice)}/)
-          @email.body.should match(/#{number_to_currency(line.price)}/)
+          @email.body.should match(/#{number_to_currency(line.unitaryPrice, unit: 'K', precision: 0)}/)
+          @email.body.should match(/#{number_to_currency(line.price, unit: 'K', precision: 0)}/)
         end
       end
 
       it 'should contain order total' do
-        @email.body.should match(/#{number_to_currency(@order.totalAmount)}/)
+        @email.body.should match(/#{number_to_currency(@order.totalAmount, unit: 'K', precision: 0)}/)
       end
     end
   end
@@ -342,15 +342,15 @@ describe OrderMailer do
         @order.lines.each do |line|
           email.body.should match(/#{line.asset.name}/)
           email.body.should match(/#{line.quantity}/)
-          email.body.should match(/#{number_to_currency(line.unitaryPrice)}/)
-          email.body.should match(/#{number_to_currency(line.price)}/)
+          email.body.should match(/#{number_to_currency(line.unitaryPrice, unit: 'K', precision: 0)}/)
+          email.body.should match(/#{number_to_currency(line.price, unit: 'K', precision: 0)}/)
         end
       end
 
       it 'should contain order total' do
         email = OrderMailer.order_canceled_admin(@order).deliver
 
-        email.body.should match(/#{number_to_currency(@order.totalAmount)}/)
+        email.body.should match(/#{number_to_currency(@order.totalAmount, unit: 'K', precision: 0)}/)
       end
     end
   end
@@ -439,15 +439,15 @@ describe OrderMailer do
         @order.lines.each do |line|
           email.body.should match(/#{line.asset.name}/)
           email.body.should match(/#{line.quantity}/)
-          email.body.should match(/#{number_to_currency(line.unitaryPrice)}/)
-          email.body.should match(/#{number_to_currency(line.price)}/)
+          email.body.should match(/#{number_to_currency(line.unitaryPrice, unit: 'K', precision: 0)}/)
+          email.body.should match(/#{number_to_currency(line.price, unit: 'K', precision: 0)}/)
         end
       end
 
       it 'should contain order total' do
         email = OrderMailer.order_ready_admin(@order).deliver
 
-        email.body.should match(/#{number_to_currency(@order.totalAmount)}/)
+        email.body.should match(/#{number_to_currency(@order.totalAmount, unit: 'K', precision: 0)}/)
       end
     end
   end
@@ -484,13 +484,13 @@ describe OrderMailer do
         @order.lines.each do |line|
           @email.body.should match(/#{line.asset.name}/)
           @email.body.should match(/#{line.quantity}/)
-          @email.body.should match(/#{number_to_currency(line.unitaryPrice)}/)
-          @email.body.should match(/#{number_to_currency(line.price)}/)
+          @email.body.should match(/#{number_to_currency(line.unitaryPrice, unit: 'K', precision: 0)}/)
+          @email.body.should match(/#{number_to_currency(line.price, unit: 'K', precision: 0)}/)
         end
       end
 
       it 'should contain order total' do
-        @email.body.should match(/#{number_to_currency(@order.totalAmount)}/)
+        @email.body.should match(/#{number_to_currency(@order.totalAmount, unit: 'K', precision: 0)}/)
       end
     end
   end
@@ -549,15 +549,15 @@ describe OrderMailer do
         @order.lines.each do |line|
           email.body.should match(/#{line.asset.name}/)
           email.body.should match(/#{line.quantity}/)
-          email.body.should match(/#{number_to_currency(line.unitaryPrice)}/)
-          email.body.should match(/#{number_to_currency(line.price)}/)
+          email.body.should match(/#{number_to_currency(line.unitaryPrice, unit: 'K', precision: 0)}/)
+          email.body.should match(/#{number_to_currency(line.price, unit: 'K', precision: 0)}/)
         end
       end
 
       it 'should contain order total' do
         email = OrderMailer.order_achieved_admin(@order).deliver
 
-        email.body.should match(/#{number_to_currency(@order.totalAmount)}/)
+        email.body.should match(/#{number_to_currency(@order.totalAmount, unit: 'K', precision: 0)}/)
       end
     end
   end
@@ -594,13 +594,13 @@ describe OrderMailer do
         @order.lines.each do |line|
           @email.body.should match(/#{line.asset.name}/)
           @email.body.should match(/#{line.quantity}/)
-          @email.body.should match(/#{number_to_currency(line.unitaryPrice)}/)
-          @email.body.should match(/#{number_to_currency(line.price)}/)
+          @email.body.should match(/#{number_to_currency(line.unitaryPrice, unit: 'K', precision: 0)}/)
+          @email.body.should match(/#{number_to_currency(line.price, unit: 'K', precision: 0)}/)
         end
       end
 
       it 'should contain order total' do
-        @email.body.should match(/#{number_to_currency(@order.totalAmount)}/)
+        @email.body.should match(/#{number_to_currency(@order.totalAmount, unit: 'K', precision: 0)}/)
       end
     end
   end

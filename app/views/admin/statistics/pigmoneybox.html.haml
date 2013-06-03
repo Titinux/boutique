@@ -20,7 +20,7 @@
 %p
   = t('statistics.pigMoneyBox.sum')
   \:
-  = number_to_currency(@stats[:sum])
+  = number_to_currency(@stats[:sum], unit: 'K', precision: 0)
 
 %table
   %caption= t('statistics.pigMoneyBox.richests', {:count => @stats[:richests].size})
@@ -28,4 +28,4 @@
     %tr{ :class => "#{cycle('even', 'odd')}" }
       %td= index + 1
       %td= user.name
-      %td= number_to_currency(user.pigMoneyBox)
+      %td= number_to_currency(user.pigMoneyBox, unit: 'K', precision: 0)

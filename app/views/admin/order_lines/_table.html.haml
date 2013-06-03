@@ -28,5 +28,5 @@
       %tr{ :class => "#{cycle('even', 'odd')}" }
         %td= order_line.asset.name
         %td.number= number_with_delimiter(order_line.quantity)
-        %td.currency= number_to_currency(order_line.unitaryPrice, :precision => 2)
-        %td.currency= number_to_currency(order_line.price)
+        %td.currency= number_to_currency(order_line.unitaryPrice, unit: 'K', precision: 2)
+        %td.currency= number_to_currency(order_line.price, unit: 'K', precision: 0)

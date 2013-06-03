@@ -6,7 +6,7 @@ Order details.
 --------------
 <%= render :partial => 'order_details', :locals => { :orderLines => @order.lines, :full => true } %>
 
-Total : <%= number_to_currency(@order.totalAmount) %>
+Total : <%= number_to_currency(@order.totalAmount, unit: 'K', precision: 0) %>
 
 We hope that you have appreciated our services and that we'll see you soon in our shop.
 

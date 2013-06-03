@@ -29,7 +29,7 @@
 = frame :title => t('user.myPigMoneybox') do
   = show_for @user do |u|
     = u.attribute :pigMoneyBox do
-      = number_to_currency(@user.pigMoneyBox)
+      = number_to_currency(@user.pigMoneyBox, unit: 'K', precision: 0)
 
 = content_for :sidebar do
   = render_cell :widget, :user

@@ -3,6 +3,7 @@ source 'http://rubygems.org'
 
 # Rails
 gem 'rails', '3.2.13'
+gem 'rails-i18n'
 
 group :assets do
   gem 'sass-rails'

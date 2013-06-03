@@ -32,7 +32,7 @@
           - unless user.guild.blank?
             = user.guild.name
 
-        %td.currency= number_to_currency(user.pigMoneyBox)
+        %td.currency= number_to_currency(user.pigMoneyBox, unit: 'K', precision: 0)
         %td.boolean= boolean_to_image(user.gatherer)
         %td.actions
           = link_to_show admin_user_path(user)
