@@ -24,3 +24,4 @@ en:
     identity: Identity
     credentials: Crédentials
     account_status: Account status
+    name_hint: You can use your account name or your mail address.

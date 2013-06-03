@@ -23,3 +23,4 @@ fr:
     identity: Identité
     credentials: Sécurité
     account_status: Etat du compte
+    name_hint: Vous pouvez utiliser votre nom de compte ou votre addresse e-mail.

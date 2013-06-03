@@ -17,7 +17,7 @@
 
 class Administrator < ActiveRecord::Base
   devise :database_authenticatable, :trackable, :validatable,
-         :lockable, :timeoutable, :unlock_strategy => :none
+         :lockable, :timeoutable, unlock_strategy: :none
 
   # Validations
   validates :name,  presence: true, uniqueness: { case_sensitive: false }, length: { within: 3..25 }, allow_blank: false
@@ -33,5 +33,20 @@ class Administrator < ActiveRecord::Base
 
   def blocked
     ! self.locked_at.nil?
+  end
+
+  private
+
+  def self.find_first_by_auth_conditions(warden_conditions)
+    conditions = warden_conditions.dup
+
+    if login = conditions.delete(:name).try(:downcase)
+      name_cond   = arel_table[:name].lower.eq(login)
+      email_cond  = arel_table[:email].lower.eq(login)
+
+      where(conditions).where(name_cond.or(email_cond)).first
+    else
+      where(conditions).first
+    end
   end
 end

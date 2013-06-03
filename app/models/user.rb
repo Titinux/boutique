@@ -41,10 +41,17 @@ class User < ActiveRecord::Base
 
   validates_length_of :dofusNicknames, :maximum => 255, :allow_blank => true
 
-  def self.find_for_database_authentication(conditions)
-    value = conditions[authentication_keys.first]
-    table = self.arel_table
-    User.unscoped.where(table[:name].lower.eq(table.lower(value)).or(table[:email].lower.eq(table.lower(value)))).first
+  def self.find_first_by_auth_conditions(warden_conditions)
+    conditions = warden_conditions.dup
+
+    if login = conditions.delete(:name).try(:downcase)
+      name_cond   = arel_table[:name].lower.eq(login)
+      email_cond  = arel_table[:email].lower.eq(login)
+
+      where(conditions).where(name_cond.or(email_cond)).first
+    else
+      where(conditions).first
+    end
   end
 
   def addMoney
