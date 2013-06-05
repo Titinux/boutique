@@ -1,5 +1,6 @@
 # Secret token
 set_default(:app_config_secret_token, '4ca44741b0128f3552840f9b06effe9735de8c3a54924e6ccdd731a8f3f0be4649d93de26cf46bab09a76387d87eb7643c3bd0d2d3cb790b25ca7d90db264baa')
+set_default(:app_config_secret_key_base, 'ce3c45d091e25c69a3bb2cf7725448872a6ed45f40863c07680d160187fb74660eed92575c85e0102be2411dac2ec16981e1ccbc512afe0311351c0a57f6cfc9')
 
 # Mailer settings
 set_default(:app_config_mailer_delivery_method) { ':smtp' }

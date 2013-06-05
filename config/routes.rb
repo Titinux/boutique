@@ -22,7 +22,7 @@ Boutique::Application.routes.draw do
 
     # Cart
     resources :carts, :except => [ :index, :new, :create ] do
-      resources :lines, :controller => 'CartLines', :only => [:edit, :update, :destroy]
+      resources :lines, :controller => 'cart_lines', :only => [:edit, :update, :destroy]
     end
 
     resources :cart_lines, :only => [ :new, :create ]
@@ -66,5 +66,5 @@ Boutique::Application.routes.draw do
     root :to => 'boutique#show'
   end
 
-  match '/', :to => redirect { |p, req| "/#{I18n.locale}" }
+  get '/', :to => redirect { |p, req| "/#{I18n.locale}" }
 end

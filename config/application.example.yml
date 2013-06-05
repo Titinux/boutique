@@ -1,4 +1,5 @@
-secret_token: '886717c8966a267d1412097cb47b782154542ab062ef8225c3cfe20f4866b1de2f3853693203ee31aedc9ca1adc0da52d744a710151879b94e567425459c2214'
+secret_token: 'change-me'
+secret_key_base : 'change-me'
 
 development:
   mailer:

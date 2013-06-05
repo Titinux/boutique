@@ -2,32 +2,34 @@
 source 'http://rubygems.org'
 
 # Rails
-gem 'rails', '3.2.13'
+gem 'rails', '4.0.0.rc1'
 gem 'rails-i18n'
 
-group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'uglifier'
+gem 'sass-rails', '4.0.0.rc1'
+gem 'coffee-rails', '~> 4.0.0'
+gem 'uglifier', '>= 1.3.0'
 
-  # Javascript
-  gem 'jquery-rails'
-end
+# Rails 3 compatibility
+gem 'rails-observers'
+gem 'activerecord-session_store'
+
+# Javascript
+gem 'jquery-rails'
 
 # Security
 gem 'devise'
 gem 'devise-i18n'
-gem 'devise-encryptable'
-gem 'strong_parameters'
+gem 'devise-encryptable', github: 'plataformatec/devise-encryptable'
+#gem 'strong_parameters'
 
 # Controllers
 gem 'responders'
-gem 'ransack'
+gem 'ransack', github: 'ernie/ransack', branch: 'rails-4'
 gem 'cells'
 
 # Views
 gem 'haml'
-gem 'simple_form'
+gem 'simple_form', '3.0.0.rc'
 gem 'show_for'
 gem 'kaminari'
 
@@ -37,7 +39,7 @@ gem 'unicorn'
 # Others
 #gem 'javan-whenever', :lib => false, :source => 'http://gems.github.com'
 gem 'rack-contrib'
-gem 'delayed_job_active_record'
+#gem 'delayed_job_active_record'
 gem 'daemons'
 
 group :development do

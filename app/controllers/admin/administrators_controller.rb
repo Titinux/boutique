@@ -46,9 +46,6 @@ class Admin::AdministratorsController < Admin::AdminController
 
   def update
     @administrator = Administrator.find(params[:id])
-    administrator_params.delete(:password) if administrator_params[:password].blank?
-    administrator_params.delete(:password_confirmation) if administrator_params[:password_confirmation].blank?
-
     @administrator.update_attributes(administrator_params)
 
     respond_with(:admin, @administrator)
@@ -64,6 +61,11 @@ class Admin::AdministratorsController < Admin::AdminController
   private
 
   def administrator_params
-    params.require(:administrator).permit(:name, :email, :password, :password_confirmation)
+    if params[:administrator][:password].blank?
+      params[:administrator].delete(:password)
+      params[:administrator].delete(:password_confirmation)
+    end
+
+    params.require(:administrator).permit(:name, :email, :password, :password_confirmation, :blocked)
   end
 end

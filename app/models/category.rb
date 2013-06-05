@@ -26,5 +26,5 @@ class Category < ActiveRecord::Base
   validates :name, :uniqueness => true, :presence => true, :length => { :within => 2..25 }
 
   # Scopes
-  scope :mainCategories, where(:parent_id => nil)
+  scope :mainCategories, -> { where(:parent_id => nil) }
 end

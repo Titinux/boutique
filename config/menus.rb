@@ -71,10 +71,10 @@
       :name => I18n.t('statistics.name'),
       :link => admin_statistics_path
     },
-    {
-      :name => Delayed::Job.model_name.human.pluralize,
-      :link => admin_jobs_path
-    },
+    # {
+    #   :name => Delayed::Job.model_name.human.pluralize,
+    #   :link => admin_jobs_path
+    # },
     {
       :name => Log.model_name.human.pluralize,
       :link => admin_logs_path
