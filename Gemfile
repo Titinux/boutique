@@ -13,6 +13,12 @@ gem 'uglifier', '>= 1.3.0'
 gem 'rails-observers'
 gem 'activerecord-session_store'
 
+# Database
+gem 'pg'
+
+# Cache
+gem 'dalli'
+
 # Javascript
 gem 'jquery-rails'
 
@@ -20,7 +26,6 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'devise-i18n'
 gem 'devise-encryptable', github: 'plataformatec/devise-encryptable'
-#gem 'strong_parameters'
 
 # Controllers
 gem 'responders'
@@ -48,9 +53,6 @@ group :development do
 end
 
 group :development, :test do
-  # Database
-  gem 'sqlite3'
-
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'pry-rails'
@@ -62,12 +64,4 @@ group :test do
 
   # Pretty printed test output
   gem 'turn', :require => false
-end
-
-group :production do
-  # Database
-  gem 'pg'
-
-  # Cache
-  gem 'dalli'
 end

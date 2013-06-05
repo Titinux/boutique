@@ -1,16 +1,19 @@
 common: &common
-  adapter: sqlite3
+  adapter: postgresql
   pool: 5
   timeout: 5000
+  host: localhost
+  username: <username>
+  password: <password>
 
 development:
   <<: *common
-  database: db/development.sqlite3
+  database: boutique_dev
 
 production:
   <<: *common
-  database: db/production.sqlite3
+  database: boutique
 
 test: &test
   <<: *common
-  database: db/test.sqlite3
+  database: boutique_test
