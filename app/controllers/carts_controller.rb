@@ -38,7 +38,7 @@ class CartsController < ApplicationController
     @cart = current_user.carts.find(params[:id])
     @cart.update_attributes(cart_params)
 
-    respond_with(@cart)
+    respond_with(@cart, :location => cart_path(:id => 'current'))
   end
 
   def destroy
