@@ -16,6 +16,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class Admin::UsersController < Admin::AdminController
+  respond_to :json, only: :index
+
   def index
     search_params = {"s" => "name asc"}.merge(params[:q] || {})
 

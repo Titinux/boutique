@@ -23,7 +23,7 @@
     = f.input :name, :hint => t('user.name_hint'), :input_html => { :maxlength => 50 }
     = f.input :password, :input_html => { :size => 25 }
 
-    .buttons
+    .form-actions
       = f.button :submit, t('devise.links.sign_in')
 
   = render 'users/shared/links'

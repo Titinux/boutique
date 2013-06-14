@@ -15,7 +15,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-%table
+%table.table.table-bordered.table-striped
   %thead
     %tr
       %th= sort_link @q, :user_name, User.model_name.human
@@ -25,7 +25,7 @@
 
   %tbody
     - deposits.each do |deposit|
-      %tr{ :class => "#{cycle('even', 'odd')}" }
+      %tr
         %td= deposit.user.name
         %td= deposit.asset.category.name
         %td= deposit.asset.name

@@ -19,5 +19,5 @@
     = ff.input :id, :as => :hidden, :input_html => { :value => @cart.id }
     = ff.input :remove_after_ordered, :as => :boolean, :label => t('cart.remove_after_ordered'), :input_html => { :checked => @cart.name == t('cart.default_name') }
 
-  .buttons
+  .form-actions
     = f.button :submit

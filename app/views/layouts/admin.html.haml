@@ -20,41 +20,89 @@
   %head
     %meta{ charset: 'utf-8' }
 
-    %link{ :rel => 'icon', :type => 'image/png', :href => "#{image_path('global/favicon.png')}"}
+    %link{ :rel => 'icon', type: 'image/png', href: "#{image_path('global/favicon.png')}"}
     = csrf_meta_tags
 
     %title Boutique - Admin panel
 
     = stylesheet_link_tag 'admin.css'
 
-  %body
-    #global{:class => [controller.controller_name, controller.action_name]}
-      #header
-        %h1 Admin Panel
+  %body{class: page_class}
+    %header
+      %h1 Dofus Shop
 
-      #topbar.admin
-        = makeMenu('admin')
+      #user-menu
+        .btn-group
+          .btn.btn-group
+            %button.btn.btn-inverse.dropdown-toggle{ data: { toggle: 'dropdown' }}
+              %i.icon-cog.icon-white
+              %span.text= t('user.profile')
+              %span.caret
 
-      #center
-        = render_flash_messages
+            %ul.dropdown-menu
+              %li
+                = link_to admin_administrator_path(current_administrator) do
+                  %i.icon-user
+                  = t('user.my_profile')
 
-        - if content_for?(:content_title)
-          = yield :content_title
+              %li
+                = link_to destroy_administrator_session_path, method: :delete do
+                  %i.icon-off
+                  = t('devise.links.sign_out')
 
-        - if content_for?(:sidebar)
-          #content
-            = yield
+          = link_to root_url, class: 'btn btn-inverse' do
+            %i.icon-share-alt.icon-white
+            %span.text= t('navigate.publicPart')
 
-          #sidebar
-            = yield :sidebar
-        - else
-          = yield
+    %nav#main-menu
+      %ul#menu-admin.nav.nav-tabs.nav-stacked
+        %li
+          = link_to "#submenu-accounts", class: "collapsed", data: { toggle: 'collapse', parent: '#menu-admin'} do
+            %span.text= t('user.profile').pluralize
 
-      #footer
+          %ul#submenu-accounts.collapse
+            %li= link_to Administrator.model_name.human.pluralize, admin_administrators_path
+            %li= link_to User.model_name.human.pluralize, admin_users_path
+
+        %li
+          = link_to "#submenu-dofus", class: "collapsed", data: { toggle: 'collapse', parent: '#menu-admin'} do
+            %span.text= t('dofus.menu_entry')
+
+          %ul#submenu-dofus.collapse
+            %li= link_to Category.model_name.human.pluralize, admin_categories_path
+            %li= link_to Guild.model_name.human.pluralize, admin_guilds_path
+            %li= link_to Asset.model_name.human.pluralize, admin_assets_path
+
+        %li
+          = link_to "#submenu-dofus_shop",  class: "collapsed", data: { toggle: 'collapse', parent: '#menu-admin'} do
+            %span.text= t('dofus.shop.menu_entry')
+
+          %ul#submenu-dofus_shop.collapse
+            %li= link_to Order.model_name.human.pluralize, admin_orders_path
+            %li= link_to Deposit.model_name.human.pluralize, admin_deposits_path
+
+        %li= link_to t('statistics.name'), admin_statistics_path
+        %li= link_to Log.model_name.human.pluralize, admin_logs_path
+
+    %section#page
+      #page-title
+        = yield :content_title if content_for?(:content_title)
+        %span.btn-group
+          = yield :sidebar if content_for?(:sidebar)
+
+      .breadcrumb
+
+      #page-content.fluid-container
+        #flash-messages.row-fluid
+          = render_flash_messages
+
+        = yield
+
+      %footer.row-fluid
         = t('footerText')
 
     - if content_for?(:jstemplates)
       = javascript_tag do
         = yield(:jstemplates)
 
-    = javascript_include_tag 'application'
+    = javascript_include_tag 'admin'

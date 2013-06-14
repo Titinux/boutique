@@ -16,9 +16,9 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 = simple_form_for([:admin, @asset], html: { novalidate: true }) do |f|
-  = f.input :name
+  = f.input :name, autofocus: true
   = f.association :category, :collection => Category.order(:name), :prompt => false
   = f.input :pictureUri
 
-  .buttons
-    = f.button :submit
+  .form-actions
+    = f.button :submit, class: 'btn btn-primary'

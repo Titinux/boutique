@@ -22,7 +22,7 @@ module ActionsHelper
 
     link_to(link, options.except(:format, :text)) do
       out = image_tag(picture, :alt => text, :title => text)
-      out << text if options[:format] == :long
+      out << ' ' + text if options[:format] == :long
       out
     end
   end
@@ -44,7 +44,7 @@ module ActionsHelper
   def link_to_destroy(link, *args)
     options = args.extract_options!
     options[:text] ||= t('destroy')
-    options[:confirm] = t('destroy_confirm')
+    options[:data] = { confirm: t('destroy_confirm') }.merge(options[:data] || {})
     options[:method] = :delete
 
     link_to_action link, options[:text], 'actions/destroy.png', options

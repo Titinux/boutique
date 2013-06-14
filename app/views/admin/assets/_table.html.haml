@@ -15,17 +15,17 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-%table
+%table.table.table-bordered.table-striped
   %thead
-  %tr
-    %th= sort_link @q, :name
-    %th= sort_link @q, :category_name, Category.model_name.human
-    %th= t('picture')
-    %th= t('action').pluralize
+    %tr
+      %th= sort_link @q, :name
+      %th= sort_link @q, :category_name, Category.model_name.human
+      %th= t('picture')
+      %th= t('action').pluralize
 
   %tbody
     - assets.each do |asset|
-      %tr{ :class => "#{cycle('even', 'odd')}" }
+      %tr
         %td= asset.name
         %td= asset.category.name
         %td.picture

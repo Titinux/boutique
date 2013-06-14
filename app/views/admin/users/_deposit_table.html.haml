@@ -15,16 +15,16 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-%table
-  %thead>
-    %tr>
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
       %th= sort_link @search_deposits, :asset_name, Asset.model_name.human
       %th= sort_link @search_deposits, :asset_category_name, Category.model_name.human
       %th= sort_link @search_deposits, :quantity
 
   %body
     - deposits.each do |deposit|
-      %tr{ :class => "#{cycle('even', 'odd')}" }
+      %tr
         %td= deposit.asset.name
         %td= deposit.asset.category.name
         %td.number= deposit.quantity

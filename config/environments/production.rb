@@ -59,7 +59,7 @@ Boutique::Application.configure do
 
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-  config.assets.precompile += %w( admin.css public.css )
+  config.assets.precompile += %w( public.js admin.js admin.css public.css *.png *.jpg *.jpeg *.gif *.eot *.svg *.ttf *.woff)
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

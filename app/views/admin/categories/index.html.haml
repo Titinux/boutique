@@ -15,19 +15,29 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+= sidebar do
+  = link_to_add new_admin_category_path, :text => t('category.new'), :format => :long
+
 = content_title t('category.listing')
 
-%p.filter
-  = simple_form_for(@q, url: admin_categories_path, method: :get) do |f|
-    = f.input :name_cont, :label => Category.human_attribute_name(:name), :required => false
-    = f.input :parent_name_cont, :label => Category.human_attribute_name(:parent), :required => false
+#category-filter.accordion
+  .accordion-group
+    .accordion-heading
+      %a.accordion-toggle{ href: '#collapseOne', data: { toggle: 'collapse', parent: '#category-filter' }}
+        = image_tag 'actions/filter.png'
+        Filter
 
-    .buttons
-      = f.button :submit, t('helpers.submit.search')
+    #collapseOne.accordion-body.collapse
+      .accordion-inner
+        = simple_form_for(@q, url: admin_categories_path, method: :get) do |f|
+          = f.input :name_cont, :label => Category.human_attribute_name(:name), :required => false
+          = f.input :parent_name_cont, :label => Category.human_attribute_name(:parent), :required => false
+
+          .form-actions
+            = f.button :submit, t('helpers.submit.search'), class: 'btn btn-primary'
+
+
 
 = paginate @categories
 = render :partial => 'table', :locals => { :categories => @categories }
 = paginate @categories
-
-%br
-= link_to_add new_admin_category_path, :text => t('category.new'), :format => :long

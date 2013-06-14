@@ -36,6 +36,7 @@ en:
     myCarts: My carts
     amount: Amount
     profile: Profile
+    my_profile: My profile
     update_success: Your profile was successfully updated.
     create_success: Your profile was successfully created.
     system: System

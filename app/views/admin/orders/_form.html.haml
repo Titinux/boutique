@@ -20,7 +20,7 @@
   = f.input :state, :collection => orderStatusHash.collect{|k, v| [v, k]}, :include_blank => false
   = f.input :comment, :input_html => { :cols => 40, :rows => 7 }
 
-  %table#order_lines
+  %table#order_lines.table.table-bordered.table-striped
     %thead
       %tr
         %th= Asset.model_name.human
@@ -36,7 +36,9 @@
             = fl.input :_destroy, :as => :hidden, :input_html => { :class => 'remove_fields' }
             = link_to_function(t('destroy'), "Boutique.remove_fields(this, 'tr')")
 
-  .buttons
+  %p= link_to_function t('order.add_line'), "Boutique.add_nested_form('#order_line_template', '#order_lines tbody')"
+
+  .form-actions
     = f.button :submit
 
   %script#order_line_template{:type => "text/x-jquery-tmpl"}
@@ -45,4 +47,4 @@
         = render 'line_fields', :f => flt
         %td= link_to_function(t('destroy'), "Boutique.remove_fields(this, 'tr')")
 
-%p= link_to_function t('order.add_line'), "Boutique.add_nested_form('#order_line_template', '#order_lines tbody')"
+

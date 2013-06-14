@@ -1,0 +1,42 @@
+body
+  position: relative
+
+header
+  min-height: $headerHeight
+  padding: 5px 15px
+  background-image: -moz-linear-gradient(center top , $primaryColor 0%, darken(#3F3F3F, 25%) 100%)
+
+  &:after
+    clear: both
+
+  h1
+    position: relative
+    margin: 0
+    line-height: $headerHeight
+    float: left
+    font-family: "LearningCurve","Helvetica Neue",Helvetica,Arial,sans-serif
+    font-size: $headerHeight - 20px
+    font-weight: normal
+    color: #FFFFFF
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 4px $secondaryColor, 0 0 7px $secondaryColor, 0 0 8px $secondaryColor, 0 0 10px $secondaryColor, 0 0 15px $secondaryColor
+
+  #user-menu
+    float: right
+
+@media (max-width: 767px)
+  #user-menu .btn-group span.text
+    display: none
+
+  header
+    text-align: center
+
+    h1
+      float: none
+
+    #user-menu
+      display: block
+      float: none
+
+      .btn-group
+        text-align: left
+

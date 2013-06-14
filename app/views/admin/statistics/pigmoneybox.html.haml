@@ -22,10 +22,10 @@
   \:
   = number_to_currency(@stats[:sum], unit: 'K', precision: 0)
 
-%table
+%table.table.table-bordered.table-striped
   %caption= t('statistics.pigMoneyBox.richests', {:count => @stats[:richests].size})
   - @stats[:richests].each_with_index do |user, index|
-    %tr{ :class => "#{cycle('even', 'odd')}" }
+    %tr
       %td= index + 1
       %td= user.name
       %td= number_to_currency(user.pigMoneyBox, unit: 'K', precision: 0)

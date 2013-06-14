@@ -38,57 +38,6 @@
       :link => user_path
     }
   ],
-  :admin => [
-    {
-      :name => Guild.model_name.human.pluralize,
-      :link => admin_guilds_path
-    },
-    {
-      :name => User.model_name.human.pluralize,
-      :link => admin_users_path
-    },
-    {
-      :name => Administrator.model_name.human.pluralize,
-      :link => admin_administrators_path
-    },
-    {
-      :name => Category.model_name.human.pluralize,
-      :link => admin_categories_path
-    },
-    {
-      :name => Asset.model_name.human.pluralize,
-      :link => admin_assets_path
-    },
-    {
-      :name => Order.model_name.human.pluralize,
-      :link => admin_orders_path
-    },
-    {
-      :name => Deposit.model_name.human.pluralize,
-      :link => admin_deposits_path
-    },
-    {
-      :name => I18n.t('statistics.name'),
-      :link => admin_statistics_path
-    },
-    # {
-    #   :name => Delayed::Job.model_name.human.pluralize,
-    #   :link => admin_jobs_path
-    # },
-    {
-      :name => Log.model_name.human.pluralize,
-      :link => admin_logs_path
-    },
-    {
-      :name => I18n.t('navigate.publicPart'),
-      :link => root_path
-    },
-    {
-      :name => I18n.t('devise.links.sign_out'),
-      :link => destroy_administrator_session_path,
-      :link_opts => { method: :delete }
-    }
-  ],
   :statistics => {
     :public => [
       {

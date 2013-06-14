@@ -16,6 +16,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class Admin::AssetsController < Admin::AdminController
+  respond_to :js, only: [:index, :create, :update]
+
   def index
     search_params = {"s" => "name asc"}.merge(params[:q] || {})
 
@@ -41,7 +43,9 @@ class Admin::AssetsController < Admin::AdminController
     @asset = Asset.new(asset_params)
     @asset.save
 
-    respond_with(:admin, @asset)
+    respond_with(:admin, @asset) do |format|
+      format.js { render status: :ok, text: '' }
+    end
   end
 
   def update

@@ -15,7 +15,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-%table
+%table.table.table-bordered.table-striped
   %thead
     %tr
       %th= t('guild.blazon')
@@ -24,7 +24,7 @@
 
   %tbody>
     - guilds.each do |guild|
-      %tr{ :class => "#{cycle('even', 'odd')}" }
+      %tr
         %td.picture
           - unless guild.pictureUri.blank?
             = image_tag(guild.pictureUri, :alt => t('pictureOf', :subject => guild.name), :width => 75, :height => 75)

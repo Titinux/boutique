@@ -15,7 +15,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-%table#order_lines
+%table#order_lines.table.table-bordered.table-striped
   %thead
     %tr
       %th= Asset.model_name.human
@@ -25,7 +25,7 @@
 
   %tbody
     - order.lines.each do |order_line|
-      %tr{ :class => "#{cycle('even', 'odd')}" }
+      %tr
         %td= order_line.asset.name
         %td.number= number_with_delimiter(order_line.quantity)
         %td.currency= number_to_currency(order_line.unitaryPrice, unit: 'K', precision: 2)

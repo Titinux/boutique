@@ -1,5 +1,5 @@
 # Edit this Gemfile to bundle your application's dependencies.
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 # Rails
 gem 'rails', '4.0.0.rc1'
@@ -37,6 +37,9 @@ gem 'haml'
 gem 'simple_form', '3.0.0.rc'
 gem 'show_for'
 gem 'kaminari'
+
+gem 'compass-rails', github: 'milgner/compass-rails', branch: 'rails4'
+gem 'bootstrap-sass'
 
 # Use unicorn as the web server
 gem 'unicorn'

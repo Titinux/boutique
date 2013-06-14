@@ -15,22 +15,31 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+= sidebar do
+  = link_to_add t('deposit.new'), new_admin_deposit_path, :text => t('deposit.new'), :format => :long
+
 = content_title t('deposit.listing')
 
-%p.filter
-  = simple_form_for(@q, url: admin_deposits_path, method: :get) do |f|
-    = f.input :user_name_cont, :label => User.model_name.human, :required => false
-    = f.input :asset_category_name_cont, :label => Category.model_name.human, :required => false
-    = f.input :asset_name_cont, :label => Asset.model_name.human, :required => false
+#deposit-filter.accordion
+  .accordion-group
+    .accordion-heading
+      %a.accordion-toggle{ href: '#collapseOne', data: { toggle: 'collapse', parent: '#deposit-filter' }}
+        = image_tag 'actions/filter.png'
+        Filter
 
-    = f.input :validated_true, label: Deposit.human_attribute_name(:validated).pluralize, as: :boolean, require: false
-    = f.input :validated_false, label: Deposit.human_attribute_name(:not_validated).pluralize, as: :boolean, require: false
+    #collapseOne.accordion-body.collapse
+      .accordion-inner
+        = simple_form_for(@q, url: admin_deposits_path, method: :get) do |f|
+          = f.input :user_name_cont, :label => User.model_name.human, :required => false
+          = f.input :asset_category_name_cont, :label => Category.model_name.human, :required => false
+          = f.input :asset_name_cont, :label => Asset.model_name.human, :required => false
 
-    .buttons
-      = f.button :submit, t('helpers.submit.search')
+          = f.input :validated_true, label: Deposit.human_attribute_name(:validated).pluralize, as: :boolean, require: false
+          = f.input :validated_false, label: Deposit.human_attribute_name(:not_validated).pluralize, as: :boolean, require: false
+
+          .form-actions
+            = f.button :submit, t('helpers.submit.search')
 
 = paginate @deposits
 = render :partial => 'table', :locals => { :deposits => @deposits }
 = paginate @deposits
-
-%p= link_to t('deposit.new'), new_admin_deposit_path

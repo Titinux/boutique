@@ -20,8 +20,14 @@ module LayoutHelper
     out = ''
 
     flash.to_hash.slice(:notice, :warning, :alert).each do |name, msg|
-      out += content_tag :p, :class => "flash #{name}" do
-        flash_message = image_tag "icones/#{name}.png"
+      css_class = case name
+        when :notice then 'alert-success'
+        when :alert  then 'alert-error'
+      end
+
+      out += content_tag :div, :class => "alert #{name} #{css_class}" do
+        flash_message  = content_tag :button, '&times;'.html_safe, class: 'close', data: { dismiss: 'alert'}
+        flash_message += image_tag "icones/#{name}.png"
         flash_message += content_tag :strong, t("flash.names.#{name}")
         flash_message += ": #{msg}"
         flash_message
@@ -29,5 +35,13 @@ module LayoutHelper
     end
 
     out.html_safe
+  end
+
+  def content_title(title, &block)
+    content_for(:content_title, content_tag(:h2, title))
+  end
+
+  def sidebar(&block)
+    content_for(:sidebar, &block)
   end
 end

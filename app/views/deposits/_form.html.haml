@@ -19,5 +19,5 @@
   = f.association :asset, :collection => Asset.order(:name), prompt: false, autofocus: true
   = f.input :quantity_modifier, :required => true, input_html: { autocomplete: 'off' }
 
-  .buttons
+  .form-actions
     = f.button :submit

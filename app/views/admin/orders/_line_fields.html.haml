@@ -1,4 +1,9 @@
-= f.association :asset, :wrapper_tag => :td, :label => false, :collection => Asset.order(:name), :include_blank => false
-= f.input :quantity, :wrapper_tag => :td, :label => false
-= f.input :unitaryPrice, :wrapper_tag => :td, :label => false
+%td
+  = f.association :asset, :label => false, :collection => Asset.order(:name), :include_blank => false
+
+%td
+  = f.input :quantity, :label => false
+
+%td
+  = f.input :unitaryPrice, :label => false
 

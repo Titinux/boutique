@@ -15,7 +15,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-%table
+%table.table.table-bordered.table-striped
   %thead
     %tr
       %th= sort_link @q, :id
@@ -27,7 +27,7 @@
 
   %tbody
     - orders.each do |order|
-      %tr{ :class => "#{cycle('even', 'odd')}" }
+      %tr
         %td= order.id
         %td= link_to order.user.name, [:admin, order.user], :title => order.user.dofusNicknames
         %td= orderStatusHash[order.state]

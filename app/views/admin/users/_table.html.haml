@@ -15,7 +15,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-%table
+%table.table.table-bordered.table-striped
   %thead
     %tr
       %th= sort_link @q, :name
@@ -26,7 +26,7 @@
 
   %tbody
     - users.each do |user|
-      %tr{ :class => "#{cycle('even', 'odd')}" }
+      %tr
         %td= user.name
         %td
           - unless user.guild.blank?

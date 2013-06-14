@@ -15,9 +15,9 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+= sidebar do
+  = link_to_show [:admin, @asset], class: 'btn'
+
 = content_title t('asset.editing')
 
 = render :partial => 'form'
-
-= link_to_back admin_assets_path
-= link_to_show [:admin, @asset]

@@ -40,9 +40,9 @@ module ApplicationHelper
 
     name.split('.').each {|name_part| menu = menu[name_part.to_sym] }
 
-    out = "<ul>"
+    out = "<ul id=\"my-menu\" class=\"nav nav-tabs nav-stacked\">"
 
-    menu.each do |item|
+    menu.each_with_index do |item, index|
       if (not item.has_key? :condition) or item[:condition]
         out << "<li>"
         out << link_to(item[:name], item[:link], item[:link_opts])
@@ -99,9 +99,5 @@ module ApplicationHelper
 
     out << "</table>"
     out.html_safe
-  end
-
-  def content_title(title)
-    content_for(:content_title, content_tag(:h2, title))
   end
 end

@@ -15,21 +15,29 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+= sidebar do
+  = link_to_add new_admin_user_path, :text => t('user.new'), :format => :long
+
 = content_title t('user.listing')
 
-%p.filter
-  = simple_form_for(@q, url: admin_users_path, html: {novalidate: true}, method: :get) do |f|
-    = f.input :name_cont, :label => User.human_attribute_name(:name), :required => false
-    = f.input :email_cont, :label => User.human_attribute_name(:email), :required => false
-    = f.input :guild_name_cont, :label => Guild.model_name.human, :required => false
-    = f.input :gatherer_true, :label => User.human_attribute_name(:gatherer), :as => :boolean
+#user-filter.accordion
+  .accordion-group
+    .accordion-heading
+      %a.accordion-toggle{ href: '#collapseOne', data: { toggle: 'collapse', parent: '#user-filter' }}
+        = image_tag 'actions/filter.png'
+        Filter
 
-    .buttons
-      = f.button :submit, t('helpers.submit.search')
+    #collapseOne.accordion-body.collapse
+      .accordion-inner
+        = simple_form_for(@q, url: admin_users_path, method: :get) do |f|
+          = f.input :name_cont, :label => User.human_attribute_name(:name), :required => false
+          = f.input :email_cont, :label => User.human_attribute_name(:email), :required => false
+          = f.input :guild_name_cont, :label => Guild.model_name.human, :required => false
+          = f.input :gatherer_true, :label => User.human_attribute_name(:gatherer), :as => :boolean
+
+          .form-actions
+            = f.button :submit, t('helpers.submit.search'), class: 'btn btn-primary'
 
 = paginate @users
 = render :partial => 'admin/users/table', :locals => { :users => @users }
 = paginate @users
-
-%br
-= link_to_add new_admin_user_path, :text => t('user.new'), :format => :long

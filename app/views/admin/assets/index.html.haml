@@ -15,19 +15,27 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+= sidebar do
+  = link_to_add new_admin_asset_path, :text => t('asset.new'), class: 'btn'
+
 = content_title t('asset.listing')
 
-%p.filter
-  = simple_form_for(@q, url: admin_assets_path, method: :get) do |f|
-    = f.input :name_cont, :label => Asset.human_attribute_name(:name), :required => false
-    = f.input :category_name_cont, :label => Category.model_name.human, :required => false
+#asset-filter.accordion
+  .accordion-group
+    .accordion-heading
+      %a.accordion-toggle{ href: '#collapseOne', data: { toggle: 'collapse', parent: '#asset-filter' }}
+        = image_tag 'actions/filter.png'
+        Filter
 
-    .buttons
-      = f.button :submit, t('helpers.submit.search')
+    #collapseOne.accordion-body.collapse
+      .accordion-inner
+        = simple_form_for(@q, url: admin_assets_path, method: :get) do |f|
+          = f.input :name_cont, :label => Asset.human_attribute_name(:name), :required => false
+          = f.input :category_name_cont, :label => Category.model_name.human, :required => false
+
+          .form-actions
+            = f.button :submit, t('helpers.submit.search'), class: 'btn btn-primary'
 
 = paginate @assets
 = render :partial => 'table', :locals => { :assets => @assets }
 = paginate @assets
-
-%br
-= link_to_add new_admin_asset_path, :text => t('asset.new'), :format => :long

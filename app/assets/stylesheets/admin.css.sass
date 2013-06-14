@@ -1,29 +1,17 @@
-$color1: #ffffff
-$color2: #000000
-$color3: #a19062
-$color4: #3f3720
-$color5: #696464
-$color_red: #cc0000
+@import "admin/base"
 
-$global_width: 95%
+@import "bootstrap"
+@import "bootstrap-responsive"
+@import "admin/bootstrap-ext"
 
-@import 'share/default.css.sass'
-@import 'share/layout.css.sass'
-@import 'share/tables.css.sass'
-@import 'share/menus.css.sass'
-@import 'share/footer.css.sass'
-@import 'share/flash_messages.css.sass'
-@import 'share/frames.css.sass'
-@import 'share/forms.css.sass'
-@import 'share/paginate.css.sass'
+@import "compass/css3/box-sizing"
+@import "compass/css3/border-radius"
+@import "compass/css3/images"
 
-h1
-  text-align: rightt
-
-#content
-  border:
-    width: 1px
-    color: $color5
-    style: solid
-
-  -moz-border-radius: 20px
+@import "admin/fonts"
+@import "admin/layout"
+@import "admin/header"
+@import "admin/footer"
+@import "admin/page"
+@import "admin/menus"
+@import "admin/tables"

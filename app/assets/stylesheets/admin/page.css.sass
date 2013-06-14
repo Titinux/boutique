@@ -1,0 +1,41 @@
+#page
+  position: relative
+  background: #EEEEEE
+  +border-top-left-radius(20px)
+  min-height: 500px
+  margin-left: $main-menuWidth + ($stdGap*2)
+  padding-bottom: $footerHeight
+
+  .breadcrumb
+    padding-left: 10px
+    border:
+      bottom: 1px solid $tableBorder
+      top: 1px solid $tableBorder
+
+    box-shadow: 0 0 1px #FFFFFF
+    background-color: #E5E5E5
+
+#page-title
+  margin-top: -($headerHeight / 2)
+
+  h2
+    margin: $stdGap/2 $stdGap $stdGap/2 $stdGap
+    display: inline-block
+
+  .btn-group
+    position: absolute
+    top: 15px
+    right: 20px
+
+#page-content
+  margin: $stdGap $stdGap 0 $stdGap
+  padding: $stdGap
+  border: 1px solid $tableBorder
+  background-color: #FBFBFB
+
+@media (max-width: 767px)
+  #page
+    margin-left: 0
+
+  #page-title
+    margin-top: 0

@@ -17,7 +17,7 @@
 
 %h2= t('statistics.stockStatistics')
 
-%table
+%table.table.table-bordered.table-striped
   %tr
     %th= t('statistics.asset')
     %th= t('statistics.stock')
@@ -25,8 +25,9 @@
     %th= t('statistics.difference')
 
   - Statistics.stockStats.each do |asset|
-    %tr{ :class => "#{cycle('even', 'odd')}" }
+    %tr{ class: "#{'negative' if (asset['available'].to_i < 0)}" }
       %td= asset['name']
       %td.number= number_with_delimiter(asset['stock'])
       %td.number= number_with_delimiter(asset['ordered'])
-      %td{ :class => "number #{'negative' if (asset['available'].to_i < 0)}"}= number_with_delimiter(asset['available'])
+      %td.number{ class: "#{'negative' if (asset['available'].to_i < 0)}"}
+        = number_with_delimiter(asset['available'])

@@ -15,7 +15,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-%table
+%table.table.table-bordered.table-striped
   %thead
   %tr
     %th= Delayed::Job.human_attribute_name('id')
@@ -31,7 +31,7 @@
 
   %tbody
     - jobs.each do |job|
-      %tr{ :class => "#{cycle('even', 'odd')}" }
+      %tr
         %td= job.id
         %td= job.priority
         %td= job.attempts

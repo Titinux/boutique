@@ -36,6 +36,7 @@ fr:
     myCarts: Mes paniers
     amount: Montant
     profile: Profil
+    my_profile: Mon profil
     update_success: Votre profil a été correctement mis à jour.
     create_success: Votre compte a été correctement créé.
     system : Système

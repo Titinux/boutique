@@ -7,16 +7,23 @@ $color_red: #cc0000
 
 $global_width: 822px
 
-@import 'share/default.css.sass'
-@import 'share/layout.css.sass'
-@import 'share/tables.css.sass'
-@import 'share/menus.css.sass'
-@import 'share/footer.css.sass'
-@import 'share/flash_messages.css.sass'
-@import 'share/frames.css.sass'
-@import 'share/forms.css.sass'
+@import 'public/default.css.sass'
+@import 'public/layout.css.sass'
+@import 'public/tables.css.sass'
+@import 'public/menus.css.sass'
+@import 'public/footer.css.sass'
+@import 'public/flash_messages.css.sass'
+@import 'public/frames.css.sass'
+@import 'public/forms.css.sass'
 
 @import 'public/user.css.sass'
+
+@import "bootstrap/variables"
+@import "bootstrap/mixins"
+@import "bootstrap/forms"
+@import "bootstrap/close"
+@import "bootstrap/alerts"
+@import "bootstrap/buttons"
 
 #header
   height: 250px
@@ -53,9 +60,7 @@ h1
   min-height: 115px
   min-width: 175px
   max-width: 175px
-  border-style: solid
-  border-width: thin
-  border-color: #696464
+  border: 1px solid $color5
   text-align: center
 
   a
