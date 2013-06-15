@@ -25,7 +25,7 @@
       %th= sort_link @q, :objectType
       %th= sort_link @q, :objectId
       %th= sort_link @q, :created_at
-      %th= t('action').pluralize
+      %th= t('action').pluralize(I18n.locale)
 
   %tbody
     - @logs.each do |log|

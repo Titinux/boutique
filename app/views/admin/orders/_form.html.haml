@@ -26,7 +26,7 @@
         %th= Asset.model_name.human
         %th= OrderLine.human_attribute_name :quantity
         %th= OrderLine.human_attribute_name :unitaryPrice
-        %th= t('action').pluralize
+        %th= t('action').pluralize(I18n.locale)
 
     %tbody
       = f.simple_fields_for :lines, :lines do |fl|

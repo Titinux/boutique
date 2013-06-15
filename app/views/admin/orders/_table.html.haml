@@ -23,7 +23,7 @@
       %th= Order.human_attribute_name :state
       %th= Order.human_attribute_name :totalAmount
       %th= sort_link @q, :updated_at
-      %th= t('action').pluralize
+      %th= t('action').pluralize(I18n.locale)
 
   %tbody
     - orders.each do |order|

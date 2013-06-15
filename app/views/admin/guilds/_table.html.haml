@@ -20,7 +20,7 @@
     %tr
       %th= t('guild.blazon')
       %th= sort_link @q, :name
-      %th= t('action').pluralize
+      %th= t('action').pluralize(I18n.locale)
 
   %tbody>
     - guilds.each do |guild|

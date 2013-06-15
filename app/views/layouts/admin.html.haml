@@ -59,34 +59,34 @@
         %li
           = link_to "#submenu-accounts", class: "collapsed", data: { toggle: 'collapse', parent: '#menu-admin'} do
             %i.imoon-users
-            %span.text= t('user.profile').pluralize
+            %span.text= t('user.profile').pluralize(I18n.locale)
 
           %ul#submenu-accounts.collapse
             %li
               = link_to admin_administrators_path do
                 %i.imoon-user
-                = Administrator.model_name.human.pluralize
+                = Administrator.model_name.human.pluralize(I18n.locale)
             %li
               = link_to admin_users_path do
                 %i.imoon-user-4
-                = User.model_name.human.pluralize
+                = User.model_name.human.pluralize(I18n.locale)
 
         %li
           = link_to "#submenu-dofus", class: "collapsed", data: { toggle: 'collapse', parent: '#menu-admin'} do
             %span.text= t('dofus.menu_entry')
 
           %ul#submenu-dofus.collapse
-            %li= link_to Category.model_name.human.pluralize, admin_categories_path
-            %li= link_to Guild.model_name.human.pluralize, admin_guilds_path
-            %li= link_to Asset.model_name.human.pluralize, admin_assets_path
+            %li= link_to Category.model_name.human.pluralize(I18n.locale), admin_categories_path
+            %li= link_to Guild.model_name.human.pluralize(I18n.locale), admin_guilds_path
+            %li= link_to Asset.model_name.human.pluralize(I18n.locale), admin_assets_path
 
         %li
           = link_to "#submenu-dofus_shop",  class: "collapsed", data: { toggle: 'collapse', parent: '#menu-admin'} do
             %span.text= t('dofus.shop.menu_entry')
 
           %ul#submenu-dofus_shop.collapse
-            %li= link_to Order.model_name.human.pluralize, admin_orders_path
-            %li= link_to Deposit.model_name.human.pluralize, admin_deposits_path
+            %li= link_to Order.model_name.human.pluralize(I18n.locale), admin_orders_path
+            %li= link_to Deposit.model_name.human.pluralize(I18n.locale), admin_deposits_path
 
         %li
           = link_to admin_statistics_path do
@@ -96,7 +96,7 @@
         %li
           = link_to admin_logs_path do
             %i.imoon-cabinet
-            = Log.model_name.human.pluralize
+            = Log.model_name.human.pluralize(I18n.locale)
 
         %li
           = link_to admin_about_path do

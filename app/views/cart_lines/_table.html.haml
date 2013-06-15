@@ -21,7 +21,7 @@
     %tr
       %th= Asset.model_name.human
       %th= CartLine.human_attribute_name(:quantity)
-      %th= t('action').pluralize
+      %th= t('action').pluralize(I18n.locale)
   %tbody
     - cart.lines.joins(:asset).order(Asset.arel_table[:name]).each do |line|
       %tr{ :class => "#{cycle('even', 'odd')}" }

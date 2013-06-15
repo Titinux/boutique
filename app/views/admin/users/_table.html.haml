@@ -22,7 +22,7 @@
       %th= sort_link @q, :guild_name, Guild.model_name.human
       %th= sort_link @q, :pigMoneyBox
       %th= sort_link @q, :gatherer
-      %th= t('action').pluralize
+      %th= t('action').pluralize(I18n.locale)
 
   %tbody
     - users.each do |user|

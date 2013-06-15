@@ -21,7 +21,7 @@
       %li= link_to t('user.infos') , user_path
       - if @user.gatherer
         %li= link_to Deposit.model_name.human, user_deposits_path
-      %li= link_to Order.model_name.human.pluralize, user_orders_path
+      %li= link_to Order.model_name.human.pluralize(I18n.locale), user_orders_path
       %li= link_to t('devise.links.sign_out'), destroy_user_session_path, :method => :delete
     - else
       %li= link_to t('devise.links.sign_in'), new_user_session_path, :class => 'sign_in_link'

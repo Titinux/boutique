@@ -34,8 +34,8 @@
           = f.input :asset_category_name_cont, :label => Category.model_name.human, :required => false
           = f.input :asset_name_cont, :label => Asset.model_name.human, :required => false
 
-          = f.input :validated_true, label: Deposit.human_attribute_name(:validated).pluralize, as: :boolean, require: false
-          = f.input :validated_false, label: Deposit.human_attribute_name(:not_validated).pluralize, as: :boolean, require: false
+          = f.input :validated_true, label: Deposit.human_attribute_name(:validated).pluralize(I18n.locale), as: :boolean, require: false
+          = f.input :validated_false, label: Deposit.human_attribute_name(:not_validated).pluralize(I18n.locale), as: :boolean, require: false
 
           .form-actions
             = f.button :submit, t('helpers.submit.search')

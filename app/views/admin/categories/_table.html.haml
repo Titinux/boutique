@@ -21,7 +21,7 @@
       %th= sort_link @q, :name
       %th= sort_link @q, :parent_name, Category.human_attribute_name(:parent)
       %th= t('picture')
-      %th= t('action').pluralize
+      %th= t('action').pluralize(I18n.locale)
 
   %tbody
     - categories.each do |category|

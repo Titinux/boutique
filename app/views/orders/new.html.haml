@@ -3,7 +3,7 @@
 %table
   %thead
     %tr
-      %th= Asset.model_name.human.pluralize
+      %th= Asset.model_name.human.pluralize(I18n.locale)
       %th= OrderLine.human_attribute_name :quantity
 
   %tbody>

@@ -22,7 +22,7 @@
       :link => root_path
     },
     {
-      :name => Asset.model_name.human.pluralize,
+      :name => Asset.model_name.human.pluralize(I18n.locale),
       :link => categories_path
     },
     {

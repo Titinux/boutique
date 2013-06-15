@@ -20,7 +20,7 @@
     %tr
       %th= sort_link @q, :name
       %th= sort_link @q, :email
-      %th= t('action').pluralize
+      %th= t('action').pluralize(I18n.locale)
 
   %tbody
     - administrators.each do |administrator|
