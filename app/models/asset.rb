@@ -22,6 +22,6 @@ class Asset < ActiveRecord::Base
   has_many :order_lines
 
   # Validations
-  validates :name, :uniqueness => true, :presence => true, :length => { :within => 2..25 }
+  validates :name, presence: true, uniqueness: { case_sensitive: false }, length: { within: 2..25 }
   validates_presence_of :category_id
 end

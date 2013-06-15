@@ -23,7 +23,7 @@ class Category < ActiveRecord::Base
   has_many :assets
 
   # Validations
-  validates :name, :uniqueness => true, :presence => true, :length => { :within => 2..25 }
+  validates :name, presence: true, uniqueness: { case_sensitive: false }, length: { within: 2..25 }
 
   # Scopes
   scope :mainCategories, -> { where(:parent_id => nil) }
