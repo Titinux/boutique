@@ -1,0 +1,66 @@
+-#Boutique is a saleroom website for Dofus resources, originally created
+  for the merchant guild "Les Marchands d'Hyze"
+  Copyright (C) 2013 - Jérémie Horhant (jeremie dot horhant at titinux dot net)
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as
+  published by the Free Software Foundation, either version 3 of the
+  License, or (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU Affero General Public License for more details.
+
+  You should have received a copy of the GNU Affero General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+= content_title t('admin.about')
+
+%p
+  Some details about this project :
+
+%ul
+  %li
+    Developed by
+    = link_to 'Jérémie Horhant', 'https://github.com/Titinux', target: '_blank'
+    and tested by
+    = link_to 'Hugues Cheguillaume', 'https://github.com/Bagu', target: '_blank'
+
+  %li
+    Sources are gracefully versioned by
+    = link_to 'https://github.com', target: '_blank' do
+      %i.imoon-github-3
+      Github
+
+  %li
+    This software is build in
+    = link_to 'Ruby', 'http://www.ruby-lang.org/fr/', target: '_blank'
+    with
+    = link_to 'RubyOnRails', 'http://rubyonrails.org/', target: '_blank'
+    = image_tag 'logo/rails.png', title: 'Logo RubyOnRails', alt: 'Logo RubyOnRails'
+
+  %li
+    Data storage is provided by the
+    = link_to 'Postgresql', 'http://www.postgresql.org', target: '_blank'
+    relational database management system
+    = image_tag 'logo/postgresql.png', title: 'Logo Postgresql', alt: 'Logo Postgresql'
+
+  %li
+    Sources are released under
+    = link_to 'AGPLv3', 'http://www.gnu.org/licenses/agpl-3.0.en.html', title: 'GNU Affero General Public License', target: '_blank'
+    license
+    = image_tag 'logo/agplv3.png', title: 'Logo AGPLv3', alt: 'Logo AGPLv3'
+
+  %li
+    Illustrations and texts on Dofus resources used on this site are the exclusive property of
+    = link_to 'Ankama', 'http://www.ankama.com', target: '_blank'
+    = image_tag 'logo/dofus.png', title: 'Logo Dofus', alt: 'Logo Dofus'
+
+  %li
+    %i.imoon-IcoMoon
+    A big thank to Keyamoon for icons that can be found pretty everywhere in admin part.
+    This icon set is release under
+    = link_to 'CC BY 3.0', 'http://creativecommons.org/licenses/by/3.0/', title: 'Creative Commons Attribution 3.0 Unported', target: '_blank'
+    and can be found on the website
+    = link_to 'http://icomoon.io', 'http://icomoon.io', title: 'IcoMoon', target: '_blank'

@@ -35,34 +35,41 @@
         .btn-group
           .btn.btn-group
             %button.btn.btn-inverse.dropdown-toggle{ data: { toggle: 'dropdown' }}
-              %i.icon-cog.icon-white
+              %i.imoon-cog
               %span.text= t('user.profile')
               %span.caret
 
             %ul.dropdown-menu
               %li
                 = link_to admin_administrator_path(current_administrator) do
-                  %i.icon-user
+                  %i.imoon-user-4
                   = t('user.my_profile')
 
               %li
                 = link_to destroy_administrator_session_path, method: :delete do
-                  %i.icon-off
+                  %i.imoon-switch
                   = t('devise.links.sign_out')
 
           = link_to root_url, class: 'btn btn-inverse' do
-            %i.icon-share-alt.icon-white
+            %i.imoon-exit
             %span.text= t('navigate.publicPart')
 
     %nav#main-menu
       %ul#menu-admin.nav.nav-tabs.nav-stacked
         %li
           = link_to "#submenu-accounts", class: "collapsed", data: { toggle: 'collapse', parent: '#menu-admin'} do
+            %i.imoon-users
             %span.text= t('user.profile').pluralize
 
           %ul#submenu-accounts.collapse
-            %li= link_to Administrator.model_name.human.pluralize, admin_administrators_path
-            %li= link_to User.model_name.human.pluralize, admin_users_path
+            %li
+              = link_to admin_administrators_path do
+                %i.imoon-user
+                = Administrator.model_name.human.pluralize
+            %li
+              = link_to admin_users_path do
+                %i.imoon-user-4
+                = User.model_name.human.pluralize
 
         %li
           = link_to "#submenu-dofus", class: "collapsed", data: { toggle: 'collapse', parent: '#menu-admin'} do
@@ -81,8 +88,20 @@
             %li= link_to Order.model_name.human.pluralize, admin_orders_path
             %li= link_to Deposit.model_name.human.pluralize, admin_deposits_path
 
-        %li= link_to t('statistics.name'), admin_statistics_path
-        %li= link_to Log.model_name.human.pluralize, admin_logs_path
+        %li
+          = link_to admin_statistics_path do
+            %i.imoon-stats
+            = t('statistics.name')
+
+        %li
+          = link_to admin_logs_path do
+            %i.imoon-cabinet
+            = Log.model_name.human.pluralize
+
+        %li
+          = link_to admin_about_path do
+            %i.imoon-star
+            = t('admin.about')
 
     %section#page
       #page-title

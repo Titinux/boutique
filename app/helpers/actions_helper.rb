@@ -21,9 +21,9 @@ module ActionsHelper
     options[:format] ||= :short
 
     link_to(link, options.except(:format, :text)) do
-      out = image_tag(picture, :alt => text, :title => text)
+      out = "<i class=\"#{picture} action\" title=\"#{options[:text]}\"></i>"
       out << ' ' + text if options[:format] == :long
-      out
+      out.html_safe
     end
   end
 
@@ -31,14 +31,14 @@ module ActionsHelper
     options = args.extract_options!
     options[:text] ||= t('show')
 
-    link_to_action link, options[:text], 'actions/show.png', options
+    link_to_action link, options[:text], 'imoon-search ', options
   end
 
   def link_to_edit(link, *args)
     options = args.extract_options!
     options[:text] ||= t('edit')
 
-    link_to_action link, options[:text], 'actions/edit.png', options
+    link_to_action link, options[:text], 'imoon-pencil-2', options
   end
 
   def link_to_destroy(link, *args)
@@ -47,20 +47,20 @@ module ActionsHelper
     options[:data] = { confirm: t('destroy_confirm') }.merge(options[:data] || {})
     options[:method] = :delete
 
-    link_to_action link, options[:text], 'actions/destroy.png', options
+    link_to_action link, options[:text], 'imoon-remove-2', options
   end
 
   def link_to_add(link, *args)
     options = args.extract_options!
     options[:text] ||= t('new')
 
-    link_to_action link, options[:text], 'actions/add.png', options
+    link_to_action link, options[:text], 'imoon-plus', options
   end
 
   def link_to_back(link, *args)
     options = args.extract_options!
     options[:text] ||= t('back')
 
-    link_to_action link, options[:text], 'actions/left_arrow.png', options
+    link_to_action link, options[:text], 'imoon-arrow-left-3', options
   end
 end

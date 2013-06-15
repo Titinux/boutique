@@ -60,9 +60,11 @@ Boutique::Application.routes.draw do
 
       resources :logs, :only => [:index, :show]
 
+      get 'about', to: 'admin#about'
       root :to => 'admin#show'
     end
 
+    get 'about', to: 'boutique#about'
     root :to => 'boutique#show'
   end
 

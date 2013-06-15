@@ -36,6 +36,10 @@
     {
       :name => I18n.t('user.profile'),
       :link => user_path
+    },
+    {
+      :name => I18n.t('admin.about'),
+      :link => about_path
     }
   ],
   :statistics => {

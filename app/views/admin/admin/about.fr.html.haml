@@ -1,0 +1,61 @@
+-#Boutique is a saleroom website for Dofus resources, originally created
+  for the merchant guild "Les Marchands d'Hyze"
+  Copyright (C) 2013 - Jérémie Horhant (jeremie dot horhant at titinux dot net)
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as
+  published by the Free Software Foundation, either version 3 of the
+  License, or (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU Affero General Public License for more details.
+
+  You should have received a copy of the GNU Affero General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+= content_title t('admin.about')
+
+%h3 Admin panel
+
+%p
+  Quelques détails sur ce projet :
+
+%ul
+  %li
+    Développement par
+    = link_to 'Jérémie Horhant', 'https://github.com/Titinux', target: '_blank'
+    et tests par
+    = link_to 'Hugues Cheguillaume', 'https://github.com/Bagu', target: '_blank'
+
+  %li
+    Les sources sont gracieusement versionnés par
+    = link_to 'https://github.com', target: '_blank' do
+      %i.imoon-github-3
+      Github
+
+  %li
+    Ce logiciel est développé en
+    = link_to 'Ruby', 'http://www.ruby-lang.org/fr/', target: '_blank'
+    et s'appuie sur le framework
+    = link_to 'RubyOnRails', 'http://rubyonrails.org/', target: '_blank'
+    = image_tag 'logo/rails.png', title: 'Logo RubyOnRails', alt: 'Logo RubyOnRails'
+
+  %li
+    Le stockage des données est assuré par le moteur de base de donnée relationnel
+    = link_to 'Postgresql', 'http://www.postgresql.org', target: '_blank'
+    = image_tag 'logo/postgresql.png', title: 'Logo Postgresql', alt: 'Logo Postgresql'
+
+  %li
+    Les sources sont placée sous licence
+    = link_to 'AGPLv3', 'http://www.gnu.org/licenses/agpl-3.0.fr.html', title: 'Licence publique générale GNU Affero', target: '_blank'
+    = image_tag 'logo/agplv3.png', title: 'Logo AGPLv3', alt: 'Logo AGPLv3'
+
+%p
+  %i.imoon-IcoMoon
+  Nous remercions Keyamoon pour les icones que l'on peut retrouver un peu partout dans la partie administration.
+  Ce set d'icon est diffusé sous license
+  = link_to 'CC BY 3.0', 'http://creativecommons.org/licenses/by/3.0/', title: 'Creative Commons Attribution 3.0 Unported', target: '_blank'
+  et on peut le retrouver sur le site
+  = link_to 'http://icomoon.io', 'http://icomoon.io', title: 'IcoMoon', target: '_blank'
