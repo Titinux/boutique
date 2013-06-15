@@ -48,9 +48,10 @@ class Admin::UsersController < Admin::AdminController
 
   def create
     @user = User.new(user_params.except(:confirmed))
-    @user.save
 
-    @user.confirm! if user_params[:confirmed] == '1'
+    if @user.save
+      @user.confirm! if user_params[:confirmed] == '1'
+    end
 
     respond_with(:admin, @user)
   end
