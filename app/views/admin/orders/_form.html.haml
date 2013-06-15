@@ -32,11 +32,15 @@
       = f.simple_fields_for :lines, :lines do |fl|
         %tr
           = render 'line_fields', :f => fl
-          %td
+          %td.actions
             = fl.input :_destroy, :as => :hidden, :input_html => { :class => 'remove_fields' }
-            = link_to_function(t('destroy'), "Boutique.remove_fields(this, 'tr')")
+            = link_to '#', title: t('destroy'), alt: t('destroy'), onclick: "Boutique.remove_fields(this, 'tr'); return false;" do
+              %i.imoon-remove-2
 
-  %p= link_to_function t('order.add_line'), "Boutique.add_nested_form('#order_line_template', '#order_lines tbody')"
+  %p
+    = link_to '#', title: t('order.add_line'), alt: t('order.add_line'), onclick: "Boutique.add_nested_form('#order_line_template', '#order_lines tbody'); return false;" do
+      %i.imoon-plus
+      = t('order.add_line')
 
   .form-actions
     = f.button :submit
@@ -45,6 +49,8 @@
     = f.simple_fields_for :lines, OrderLine.new, :child_index => '${new_id}' do |flt|
       %tr
         = render 'line_fields', :f => flt
-        %td= link_to_function(t('destroy'), "Boutique.remove_fields(this, 'tr')")
+        %td.actions
+          = link_to '#', title: t('destroy'), alt: t('destroy'), onclick: "Boutique.remove_fields(this, 'tr'); return false;" do
+            %i.imoon-remove-2
 
 
