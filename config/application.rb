@@ -16,7 +16,7 @@ CONFIG.merge! CONFIG.fetch(Rails.env, {})
 CONFIG.symbolize_keys!
 
 module Boutique
-  VERSION = "1.2.0".freeze
+  VERSION = "1.2.1".freeze
 
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
