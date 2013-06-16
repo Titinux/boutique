@@ -2,7 +2,7 @@
 source 'https://rubygems.org'
 
 # Rails
-gem 'rails', '4.0.0.rc1'
+gem 'rails', '4.0.0.rc2'
 gem 'rails-i18n'
 
 gem 'sass-rails', '4.0.0.rc1'
@@ -25,7 +25,7 @@ gem 'jquery-rails'
 # Security
 gem 'devise'
 gem 'devise-i18n'
-gem 'devise-encryptable', github: 'plataformatec/devise-encryptable'
+gem 'devise-encryptable', '>= 0.1.2'
 
 # Controllers
 gem 'responders'
