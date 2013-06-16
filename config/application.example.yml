@@ -2,37 +2,45 @@ secret_token: 'change-me'
 secret_key_base : 'change-me'
 
 development:
-  mailer:
-    delivery_method: 'smtp'
-    raise_delivery_errors: 'false'
+  action_mailer:
+    delivery_method: :smtp
+    raise_delivery_errors: true
 
-    default_options:
-      host: 'localhost:3000'
+    default_url_options:
+      :host: 'localhost:3000'
 
     smtp_settings:
-      domain: 'smtp.mail_exemple.com'
-      authentication: 'plain'
-      user_name: 'user_name'
-      password: 'password'
+      :address:              'smtp.exemple.com'
+      :domain:               'exemple.com'
+      :port:                 25
+      :authentication:       'plain'
+      :enable_starttls_auto: false
+      :user_name:            'username'
+      :password:             'password'
 
 test:
-  mailer:
-    default_options:
-      host: 'localhost:3000'
+  action_mailer:
+    default_url_options:
+      :host: 'localhost:3000'
 
     smtp_settings:
-      delivery_method: 'test'
+      delivery_method: :test
 
 production:
-  mailer:
-    delivery_method: 'smtp'
-    raise_delivery_errors: 'false'
+  action_mailer:
+    delivery_method: :smtp
+    raise_delivery_errors: false
 
-    default_options:
-      host: 'website_domain.com'
+    default_url_options:
+      :host: 'localhost:3000'
 
     smtp_settings:
-      domain: 'smtp.mail_exemple.com'
-      authentication: 'plain'
-      user_name: 'user_name'
-      password: 'password'
+      :address:              'smtp.exemple.com'
+      :domain:               'exemple.com'
+      :port:                 25
+      :authentication:       'plain'
+      :enable_starttls_auto: false
+      :user_name:            'username'
+      :password:             'password'
+
+

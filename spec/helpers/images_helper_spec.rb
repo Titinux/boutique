@@ -20,13 +20,13 @@ require 'spec_helper'
 describe ImagesHelper do
   describe "boolean_to_image" do
     it "convert a true value to a check image with I18n text" do
-      xpath = "//img[@title='#{I18n.t('show_for.yes')}' and @alt= '#{I18n.t('show_for.yes')}' and @src='/assets/actions/yes.png']"
+      xpath = "//img[@title='#{I18n.t('show_for.yes')}' and @alt= '#{I18n.t('show_for.yes')}' and @src='#{path_to_image('actions/yes.png')}']"
 
       helper.boolean_to_image(true).should have_xpath(xpath)
     end
 
     it "convert a false value to a cross image with I18n text" do
-      xpath = "//img[@title='#{I18n.t('show_for.no')}' and @alt= '#{I18n.t('show_for.no')}' and @src='/assets/actions/no.png']"
+      xpath = "//img[@title='#{I18n.t('show_for.no')}' and @alt= '#{I18n.t('show_for.no')}' and @src='#{path_to_image('actions/no.png')}']"
 
       helper.boolean_to_image(false).should have_xpath(xpath)
     end

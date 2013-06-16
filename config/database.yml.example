@@ -3,8 +3,8 @@ common: &common
   pool: 5
   timeout: 5000
   host: localhost
-  username: <username>
-  password: <password>
+  # username: <username>
+  # password: <password>
 
 development:
   <<: *common
