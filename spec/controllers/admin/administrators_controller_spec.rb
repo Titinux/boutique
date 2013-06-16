@@ -64,9 +64,9 @@ describe Admin::AdministratorsController do
         assigns(:administrator).should be_persisted
       end
 
-      it "redirects to the created administrator" do
+      it "redirects to the administrators list" do
         post :create, {:administrator => attributes_for(:administrator)}
-        response.should redirect_to([:admin, Administrator.last])
+        response.should redirect_to([:admin, Administrator])
       end
     end
 
@@ -105,9 +105,9 @@ describe Admin::AdministratorsController do
         assigns(:administrator).should eq(administrator)
       end
 
-      it "redirects to the administrator" do
+      it "redirects to the administrators list" do
         put :update, {:id => administrator.to_param, :administrator => attributes_for(:administrator)}
-        response.should redirect_to([:admin, administrator])
+        response.should redirect_to([:admin, Administrator])
       end
     end
 

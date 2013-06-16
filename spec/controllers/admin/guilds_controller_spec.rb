@@ -64,9 +64,9 @@ describe Admin::GuildsController do
         assigns(:guild).should be_persisted
       end
 
-      it "redirects to the created guild" do
+      it "redirects to the guilds list" do
         post :create, :guild => attributes_for(:guild)
-        response.should redirect_to([:admin, Guild.last])
+        response.should redirect_to([:admin, Guild])
       end
     end
 
@@ -99,9 +99,9 @@ describe Admin::GuildsController do
         assigns(:guild).should eq(guild)
       end
 
-      it "redirects to the guild" do
+      it "redirects to the guilds list" do
         put :update, :id => guild.to_param, :guild => attributes_for(:guild)
-        response.should redirect_to([:admin, guild])
+        response.should redirect_to([:admin, Guild])
       end
     end
 

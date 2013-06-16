@@ -61,7 +61,7 @@ describe Admin::DepositsController do
 
       it "redirects to the list of deposits" do
         post :create, :deposit => @deposit_attributes
-        response.should redirect_to(admin_deposits_path)
+        response.should redirect_to([:admin, Deposit])
       end
     end
 

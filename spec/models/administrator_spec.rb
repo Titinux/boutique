@@ -18,31 +18,29 @@
 require 'spec_helper'
 
 describe Administrator do
+  let(:administrator) { FactoryGirl.create(:administrator) }
+
   it 'is valid with valid attributes' do
     build(:administrator).should be_valid
   end
 
   describe '#name' do
-    it 'should not be empty or nil' do
-      build(:administrator, :name => '').should_not be_valid
-      build(:asset, :name => nil).should_not be_valid
+    it { should validate_presence_of :name }
+
+    it do
+      FactoryGirl.create(:administrator)
+      should validate_uniqueness_of(:name).case_insensitive
     end
 
-    it 'size should be within 3 to 25 characters' do
-      build(:administrator, :name => 'f').should_not be_valid
-      build(:administrator, :name => 'f'*26).should_not be_valid
-    end
-
-    it 'should be unique' do
-      @administrator = create(:administrator, :name => 'administrator')
-      build(:administrator, :name => 'administrator').should_not be_valid
-      build(:administrator, :name => 'Administrator').should_not be_valid
-    end
+    it { should ensure_length_of(:name).is_at_least(3).is_at_most(25) }
   end
 
   describe '#email' do
-    it "should not be nil" do
-      build(:administrator, :email => nil).should_not be_valid
+    it { should validate_presence_of :email }
+
+    it do
+      FactoryGirl.create(:administrator)
+      should validate_uniqueness_of(:email).case_insensitive
     end
 
     it 'should be well formed' do
@@ -50,17 +48,14 @@ describe Administrator do
         build(:administrator, :email => value).should_not be_valid
       end
     end
-
-    it 'should be unique' do
-      @administrator = create(:administrator, :email => 'administrator@foo.bar')
-      build(:administrator, :email => 'administrator@foo.bar').should_not be_valid
-      build(:administrator, :email => 'Administrator@Foo.Bar').should_not be_valid
-    end
   end
 
   describe "#password" do
-    it 'should not be nil at the creation' do
-      build(:administrator, :password => nil).should_not be_valid
+    it { should validate_presence_of :password }
+
+    it 'length is between 6 and 128' do
+      build(:administrator, :password => 'f'*5).should_not be_valid
+      build(:administrator, :password => 'f'*129).should_not be_valid
     end
 
     it 'could be nil in update' do
@@ -69,11 +64,6 @@ describe Administrator do
       @administrator.password = nil
       @administrator.password_confirmation = nil
       @administrator.should be_valid
-    end
-
-    it 'length should be within 6 and 128 characters' do
-      build(:administrator, :password => 'f'*5).should_not be_valid
-      build(:administrator, :password => 'f'*129).should_not be_valid
     end
   end
 

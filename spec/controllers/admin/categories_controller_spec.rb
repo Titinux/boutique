@@ -66,9 +66,9 @@ describe Admin::CategoriesController do
         assigns(:category).should be_persisted
       end
 
-      it "redirects to the created category" do
+      it "redirects to the categories list" do
         post :create, :category => attributes_for(:category)
-        response.should redirect_to([:admin, Category.last])
+        response.should redirect_to([:admin, Category])
       end
     end
 
@@ -101,9 +101,9 @@ describe Admin::CategoriesController do
         assigns(:category).should eq(category)
       end
 
-      it "redirects to the category" do
+      it "redirects to the categories list" do
         put :update, :id => category.to_param, :category => attributes_for(:category)
-        response.should redirect_to([:admin, category])
+        response.should redirect_to([:admin, Category])
       end
     end
 

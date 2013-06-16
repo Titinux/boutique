@@ -59,12 +59,11 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'pry-rails'
+  gem 'guard-rspec'
+  gem 'rb-fsevent'
 end
 
 group :test do
   gem 'capybara'
-  gem 'database_cleaner'
-
-  # Pretty printed test output
-  gem 'turn', :require => false
+  gem 'shoulda-matchers'
 end

@@ -18,24 +18,24 @@
 require 'spec_helper'
 
 describe Guild do
+  let(:guild) { FactoryGirl.create(:guild) }
+
   it 'is valid with valid attributes' do
     build(:guild).should be_valid
   end
 
+  describe 'relations' do
+    it { should have_many :users }
+  end
+
   describe '#name' do
-    it 'should not be empty or nil' do
-      build(:guild, :name => '').should_not be_valid
-      build(:guild, :name => nil).should_not be_valid
+    it { should validate_presence_of :name }
+
+    it do
+      FactoryGirl.create(:guild)
+      should validate_uniqueness_of(:name).case_insensitive
     end
 
-    it 'size should be within 2 to 25 characters' do
-      build(:guild, :name => 'f').should_not be_valid
-      build(:guild, :name => 'f'*26).should_not be_valid
-    end
-
-    it 'should be unique' do
-      @guild = create(:guild, :name => 'category')
-      build(:guild, :name => @guild.name).should_not be_valid
-    end
+    it { should ensure_length_of(:name).is_at_least(2).is_at_most(25) }
   end
 end

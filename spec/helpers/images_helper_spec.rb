@@ -19,16 +19,16 @@ require 'spec_helper'
 
 describe ImagesHelper do
   describe "boolean_to_image" do
-     it "convert a boolean value to an image with I18n text" do
-       helper.boolean_to_image(true).should have_selector("img",
-                                                          :title => I18n.t('yes'),
-                                                          :alt => I18n.t('yes'),
-                                                          :src => "/images/actions/yes.png")
+    it "convert a true value to a check image with I18n text" do
+      xpath = "//img[@title='#{I18n.t('show_for.yes')}' and @alt= '#{I18n.t('show_for.yes')}' and @src='/assets/actions/yes.png']"
 
-       helper.boolean_to_image(false).should have_selector("img",
-                                                          :title => I18n.t('no'),
-                                                          :alt => I18n.t('no'),
-                                                          :src => "/images/actions/no.png")
-     end
-   end
+      helper.boolean_to_image(true).should have_xpath(xpath)
+    end
+
+    it "convert a false value to a cross image with I18n text" do
+      xpath = "//img[@title='#{I18n.t('show_for.no')}' and @alt= '#{I18n.t('show_for.no')}' and @src='/assets/actions/no.png']"
+
+      helper.boolean_to_image(false).should have_xpath(xpath)
+    end
+  end
 end

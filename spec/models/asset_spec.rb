@@ -18,28 +18,28 @@
 require 'spec_helper'
 
 describe Asset do
+  let(:asset) { FactoryGirl.create(:asset) }
+
   it "is valid with valid attributes" do
     build(:asset).should be_valid
   end
 
+  describe 'relations' do
+    it { should belong_to :category }
+    it { should have_many :deposits }
+    it { should have_many :order_lines }
+  end
+
   describe '#name' do
-    it 'should not be empty or nil' do
-      build(:asset, :name => '').should_not be_valid
-      build(:asset, :name => nil).should_not be_valid
+    it { should validate_presence_of :name }
+
+    it do
+      FactoryGirl.create(:asset)
+      should validate_uniqueness_of(:name).case_insensitive
     end
 
-    it 'size should be within 2 to 25 characters' do
-      build(:asset, :name => 'f').should_not be_valid
-      build(:asset, :name => 'f'*26).should_not be_valid
-    end
-
-    it 'should be unique' do
-      @asset = create(:asset, :name => 'category')
-      build(:asset, :name => @asset.name).should_not be_valid
-    end
+    it { should ensure_length_of(:name).is_at_least(2).is_at_most(25) }
   end
 
-  it "should belong to a category" do
-    build(:asset, :category => nil).should_not be_valid
-  end
+
 end

@@ -64,9 +64,9 @@ describe Admin::UsersController do
         assigns(:user).should be_persisted
       end
 
-      it "redirects to the created user" do
+      it "redirects to the users list" do
         post :create, :user => attributes_for(:user)
-        response.should redirect_to([:admin, User.last])
+        response.should redirect_to([:admin, User])
       end
     end
 
@@ -99,9 +99,9 @@ describe Admin::UsersController do
         assigns(:user).should eq(user)
       end
 
-      it "redirects to the user" do
+      it "redirects to the users list" do
         put :update, :id => user.to_param, :user => attributes_for(:user)
-        response.should redirect_to([:admin, user])
+        response.should redirect_to([:admin, User])
       end
     end
 

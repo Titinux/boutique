@@ -67,10 +67,10 @@ describe Admin::AssetsController do
         assigns(:asset).should be_persisted
       end
 
-      it "redirects to the created asset" do
+      it "redirects to the assets list" do
         post :create, :asset => attributes_for(:asset, category_id: category.id)
 
-        response.should redirect_to([:admin, Asset.last])
+        response.should redirect_to([:admin, Asset])
       end
     end
 
@@ -99,13 +99,13 @@ describe Admin::AssetsController do
       end
 
       it "assigns the requested asset as @asset" do
-        put :update, :id => asset.to_param
+        put :update, :id => asset.to_param, :asset => attributes_for(:asset)
         assigns(:asset).should eq(asset)
       end
 
       it "redirects to the asset" do
         put :update, :id => asset.to_param, :asset => attributes_for(:asset)
-        response.should redirect_to([:admin, asset])
+        response.should redirect_to([:admin, Asset])
       end
     end
 

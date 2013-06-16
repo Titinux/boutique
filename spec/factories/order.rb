@@ -17,7 +17,7 @@
 
 FactoryGirl.define do
   factory :order do
-    association :user, :factory => :user
+    association :user, :factory => :confirmed_user
     state 'WAIT_ESTIMATE'
 
     lines {|l| [FactoryGirl.build(:order_line)]}

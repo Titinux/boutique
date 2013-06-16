@@ -27,4 +27,8 @@ FactoryGirl.define do
   factory :gatherer, :parent => :user do
     gatherer true
   end
+
+  factory :confirmed_user, parent: :user do
+    confirmed_at DateTime.now
+  end
 end

@@ -19,590 +19,506 @@ require 'spec_helper'
 include ActionView::Helpers::NumberHelper
 
 describe OrderMailer do
-  describe 'order_created_admin' do
+  describe 'sending email to administrators' do
     before(:each) do
-      @order = build(:order)
       5.times { create(:administrator) }
     end
 
-    it 'should send exactly one email' do
-      expect {
-        OrderMailer.order_created_admin(@order).deliver
-      }.to change(ActionMailer::Base.deliveries, :size).by(1)
-    end
+    describe 'order_created_admin' do
+      let(:order) { build(:order) }
+      let(:email) { OrderMailer.order_created_admin(order) }
 
-    it 'should be sent to all admins via bcc header' do
-      email = OrderMailer.order_created_admin(@order).deliver
-      email.bcc.size.should eq(Administrator.count)
+      it 'send exactly one email' do
+        expect {
+          email.deliver
+        }.to change(ActionMailer::Base.deliveries, :size).by(1)
+      end
 
-      Administrator.all.each do |admin|
-        email.bcc.should include(admin.email)
+      it 'be sent to all admins via bcc header' do
+        email.bcc.size.should eq(Administrator.count)
+
+        Administrator.all.each do |admin|
+          email.bcc.should include(admin.email)
+        end
+      end
+
+      describe '#subject' do
+        it 'mention the order id' do
+          email.subject.should match(/#{order.id.to_s}/)
+        end
+
+        it 'mention the user name' do
+          email.subject.should match(/#{order.user.name}/)
+        end
+      end
+
+      describe '#body' do
+        it 'contain the order id' do
+          email.body.should match(/#{order.id.to_s}/)
+        end
+
+        it 'contain the user name' do
+          email.body.should match(/#{order.user.name}/)
+        end
+
+        it 'contain assets details (asset name and quantity)' do
+          order.lines.each do |line|
+            email.body.should match(/#{line.asset.name}/)
+            email.body.should match(/#{line.quantity}/)
+          end
+        end
       end
     end
 
-    describe '#subject' do
-      it 'should mention the order id' do
-        email = OrderMailer.order_created_admin(@order).deliver
+    describe 'order_in_preparation_admin' do
+      let(:order) { build(:in_preparation_order) }
+      let(:email) { OrderMailer.order_in_preparation_admin(order) }
 
-        email.subject.should match(/#{@order.id.to_s}/)
+      it 'send exactly one email' do
+        expect {
+          email.deliver
+        }.to change(ActionMailer::Base.deliveries, :size).by(1)
       end
 
-      it 'should mention the user name' do
-        email = OrderMailer.order_created_admin(@order).deliver
+      it 'be sent to all admins via bcc header' do
+        email.bcc.size.should eq(Administrator.count)
 
-        email.subject.should match(/#{@order.user.name}/)
+        Administrator.all.each do |admin|
+          email.bcc.should include(admin.email)
+        end
+      end
+
+      describe '#subject' do
+        it 'mention the order id' do
+          email.subject.should match(/#{order.id.to_s}/)
+        end
+
+        it 'mention the user name' do
+          email.subject.should match(/#{order.user.name}/)
+        end
+      end
+
+      describe '#body' do
+        it 'contain the order id' do
+          email.body.should match(/#{order.id.to_s}/)
+        end
+
+        it 'contain the user name' do
+          email.body.should match(/#{order.user.name}/)
+        end
+
+        it 'contain assets details (asset name, quantity, unitary price and price)' do
+          order.lines.each do |line|
+            email.body.should match(/#{line.asset.name}/)
+            email.body.should match(/#{line.quantity}/)
+            email.body.should match(/#{number_to_currency(line.unitaryPrice, unit: 'K', precision: 0)}/)
+            email.body.should match(/#{number_to_currency(line.price, unit: 'K', precision: 0)}/)
+          end
+        end
+
+        it 'contain order total' do
+          email.body.should match(/#{number_to_currency(order.totalAmount, unit: 'K', precision: 0)}/)
+        end
       end
     end
 
-    describe '#body' do
-      it 'should contain the order id' do
-        email = OrderMailer.order_created_admin(@order).deliver
+    describe 'order_canceled_admin' do
+      let(:order) { build(:canceled_order) }
+      let(:email) { OrderMailer.order_canceled_admin(order) }
 
-        email.body.should match(/#{@order.id.to_s}/)
+      it 'send exactly one email' do
+        expect {
+          email.deliver
+        }.to change(ActionMailer::Base.deliveries, :size).by(1)
       end
 
-      it 'should contain the user name' do
-        email = OrderMailer.order_created_admin(@order).deliver
+      it 'be sent to all admins via bcc header' do
+        email.bcc.size.should eq(Administrator.count)
 
-        email.body.should match(/#{@order.user.name}/)
+        Administrator.all.each do |admin|
+          email.bcc.should include(admin.email)
+        end
       end
 
-      it 'should contain assets details (asset name and quantity)' do
-        email = OrderMailer.order_created_admin(@order).deliver
+      describe '#subject' do
+        it 'mention the order id' do
+          email.subject.should match(/#{order.id.to_s}/)
+        end
 
-        @order.lines.each do |line|
-          email.body.should match(/#{line.asset.name}/)
-          email.body.should match(/#{line.quantity}/)
+        it 'mention the user name' do
+          email.subject.should match(/#{order.user.name}/)
+        end
+      end
+
+      describe '#body' do
+        it 'contain the order id' do
+          email.body.should match(/#{order.id.to_s}/)
+        end
+
+        it 'contain the user name' do
+          email.body.should match(/#{order.user.name}/)
+        end
+
+        it 'contain assets details (asset name, quantity, unitary price and price)' do
+          order.lines.each do |line|
+            email.body.should match(/#{line.asset.name}/)
+            email.body.should match(/#{line.quantity}/)
+            email.body.should match(/#{number_to_currency(line.unitaryPrice, unit: 'K', precision: 0)}/)
+            email.body.should match(/#{number_to_currency(line.price, unit: 'K', precision: 0)}/)
+          end
+        end
+
+        it 'contain order total' do
+          email.body.should match(/#{number_to_currency(order.totalAmount, unit: 'K', precision: 0)}/)
+        end
+      end
+    end
+
+    describe 'order_ready_admin' do
+      let(:order) { build(:ready_order) }
+      let(:email) { OrderMailer.order_ready_admin(order) }
+
+      it 'send exactly one email' do
+        expect {
+          email.deliver
+        }.to change(ActionMailer::Base.deliveries, :size).by(1)
+      end
+
+      it 'be sent to all admins via bcc header' do
+        email.bcc.size.should eq(Administrator.count)
+
+        Administrator.all.each do |admin|
+          email.bcc.should include(admin.email)
+        end
+      end
+
+      describe '#subject' do
+        it 'mention the order id' do
+          email.subject.should match(/#{order.id.to_s}/)
+        end
+
+        it 'mention the user name' do
+          email.subject.should match(/#{order.user.name}/)
+        end
+      end
+
+      describe '#body' do
+        it 'contain the order id' do
+          email.body.should match(/#{order.id.to_s}/)
+        end
+
+        it 'contain the user name' do
+          email.body.should match(/#{order.user.name}/)
+        end
+
+        it 'contain assets details (asset name, quantity, unitary price and price)' do
+          order.lines.each do |line|
+            email.body.should match(/#{line.asset.name}/)
+            email.body.should match(/#{line.quantity}/)
+            email.body.should match(/#{number_to_currency(line.unitaryPrice, unit: 'K', precision: 0)}/)
+            email.body.should match(/#{number_to_currency(line.price, unit: 'K', precision: 0)}/)
+          end
+        end
+
+        it 'contain order total' do
+          email.body.should match(/#{number_to_currency(order.totalAmount, unit: 'K', precision: 0)}/)
+        end
+      end
+    end
+
+    describe 'order_achieved_admin' do
+      let(:order) { build(:achieved_order) }
+      let(:email) { OrderMailer.order_achieved_admin(order) }
+
+      it 'send exactly one email' do
+        expect {
+          email.deliver
+        }.to change(ActionMailer::Base.deliveries, :size).by(1)
+      end
+
+      it 'be sent to all admins via bcc header' do
+        email.bcc.size.should eq(Administrator.count)
+
+        Administrator.all.each do |admin|
+          email.bcc.should include(admin.email)
+        end
+      end
+
+      describe '#subject' do
+        it 'mention the order id' do
+          email.subject.should match(/#{order.id.to_s}/)
+        end
+
+        it 'mention the user name' do
+          email.subject.should match(/#{order.user.name}/)
+        end
+      end
+
+      describe '#body' do
+        it 'contain the order id' do
+          email.body.should match(/#{order.id.to_s}/)
+        end
+
+        it 'contain the user name' do
+          email.body.should match(/#{order.user.name}/)
+        end
+
+        it 'contain assets details (asset name, quantity, unitary price and price)' do
+          order.lines.each do |line|
+            email.body.should match(/#{line.asset.name}/)
+            email.body.should match(/#{line.quantity}/)
+            email.body.should match(/#{number_to_currency(line.unitaryPrice, unit: 'K', precision: 0)}/)
+            email.body.should match(/#{number_to_currency(line.price, unit: 'K', precision: 0)}/)
+          end
+        end
+
+        it 'contain order total' do
+          email.body.should match(/#{number_to_currency(order.totalAmount, unit: 'K', precision: 0)}/)
         end
       end
     end
   end
 
-  describe 'order_created_user' do
-    before(:each) do
-      @order = build(:order)
-    end
+  describe 'sending email to user' do
+    describe 'order_created_user' do
+      let(:order) { build(:order) }
+      let(:email) { OrderMailer.order_created_user(order) }
 
-    it 'should send exactly one email' do
-      expect {
-        OrderMailer.order_created_user(@order).deliver
-      }.to change(ActionMailer::Base.deliveries, :size).by(1)
-    end
+      it 'send exactly one email' do
+        expect {
+          email.deliver
+        }.to change(ActionMailer::Base.deliveries, :size).by(1)
+      end
 
-    it 'should be sent to the user via to header' do
-      email = OrderMailer.order_created_user(@order).deliver
-      email.to.size.should eq(1)
-      email.to.should eq([@order.user.email])
-    end
+      it 'be sent to the user via to header' do
+        email.to.size.should eq(1)
+        email.to.should eq([order.user.email])
+      end
 
-    describe '#subject' do
-      it 'should mention the order id' do
-        email = OrderMailer.order_created_user(@order).deliver
+      describe '#subject' do
+        it 'mention the order id' do
+          email.subject.should match(/#{order.id.to_s}/)
+        end
+      end
 
-        email.subject.should match(/#{@order.id.to_s}/)
+      describe '#body' do
+        it 'should contain the order id' do
+          email.body.should match(/#{order.id.to_s}/)
+        end
+
+        it 'should contain assets details (asset name and quantity)' do
+          order.lines.each do |line|
+            email.body.should match(/#{line.asset.name}/)
+            email.body.should match(/#{line.quantity}/)
+          end
+        end
       end
     end
 
-    describe '#body' do
-      it 'should contain the order id' do
-        email = OrderMailer.order_created_user(@order).deliver
+    describe 'wait_estimate_validation_user' do
+      let(:order) { build(:estimated_order, id: 42) }
 
-        email.body.should match(/#{@order.id.to_s}/)
+      it 'send exactly one email' do
+        expect {
+          OrderMailer.wait_estimate_validation_user(order).deliver
+        }.to change(ActionMailer::Base.deliveries, :size).by(1)
       end
 
-      it 'should contain assets details (asset name and quantity)' do
-        email = OrderMailer.order_created_user(@order).deliver
+      it 'be sent to the user via to header' do
+        email = OrderMailer.wait_estimate_validation_user(order).deliver
+        email.to.size.should eq(1)
+        email.to.should eq([order.user.email])
+      end
 
-        @order.lines.each do |line|
-          email.body.should match(/#{line.asset.name}/)
-          email.body.should match(/#{line.quantity}/)
+      describe '#subject' do
+        it 'mention the order id' do
+          email = OrderMailer.wait_estimate_validation_user(order).deliver
+
+          email.subject.should match(/#{order.id.to_s}/)
+        end
+      end
+
+      describe '#body' do
+        it 'contain the order id' do
+          email = OrderMailer.wait_estimate_validation_user(order).deliver
+
+          email.body.should match(/#{order.id.to_s}/)
+        end
+
+        it 'contain assets details (asset name, quantity, unitary price and price)' do
+          email = OrderMailer.wait_estimate_validation_user(order).deliver
+
+          order.lines.each do |line|
+            email.body.should match(/#{line.asset.name}/)
+            email.body.should match(/#{line.quantity}/)
+            email.body.should match(/#{number_to_currency(line.unitaryPrice, unit: 'K', precision: 0)}/)
+            email.body.should match(/#{number_to_currency(line.price, unit: 'K', precision: 0)}/)
+          end
+        end
+
+        it 'contain order total' do
+          email = OrderMailer.wait_estimate_validation_user(order).deliver
+
+          email.body.should match(/#{number_to_currency(order.totalAmount, unit: 'K', precision: 0)}/)
+        end
+
+        it 'contain a link to the order in the user profile' do
+          email = OrderMailer.wait_estimate_validation_user(order).deliver
+
+          email.body.should match(/#{user_order_url(order, :locale => I18n.locale)}/)
+        end
+      end
+    end
+
+    describe 'order_in_preparation_user' do
+      let(:order) { build(:in_preparation_order) }
+      let(:email) { OrderMailer.order_in_preparation_user(order) }
+
+      it 'send exactly one email' do
+        expect {
+          email.deliver
+        }.to change(ActionMailer::Base.deliveries, :size).by(1)
+      end
+
+      it 'be sent to the user via to header' do
+        email.to.size.should eq(1)
+        email.to.should eq([order.user.email])
+      end
+
+      describe '#subject' do
+        it 'mention the order id' do
+          email.subject.should match(/#{order.id.to_s}/)
+        end
+      end
+
+      describe '#body' do
+        it 'contain the order id' do
+          email.body.should match(/#{order.id.to_s}/)
+        end
+
+        it 'contain assets details (asset name, quantity, unitary price and price)' do
+          order.lines.each do |line|
+            email.body.should match(/#{line.asset.name}/)
+            email.body.should match(/#{line.quantity}/)
+            email.body.should match(/#{number_to_currency(line.unitaryPrice, unit: 'K', precision: 0)}/)
+            email.body.should match(/#{number_to_currency(line.price, unit: 'K', precision: 0)}/)
+          end
+        end
+
+        it 'contain order total' do
+          email.body.should match(/#{number_to_currency(order.totalAmount, unit: 'K', precision: 0)}/)
+        end
+      end
+    end
+
+    describe 'order_canceled_user' do
+      let(:order) { build(:canceled_order) }
+      let(:email) { OrderMailer.order_canceled_user(order) }
+
+      it 'send exactly one email' do
+        expect {
+          email.deliver
+        }.to change(ActionMailer::Base.deliveries, :size).by(1)
+      end
+
+      it 'be sent to the user via to header' do
+        email.to.size.should eq(1)
+        email.to.should eq([order.user.email])
+      end
+
+      describe '#subject' do
+        it 'mention the order id' do
+          email.subject.should match(/#{order.id.to_s}/)
+        end
+      end
+
+      describe '#body' do
+        it 'contain the order id' do
+          email.body.should match(/#{order.id.to_s}/)
+        end
+      end
+    end
+
+    describe 'order_ready_user' do
+      let(:order) { build(:ready_order) }
+      let(:email) { OrderMailer.order_ready_user(order) }
+
+      it 'send exactly one email' do
+        expect {
+          email.deliver
+        }.to change(ActionMailer::Base.deliveries, :size).by(1)
+      end
+
+      it 'be sent to the user via to header' do
+        email.to.size.should eq(1)
+        email.to.should eq([order.user.email])
+      end
+
+      describe '#subject' do
+        it 'mention the order id' do
+          email.subject.should match(/#{order.id.to_s}/)
+        end
+      end
+
+      describe '#body' do
+        it 'contain the order id' do
+          email.body.should match(/#{order.id.to_s}/)
+        end
+
+        it 'contain assets details (asset name, quantity, unitary price and price)' do
+          order.lines.each do |line|
+            email.body.should match(/#{line.asset.name}/)
+            email.body.should match(/#{line.quantity}/)
+            email.body.should match(/#{number_to_currency(line.unitaryPrice, unit: 'K', precision: 0)}/)
+            email.body.should match(/#{number_to_currency(line.price, unit: 'K', precision: 0)}/)
+          end
+        end
+
+        it 'contain order total' do
+          email.body.should match(/#{number_to_currency(order.totalAmount, unit: 'K', precision: 0)}/)
+        end
+      end
+    end
+
+    describe 'order_achieved_user' do
+      let(:order) { build(:achieved_order) }
+      let(:email) { OrderMailer.order_achieved_user(order) }
+
+      it 'send exactly one email' do
+        expect {
+          email.deliver
+        }.to change(ActionMailer::Base.deliveries, :size).by(1)
+      end
+
+      it 'be sent to the user via to header' do
+        email.to.size.should eq(1)
+        email.to.should eq([order.user.email])
+      end
+
+      describe '#subject' do
+        it 'mention the order id' do
+          email.subject.should match(/#{order.id.to_s}/)
+        end
+      end
+
+      describe '#body' do
+        it 'contain the order id' do
+          email.body.should match(/#{order.id.to_s}/)
+        end
+
+        it 'contain assets details (asset name, quantity, unitary price and price)' do
+          order.lines.each do |line|
+            email.body.should match(/#{line.asset.name}/)
+            email.body.should match(/#{line.quantity}/)
+            email.body.should match(/#{number_to_currency(line.unitaryPrice, unit: 'K', precision: 0)}/)
+            email.body.should match(/#{number_to_currency(line.price, unit: 'K', precision: 0)}/)
+          end
+        end
+
+        it 'contain order total' do
+          email.body.should match(/#{number_to_currency(order.totalAmount, unit: 'K', precision: 0)}/)
         end
       end
     end
   end
-
-  describe 'wait_estimate_validation_user' do
-    before(:each) do
-      @order = build(:estimated_order)
-    end
-
-    it 'should send exactly one email' do
-      expect {
-        OrderMailer.wait_estimate_validation_user(@order).deliver
-      }.to change(ActionMailer::Base.deliveries, :size).by(1)
-    end
-
-    it 'should be sent to the user via to header' do
-      email = OrderMailer.wait_estimate_validation_user(@order).deliver
-      email.to.size.should eq(1)
-      email.to.should eq([@order.user.email])
-    end
-
-    describe '#subject' do
-      it 'should mention the order id' do
-        email = OrderMailer.wait_estimate_validation_user(@order).deliver
-
-        email.subject.should match(/#{@order.id.to_s}/)
-      end
-    end
-
-    describe '#body' do
-      it 'should contain the order id' do
-        email = OrderMailer.wait_estimate_validation_user(@order).deliver
-
-        email.body.should match(/#{@order.id.to_s}/)
-      end
-
-      it 'should contain assets details (asset name, quantity, unitary price and price)' do
-        email = OrderMailer.wait_estimate_validation_user(@order).deliver
-
-        @order.lines.each do |line|
-          email.body.should match(/#{line.asset.name}/)
-          email.body.should match(/#{line.quantity}/)
-          email.body.should match(/#{number_to_currency(line.unitaryPrice, unit: 'K', precision: 0)}/)
-          email.body.should match(/#{number_to_currency(line.price, unit: 'K', precision: 0)}/)
-        end
-      end
-
-      it 'should contain order total' do
-        email = OrderMailer.wait_estimate_validation_user(@order).deliver
-
-        email.body.should match(/#{number_to_currency(@order.totalAmount, unit: 'K', precision: 0)}/)
-      end
-
-      it 'should contain a link to the order in the user profile' do
-        email = OrderMailer.wait_estimate_validation_user(@order).deliver
-
-        email.body.should match(/#{user_order_url(@order, :locale => I18n.locale)}/)
-      end
-    end
-  end
-
-  describe 'order_in_preparation_admin' do
-    before(:each) do
-      @order = build(:in_preparation_order)
-      5.times { create(:administrator) }
-    end
-
-    it 'should send exactly one email' do
-      expect {
-        OrderMailer.order_in_preparation_admin(@order).deliver
-      }.to change(ActionMailer::Base.deliveries, :size).by(1)
-    end
-
-    it 'should be sent to all admins via bcc header' do
-      email = OrderMailer.order_in_preparation_admin(@order).deliver
-      email.bcc.size.should eq(Administrator.count)
-
-      Administrator.all.each do |admin|
-        email.bcc.should include(admin.email)
-      end
-    end
-
-    describe '#subject' do
-      it 'should mention the order id' do
-        email = OrderMailer.order_in_preparation_admin(@order).deliver
-
-        email.subject.should match(/#{@order.id.to_s}/)
-      end
-
-      it 'should mention the user name' do
-        email = OrderMailer.order_in_preparation_admin(@order).deliver
-
-        email.subject.should match(/#{@order.user.name}/)
-      end
-    end
-
-    describe '#body' do
-      it 'should contain the order id' do
-        email = OrderMailer.order_in_preparation_admin(@order).deliver
-
-        email.body.should match(/#{@order.id.to_s}/)
-      end
-
-      it 'should contain the user name' do
-        email = OrderMailer.order_in_preparation_admin(@order).deliver
-
-        email.body.should match(/#{@order.user.name}/)
-      end
-
-      it 'should contain assets details (asset name, quantity, unitary price and price)' do
-        email = OrderMailer.order_in_preparation_admin(@order).deliver
-
-        @order.lines.each do |line|
-          email.body.should match(/#{line.asset.name}/)
-          email.body.should match(/#{line.quantity}/)
-          email.body.should match(/#{number_to_currency(line.unitaryPrice, unit: 'K', precision: 0)}/)
-          email.body.should match(/#{number_to_currency(line.price, unit: 'K', precision: 0)}/)
-        end
-      end
-
-      it 'should contain order total' do
-        email = OrderMailer.order_in_preparation_admin(@order).deliver
-
-        email.body.should match(/#{number_to_currency(@order.totalAmount, unit: 'K', precision: 0)}/)
-      end
-    end
-  end
-
-  describe 'order_in_preparation_user' do
-    before(:each) do
-      @order = build(:in_preparation_order)
-      @email = OrderMailer.order_in_preparation_user(@order).deliver
-    end
-
-    it 'should send exactly one email' do
-      expect {
-        OrderMailer.order_in_preparation_user(@order).deliver
-      }.to change(ActionMailer::Base.deliveries, :size).by(1)
-    end
-
-    it 'should be sent to the user via to header' do
-      @email.to.size.should eq(1)
-      @email.to.should eq([@order.user.email])
-    end
-
-    describe '#subject' do
-      it 'should mention the order id' do
-        @email.subject.should match(/#{@order.id.to_s}/)
-      end
-    end
-
-    describe '#body' do
-      it 'should contain the order id' do
-        @email.body.should match(/#{@order.id.to_s}/)
-      end
-
-      it 'should contain assets details (asset name, quantity, unitary price and price)' do
-        @order.lines.each do |line|
-          @email.body.should match(/#{line.asset.name}/)
-          @email.body.should match(/#{line.quantity}/)
-          @email.body.should match(/#{number_to_currency(line.unitaryPrice, unit: 'K', precision: 0)}/)
-          @email.body.should match(/#{number_to_currency(line.price, unit: 'K', precision: 0)}/)
-        end
-      end
-
-      it 'should contain order total' do
-        @email.body.should match(/#{number_to_currency(@order.totalAmount, unit: 'K', precision: 0)}/)
-      end
-    end
-  end
-
-  describe 'order_canceled_admin' do
-    before(:each) do
-      @order = build(:canceled_order)
-      5.times { create(:administrator) }
-    end
-
-    it 'should send exactly one email' do
-      expect {
-        OrderMailer.order_canceled_admin(@order).deliver
-      }.to change(ActionMailer::Base.deliveries, :size).by(1)
-    end
-
-    it 'should be sent to all admins via bcc header' do
-      email = OrderMailer.order_canceled_admin(@order).deliver
-      email.bcc.size.should eq(Administrator.count)
-
-      Administrator.all.each do |admin|
-        email.bcc.should include(admin.email)
-      end
-    end
-
-    describe '#subject' do
-      it 'should mention the order id' do
-        email = OrderMailer.order_canceled_admin(@order).deliver
-
-        email.subject.should match(/#{@order.id.to_s}/)
-      end
-
-      it 'should mention the user name' do
-        email = OrderMailer.order_canceled_admin(@order).deliver
-
-        email.subject.should match(/#{@order.user.name}/)
-      end
-    end
-
-    describe '#body' do
-      it 'should contain the order id' do
-        email = OrderMailer.order_canceled_admin(@order).deliver
-
-        email.body.should match(/#{@order.id.to_s}/)
-      end
-
-      it 'should contain the user name' do
-        email = OrderMailer.order_canceled_admin(@order).deliver
-
-        email.body.should match(/#{@order.user.name}/)
-      end
-
-      it 'should contain assets details (asset name, quantity, unitary price and price)' do
-        email = OrderMailer.order_canceled_admin(@order).deliver
-
-        @order.lines.each do |line|
-          email.body.should match(/#{line.asset.name}/)
-          email.body.should match(/#{line.quantity}/)
-          email.body.should match(/#{number_to_currency(line.unitaryPrice, unit: 'K', precision: 0)}/)
-          email.body.should match(/#{number_to_currency(line.price, unit: 'K', precision: 0)}/)
-        end
-      end
-
-      it 'should contain order total' do
-        email = OrderMailer.order_canceled_admin(@order).deliver
-
-        email.body.should match(/#{number_to_currency(@order.totalAmount, unit: 'K', precision: 0)}/)
-      end
-    end
-  end
-
-  describe 'order_canceled_user' do
-    before(:each) do
-      @order = build(:canceled_order)
-      @email = OrderMailer.order_canceled_user(@order).deliver
-    end
-
-    it 'should send exactly one email' do
-      expect {
-        OrderMailer.order_canceled_user(@order).deliver
-      }.to change(ActionMailer::Base.deliveries, :size).by(1)
-    end
-
-    it 'should be sent to the user via to header' do
-      @email.to.size.should eq(1)
-      @email.to.should eq([@order.user.email])
-    end
-
-    describe '#subject' do
-      it 'should mention the order id' do
-        @email.subject.should match(/#{@order.id.to_s}/)
-      end
-    end
-
-    describe '#body' do
-      it 'should contain the order id' do
-        @email.body.should match(/#{@order.id.to_s}/)
-      end
-    end
-  end
-
-  describe 'order_ready_admin' do
-    before(:each) do
-      @order = build(:ready_order)
-      5.times { create(:administrator) }
-    end
-
-    it 'should send exactly one email' do
-      expect {
-        OrderMailer.order_ready_admin(@order).deliver
-      }.to change(ActionMailer::Base.deliveries, :size).by(1)
-    end
-
-    it 'should be sent to all admins via bcc header' do
-      email = OrderMailer.order_ready_admin(@order).deliver
-      email.bcc.size.should eq(Administrator.count)
-
-      Administrator.all.each do |admin|
-        email.bcc.should include(admin.email)
-      end
-    end
-
-    describe '#subject' do
-      it 'should mention the order id' do
-        email = OrderMailer.order_ready_admin(@order).deliver
-
-        email.subject.should match(/#{@order.id.to_s}/)
-      end
-
-      it 'should mention the user name' do
-        email = OrderMailer.order_ready_admin(@order).deliver
-
-        email.subject.should match(/#{@order.user.name}/)
-      end
-    end
-
-    describe '#body' do
-      it 'should contain the order id' do
-        email = OrderMailer.order_ready_admin(@order).deliver
-
-        email.body.should match(/#{@order.id.to_s}/)
-      end
-
-      it 'should contain the user name' do
-        email = OrderMailer.order_ready_admin(@order).deliver
-
-        email.body.should match(/#{@order.user.name}/)
-      end
-
-      it 'should contain assets details (asset name, quantity, unitary price and price)' do
-        email = OrderMailer.order_ready_admin(@order).deliver
-
-        @order.lines.each do |line|
-          email.body.should match(/#{line.asset.name}/)
-          email.body.should match(/#{line.quantity}/)
-          email.body.should match(/#{number_to_currency(line.unitaryPrice, unit: 'K', precision: 0)}/)
-          email.body.should match(/#{number_to_currency(line.price, unit: 'K', precision: 0)}/)
-        end
-      end
-
-      it 'should contain order total' do
-        email = OrderMailer.order_ready_admin(@order).deliver
-
-        email.body.should match(/#{number_to_currency(@order.totalAmount, unit: 'K', precision: 0)}/)
-      end
-    end
-  end
-
-  describe 'order_ready_user' do
-    before(:each) do
-      @order = build(:ready_order)
-      @email = OrderMailer.order_ready_user(@order).deliver
-    end
-
-    it 'should send exactly one email' do
-      expect {
-        OrderMailer.order_ready_user(@order).deliver
-      }.to change(ActionMailer::Base.deliveries, :size).by(1)
-    end
-
-    it 'should be sent to the user via to header' do
-      @email.to.size.should eq(1)
-      @email.to.should eq([@order.user.email])
-    end
-
-    describe '#subject' do
-      it 'should mention the order id' do
-        @email.subject.should match(/#{@order.id.to_s}/)
-      end
-    end
-
-    describe '#body' do
-      it 'should contain the order id' do
-        @email.body.should match(/#{@order.id.to_s}/)
-      end
-
-      it 'should contain assets details (asset name, quantity, unitary price and price)' do
-        @order.lines.each do |line|
-          @email.body.should match(/#{line.asset.name}/)
-          @email.body.should match(/#{line.quantity}/)
-          @email.body.should match(/#{number_to_currency(line.unitaryPrice, unit: 'K', precision: 0)}/)
-          @email.body.should match(/#{number_to_currency(line.price, unit: 'K', precision: 0)}/)
-        end
-      end
-
-      it 'should contain order total' do
-        @email.body.should match(/#{number_to_currency(@order.totalAmount, unit: 'K', precision: 0)}/)
-      end
-    end
-  end
-
-  describe 'order_achieved_admin' do
-    before(:each) do
-      @order = build(:achieved_order)
-      5.times { create(:administrator) }
-    end
-
-    it 'should send exactly one email' do
-      expect {
-        OrderMailer.order_achieved_admin(@order).deliver
-      }.to change(ActionMailer::Base.deliveries, :size).by(1)
-    end
-
-    it 'should be sent to all admins via bcc header' do
-      email = OrderMailer.order_achieved_admin(@order).deliver
-      email.bcc.size.should eq(Administrator.count)
-
-      Administrator.all.each do |admin|
-        email.bcc.should include(admin.email)
-      end
-    end
-
-    describe '#subject' do
-      it 'should mention the order id' do
-        email = OrderMailer.order_achieved_admin(@order).deliver
-
-        email.subject.should match(/#{@order.id.to_s}/)
-      end
-
-      it 'should mention the user name' do
-        email = OrderMailer.order_achieved_admin(@order).deliver
-
-        email.subject.should match(/#{@order.user.name}/)
-      end
-    end
-
-    describe '#body' do
-      it 'should contain the order id' do
-        email = OrderMailer.order_achieved_admin(@order).deliver
-
-        email.body.should match(/#{@order.id.to_s}/)
-      end
-
-      it 'should contain the user name' do
-        email = OrderMailer.order_achieved_admin(@order).deliver
-
-        email.body.should match(/#{@order.user.name}/)
-      end
-
-      it 'should contain assets details (asset name, quantity, unitary price and price)' do
-        email = OrderMailer.order_achieved_admin(@order).deliver
-
-        @order.lines.each do |line|
-          email.body.should match(/#{line.asset.name}/)
-          email.body.should match(/#{line.quantity}/)
-          email.body.should match(/#{number_to_currency(line.unitaryPrice, unit: 'K', precision: 0)}/)
-          email.body.should match(/#{number_to_currency(line.price, unit: 'K', precision: 0)}/)
-        end
-      end
-
-      it 'should contain order total' do
-        email = OrderMailer.order_achieved_admin(@order).deliver
-
-        email.body.should match(/#{number_to_currency(@order.totalAmount, unit: 'K', precision: 0)}/)
-      end
-    end
-  end
-
-  describe 'order_achieved_user' do
-    before(:each) do
-      @order = build(:achieved_order)
-      @email = OrderMailer.order_achieved_user(@order).deliver
-    end
-
-    it 'should send exactly one email' do
-      expect {
-        OrderMailer.order_achieved_user(@order).deliver
-      }.to change(ActionMailer::Base.deliveries, :size).by(1)
-    end
-
-    it 'should be sent to the user via to header' do
-      @email.to.size.should eq(1)
-      @email.to.should eq([@order.user.email])
-    end
-
-    describe '#subject' do
-      it 'should mention the order id' do
-        @email.subject.should match(/#{@order.id.to_s}/)
-      end
-    end
-
-    describe '#body' do
-      it 'should contain the order id' do
-        @email.body.should match(/#{@order.id.to_s}/)
-      end
-
-      it 'should contain assets details (asset name, quantity, unitary price and price)' do
-        @order.lines.each do |line|
-          @email.body.should match(/#{line.asset.name}/)
-          @email.body.should match(/#{line.quantity}/)
-          @email.body.should match(/#{number_to_currency(line.unitaryPrice, unit: 'K', precision: 0)}/)
-          @email.body.should match(/#{number_to_currency(line.price, unit: 'K', precision: 0)}/)
-        end
-      end
-
-      it 'should contain order total' do
-        @email.body.should match(/#{number_to_currency(@order.totalAmount, unit: 'K', precision: 0)}/)
-      end
-    end
-  end
-
 end
