@@ -53,13 +53,14 @@ Boutique::Application.configure do
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
+  config.cache_store = :dalli_store, '127.0.0.1:11211', { :namespace => 'boutique.hyze.fr' }
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-  config.assets.precompile += %w( public.js admin.js admin.css public.css *.png *.jpg *.jpeg *.gif *.eot *.svg *.ttf *.woff)
+  config.assets.precompile += %w( public.js admin.js admin.css public.css *.png *.jpg *.jpeg *.gif *.eot *.svg *.ttf *.woff )
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -78,6 +79,3 @@ Boutique::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 end
-
-  # Use a different cache store in production
-  #config.cache_store = :dalli_store, '127.0.0.1:11211', { :namespace => 'boutique.hyze.fr' }

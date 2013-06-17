@@ -16,7 +16,7 @@ namespace :unicorn do
 
   task :start do
     desc 'Start unicorn server'
-    run "cd #{current_path}; bundle exec unicorn -c #{unicorn_config} -E production -D"
+    run "cd #{current_path}; bundle exec unicorn -c #{unicorn_config} -E #{rails_env} -D"
   end
 
   task :stop do

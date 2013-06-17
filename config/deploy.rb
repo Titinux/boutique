@@ -15,30 +15,31 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-require "bundler/capistrano"
+set :stages, %w(production staging)
+set :default_stage, 'staging'
+require 'capistrano/ext/multistage'
+require 'bundler/capistrano'
 
-load "deploy/assets"
-
-load "config/recipes/base"
-load "config/recipes/unicorn"
-load "config/recipes/postgresql"
-load "config/recipes/app_config"
-load "config/recipes/rbenv"
-load "config/recipes/check"
+load 'deploy/assets'
+load 'config/deploy/recipes/base'
+load 'config/deploy/recipes/unicorn'
+load 'config/deploy/recipes/postgresql'
+load 'config/deploy/recipes/app_config'
+load 'config/deploy/recipes/rbenv'
+load 'config/deploy/recipes/check'
+#load 'config/deploy/recipes/assets'
 
 role :web, 'hyze.lan'
 role :app, 'hyze.lan'
 role :db,  'hyze.lan', :primary => true
 
 set :user, "hyze"
-set :application, "boutique"
-set :deploy_to, "/home/#{user}/public/#{application}"
+set(:deploy_to) { "/home/#{user}/public/#{application}" }
 set :deploy_via, :remote_cache
 set :use_sudo, false
 
 set :scm, "git"
 set :repository, "git://github.com/Titinux/boutique.git"
-set :branch, "1.2"
 
 default_run_options[:pty] = true
 set :ssh_options, {forward_agent: true}

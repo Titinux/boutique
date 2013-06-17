@@ -7,13 +7,13 @@ set_default(:app_config_mailer_delivery_method) { ':smtp' }
 set_default(:app_config_mailer_raise_delivery_errors) { false }
 set_default(:app_config_mailer_default_options_host) { 'boutique.hyze.fr' }
 
-set_default(:app_config_mailer_smtp_address) { 'smtp.titinux.net' }
-set_default(:app_config_mailer_smtp_domain) { 'boutique.hyze.fr' }
-set_default(:app_config_mailer_smtp_port) { 25 }
+set_default(:app_config_mailer_smtp_domain)         { Capistrano::CLI.ui.ask 'Sender domain (www.example.com): ' }
+set_default(:app_config_mailer_smtp_address)        { Capistrano::CLI.ui.ask 'SMTP address (smtp.example.com): ' }
+set_default(:app_config_mailer_smtp_port)           { Capistrano::CLI.ui.ask 'SMTP port (25):' }
 set_default(:app_config_mailer_smtp_authentication) { 'plain' }
 set_default(:app_config_mailer_smtp_startttls_auto) { false }
-set_default(:app_config_mailer_smtp_user_name) { 'contact@boutique.hyze.fr' }
-set_default(:app_config_mailer_smtp_password) { Capistrano::CLI.password_prompt "SMTP Password: " }
+set_default(:app_config_mailer_smtp_user_name)      { Capistrano::CLI.ui.ask 'SMTP user name: ' }
+set_default(:app_config_mailer_smtp_password)       { Capistrano::CLI.password_prompt "SMTP Password: " }
 
 namespace :app_config do
   desc "Generate the application.yml configuration file."
