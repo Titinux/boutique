@@ -19,14 +19,15 @@ require 'spec_helper'
 include ActionView::Helpers::NumberHelper
 
 describe OrderMailer do
+  let(:order) { create(:quote_validation_order) }
+
   describe 'sending email to administrators' do
     before(:each) do
       5.times { create(:administrator) }
     end
 
     describe 'order_created_admin' do
-      let(:order) { build(:order) }
-      let(:email) { OrderMailer.order_created_admin(order) }
+      let(:email) { OrderMailer.order_created_admin(order.id) }
 
       it 'send exactly one email' do
         expect {
@@ -71,8 +72,7 @@ describe OrderMailer do
     end
 
     describe 'order_in_preparation_admin' do
-      let(:order) { build(:preparation_order) }
-      let(:email) { OrderMailer.order_in_preparation_admin(order) }
+      let(:email) { OrderMailer.order_in_preparation_admin(order.id) }
 
       it 'send exactly one email' do
         expect {
@@ -123,8 +123,7 @@ describe OrderMailer do
     end
 
     describe 'order_canceled_admin' do
-      let(:order) { build(:canceled_order) }
-      let(:email) { OrderMailer.order_canceled_admin(order) }
+      let(:email) { OrderMailer.order_canceled_admin(order.id) }
 
       it 'send exactly one email' do
         expect {
@@ -175,8 +174,7 @@ describe OrderMailer do
     end
 
     describe 'order_ready_admin' do
-      let(:order) { build(:delivery_order) }
-      let(:email) { OrderMailer.order_ready_admin(order) }
+      let(:email) { OrderMailer.order_ready_admin(order.id) }
 
       it 'send exactly one email' do
         expect {
@@ -227,8 +225,7 @@ describe OrderMailer do
     end
 
     describe 'order_achieved_admin' do
-      let(:order) { build(:complete_order) }
-      let(:email) { OrderMailer.order_achieved_admin(order) }
+      let(:email) { OrderMailer.order_achieved_admin(order.id) }
 
       it 'send exactly one email' do
         expect {
@@ -281,8 +278,7 @@ describe OrderMailer do
 
   describe 'sending email to user' do
     describe 'order_created_user' do
-      let(:order) { build(:order) }
-      let(:email) { OrderMailer.order_created_user(order) }
+      let(:email) { OrderMailer.order_created_user(order.id) }
 
       it 'send exactly one email' do
         expect {
@@ -316,38 +312,31 @@ describe OrderMailer do
     end
 
     describe 'wait_estimate_validation_user' do
-      let(:order) { build(:quote_validation_order, id: 42) }
+      let(:email) { OrderMailer.wait_estimate_validation_user(order.id) }
 
       it 'send exactly one email' do
         expect {
-          OrderMailer.wait_estimate_validation_user(order).deliver
+          email.deliver
         }.to change(ActionMailer::Base.deliveries, :size).by(1)
       end
 
       it 'be sent to the user via to header' do
-        email = OrderMailer.wait_estimate_validation_user(order).deliver
         email.to.size.should eq(1)
         email.to.should eq([order.user.email])
       end
 
       describe '#subject' do
         it 'mention the order id' do
-          email = OrderMailer.wait_estimate_validation_user(order).deliver
-
           email.subject.should match(/#{order.id.to_s}/)
         end
       end
 
       describe '#body' do
         it 'contain the order id' do
-          email = OrderMailer.wait_estimate_validation_user(order).deliver
-
           email.body.should match(/#{order.id.to_s}/)
         end
 
         it 'contain assets details (asset name, quantity, unitary price and price)' do
-          email = OrderMailer.wait_estimate_validation_user(order).deliver
-
           order.lines.each do |line|
             email.body.should match(/#{line.asset.name}/)
             email.body.should match(/#{line.quantity}/)
@@ -357,22 +346,17 @@ describe OrderMailer do
         end
 
         it 'contain order total' do
-          email = OrderMailer.wait_estimate_validation_user(order).deliver
-
           email.body.should match(/#{number_to_currency(order.total, unit: 'K', precision: 0)}/)
         end
 
         it 'contain a link to the order in the user profile' do
-          email = OrderMailer.wait_estimate_validation_user(order).deliver
-
           email.body.should match(/#{user_order_url(order, :locale => I18n.locale)}/)
         end
       end
     end
 
     describe 'order_in_preparation_user' do
-      let(:order) { build(:preparation_order) }
-      let(:email) { OrderMailer.order_in_preparation_user(order) }
+      let(:email) { OrderMailer.order_in_preparation_user(order.id) }
 
       it 'send exactly one email' do
         expect {
@@ -412,8 +396,7 @@ describe OrderMailer do
     end
 
     describe 'order_canceled_user' do
-      let(:order) { build(:canceled_order) }
-      let(:email) { OrderMailer.order_canceled_user(order) }
+      let(:email) { OrderMailer.order_canceled_user(order.id) }
 
       it 'send exactly one email' do
         expect {
@@ -440,8 +423,7 @@ describe OrderMailer do
     end
 
     describe 'order_ready_user' do
-      let(:order) { build(:delivery_order) }
-      let(:email) { OrderMailer.order_ready_user(order) }
+      let(:email) { OrderMailer.order_ready_user(order.id) }
 
       it 'send exactly one email' do
         expect {
@@ -481,8 +463,7 @@ describe OrderMailer do
     end
 
     describe 'order_achieved_user' do
-      let(:order) { build(:complete_order) }
-      let(:email) { OrderMailer.order_achieved_user(order) }
+      let(:email) { OrderMailer.order_achieved_user(order.id) }
 
       it 'send exactly one email' do
         expect {

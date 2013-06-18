@@ -17,83 +17,83 @@
 
 class OrderMailer < ActionMailer::Base
   # TODO Utiliser un paramètre pour spécifier l'adresse d'expédition des mails de la boutique.
-  default :from => 'no-reply@boutique.hyze.fr'
+  default from: 'no-reply@boutique.hyze.fr'
 
-  def order_created_admin(order)
-    @order = order
+  def order_created_admin(order_id)
+    @order = Order.find(order_id)
 
-    mail :bcc => admin_emails,
-         :subject => t('mailer.order.admin.order_created', :order_id => order.id, :user_name => order.user.name)
+    mail bcc: admin_emails,
+         subject: t('mailer.order.admin.order_created', order_id: @order.id, user_name: @order.user.name)
   end
 
-  def order_created_user(order)
-    @order = order
+  def order_created_user(order_id)
+    @order = Order.find(order_id)
 
-    mail :to => order.user.email,
-         :subject => t('mailer.order.user.order_created', :order_id => order.id)
+    mail to: @order.user.email,
+         subject: t('mailer.order.user.order_created', order_id: @order.id)
   end
 
-  def wait_estimate_validation_user(order)
-    @order = order
+  def wait_estimate_validation_user(order_id)
+    @order = Order.find(order_id)
 
-    mail :to => order.user.email,
-         :subject => t('mailer.order.user.wait_estimate_validation', :order_id => order.id)
+    mail to: @order.user.email,
+         subject: t('mailer.order.user.wait_estimate_validation', order_id: @order.id)
   end
 
-  def order_in_preparation_admin(order)
-    @order = order
+  def order_in_preparation_admin(order_id)
+    @order = Order.find(order_id)
 
-    mail :bcc => admin_emails,
-         :subject => t('mailer.order.admin.order_in_preparation', :order_id => order.id, :user_name => order.user.name)
+    mail bcc: admin_emails,
+         subject: t('mailer.order.admin.order_in_preparation', order_id: @order.id, user_name: @order.user.name)
   end
 
-  def order_in_preparation_user(order)
-    @order = order
+  def order_in_preparation_user(order_id)
+    @order = Order.find(order_id)
 
-    mail :to => order.user.email,
-         :subject => t('mailer.order.user.order_in_preparation', :order_id => order.id)
+    mail to: @order.user.email,
+         subject: t('mailer.order.user.order_in_preparation', order_id: @order.id)
   end
 
-  def order_canceled_admin(order)
-    @order = order
+  def order_canceled_admin(order_id)
+    @order = Order.find(order_id)
 
-    mail :bcc => admin_emails,
-         :subject => t('mailer.order.admin.order_canceled', :order_id => order.id, :user_name => order.user.name)
+    mail bcc: admin_emails,
+         subject: t('mailer.order.admin.order_canceled', order_id: @order.id, user_name: @order.user.name)
   end
 
-  def order_canceled_user(order)
-    @order = order
+  def order_canceled_user(order_id)
+    @order = Order.find(order_id)
 
-    mail :to => order.user.email,
-         :subject => t('mailer.order.user.order_canceled', :order_id => order.id)
+    mail to: @order.user.email,
+         subject: t('mailer.order.user.order_canceled', order_id: @order.id)
   end
 
-  def order_ready_admin(order)
-    @order = order
+  def order_ready_admin(order_id)
+    @order = Order.find(order_id)
 
-    mail :bcc => admin_emails,
-         :subject => t('mailer.order.admin.order_ready', :order_id => order.id, :user_name => order.user.name)
+    mail bcc: admin_emails,
+         subject: t('mailer.order.admin.order_ready', order_id: @order.id, user_name: @order.user.name)
   end
 
-  def order_ready_user(order)
-    @order = order
+  def order_ready_user(order_id)
+    @order = Order.find(order_id)
 
-    mail :to => order.user.email,
-         :subject => t('mailer.order.user.order_ready', :order_id => order.id)
+    mail to: @order.user.email,
+         subject: t('mailer.order.user.order_ready', order_id: @order.id)
   end
 
-  def order_achieved_admin(order)
-    @order = order
+  def order_achieved_admin(order_id)
+    @order = Order.find(order_id)
 
-    mail :bcc => admin_emails,
-         :subject => t('mailer.order.admin.order_achieved', :order_id => order.id, :user_name => order.user.name)
+    mail bcc: admin_emails,
+         subject: t('mailer.order.admin.order_achieved', order_id: @order.id, user_name: @order.user.name)
   end
 
-  def order_achieved_user(order)
-    @order = order
+  def order_achieved_user(order_id)
+    @order = Order.find(order_id)
 
-    mail :to => order.user.email,
-         :subject => t('mailer.order.user.order_achieved', :order_id => order.id)
+    mail to: @order.user.email,
+         subject: t('mailer.order.user.order_achieved', order_id: @order.id)
   end
 
   private
