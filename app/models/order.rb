@@ -17,85 +17,58 @@
 
 class Order < ActiveRecord::Base
   belongs_to :user
-  has_many :lines, :class_name => 'OrderLine', :dependent => :delete_all
+  has_many   :lines, class_name: 'OrderLine', dependent: :delete_all
 
   # Attributes
-  accepts_nested_attributes_for :lines, :allow_destroy => true
+  accepts_nested_attributes_for :lines, allow_destroy: true
   attr_reader(:message)
 
   # Validations
-  validates :user_id, :presence => true
-  validates_associated :user
+  validates :user_id, presence: true
+  validate :at_least_one_line
 
-  validates :state,   :presence => true
-  validates :lines,   :presence => true
+  # Callbacks
+  after_save :notifications
 
-  validates_associated :lines
-
-  def modifyState(op)
-    case op
-      when 'CANCEL_ORDER'
-        if self.state == 'WAIT_ESTIMATE'
-          self.state = 'ORDER_CANCELED'
-
-          if self.save
-            @message = I18n.t('order.cancelSucces')
-          else
-            @message = I18n.t('order.cancelFail')
-            return false
-          end
-        end
-
-      when 'MAKE_ESTIMATE'
-        if self.state == 'WAIT_ESTIMATE'
-          self.state = 'WAIT_ESTIMATE_VALIDATION'
-
-          if self.save
-            @message = I18n.t('order.estimate.created')
-          else
-            @message = I18n.t('order.modifyFail')
-            return false
-          end
-        end
-
-      when 'ACCEPT_ESTIMATE'
-        if self.state == 'WAIT_ESTIMATE_VALIDATION'
-          self.state = 'IN_PREPARATION'
-
-          if self.save
-            @message = I18n.t('order.estimate.accepted')
-          else
-            @message = I18n.t('order.modifyFail')
-            return false
-          end
-        end
-
-      when 'REFUSE_ESTIMATE'
-        if self.state == 'WAIT_ESTIMATE_VALIDATION'
-          self.state = 'ORDER_CANCELED'
-
-          if self.save
-            @message = I18n.t('order.estimate.canceled')
-          else
-            @message = I18n.t('order.modifyFail')
-            return false
-          end
-        end
-      else
-        @message = 'Error !'
-      end
-
-    true
-  end
-
-  def totalAmount
-    amount = 0.0
-
-    lines.each do |line|
-      amount += line.quantity * (line.unitaryPrice || 0)
+  state_machine :state, :initial => :quotation do
+    event :quote_done do
+      transition :quotation => :quote_validation, if: :quote_ready?
     end
 
-    amount
+    event :quote_accepted do
+      transition :quote_validation => :preparation
+    end
+
+    event :prepared do
+      transition :preparation => :delivery
+    end
+
+    event :delivered do
+      transition :delivery => :complete
+    end
+
+    event :cancel do
+      transition any - [:complete, :canceled] => :canceled
+    end
+
+    after_transition any => any do |order, transition|
+      payload = {
+        order_id: order.id,
+        event:    transition.event,
+        from:     transition.from_name,
+        to:       transition.to_name
+      }
+
+      ActiveSupport::Notifications.instrument "state_changed.order.dofus_shop", payload
+    end
+  end
+
+  def quote_ready?
+    lines.each do |line|
+      return false unless line.unitaryPrice.present?
+    end
+
+    true
   end
 
   def available?
@@ -106,5 +79,19 @@ class Order < ActiveRecord::Base
     return true
   end
 
+  def total
+    lines.to_a.sum(&:total)
+  end
 
+  protected
+
+  def at_least_one_line
+    if self.lines.size < 1
+      errors.add(:base, I18n.t('order.at_least_one_line'))
+    end
+  end
+
+  def notifications
+    ActiveSupport::Notifications.instrument "update.order.dofus_shop", order_id: self.id
+  end
 end

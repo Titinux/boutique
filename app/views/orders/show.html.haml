@@ -18,19 +18,18 @@
 = frame :title => t('order.commandId', :id => @order.id) do
   = show_for @order do |o|
     = o.attribute :state do
-      = orderStatusHash[@order.state]
+      = Order.human_state_name(@order.state)
 
-    = o.attribute :totalAmount do
-      = number_to_currency(@order.totalAmount, unit: 'K', precision: 0)
+    = o.attribute :total do
+      = number_to_currency(@order.total, unit: 'K', precision: 0)
 
     = o.attribute :comment
 
   = frame :title => t('order.details') do
     = render :partial => 'order_lines_table', :locals => { :order => @order }
 
-  - if @order.state == 'WAIT_ESTIMATE_VALIDATION'
-    = link_to orderActionHash['ACCEPT_ESTIMATE'], user_order_path(@order, :op => 'ACCEPT_ESTIMATE'), :method => :put
-    |
-    = link_to orderActionHash['REFUSE_ESTIMATE'], user_order_path(@order, :op => 'REFUSE_ESTIMATE'), :method => :put
 
-  = link_to_back user_orders_path
+  - @order.state_events.select{ |e| [:quote_accepted, :cancel].include?(e)}.each do |event|
+    %p= link_to Order.human_state_event_name(event), event_user_order_path(@order, event.to_s), method: :post
+
+  %p= link_to_back user_orders_path

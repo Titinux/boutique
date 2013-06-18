@@ -5,3 +5,4 @@
 #= require jquery-tmpl
 #= require forms
 
+#= require admin/quote

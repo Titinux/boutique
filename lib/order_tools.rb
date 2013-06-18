@@ -62,11 +62,11 @@ module OrderTools
         end
       end
 
-      raise OrderDispatchException, 'Dispatch money can\'t be superior to order amount !' if moneySpent > order.totalAmount
+      raise OrderDispatchException, 'Dispatch money can\'t be superior to order amount !' if moneySpent > order.total
 
       # Reloding tax collector object because pigMoneybox value is outdated if this account can have sell assets.
       tax_collector.reload
-      tax_collector.pigMoneyBox += order.totalAmount - moneySpent
+      tax_collector.pigMoneyBox += order.total - moneySpent
       tax_collector.save!
 
       order.dispatched = true

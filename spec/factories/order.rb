@@ -17,14 +17,14 @@
 
 FactoryGirl.define do
   factory :order do
-    association :user, :factory => :confirmed_user
-    state 'WAIT_ESTIMATE'
+    association :user, factory: :confirmed_user
 
     lines {|l| [FactoryGirl.build(:order_line)]}
   end
 
-  factory :estimated_order, :parent => :order do
-    state 'WAIT_ESTIMATE_VALIDATION'
+  factory :quote_validation_order, parent: :order do
+    state 'quote_validation'
+
     lines do |l|
       [
         FactoryGirl.build(:estimated_order_line),
@@ -33,19 +33,19 @@ FactoryGirl.define do
     end
   end
 
-  factory :in_preparation_order, :parent => :estimated_order do
-    state 'IN_PREPARATION'
+  factory :preparation_order, parent: :quote_validation_order do
+    state 'preparation'
   end
 
-  factory :canceled_order, :parent => :estimated_order do
-    state 'ORDER_CANCELED'
+  factory :delivery_order, parent: :quote_validation_order do
+    state 'delivery'
   end
 
-  factory :ready_order, :parent => :estimated_order do
-    state 'WAIT_DELIVERY'
+  factory :complete_order, parent: :quote_validation_order do
+    state 'complete'
   end
 
-  factory :achieved_order, :parent => :estimated_order do
-    state 'ACHIEVED'
+  factory :canceled_order, parent: :quote_validation_order do
+    state 'canceled'
   end
 end

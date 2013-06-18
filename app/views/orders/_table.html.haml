@@ -28,5 +28,5 @@
     - orders.each do |order|
       %tr{ :class => "#{cycle('even', 'odd')}" }
         %td= order.id
-        %td= orderStatusHash[order.state]
+        %td= Order.human_state_name(order.state)
         %td.actions= link_to_show user_order_path(order)

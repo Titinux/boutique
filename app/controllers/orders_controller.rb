@@ -50,15 +50,14 @@ class OrdersController < ApplicationController
     respond_with(@order, :location => user_orders_path)
   end
 
-  def update
+  def event
     @order = current_user.orders.find(params[:id])
+    event  = params[:event].to_sym
 
-    if @order.modifyState(params[:op])
-      flash[:notice] = @order.message
-    else
-      flash[:alert] = @order.message
+    if [:quote_accepted, :cancel].include?(event)
+      @order.fire_state_event(event)
     end
 
-    respond_with(@order, :location => user_path)
+    respond_with([:user, @order])
   end
 end

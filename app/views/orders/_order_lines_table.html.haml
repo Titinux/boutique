@@ -29,4 +29,4 @@
         %td= order_line.asset.name
         %td.number= order_line.quantity
         %td.currency= number_to_currency(order_line.unitaryPrice, unit: 'K', precision: 2)
-        %td.currency= number_to_currency(order_line.price, unit: 'K', precision: 0)
+        %td.currency= number_to_currency(order_line.total, unit: 'K', precision: 0)

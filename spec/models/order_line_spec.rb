@@ -18,47 +18,42 @@
 require 'spec_helper'
 
 describe OrderLine do
-  before(:each) do
-    @order = build(:order)
-  end
+  let(:order) { build(:order) }
 
   it 'is valid with valid attributes' do
-    build(:order_line, :order_id => @order.id).should be_valid
+    build(:order_line, :order_id => order.id).should be_valid
   end
 
-  it 'should have an asset' do
-    build(:order_line, :order_id => @order.id, :asset_id => nil).should_not be_valid
+  describe 'relations' do
+    it { should belong_to :order }
+    it { should belong_to :asset }
   end
 
   describe '#quantity' do
-    it 'should be a strict positive number' do
-      build(:order_line, :order_id => @order.id, :quantity => 0).should_not be_valid
-      build(:order_line, :order_id => @order.id, :quantity => -1).should_not be_valid
-    end
+    it { should validate_numericality_of(:quantity).only_integer }
 
-    it 'should be an integer' do
-      build(:order_line, :order_id => @order.id, :quantity => 12.5).should_not be_valid
+    it 'should be a strict positive number' do
+      build(:order_line, order_id: order.id, quantity: 0).should_not be_valid
+      build(:order_line, order_id: order.id, quantity: -1).should_not be_valid
     end
   end
 
   describe '#unitaryPrice' do
+    it { should validate_numericality_of(:unitaryPrice) }
+
     it 'could be nil' do
-      build(:order_line, :order_id => @order.id, :unitaryPrice => nil).should be_valid
+      build(:order_line, order_id: order.id, unitaryPrice: nil).should be_valid
     end
 
     it 'should be a positive number' do
-      build(:order_line, :order_id => @order.id, :unitaryPrice => -1).should_not be_valid
-      build(:order_line, :order_id => @order.id, :unitaryPrice => -12.5).should_not be_valid
-    end
-
-    it 'should be a float number' do
-      build(:order_line, :order_id => @order.id, :unitaryPrice => 12.5).should be_valid
+      build(:order_line, order_id: order.id, unitaryPrice: -1).should_not be_valid
+      build(:order_line, order_id: order.id, unitaryPrice: -12.5).should_not be_valid
     end
   end
 
-  describe '#price' do
+  describe '#total' do
     it 'should be quantity times unitaryPrice' do
-      build(:order_line, :order_id => @order.id, :quantity => 5, :unitaryPrice => 10).price.should eq(50)
+      build(:order_line, quantity: 5, unitaryPrice: 10).total.should eq(50)
     end
   end
 end

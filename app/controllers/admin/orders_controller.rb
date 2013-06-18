@@ -18,7 +18,7 @@
 class Admin::OrdersController < Admin::AdminController
   def index
     search_params = { "s" => "id asc",
-                      "state_in" => %W(WAIT_ESTIMATE WAIT_ESTIMATE_VALIDATION IN_PREPARATION WAIT_DELIVERY)
+                      "state_in" => %W(quotation quote_validation preparation delivery)
                     }.merge(params[:q] || {})
 
     @q = Order.includes(:lines, :user).search(search_params)
@@ -42,6 +42,10 @@ class Admin::OrdersController < Admin::AdminController
     #@estimateRestriction = params[:estimate]
   end
 
+  def quote
+    respond_with(@order = Order.find(params[:id]))
+  end
+
   def create
     @order = Order.new(order_params)
     @order.save
@@ -56,6 +60,25 @@ class Admin::OrdersController < Admin::AdminController
     respond_with(:admin, @order)
   end
 
+  def quote_done
+    @order = Order.find(params[:id])
+
+    if @order.update_attributes(quote_params)
+      if @order.state_events.include?(:quote_done) && @order.quote_ready?
+        @order.quote_done
+      end
+    end
+
+    respond_with(:admin, @order)
+  end
+
+  def event
+    @order = Order.find(params[:id])
+    @order.send params[:event]
+
+    redirect_to action: :show
+  end
+
   def destroy
     @order = Order.find(params[:id])
     @order.destroy
@@ -65,8 +88,12 @@ class Admin::OrdersController < Admin::AdminController
 
   private
 
+    def quote_params
+      params.require(:order).permit(lines_attributes: [:id, :unitaryPrice])
+    end
+
     def order_params
       params.require(:order).permit(:user_id, :state, :comment,
-                                    lines_attributes: [:asset_id, :quantity, :unitaryPrice, :_destroy, :id])
+                                    lines_attributes: [:id, :asset_id, :quantity, :unitaryPrice, :_destroy])
     end
 end

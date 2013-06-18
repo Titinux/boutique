@@ -15,18 +15,26 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-%table#order_lines.table.table-bordered.table-striped
-  %thead
-    %tr
-      %th= Asset.model_name.human
-      %th= OrderLine.human_attribute_name :quantity
-      %th= OrderLine.human_attribute_name :unitaryPrice
-      %th= OrderLine.human_attribute_name :price
-
-  %tbody
-    - order.lines.each do |order_line|
+= simple_form_for([:quote_done, :admin, @order]) do |f|
+  %table#order_lines.table.table-bordered.table-striped
+    %thead
       %tr
-        %td= order_line.asset.name
-        %td.number= number_with_delimiter(order_line.quantity)
-        %td.currency= number_to_currency(order_line.unitaryPrice, unit: 'K', precision: 2)
-        %td.currency= number_to_currency(order_line.total, unit: 'K', precision: 0)
+        %th= Asset.model_name.human
+        %th= OrderLine.human_attribute_name :quantity
+        %th= OrderLine.human_attribute_name :unitaryPrice
+
+    %tbody
+      = f.simple_fields_for :lines, :lines do |fl|
+        %tr.order_line
+          %td= fl.association :asset, label: false, :collection => Asset.order(:name), :include_blank => false, input_html: { disabled: true }
+          %td= fl.input :quantity, label: false, input_html: { disabled: true }
+          %td= fl.input :unitaryPrice, label: false, input_html: { autocomplete: 'off' }
+
+      %tr.total
+        %td{ colspan: 3 }
+          = 'Total : '
+          %span.total 0
+          = ' K'
+
+  .form-actions
+    = f.button :submit

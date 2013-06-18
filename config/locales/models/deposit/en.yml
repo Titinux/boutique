@@ -1,7 +1,7 @@
 en:
   activerecord:
     models:
-      deposit: Deposits
+      deposit: Deposit
 
     attributes:
       deposit:

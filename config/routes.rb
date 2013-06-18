@@ -29,7 +29,11 @@ Boutique::Application.routes.draw do
 
     # User profile
     resource :user, :path => 'profile', :except => [:new, :create] do
-      resources :orders, :only => [ :index, :show, :update, :new, :create ]
+      resources :orders, :only => [ :index, :show, :new, :create ] do
+        member do
+          post 'event/:event', to: 'orders#event', as: 'event'
+        end
+      end
       resources :deposits, :only => [:index, :new, :create ]
     end
 
@@ -44,7 +48,13 @@ Boutique::Application.routes.draw do
       resources :categories
       resources :assets
 
-      resources :orders
+      resources :orders do
+        member do
+          post 'event/:event', to: 'orders#event', as: 'event'
+          get  'quote', to: 'orders#quote'
+          patch 'quote_done', to: 'orders#quote_done'
+        end
+      end
 
       resources :config_tree
 

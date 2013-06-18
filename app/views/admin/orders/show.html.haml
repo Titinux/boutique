@@ -20,9 +20,11 @@
 = show_for @order do |o|
   = o.association :user, :using => :name
   = o.attribute :state do
-    = orderStatusHash[@order.state]
-  = o.attribute :totalAmount do
-    = number_to_currency(@order.totalAmount, unit: 'K', precision: 0)
+    %span.label{ class: @order.state }= Order.human_state_name(@order.state)
+
+  = o.attribute :total do
+    = number_to_currency(@order.total, unit: 'K', precision: 0)
+
   = o.attribute :dispatched
   = o.attribute :created_at
   = o.attribute :comment
@@ -30,5 +32,13 @@
 = frame :title => t('order.details') do
   = render :partial => 'admin/order_lines/table', :locals => { :order => @order }
 
-= link_to_back admin_orders_path
-= link_to_edit edit_admin_order_path(@order)
+%ul.nav.nav-list
+  %li.nav-header= t('action').pluralize
+  %li= link_to_edit edit_admin_order_path(@order)
+  - unless @order.quote_ready?
+    %li= link_to t('order.draw_up_quote'), quote_admin_order_path(@order)
+
+  %li.nav-header= t('event').pluralize
+  - @order.state_events.each do |event|
+    %li
+      = link_to Order.human_state_event_name(event), event_admin_order_path(@order, event.to_s), method: :post

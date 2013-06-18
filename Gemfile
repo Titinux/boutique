@@ -27,6 +27,9 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'devise-encryptable', '>= 0.1.2'
 
+# Models
+gem 'state_machine'
+
 # Controllers
 gem 'responders'
 gem 'ransack', github: 'ernie/ransack', branch: 'rails-4'

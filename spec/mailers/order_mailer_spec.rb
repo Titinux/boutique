@@ -71,7 +71,7 @@ describe OrderMailer do
     end
 
     describe 'order_in_preparation_admin' do
-      let(:order) { build(:in_preparation_order) }
+      let(:order) { build(:preparation_order) }
       let(:email) { OrderMailer.order_in_preparation_admin(order) }
 
       it 'send exactly one email' do
@@ -112,12 +112,12 @@ describe OrderMailer do
             email.body.should match(/#{line.asset.name}/)
             email.body.should match(/#{line.quantity}/)
             email.body.should match(/#{number_to_currency(line.unitaryPrice, unit: 'K', precision: 0)}/)
-            email.body.should match(/#{number_to_currency(line.price, unit: 'K', precision: 0)}/)
+            email.body.should match(/#{number_to_currency(line.total, unit: 'K', precision: 0)}/)
           end
         end
 
         it 'contain order total' do
-          email.body.should match(/#{number_to_currency(order.totalAmount, unit: 'K', precision: 0)}/)
+          email.body.should match(/#{number_to_currency(order.total, unit: 'K', precision: 0)}/)
         end
       end
     end
@@ -164,18 +164,18 @@ describe OrderMailer do
             email.body.should match(/#{line.asset.name}/)
             email.body.should match(/#{line.quantity}/)
             email.body.should match(/#{number_to_currency(line.unitaryPrice, unit: 'K', precision: 0)}/)
-            email.body.should match(/#{number_to_currency(line.price, unit: 'K', precision: 0)}/)
+            email.body.should match(/#{number_to_currency(line.total, unit: 'K', precision: 0)}/)
           end
         end
 
         it 'contain order total' do
-          email.body.should match(/#{number_to_currency(order.totalAmount, unit: 'K', precision: 0)}/)
+          email.body.should match(/#{number_to_currency(order.total, unit: 'K', precision: 0)}/)
         end
       end
     end
 
     describe 'order_ready_admin' do
-      let(:order) { build(:ready_order) }
+      let(:order) { build(:delivery_order) }
       let(:email) { OrderMailer.order_ready_admin(order) }
 
       it 'send exactly one email' do
@@ -216,18 +216,18 @@ describe OrderMailer do
             email.body.should match(/#{line.asset.name}/)
             email.body.should match(/#{line.quantity}/)
             email.body.should match(/#{number_to_currency(line.unitaryPrice, unit: 'K', precision: 0)}/)
-            email.body.should match(/#{number_to_currency(line.price, unit: 'K', precision: 0)}/)
+            email.body.should match(/#{number_to_currency(line.total, unit: 'K', precision: 0)}/)
           end
         end
 
         it 'contain order total' do
-          email.body.should match(/#{number_to_currency(order.totalAmount, unit: 'K', precision: 0)}/)
+          email.body.should match(/#{number_to_currency(order.total, unit: 'K', precision: 0)}/)
         end
       end
     end
 
     describe 'order_achieved_admin' do
-      let(:order) { build(:achieved_order) }
+      let(:order) { build(:complete_order) }
       let(:email) { OrderMailer.order_achieved_admin(order) }
 
       it 'send exactly one email' do
@@ -268,12 +268,12 @@ describe OrderMailer do
             email.body.should match(/#{line.asset.name}/)
             email.body.should match(/#{line.quantity}/)
             email.body.should match(/#{number_to_currency(line.unitaryPrice, unit: 'K', precision: 0)}/)
-            email.body.should match(/#{number_to_currency(line.price, unit: 'K', precision: 0)}/)
+            email.body.should match(/#{number_to_currency(line.total, unit: 'K', precision: 0)}/)
           end
         end
 
         it 'contain order total' do
-          email.body.should match(/#{number_to_currency(order.totalAmount, unit: 'K', precision: 0)}/)
+          email.body.should match(/#{number_to_currency(order.total, unit: 'K', precision: 0)}/)
         end
       end
     end
@@ -316,7 +316,7 @@ describe OrderMailer do
     end
 
     describe 'wait_estimate_validation_user' do
-      let(:order) { build(:estimated_order, id: 42) }
+      let(:order) { build(:quote_validation_order, id: 42) }
 
       it 'send exactly one email' do
         expect {
@@ -352,14 +352,14 @@ describe OrderMailer do
             email.body.should match(/#{line.asset.name}/)
             email.body.should match(/#{line.quantity}/)
             email.body.should match(/#{number_to_currency(line.unitaryPrice, unit: 'K', precision: 0)}/)
-            email.body.should match(/#{number_to_currency(line.price, unit: 'K', precision: 0)}/)
+            email.body.should match(/#{number_to_currency(line.total, unit: 'K', precision: 0)}/)
           end
         end
 
         it 'contain order total' do
           email = OrderMailer.wait_estimate_validation_user(order).deliver
 
-          email.body.should match(/#{number_to_currency(order.totalAmount, unit: 'K', precision: 0)}/)
+          email.body.should match(/#{number_to_currency(order.total, unit: 'K', precision: 0)}/)
         end
 
         it 'contain a link to the order in the user profile' do
@@ -371,7 +371,7 @@ describe OrderMailer do
     end
 
     describe 'order_in_preparation_user' do
-      let(:order) { build(:in_preparation_order) }
+      let(:order) { build(:preparation_order) }
       let(:email) { OrderMailer.order_in_preparation_user(order) }
 
       it 'send exactly one email' do
@@ -401,12 +401,12 @@ describe OrderMailer do
             email.body.should match(/#{line.asset.name}/)
             email.body.should match(/#{line.quantity}/)
             email.body.should match(/#{number_to_currency(line.unitaryPrice, unit: 'K', precision: 0)}/)
-            email.body.should match(/#{number_to_currency(line.price, unit: 'K', precision: 0)}/)
+            email.body.should match(/#{number_to_currency(line.total, unit: 'K', precision: 0)}/)
           end
         end
 
         it 'contain order total' do
-          email.body.should match(/#{number_to_currency(order.totalAmount, unit: 'K', precision: 0)}/)
+          email.body.should match(/#{number_to_currency(order.total, unit: 'K', precision: 0)}/)
         end
       end
     end
@@ -440,7 +440,7 @@ describe OrderMailer do
     end
 
     describe 'order_ready_user' do
-      let(:order) { build(:ready_order) }
+      let(:order) { build(:delivery_order) }
       let(:email) { OrderMailer.order_ready_user(order) }
 
       it 'send exactly one email' do
@@ -470,18 +470,18 @@ describe OrderMailer do
             email.body.should match(/#{line.asset.name}/)
             email.body.should match(/#{line.quantity}/)
             email.body.should match(/#{number_to_currency(line.unitaryPrice, unit: 'K', precision: 0)}/)
-            email.body.should match(/#{number_to_currency(line.price, unit: 'K', precision: 0)}/)
+            email.body.should match(/#{number_to_currency(line.total, unit: 'K', precision: 0)}/)
           end
         end
 
         it 'contain order total' do
-          email.body.should match(/#{number_to_currency(order.totalAmount, unit: 'K', precision: 0)}/)
+          email.body.should match(/#{number_to_currency(order.total, unit: 'K', precision: 0)}/)
         end
       end
     end
 
     describe 'order_achieved_user' do
-      let(:order) { build(:achieved_order) }
+      let(:order) { build(:complete_order) }
       let(:email) { OrderMailer.order_achieved_user(order) }
 
       it 'send exactly one email' do
@@ -511,12 +511,12 @@ describe OrderMailer do
             email.body.should match(/#{line.asset.name}/)
             email.body.should match(/#{line.quantity}/)
             email.body.should match(/#{number_to_currency(line.unitaryPrice, unit: 'K', precision: 0)}/)
-            email.body.should match(/#{number_to_currency(line.price, unit: 'K', precision: 0)}/)
+            email.body.should match(/#{number_to_currency(line.total, unit: 'K', precision: 0)}/)
           end
         end
 
         it 'contain order total' do
-          email.body.should match(/#{number_to_currency(order.totalAmount, unit: 'K', precision: 0)}/)
+          email.body.should match(/#{number_to_currency(order.total, unit: 'K', precision: 0)}/)
         end
       end
     end

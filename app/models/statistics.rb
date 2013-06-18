@@ -31,7 +31,7 @@ class Statistics
     ordereds = lines.
                     project(lines[:asset_id], lines[:quantity].sum.as('ordered')).
                     join(orders, Arel::Nodes::OuterJoin).on(orders[:id].eq(lines[:order_id])).
-                    where(orders[:state].in ['IN_PREPARATION', 'WAIT_DELIVERY']).
+                    where(orders[:state].in ['preparation', 'delivery']).
                     group(lines[:asset_id])
 
     s = Arel::Table.new('stocks')

@@ -30,10 +30,10 @@ class Cart < ActiveRecord::Base
   accepts_nested_attributes_for :lines, :allow_destroy => true
 
   def to_order
-    order = Order.new({ :user => self.user, :state => 'WAIT_ESTIMATE'})
+    order = Order.new(user: self.user)
 
     lines.each do |line|
-      order.lines.build({:asset_id => line.asset_id, :quantity => line.quantity, :unitaryPrice => 0})
+      order.lines.build({:asset_id => line.asset_id, :quantity => line.quantity})
     end
 
     order

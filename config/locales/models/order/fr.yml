@@ -5,14 +5,32 @@ fr:
 
     attributes:
       order:
-        totalAmount: Montant total
+        total: Montant total
         id: N°
-        state: Etat
+        state: État
         dispatched: Répartie
         created_at: Créée le
         updated_at: Modifiée le
         comment: Commentaire
         user: Utilisateur
+
+    state_machines:
+      order:
+        state:
+          states:
+            quotation: En attente du devis
+            quote_validation: Validation du devis
+            preparation: Préparation
+            delivery: Livraison
+            complete: Terminée
+            canceled: Annulée
+
+          events:
+            quote_done: Devis réalisé
+            quote_accepted: Accepter le devis
+            prepared: Commande préparée
+            delivered: Commande livrée
+            cancel: Annuler cette commande
 
   # Order
   order:
@@ -30,20 +48,8 @@ fr:
       accepted: L'estimation a été accepté.
       canceled: L'estimation a été annulée.
     modifyFail: La commande ne peut pas être modifiée.
-    state:
-      waitEstimate: En attente de devis
-      waitEstimateValidation: En attente de validation du devis
-      preparation: En préparation
-      waitDelivery: En attente de livraison
-      achieved: Achevée
-      canceled: Annulée
-      error: Erreur
-    action:
-      create: Créer le devis
-      accept: Accepter le devis
-      refuse: Refuser le devis
-      prepared: Commande prête
-      delivered: Commande livrée
     createSuccess: La commande a bien été créée.
     commandId: Commande n°%{id}
     add_line: Ajouter une ligne
+    at_least_one_line: La commande doit comporter au moins une ligne produit
+    draw_up_quote: Réaliser un devis

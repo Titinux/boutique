@@ -5,13 +5,31 @@ en:
 
     attributes:
       order:
-        totalAmount: Total amount
+        total: Total amount
         id: #
         state: State
         dispatched: Dispatched
         created_at: Created at
         comment: Comment
         user: user
+
+    state_machines:
+      order:
+        state:
+          states:
+            quotation: Waiting quotation
+            quote_validation: Quote validation
+            preparation: Preparation
+            delivery: Delivery
+            complete: Complete
+            canceled: Canceled
+
+          events:
+            quote_done: Quote done
+            quote_accepted: Accept this quote
+            prepared: Order prepared
+            delivered: Order delivered
+            cancel: Cancel this order
 
   # Order
   order:
@@ -29,20 +47,8 @@ en:
       accepted: Estimate was successfully accepted.
       canceled: Estimate was successfully canceled.
     modifyFail: Order can't be modified.
-    state:
-      waitEstimate: Waiting estimate
-      waitEstimateValidation: Waiting estimate validation
-      preparation: In preparation
-      waitDelivery: Waiting delivery
-      achieved: Achieved
-      canceled: Order canceled
-      error: Error
-    action:
-      create: Create estimate
-      accept: Accept this estimate
-      refuse: Refuse this estimate
-      prepared: Order prepared
-      delivered: Order delivered
     createSuccess: Order was successfully created.
     commandId: 'Order #%{id}'
     add_line: Add line
+    at_least_one_line: The order must include at least one product line
+    draw_up_quote: Draw up a quote

@@ -22,4 +22,8 @@ FactoryGirl.define do
     quantity_modifier 500
     validated false
   end
+
+  factory :validated_deposit, parent: :deposit do
+    validated true
+  end
 end
