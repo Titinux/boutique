@@ -17,7 +17,7 @@
 
 class Admin::OrdersController < Admin::AdminController
   def index
-    search_params = { "s" => "id asc",
+    search_params = { "s" => "id desc",
                       "state_in" => %W(quotation quote_validation preparation delivery)
                     }.merge(params[:q] || {})
 
