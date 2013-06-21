@@ -268,45 +268,6 @@ ALTER SEQUENCE config_values_id_seq OWNED BY config_values.id;
 
 
 --
--- Name: delayed_jobs; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE delayed_jobs (
-    id integer NOT NULL,
-    priority integer DEFAULT 0,
-    attempts integer DEFAULT 0,
-    handler text,
-    last_error text,
-    run_at timestamp without time zone,
-    locked_at timestamp without time zone,
-    failed_at timestamp without time zone,
-    locked_by character varying(255),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    queue character varying(255)
-);
-
-
---
--- Name: delayed_jobs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE delayed_jobs_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: delayed_jobs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE delayed_jobs_id_seq OWNED BY delayed_jobs.id;
-
-
---
 -- Name: deposits; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -621,13 +582,6 @@ ALTER TABLE ONLY config_values ALTER COLUMN id SET DEFAULT nextval('config_value
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY delayed_jobs ALTER COLUMN id SET DEFAULT nextval('delayed_jobs_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY deposits ALTER COLUMN id SET DEFAULT nextval('deposits_id_seq'::regclass);
 
 
@@ -727,14 +681,6 @@ ALTER TABLE ONLY config_tree
 
 ALTER TABLE ONLY config_values
     ADD CONSTRAINT config_values_pkey PRIMARY KEY (id);
-
-
---
--- Name: delayed_jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY delayed_jobs
-    ADD CONSTRAINT delayed_jobs_pkey PRIMARY KEY (id);
 
 
 --
@@ -929,3 +875,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120120191039');
 INSERT INTO schema_migrations (version) VALUES ('20120521231835');
 
 INSERT INTO schema_migrations (version) VALUES ('20130618122455');
+
+INSERT INTO schema_migrations (version) VALUES ('20130621152316');

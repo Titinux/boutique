@@ -15,9 +15,11 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-class DispatchOrderJob < Struct.new(:order_id)
-  def perform
-    order = Order.find(order_id)
-    OrderTools::dispatch(order)
+class Admin::JobQueuesController < Admin::AdminController
+  def index
+    @queues = JobQueue.all
+    @queues.sort!{ |x,y| I18n.t("job_queue.#{x.name}").parameterize <=> I18n.t("job_queue.#{y.name}").parameterize }
+
+    respond_with(@queues)
   end
 end

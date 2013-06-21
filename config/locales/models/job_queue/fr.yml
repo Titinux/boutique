@@ -1,0 +1,18 @@
+fr:
+  activemodel:
+    models:
+      job_queue: File d'attente
+
+    attributes:
+      job_queue:
+        name: Nom
+        size: Taille
+        processed: Travaux effectués
+        failed: Travaux échoués
+
+  job_queue:
+    scheduled: Prévu
+    retry: Ré-essais
+    default: Défaut
+    dispatch: Répartition
+    events: Événements

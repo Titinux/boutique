@@ -15,6 +15,24 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-= content_title t('job.listing')
+= content_title t('queues.listing')
 
-= render :partial => 'table', :locals => { :jobs => @jobs }
+%p
+  = JobQueue.human_attribute_name :processed
+  \:
+  = JobQueue.stats.processed
+
+%p
+  = JobQueue.human_attribute_name :failed
+  \:
+  = JobQueue.stats.failed
+
+%ul.nav.nav-tabs
+  - @queues.each_with_index do |queue, i|
+    - name = t("job_queue.#{queue.name}")
+    %li{ class: "#{'active' if i==0}" }= link_to "#{name} (#{queue.size})".capitalize, "##{queue.name}-queue", data: { toggle: 'tab' }
+
+.tab-content
+  - @queues.each_with_index do |queue, i|
+    .tab-pane{ id: "#{queue.name}-queue", class: "#{'active' if i==0}" }
+      = render partial: 'queue', locals: { queue: queue }

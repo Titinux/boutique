@@ -18,27 +18,34 @@
 %table.table.table-bordered.table-striped
   %thead
   %tr
-    %th= Delayed::Job.human_attribute_name('id')
-    %th= Delayed::Job.human_attribute_name('priority')
-    %th= Delayed::Job.human_attribute_name('attempts')
-    %th= Delayed::Job.human_attribute_name('handler')
-    %th= Delayed::Job.human_attribute_name('last_error')
-    %th= Delayed::Job.human_attribute_name('run_at')
-    %th= Delayed::Job.human_attribute_name('locked_at')
-    %th= Delayed::Job.human_attribute_name('failed_at')
-    %th= Delayed::Job.human_attribute_name('locked_by')
-    %th= Delayed::Job.human_attribute_name('created_at')
+    %th=Job.human_attribute_name :jid
+    %th=Job.human_attribute_name :enqueued_at
+    %th=Job.human_attribute_name :worker_class
+    %th=Job.human_attribute_name :args
+    %th=Job.human_attribute_name :error_class
+    %th=Job.human_attribute_name :error_message
+    %th=Job.human_attribute_name :failed_at
+    %th=Job.human_attribute_name :retry_count
+    %th=Job.human_attribute_name :retried_at
+    %th= t('action').pluralize(I18n.locale)
 
   %tbody
-    - jobs.each do |job|
+    - queue.jobs.each do |job|
       %tr
-        %td= job.id
-        %td= job.priority
-        %td= job.attempts
-        %td= truncate(job.handler, :length => 100)
-        %td= truncate(job.last_error, :length => 100)
-        %td= job.run_at
-        %td= job.locked_at
-        %td= job.failed_at
-        %td= job.locked_by
-        %td= job.created_at
+        %td= job.jid
+        %td= l(job.enqueued_at)
+        %td= job.klass
+        %td= job.args
+        %td= job.error_class
+        %td= job.error_message
+        %td
+          - if job.failed_at
+            = l(job.failed_at)
+
+        %td= job.retry_count
+        %td
+          - if job.retried_at
+            = l(job.retried_at)
+
+        %td.actions
+          = link_to_destroy [:admin, queue, job]

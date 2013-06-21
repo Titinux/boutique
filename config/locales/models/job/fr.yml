@@ -1,21 +1,16 @@
 fr:
-  activerecord:
+  activemodel:
     models:
-      "delayed/backend/active_record/job": Travail
+      job: Travail
 
     attributes:
-      "delayed/backend/active_record/job":
-        id: Id
-        priority: Priorité
-        attempts: Nb. essais
-        handler: Handler
-        last_error: Dernière erreur
-        run_at: Lancé à
-        locked_at: Bloqué à
-        failed_at: Echoué à
-        locked_by: Bloqué par
-        created_at: Créé à
-
-  # Job
-  job:
-    listing: Liste des travaux
+      job:
+        jid: Identifiant
+        enqueued_at: Mis en file le
+        worker_class: Éxécutant
+        args: Arguments
+        error_class: Erreur
+        error_message: Message d'erreur
+        failed_at: Échoué le
+        retry_count: Nombre d'essais
+        retried_at: Dernier essai le

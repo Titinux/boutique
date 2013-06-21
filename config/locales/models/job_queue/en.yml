@@ -1,0 +1,18 @@
+en:
+  activemodel:
+    models:
+      job_queue: Job queue
+
+    attributes:
+      job_queue:
+        name: Name
+        size: Size
+        processed: Processed jobs
+        failed: Failed jobs
+
+  job_queue:
+    scheduled: Scheduled
+    retry: Retry
+    default: Default
+    dispatch: Dispatch
+    events: Events

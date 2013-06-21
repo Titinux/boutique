@@ -94,6 +94,11 @@
             = t('statistics.name')
 
         %li
+          = link_to admin_job_queues_path do
+            %i.imoon-stack
+            = JobQueue.model_name.human.pluralize(I18n.locale)
+
+        %li
           = link_to admin_logs_path do
             %i.imoon-cabinet
             = Log.model_name.human.pluralize(I18n.locale)

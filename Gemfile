@@ -44,14 +44,10 @@ gem 'kaminari'
 gem 'compass-rails', github: 'milgner/compass-rails', branch: 'rails4'
 gem 'bootstrap-sass'
 
-# Use unicorn as the web server
-gem 'unicorn'
-
 # Others
 #gem 'javan-whenever', :lib => false, :source => 'http://gems.github.com'
 gem 'rack-contrib'
-#gem 'delayed_job_active_record'
-gem 'daemons'
+gem 'sidekiq'
 
 group :development do
   gem 'better_errors'
@@ -69,4 +65,9 @@ end
 group :test do
   gem 'capybara'
   gem 'shoulda-matchers'
+end
+
+group :production do
+  # Use unicorn as the web server
+  gem 'unicorn'
 end

@@ -66,7 +66,9 @@ Boutique::Application.routes.draw do
 
       resources :statistics, :only => [ :index, :show ]
 
-      resources :jobs, :only => [:index]
+      resources :job_queues, only: [:index] do
+        resources :jobs, only: [:destroy]
+      end
 
       resources :logs, :only => [:index, :show]
 

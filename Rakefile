@@ -7,11 +7,5 @@ require 'rake'
 require 'rake/testtask'
 require 'rdoc/task'
 
-begin
-  require 'delayed/tasks'
-rescue LoadError
-  STDERR.puts "Run `rake gems:install` to install delayed_job"
-end
-
 Boutique::Application.load_tasks
 

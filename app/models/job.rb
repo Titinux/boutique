@@ -15,11 +15,40 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-class Admin::JobsController < Admin::AdminController
-  def destroy
-    @queue = JobQueue.find(params[:job_queue_id])
-    @queue.delete_job(params[:id])
+class Job
+  extend ActiveModel::Naming
+  extend ActiveModel::Translation
 
-    redirect_to admin_job_queues_path
+  attr_reader :sidekiq_worker
+  delegate :klass, to: :sidekiq_worker
+
+  def initialize(worker)
+    @sidekiq_worker = worker
+  end
+
+  %w(queue args jid retry error_class error_message failed_at retry_count).each do |method|
+    define_method(method) do
+      @sidekiq_worker.item[method]
+    end
+  end
+
+  %w(failed_at retried_at).each do |method|
+    define_method(method) do
+      value = @sidekiq_worker.item[method]
+      Time.parse(value).in_time_zone if value
+    end
+  end
+
+  def enqueued_at
+    value = @sidekiq_worker.item['enqueued_at']
+    Time.at(value) if value
+  end
+
+  def destroy
+    @sidekiq_worker.delete
+  end
+
+  def to_param
+    self.jid
   end
 end
