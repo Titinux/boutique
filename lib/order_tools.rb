@@ -18,17 +18,12 @@
 module OrderTools
   class OrderDispatchException < Exception; end
 
-  def self.available?(order)
-    order.lines.each do |line|
-      return false if(Deposit.stock(line.asset) < line.quantity)
-    end
+  def self.dispatch(order_id)
+    order = Order.find(order_id)
 
-    return true
-  end
-
-  def self.dispatch(order)
+    raise OrderDispatchException, 'Order not found !' unless order
     raise OrderDispatchException, 'This order has already been dispatched !' if order.dispatched
-    raise OrderDispatchException, 'Stocks are insufficient to dispatch this order !' unless available?(order)
+    raise OrderDispatchException, 'Stocks are insufficient to dispatch this order !' unless order.available?
 
     # TODO : Utliser une option pour définir un compte qui récupère l'argent "en trop".
     tax_collector = User.find_by_name('Marchands d\'Hyze')

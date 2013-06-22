@@ -59,7 +59,7 @@ class Order < ActiveRecord::Base
         to:       transition.to_name
       }
 
-      ActiveSupport::Notifications.instrument "state_changed.order.dofus_shop", payload
+      ActiveSupport::Notifications.instrument "state_changed.orders.dofus_shop.event", payload
     end
   end
 

@@ -39,7 +39,7 @@ module Boutique
 
     # Activate observers that should always be running.
     # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
-    config.active_record.observers = :order_observer, :log_sweeper
+    config.active_record.observers = :log_sweeper
 
     # Schema is dump in sql format
     config.active_record.schema_format = :sql
