@@ -20,7 +20,7 @@
   %head
     %meta{ charset: 'utf-8' }
 
-    %link{ :rel => 'icon', :type => 'image/png', :href => "#{image_path('global/favicon.png')}"}
+    %link{ rel: 'icon', type: 'image/png', href: "#{image_path('global/favicon.png')}"}
     = csrf_meta_tags
 
     %title= t('siteTitle')
@@ -28,7 +28,7 @@
     = stylesheet_link_tag 'public'
 
   %body
-    #global{:class => [controller.controller_name, controller.action_name]}
+    #global{class: [controller.controller_name, controller.action_name]}
       #header
         %h1
           = t('siteTitle')
@@ -58,6 +58,6 @@
 
       #footer
         = t('footerText')
-        = t('version', :version => Boutique::VERSION)
+        = t('version', version: Boutique::VERSION)
 
     = javascript_include_tag 'public'

@@ -19,7 +19,7 @@ class CartLinesController < ApplicationController
   before_filter :authenticate_user!
 
   def new
-    @cart_line = NewCartLine.new(:user => current_user, :cart_id => current_user.cart.id, :asset_id => params[:asset_id])
+    @cart_line = NewCartLine.new(user: current_user, cart_id: current_user.cart.id, asset_id: params[:asset_id])
 
     respond_with(@cart_line)
   end
@@ -31,7 +31,7 @@ class CartLinesController < ApplicationController
   end
 
   def create
-    @cart_line = NewCartLine.new(new_cart_line_params.merge(:user => current_user))
+    @cart_line = NewCartLine.new(new_cart_line_params.merge(user: current_user))
 
     if @cart_line.save
       flash[:notice] = t('flash.cart_lines.create.notice',
@@ -42,7 +42,7 @@ class CartLinesController < ApplicationController
       @cart_line.cart.touch
     end
 
-    respond_with(@cart_line, :location => category_path(@cart_line.asset.category))
+    respond_with(@cart_line, location: category_path(@cart_line.asset.category))
   end
 
   def update
@@ -50,7 +50,7 @@ class CartLinesController < ApplicationController
     @cart_line = cart.lines.find(params[:id])
     @cart_line.update_attributes(cart_line_params)
 
-    respond_with(@cart_line, :location => cart_path(cart))
+    respond_with(@cart_line, location: cart_path(cart))
   end
 
   def destroy
@@ -58,7 +58,7 @@ class CartLinesController < ApplicationController
     @cart_line = cart.lines.find(params[:id])
     @cart_line.destroy
 
-    respond_with(@cart_line, :location => cart_path(cart))
+    respond_with(@cart_line, location: cart_path(cart))
   end
 
   private

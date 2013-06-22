@@ -4,6 +4,6 @@ class RemoveCurrentFieldFromCart < ActiveRecord::Migration
   end
 
   def down
-    add_column :carts, :current, :boolean, :null => false, :default => false
+    add_column :carts, :current, :boolean, null: false, default: false
   end
 end

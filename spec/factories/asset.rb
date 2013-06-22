@@ -18,6 +18,6 @@
 FactoryGirl.define do
   factory :asset do
     sequence(:name)  {|n| "asset#{n}" }
-    association :category, :factory => :category
+    association :category, factory: :category
   end
 end

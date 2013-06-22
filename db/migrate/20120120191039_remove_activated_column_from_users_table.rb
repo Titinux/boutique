@@ -4,6 +4,6 @@ class RemoveActivatedColumnFromUsersTable < ActiveRecord::Migration
   end
 
   def down
-    add_column :users, :activated, :boolean, :default => false, :null => false
+    add_column :users, :activated, :boolean, default: false, null: false
   end
 end

@@ -15,7 +15,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-= frame :title => t('order.commandId', :id => @order.id) do
+= frame title: t('order.commandId', id: @order.id) do
   = show_for @order do |o|
     = o.attribute :state do
       = Order.human_state_name(@order.state)
@@ -25,8 +25,8 @@
 
     = o.attribute :comment
 
-  = frame :title => t('order.details') do
-    = render :partial => 'order_lines_table', :locals => { :order => @order }
+  = frame title: t('order.details') do
+    = render partial: 'order_lines_table', locals: { order: @order }
 
 
   - @order.state_events.select{ |e| [:quote_accepted, :cancel].include?(e)}.each do |event|

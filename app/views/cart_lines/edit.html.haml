@@ -15,7 +15,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-= simple_form_for @cart_line, :url => cart_line_path(@cart_line.cart, @cart_line) do |f|
+= simple_form_for @cart_line, url: cart_line_path(@cart_line.cart, @cart_line) do |f|
   = f.association :asset, prompt: false, disabled: true
   = f.input       :quantity
 

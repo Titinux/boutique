@@ -15,7 +15,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-= content_title t('log.showing', :id => @log.to_param)
+= content_title t('log.showing', id: @log.to_param)
 
 = show_for @log do |l|
   = l.attribute :id

@@ -1,6 +1,6 @@
 class AddEmailToUsers < ActiveRecord::Migration
   def self.up
-    add_column :users, :email, :string, { :limit => 50, :null => false, :default => '' }
+    add_column :users, :email, :string, { limit: 50, null: false, default: '' }
   end
 
   def self.down

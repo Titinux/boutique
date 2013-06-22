@@ -31,7 +31,7 @@ describe Admin::CategoriesController do
 
   describe "GET show" do
     it "assigns the requested category as @category" do
-      get :show, :id => category.to_param
+      get :show, id: category.to_param
       assigns(:category).should eq(category)
     end
   end
@@ -45,7 +45,7 @@ describe Admin::CategoriesController do
 
   describe "GET edit" do
     it "assigns the requested category as @category" do
-      get :edit, :id => category.to_param
+      get :edit, id: category.to_param
       assigns(:category).should eq(category)
     end
   end
@@ -56,18 +56,18 @@ describe Admin::CategoriesController do
         category
 
         expect {
-          post :create, :category => attributes_for(:category)
+          post :create, category: attributes_for(:category)
         }.to change(Category, :count).by(1)
       end
 
       it "assigns a newly created category as @category" do
-        post :create, :category => attributes_for(:category)
+        post :create, category: attributes_for(:category)
         assigns(:category).should be_a(Category)
         assigns(:category).should be_persisted
       end
 
       it "redirects to the categories list" do
-        post :create, :category => attributes_for(:category)
+        post :create, category: attributes_for(:category)
         response.should redirect_to([:admin, Category])
       end
     end
@@ -76,14 +76,14 @@ describe Admin::CategoriesController do
       it "assigns a newly created but unsaved category as @category" do
         Category.any_instance.stub(:valid?).and_return(false)
 
-        post :create, :category => { "name" => "invalid value" }
+        post :create, category: { "name" => "invalid value" }
         assigns(:category).should be_a_new(Category)
       end
 
       it "re-renders the 'new' template" do
         subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
-        post :create, :category => { "name" => "invalid value" }
+        post :create, category: { "name" => "invalid value" }
         response.should render_template("new")
       end
     end
@@ -93,16 +93,16 @@ describe Admin::CategoriesController do
     describe "with valid params" do
       it "updates the requested category" do
         Category.any_instance.should_receive(:update_attributes).with({'name' => 'params'})
-        put :update, :id => category.to_param, :category => {'name' => 'params'}
+        put :update, id: category.to_param, category: {'name' => 'params'}
       end
 
       it "assigns the requested category as @category" do
-        put :update, :id => category.to_param, :category => attributes_for(:category)
+        put :update, id: category.to_param, category: attributes_for(:category)
         assigns(:category).should eq(category)
       end
 
       it "redirects to the categories list" do
-        put :update, :id => category.to_param, :category => attributes_for(:category)
+        put :update, id: category.to_param, category: attributes_for(:category)
         response.should redirect_to([:admin, Category])
       end
     end
@@ -112,14 +112,14 @@ describe Admin::CategoriesController do
         category
         Category.any_instance.stub(:valid?).and_return(false)
 
-        put :update, :id => category.to_param, :category => { "name" => "invalid value" }
+        put :update, id: category.to_param, category: { "name" => "invalid value" }
         assigns(:category).should eq(category)
       end
 
       it "re-renders the 'edit' template" do
         subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
-        put :update, :id => category.to_param, :category => { "name" => "invalid value" }
+        put :update, id: category.to_param, category: { "name" => "invalid value" }
         response.should render_template("edit")
       end
     end
@@ -130,12 +130,12 @@ describe Admin::CategoriesController do
       category
 
       expect {
-        delete :destroy, :id => category.to_param
+        delete :destroy, id: category.to_param
       }.to change(Category, :count).by(-1)
     end
 
     it "redirects to the categories list" do
-      delete :destroy, :id => category.to_param
+      delete :destroy, id: category.to_param
       response.should redirect_to(admin_categories_url)
     end
   end

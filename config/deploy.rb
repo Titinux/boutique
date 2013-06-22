@@ -31,7 +31,7 @@ load 'config/deploy/recipes/check'
 
 role :web, 'hyze.lan'
 role :app, 'hyze.lan'
-role :db,  'hyze.lan', :primary => true
+role :db,  'hyze.lan', primary: true
 
 set :user, "hyze"
 set(:deploy_to) { "/home/#{user}/public/#{application}" }
@@ -59,7 +59,7 @@ namespace :uploads do
 end
 
 namespace :assets do
-  task :symlink, :except => { :no_release => true } do
+  task :symlink, except: { no_release: true } do
     run "rm -rf #{release_path}/app/assets/images"
     run "ln -nfs #{shared_path}/images #{release_path}/app/assets/images"
   end

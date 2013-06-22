@@ -18,7 +18,7 @@
 FactoryGirl.define do
   factory :cart do
     name 'My cart'
-    association :user, :factory => :user
+    association :user, factory: :user
   end
 end
 

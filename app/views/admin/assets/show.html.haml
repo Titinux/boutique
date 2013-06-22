@@ -18,10 +18,10 @@
 = sidebar do
   = link_to_edit edit_admin_asset_path(@asset), class: 'btn'
 
-= content_title t('asset.showing', :name => @asset.name)
+= content_title t('asset.showing', name: @asset.name)
 
 = show_for @asset do |a|
   = a.attribute :name
   = a.association :category
   = a.attribute :pictureUri do
-    = image_tag(@asset.pictureUri, :alt => t('pictureOf', :subject => @asset.name)) unless @asset.pictureUri.blank?
+    = image_tag(@asset.pictureUri, alt: t('pictureOf', subject: @asset.name)) unless @asset.pictureUri.blank?

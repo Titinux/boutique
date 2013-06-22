@@ -23,37 +23,37 @@ describe Deposit do
   end
 
   it 'is not valid without a user' do
-    build(:deposit, :user => nil).should_not be_valid
+    build(:deposit, user: nil).should_not be_valid
   end
 
   it 'is not valid without an asset' do
-    build(:deposit, :asset => nil).should_not be_valid
+    build(:deposit, asset: nil).should_not be_valid
   end
 
   describe '#quantity' do
     it 'should not be nil' do
-      build(:deposit, :quantity => nil).should_not be_valid
+      build(:deposit, quantity: nil).should_not be_valid
     end
 
     it 'should be an integer' do
-      build(:deposit, :quantity => 'toto').should_not be_valid
-      build(:deposit, :quantity => 0.53).should_not be_valid
+      build(:deposit, quantity: 'toto').should_not be_valid
+      build(:deposit, quantity: 0.53).should_not be_valid
     end
   end
 
   describe '#quantity_modifier' do
     it 'should not nil' do
-      build(:deposit, :quantity_modifier => nil).should_not be_valid
+      build(:deposit, quantity_modifier: nil).should_not be_valid
     end
 
     it 'should be an integer' do
-      build(:deposit, :quantity_modifier => 'toto').should_not be_valid
-      build(:deposit, :quantity_modifier => 0.53).should_not be_valid
+      build(:deposit, quantity_modifier: 'toto').should_not be_valid
+      build(:deposit, quantity_modifier: 0.53).should_not be_valid
     end
   end
 
   it 'should be destroy after save if quantity equal to 0' do
-    @deposit = build(:deposit, :quantity => 0, :quantity_modifier => 0)
+    @deposit = build(:deposit, quantity: 0, quantity_modifier: 0)
     @deposit.save
 
     @deposit.destroyed?.should == true

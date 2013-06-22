@@ -4,7 +4,7 @@ Your order <%= @order.id %> is now achieved.
 
 Order details.
 --------------
-<%= render :partial => 'order_details', :locals => { :orderLines => @order.lines, :full => true } %>
+<%= render partial: 'order_details', locals: { orderLines: @order.lines, full: true } %>
 
 Total : <%= number_to_currency(@order.total, unit: 'K', precision: 0) %>
 

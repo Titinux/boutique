@@ -16,7 +16,7 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 %table
-  %col{:width => '100%'}
+  %col{width: '100%'}
   %thead
     %tr
       %th= Asset.model_name.human
@@ -24,6 +24,6 @@
 
   %tbody
     - deposits.each do |deposit|
-      %tr{ :class => "#{cycle('even', 'odd')}" }
+      %tr{ class: "#{cycle('even', 'odd')}" }
         %td= deposit.asset.name
         %td.number= deposit.quantity

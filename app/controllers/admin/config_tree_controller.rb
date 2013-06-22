@@ -22,7 +22,7 @@ class Admin::ConfigTreeController < Admin::AdminController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @configElements }
+      format.xml  { render xml: @configElements }
     end
   end
 
@@ -30,9 +30,9 @@ class Admin::ConfigTreeController < Admin::AdminController
     @configElement = ConfigTree.find(params[:id])
 
     if params[:edit] == 'tree'
-      render :action => 'edit_tree'
+      render action: 'edit_tree'
     else
-      render :action => 'edit_value'
+      render action: 'edit_value'
     end
   end
 
@@ -45,8 +45,8 @@ class Admin::ConfigTreeController < Admin::AdminController
         format.html { redirect_to(admin_config_tree_index_path) }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @configElement.errors, :status => :unprocessable_entity }
+        format.html { render action: "edit" }
+        format.xml  { render xml: @configElement.errors, status: :unprocessable_entity }
       end
     end
   end

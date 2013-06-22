@@ -16,7 +16,7 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 %table
-  %col{ :width => '100%' }
+  %col{ width: '100%' }
   %thead
     %tr
       %th= Asset.model_name.human
@@ -24,7 +24,7 @@
       %th= t('action').pluralize(I18n.locale)
   %tbody
     - cart.lines.joins(:asset).order(Asset.arel_table[:name]).each do |line|
-      %tr{ :class => "#{cycle('even', 'odd')}" }
+      %tr{ class: "#{cycle('even', 'odd')}" }
         %td= link_to line.asset.name, category_path(line.asset.category)
         %td.number= line.quantity
         %td.actions

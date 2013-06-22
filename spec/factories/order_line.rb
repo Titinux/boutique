@@ -17,13 +17,13 @@
 
 FactoryGirl.define do
   factory :order_line do
-    #association :order, :factory => :order
-    association :asset, :factory => :asset
+    #association :order, factory: :order
+    association :asset, factory: :asset
 
     quantity { rand(500)+1 }
   end
 
-  factory :estimated_order_line, :parent => :order_line do
+  factory :estimated_order_line, parent: :order_line do
     unitaryPrice { rand(250)+1 }
   end
 end

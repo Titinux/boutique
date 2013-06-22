@@ -5,11 +5,11 @@ Your order #<%= @order.id %> has been estimated.
 
 Order details.
 --------------
-<%= render :partial => 'order_details', :locals => { :orderLines => @order.lines, :full => true } %>
+<%= render partial: 'order_details', locals: { orderLines: @order.lines, full: true } %>
 
 Total amount : <%= number_to_currency(@order.total, unit: 'K', precision: 0) %>
 
-Please go to <%= user_order_url(@order, :locale => 'en') %> to validate or refuse this estimate.
+Please go to <%= user_order_url(@order, locale: 'en') %> to validate or refuse this estimate.
 Without your validation within two weeks, this estimate will be canceled.
 
 

@@ -5,7 +5,7 @@ Détails de la commande.
 -----------------------
 
 Commentaire : <%= @order.comment %>
-<%= render :partial => 'order_details', :locals => { :orderLines => @order.lines } %>
+<%= render partial: 'order_details', locals: { orderLines: @order.lines } %>
 
 
 

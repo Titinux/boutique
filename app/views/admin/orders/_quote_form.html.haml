@@ -26,7 +26,7 @@
     %tbody
       = f.simple_fields_for :lines, :lines do |fl|
         %tr.order_line
-          %td= fl.association :asset, label: false, :collection => Asset.order(:name), :include_blank => false, input_html: { disabled: true }
+          %td= fl.association :asset, label: false, collection: Asset.order(:name), include_blank: false, input_html: { disabled: true }
           %td= fl.input :quantity, label: false, input_html: { disabled: true }
           %td= fl.input :unitaryPrice, label: false, input_html: { autocomplete: 'off' }
 

@@ -16,47 +16,47 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 {
-  :public => [
+  public: [
     {
-      :name => I18n.t('navigate.welcomepage'),
-      :link => root_path
+      name: I18n.t('navigate.welcomepage'),
+      link: root_path
     },
     {
-      :name => Asset.model_name.human.pluralize(I18n.locale),
-      :link => categories_path
+      name: Asset.model_name.human.pluralize(I18n.locale),
+      link: categories_path
     },
     {
-      :name => Cart.model_name.human,
-      :link => cart_path(:id => 'current')
+      name: Cart.model_name.human,
+      link: cart_path(id: 'current')
     },
     {
-      :name => I18n.t('statistics.name'),
-      :link => statistics_path
+      name: I18n.t('statistics.name'),
+      link: statistics_path
     },
     {
-      :name => I18n.t('user.profile'),
-      :link => user_path
+      name: I18n.t('user.profile'),
+      link: user_path
     },
     {
-      :name => I18n.t('admin.about'),
-      :link => about_path
+      name: I18n.t('admin.about'),
+      link: about_path
     }
   ],
-  :statistics => {
-    :public => [
+  statistics: {
+    public: [
       {
-        :name => I18n.t('statistics.stockStatistics'),
-        :link => statistic_path(:id => 'stock')
+        name: I18n.t('statistics.stockStatistics'),
+        link: statistic_path(id: 'stock')
       }
     ],
-    :admin => [
+    admin: [
       {
-        :name => I18n.t('statistics.stockStatistics'),
-        :link => admin_statistic_path(:id => 'stock')
+        name: I18n.t('statistics.stockStatistics'),
+        link: admin_statistic_path(id: 'stock')
       },
       {
-        :name => I18n.t('statistics.pigMoneyBoxStatistics'),
-        :link => admin_statistic_path(:id => 'pigmoneybox')
+        name: I18n.t('statistics.pigMoneyBoxStatistics'),
+        link: admin_statistic_path(id: 'pigmoneybox')
       }
     ]
   }

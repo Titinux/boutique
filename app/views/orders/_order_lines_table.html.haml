@@ -25,7 +25,7 @@
 
   %tbody>
     - order.lines.joins(:asset).order(Asset.arel_table[:name]).each do |order_line|
-      %tr{ :class => "#{cycle('even', 'odd')}" }
+      %tr{ class: "#{cycle('even', 'odd')}" }
         %td= order_line.asset.name
         %td.number= order_line.quantity
         %td.currency= number_to_currency(order_line.unitaryPrice, unit: 'K', precision: 2)

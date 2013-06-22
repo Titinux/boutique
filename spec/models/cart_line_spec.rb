@@ -24,14 +24,14 @@ describe CartLine do
 
   describe '#asset' do
     it 'is required' do
-      build(:cart_line, :asset => nil).should_not be_valid
+      build(:cart_line, asset: nil).should_not be_valid
     end
   end
 
   describe '#quantity' do
     it 'should be greater than 0' do
-      build(:cart_line, :quantity => 0).should_not be_valid
-      build(:cart_line, :quantity => -1).should_not be_valid
+      build(:cart_line, quantity: 0).should_not be_valid
+      build(:cart_line, quantity: -1).should_not be_valid
     end
   end
 end

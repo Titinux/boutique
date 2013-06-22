@@ -47,7 +47,7 @@ class OrdersController < ApplicationController
       @cart.destroy if params[:order][:cart][:remove_after_ordered] == '1'
     end
 
-    respond_with(@order, :location => user_orders_path)
+    respond_with(@order, location: user_orders_path)
   end
 
   def event

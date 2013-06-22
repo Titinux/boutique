@@ -16,7 +16,7 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 = sidebar do
-  = link_to_add new_admin_guild_path, :text => t('guild.new'), :format => :long
+  = link_to_add new_admin_guild_path, text: t('guild.new'), format: :long
 
 = content_title t('guild.listing')
 
@@ -30,11 +30,11 @@
     #collapseOne.accordion-body.collapse
       .accordion-inner
         = simple_form_for(@q, url: admin_guilds_path, method: :get) do |f|
-          = f.input :name_cont, :label => Guild.human_attribute_name(:name), :required => false
+          = f.input :name_cont, label: Guild.human_attribute_name(:name), required: false
 
           .form-actions
             = f.button :submit, t('helpers.submit.search'), class: 'btn btn-primary'
 
 = paginate @guilds
-= render :partial => 'table', :locals => { :guilds => @guilds }
+= render partial: 'table', locals: { guilds: @guilds }
 = paginate @guilds

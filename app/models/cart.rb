@@ -17,23 +17,23 @@
 
 class Cart < ActiveRecord::Base
   belongs_to :user
-  has_many :lines, :class_name => 'CartLine', :dependent => :destroy
+  has_many :lines, class_name: 'CartLine', dependent: :destroy
 
   # Validations
-  validates :user_id, :presence => true
+  validates :user_id, presence: true
 
-  validates :name, :presence => true,
-            :length => {:minimum => 2, :maximum => 30},
-            :uniqueness => { :scope => [:user_id] }
+  validates :name, presence: true,
+            length: {minimum: 2, maximum: 30},
+            uniqueness: { scope: [:user_id] }
 
   # Nested attributes
-  accepts_nested_attributes_for :lines, :allow_destroy => true
+  accepts_nested_attributes_for :lines, allow_destroy: true
 
   def to_order
     order = Order.new(user: self.user)
 
     lines.each do |line|
-      order.lines.build({:asset_id => line.asset_id, :quantity => line.quantity})
+      order.lines.build({asset_id: line.asset_id, quantity: line.quantity})
     end
 
     order

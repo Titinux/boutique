@@ -45,7 +45,7 @@ describe Administrator do
 
     it 'should be well formed' do
       %w(foo foo.bar.net foo@ foo@net @net foo,foo@bar.net).each do |value|
-        build(:administrator, :email => value).should_not be_valid
+        build(:administrator, email: value).should_not be_valid
       end
     end
   end
@@ -54,8 +54,8 @@ describe Administrator do
     it { should validate_presence_of :password }
 
     it 'length is between 6 and 128' do
-      build(:administrator, :password => 'f'*5).should_not be_valid
-      build(:administrator, :password => 'f'*129).should_not be_valid
+      build(:administrator, password: 'f'*5).should_not be_valid
+      build(:administrator, password: 'f'*129).should_not be_valid
     end
 
     it 'could be nil in update' do
@@ -68,6 +68,6 @@ describe Administrator do
   end
 
   it 'is not valid if password_confirmation does not match the password' do
-    build(:administrator, :password_confirmation => 'foo').should_not be_valid
+    build(:administrator, password_confirmation: 'foo').should_not be_valid
   end
 end

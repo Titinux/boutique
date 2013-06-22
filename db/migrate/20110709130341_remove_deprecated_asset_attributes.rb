@@ -5,7 +5,7 @@ class RemoveDeprecatedAssetAttributes < ActiveRecord::Migration
   end
 
   def down
-    add_column :assets, :unitaryPrice, :decimal, :precision => 10, :scale => 2, :null => false, :default => 0
-    add_column :assets, :floatPrice,   :boolean, :null => false, :default => false
+    add_column :assets, :unitaryPrice, :decimal, precision: 10, scale: 2, null: false, default: 0
+    add_column :assets, :floatPrice,   :boolean, null: false, default: false
   end
 end

@@ -17,8 +17,8 @@
 
 FactoryGirl.define do
   factory :deposit do
-    association :user, :factory => :user
-    association :asset, :factory => :asset
+    association :user, factory: :user
+    association :asset, factory: :asset
     quantity_modifier 500
     validated false
   end

@@ -94,7 +94,7 @@ describe OrderCustomerMailer do
       end
 
       it 'contain a link to the order in the user profile' do
-        email.body.should match(/#{user_order_url(order, :locale => I18n.locale)}/)
+        email.body.should match(/#{user_order_url(order, locale: I18n.locale)}/)
       end
     end
   end

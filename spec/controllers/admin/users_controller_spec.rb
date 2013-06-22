@@ -31,7 +31,7 @@ describe Admin::UsersController do
 
   describe "GET show" do
     it "assigns the requested user as @user" do
-      get :show, :id => user.to_param
+      get :show, id: user.to_param
       assigns(:user).should eq(user)
     end
   end
@@ -45,7 +45,7 @@ describe Admin::UsersController do
 
   describe "GET edit" do
     it "assigns the requested user as @user" do
-      get :edit, :id => user.to_param
+      get :edit, id: user.to_param
       assigns(:user).should eq(user)
     end
   end
@@ -54,18 +54,18 @@ describe Admin::UsersController do
     describe "with valid params" do
       it "creates a new User" do
         expect {
-          post :create, :user => attributes_for(:user)
+          post :create, user: attributes_for(:user)
         }.to change(User, :count).by(1)
       end
 
       it "assigns a newly created user as @user" do
-        post :create, :user => attributes_for(:user)
+        post :create, user: attributes_for(:user)
         assigns(:user).should be_a(User)
         assigns(:user).should be_persisted
       end
 
       it "redirects to the users list" do
-        post :create, :user => attributes_for(:user)
+        post :create, user: attributes_for(:user)
         response.should redirect_to([:admin, User])
       end
     end
@@ -74,14 +74,14 @@ describe Admin::UsersController do
       it "assigns a newly created but unsaved user as @user" do
         subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
-        post :create, :user => { "name" => "invalid value" }
+        post :create, user: { "name" => "invalid value" }
         assigns(:user).should be_a_new(User)
       end
 
       it "re-renders the 'new' template" do
         subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
-        post :create, :user => { "name" => "invalid value" }
+        post :create, user: { "name" => "invalid value" }
         response.should render_template("new")
       end
     end
@@ -91,16 +91,16 @@ describe Admin::UsersController do
     describe "with valid params" do
       it "updates the requested user" do
         User.any_instance.should_receive(:update_attributes).with({'name' => 'params'})
-        put :update, :id => user.to_param, :user => {'name' => 'params'}
+        put :update, id: user.to_param, user: {'name' => 'params'}
       end
 
       it "assigns the requested user as @user" do
-        put :update, :id => user.to_param, :user => attributes_for(:user)
+        put :update, id: user.to_param, user: attributes_for(:user)
         assigns(:user).should eq(user)
       end
 
       it "redirects to the users list" do
-        put :update, :id => user.to_param, :user => attributes_for(:user)
+        put :update, id: user.to_param, user: attributes_for(:user)
         response.should redirect_to([:admin, User])
       end
     end
@@ -109,14 +109,14 @@ describe Admin::UsersController do
       it "assigns the user as @user" do
         subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
-        put :update, :id => user.to_param, :user => { "name" => "invalid value" }
+        put :update, id: user.to_param, user: { "name" => "invalid value" }
         assigns(:user).should eq(user)
       end
 
       it "re-renders the 'edit' template" do
         subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
-        put :update, :id => user.to_param, :user => { "name" => "invalid value" }
+        put :update, id: user.to_param, user: { "name" => "invalid value" }
         response.should render_template("edit")
       end
     end
@@ -127,12 +127,12 @@ describe Admin::UsersController do
       user
 
       expect {
-        delete :destroy, :id => user.to_param
+        delete :destroy, id: user.to_param
       }.to change(User, :count).by(-1)
     end
 
     it "redirects to the users list" do
-      delete :destroy, :id => user.to_param
+      delete :destroy, id: user.to_param
       response.should redirect_to(admin_users_url)
     end
   end

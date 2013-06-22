@@ -16,7 +16,7 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 - categories.order(:name).each do |category|
-  = frame :class => 'mini', :title => category.name, :body_class => 'category' do
+  = frame class: 'mini', title: category.name, body_class: 'category' do
     = link_to category_path(category) do
       = image_tag category.pictureUri unless category.pictureUri.blank?
       %br

@@ -20,18 +20,18 @@ class Admin::StatisticsController < Admin::AdminController
   def index
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @statlist }
+      format.xml  { render xml: @statlist }
     end
   end
 
   def show
-    redirect_to :action => 'index' and return unless Statistics.respond_to?("#{params[:id].downcase}Stats")
+    redirect_to action: 'index' and return unless Statistics.respond_to?("#{params[:id].downcase}Stats")
 
     @stats = Statistics.send("#{params[:id].downcase}Stats")
 
     respond_to do |format|
-      format.html { render :template => "admin/statistics/#{params[:id]}" }
-      format.xml  { render :xml => @stats }
+      format.html { render template: "admin/statistics/#{params[:id]}" }
+      format.xml  { render xml: @stats }
     end
   end
 end

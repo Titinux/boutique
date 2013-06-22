@@ -25,7 +25,7 @@ module LayoutHelper
         when :alert  then 'alert-error'
       end
 
-      out += content_tag :div, :class => "alert #{name} #{css_class}" do
+      out += content_tag :div, class: "alert #{name} #{css_class}" do
         flash_message  = content_tag :button, '&times;'.html_safe, class: 'close', data: { dismiss: 'alert'}
         flash_message += image_tag "icones/#{name}.png"
         flash_message += content_tag :strong, t("flash.names.#{name}")

@@ -21,4 +21,4 @@ Votre compte à été bloqué à cause d'un nombre trop important d'échec d'aut
 
 Afin de débloquer votre compte veuillez copier le lien ci-dessous et le coller dans votre navigateur internet.
 
-= unlock_url(@resource, :unlock_token => @resource.unlock_token, :locale => 'fr').html_safe
+= unlock_url(@resource, unlock_token: @resource.unlock_token, locale: 'fr').html_safe

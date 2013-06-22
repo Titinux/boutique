@@ -17,7 +17,7 @@
 
 - assets.order(:name).each do |asset|
   %div.asset
-    = link_to new_cart_line_path(:asset_id => asset.id) do
+    = link_to new_cart_line_path(asset_id: asset.id) do
       = image_tag asset.pictureUri unless asset.pictureUri.blank?
       %br
       = asset.name

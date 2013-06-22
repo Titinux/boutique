@@ -37,7 +37,7 @@ module OrderTools
 
       order.lines.each do |line|
         assetQuantity = line.quantity
-        deposits = Deposit.find(:all, :conditions => { :asset_id => line.asset.id, :validated => true} , :order => 'quantity DESC')
+        deposits = Deposit.find(:all, conditions: { asset_id: line.asset.id, validated: true} , order: 'quantity DESC')
 
         deposits.size.downto(1) do |i|
           deposit = deposits[i-1]

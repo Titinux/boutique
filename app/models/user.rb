@@ -20,10 +20,10 @@ require Rails.root.join('lib', 'devise', 'encryptors', 'user')
 class User < ActiveRecord::Base
   devise :database_authenticatable, :confirmable, :validatable,
          :timeoutable, :recoverable, :trackable, :lockable, :encryptable,
-         :reconfirmable => true,
-         :encryptor => :user_encryptor,
-         :unlock_strategy => :email,
-         :timeout_in => 15.days
+         reconfirmable: true,
+         encryptor: :user_encryptor,
+         unlock_strategy: :email,
+         timeout_in: 15.days
 
   # Associations
   belongs_to :guild
@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
   validates_associated :guild
   validates_associated :deposits
 
-  validates_length_of :dofusNicknames, :maximum => 255, :allow_blank => true
+  validates_length_of :dofusNicknames, maximum: 255, allow_blank: true
 
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
@@ -78,6 +78,6 @@ class User < ActiveRecord::Base
   end
 
   def cart
-    self.carts.order(:updated_at).last || self.carts.create(:name => I18n.t('cart.default_name'))
+    self.carts.order(:updated_at).last || self.carts.create(name: I18n.t('cart.default_name'))
   end
 end

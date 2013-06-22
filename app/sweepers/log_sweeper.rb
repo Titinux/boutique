@@ -19,15 +19,15 @@ class LogSweeper < ActionController::Caching::Sweeper
   observe Asset, Category, Deposit, Guild, Order, OrderLine, User #,Delayed::Job
 
   def after_create(record)
-    LogTools::log_me(record, { :user => current_user_name, :action => 'create' })
+    LogTools::log_me(record, { user: current_user_name, action: 'create' })
   end
 
   def after_update(record)
-    LogTools::log_me(record, { :user => current_user_name, :action => 'update', :data => record.attributes.merge(record.changes) })
+    LogTools::log_me(record, { user: current_user_name, action: 'update', data: record.attributes.merge(record.changes) })
   end
 
   def before_destroy(record)
-    LogTools::log_me(record, { :user => current_user_name, :action => 'destroy' })
+    LogTools::log_me(record, { user: current_user_name, action: 'destroy' })
   end
 
   private

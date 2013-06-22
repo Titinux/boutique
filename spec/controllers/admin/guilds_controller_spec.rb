@@ -31,7 +31,7 @@ describe Admin::GuildsController do
 
   describe "GET show" do
     it "assigns the requested guild as @guild" do
-      get :show, :id => guild.to_param
+      get :show, id: guild.to_param
       assigns(:guild).should eq(guild)
     end
   end
@@ -45,7 +45,7 @@ describe Admin::GuildsController do
 
   describe "GET edit" do
     it "assigns the requested guild as @guild" do
-      get :edit, :id => guild.to_param
+      get :edit, id: guild.to_param
       assigns(:guild).should eq(guild)
     end
   end
@@ -54,18 +54,18 @@ describe Admin::GuildsController do
     describe "with valid params" do
       it "creates a new Guild" do
         expect {
-          post :create, :guild => attributes_for(:guild)
+          post :create, guild: attributes_for(:guild)
         }.to change(Guild, :count).by(1)
       end
 
       it "assigns a newly created guild as @guild" do
-        post :create, :guild => attributes_for(:guild)
+        post :create, guild: attributes_for(:guild)
         assigns(:guild).should be_a(Guild)
         assigns(:guild).should be_persisted
       end
 
       it "redirects to the guilds list" do
-        post :create, :guild => attributes_for(:guild)
+        post :create, guild: attributes_for(:guild)
         response.should redirect_to([:admin, Guild])
       end
     end
@@ -74,14 +74,14 @@ describe Admin::GuildsController do
       it "assigns a newly created but unsaved guild as @guild" do
         Guild.any_instance.stub(:valid?).and_return(false)
 
-        post :create, :guild => { "name" => "invalid value" }
+        post :create, guild: { "name" => "invalid value" }
         assigns(:guild).should be_a_new(Guild)
       end
 
       it "re-renders the 'new' template" do
         subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
-        post :create, :guild => { "name" => "invalid value" }
+        post :create, guild: { "name" => "invalid value" }
         response.should render_template("new")
       end
     end
@@ -91,16 +91,16 @@ describe Admin::GuildsController do
     describe "with valid params" do
       it "updates the requested guild" do
         Guild.any_instance.should_receive(:update_attributes).with({'name' => 'params'})
-        put :update, :id => guild.to_param, :guild => {'name' => 'params'}
+        put :update, id: guild.to_param, guild: {'name' => 'params'}
       end
 
       it "assigns the requested guild as @guild" do
-        put :update, :id => guild.to_param, :guild => attributes_for(:guild)
+        put :update, id: guild.to_param, guild: attributes_for(:guild)
         assigns(:guild).should eq(guild)
       end
 
       it "redirects to the guilds list" do
-        put :update, :id => guild.to_param, :guild => attributes_for(:guild)
+        put :update, id: guild.to_param, guild: attributes_for(:guild)
         response.should redirect_to([:admin, Guild])
       end
     end
@@ -110,14 +110,14 @@ describe Admin::GuildsController do
         guild
         Guild.any_instance.stub(:valid?).and_return(false)
 
-        put :update, :id => guild.to_param, :guild => { "name" => "invalid value" }
+        put :update, id: guild.to_param, guild: { "name" => "invalid value" }
         assigns(:guild).should eq(guild)
       end
 
       it "re-renders the 'edit' template" do
         subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
-        put :update, :id => guild.to_param, :guild => { "name" => "invalid value" }
+        put :update, id: guild.to_param, guild: { "name" => "invalid value" }
         response.should render_template("edit")
       end
     end
@@ -128,12 +128,12 @@ describe Admin::GuildsController do
       guild
 
       expect {
-        delete :destroy, :id => guild.to_param
+        delete :destroy, id: guild.to_param
       }.to change(Guild, :count).by(-1)
     end
 
     it "redirects to the guilds list" do
-      delete :destroy, :id => guild.to_param
+      delete :destroy, id: guild.to_param
       response.should redirect_to(admin_guilds_url)
     end
   end

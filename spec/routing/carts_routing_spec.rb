@@ -21,31 +21,31 @@ describe CartsController do
   describe "routing" do
 
     it "routes to #index" do
-      { :get => "/fr/carts" }.should_not be_routable
+      { get: "/fr/carts" }.should_not be_routable
     end
 
     #it "routes to #new" do
-    #  { :get => "/fr/carts/new" }.should_not be_routable
+    #  { get: "/fr/carts/new" }.should_not be_routable
     #end
 
     it "routes to #show" do
-      { :get => "/fr/carts/42" }.should route_to("carts#show", :locale => "fr", :id => "42")
+      { get: "/fr/carts/42" }.should route_to("carts#show", locale: "fr", id: "42")
     end
 
     it "routes to #edit" do
-      { :get => "/fr/carts/42/edit" }.should route_to("carts#edit", :locale => "fr", :id => "42")
+      { get: "/fr/carts/42/edit" }.should route_to("carts#edit", locale: "fr", id: "42")
     end
 
     it "routes to #create" do
-      { :post => "/fr/carts" }.should_not be_routable
+      { post: "/fr/carts" }.should_not be_routable
     end
 
     it "routes to #update" do
-      { :put => "/fr/carts/42" }.should route_to("carts#update", :locale => "fr", :id => "42")
+      { put: "/fr/carts/42" }.should route_to("carts#update", locale: "fr", id: "42")
     end
 
     it "routes to #destroy" do
-      { :delete => "/fr/carts/42" }.should route_to("carts#destroy", :locale => "fr", :id => "42")
+      { delete: "/fr/carts/42" }.should route_to("carts#destroy", locale: "fr", id: "42")
     end
   end
 end

@@ -17,7 +17,7 @@
 
 = content_title t('devise.links.sign_in')
 
-= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
   = f.input :name, hint: t('administrator.name_hint')
   = f.input :password
 

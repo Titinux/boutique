@@ -32,7 +32,7 @@
         %td.number= number_with_delimiter(deposit.quantity)
         %td.actions
           - unless deposit.validated
-            = link_to t('deposit.validate'), validate_admin_deposit_path(deposit), :method => :put
+            = link_to t('deposit.validate'), validate_admin_deposit_path(deposit), method: :put
             = link_to t('deposit.refuse'), admin_deposit_path(deposit),
-                                           :confirm => t('deposit.confirm_refuse', :quantity => deposit.quantity, :asset => deposit.asset.name, :user => deposit.user.name ),
-                                           :method => :delete
+                                           confirm: t('deposit.confirm_refuse', quantity: deposit.quantity, asset: deposit.asset.name, user: deposit.user.name ),
+                                           method: :delete

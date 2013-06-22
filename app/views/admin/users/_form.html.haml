@@ -17,16 +17,16 @@
 
 = simple_form_for([:admin, @user]) do |f|
   = f.input :name
-  = f.input :password, :required => false
+  = f.input :password, required: false
   = f.input :password_confirmation
   = f.input :dofusNicknames
   = f.input :email
-  = f.association :guild, :collection => Guild.order(:name)
+  = f.association :guild, collection: Guild.order(:name)
   = f.input :pigMoneyBox
   = f.input :gatherer
   - unless @user.confirmed?
-    = f.input :confirmed?, :as => :boolean
-  = f.input :blocked, :as => :boolean
+    = f.input :confirmed?, as: :boolean
+  = f.input :blocked, as: :boolean
 
   .form-actions
     = f.button :submit

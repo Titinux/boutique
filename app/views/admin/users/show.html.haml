@@ -15,12 +15,12 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-= content_title t('user.showing', :name => @user.name)
+= content_title t('user.showing', name: @user.name)
 
 = show_for @user do |u|
   = u.attribute :name
   = u.attribute :dofusNicknames
-  = u.association :guild, :using => :name
+  = u.association :guild, using: :name
   = u.attribute :email
   = u.attribute :pigMoneyBox do
     = number_to_currency(@user.pigMoneyBox, unit: 'K', precision: 0)
@@ -33,7 +33,7 @@
     = @user.confirmed? ? t('show_for.yes') + " (#{l(@user.confirmed_at)})" : t('show_for.no')
 
 = paginate @deposits
-= render :partial => 'admin/users/deposit_table', :locals => { :deposits => @deposits }
+= render partial: 'admin/users/deposit_table', locals: { deposits: @deposits }
 = paginate @deposits
 
 %p

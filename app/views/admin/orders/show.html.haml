@@ -15,10 +15,10 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-= content_title t('order.commandId', :id => @order.id)
+= content_title t('order.commandId', id: @order.id)
 
 = show_for @order do |o|
-  = o.association :user, :using => :name
+  = o.association :user, using: :name
   = o.attribute :state do
     %span.label{ class: @order.state }= Order.human_state_name(@order.state)
 
@@ -29,8 +29,8 @@
   = o.attribute :created_at
   = o.attribute :comment
 
-= frame :title => t('order.details') do
-  = render :partial => 'admin/order_lines/table', :locals => { :order => @order }
+= frame title: t('order.details') do
+  = render partial: 'admin/order_lines/table', locals: { order: @order }
 
 %ul.nav.nav-list
   %li.nav-header= t('action').pluralize

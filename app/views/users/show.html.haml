@@ -15,18 +15,18 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-= frame :title => t('user.myPersonnalInformations') do
+= frame title: t('user.myPersonnalInformations') do
   = show_for @user do |u|
     = u.attribute :name
     = u.attribute :dofusNicknames
     = u.attribute :email
-    = u.association :guild, :using => :name
+    = u.association :guild, using: :name
     = u.attribute :gatherer do
       = boolean_to_image(@user.gatherer)
 
   = link_to_edit edit_user_path
 
-= frame :title => t('user.myPigMoneybox') do
+= frame title: t('user.myPigMoneybox') do
   = show_for @user do |u|
     = u.attribute :pigMoneyBox do
       = number_to_currency(@user.pigMoneyBox, unit: 'K', precision: 0)

@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, :except => [:new, :create]
+  before_filter :authenticate_user!, except: [:new, :create]
 
   def show
     respond_with(@user = current_user)
@@ -35,14 +35,14 @@ class UsersController < ApplicationController
     @user.save
 
     flash[:notice] = t('devise.confirmations.send_instructions')
-    respond_with(@user, :location => root_path)
+    respond_with(@user, location: root_path)
   end
 
   def update
     @user = current_user
     @user.update_attributes(user_params)
 
-    respond_with(@user, :location => user_path)
+    respond_with(@user, location: user_path)
   end
 
   private

@@ -25,11 +25,11 @@ module LogTools
     options[:objectId]   ||= record.id
     options[:data]       ||= record.attributes
 
-    Log.create(:level => options[:level],
-               :user => options[:user],
-               :action => options[:action],
-               :objectType => options[:objectType],
-               :objectId => options[:objectId],
-               :data => options[:data])
+    Log.create(level: options[:level],
+               user: options[:user],
+               action: options[:action],
+               objectType: options[:objectType],
+               objectId: options[:objectId],
+               data: options[:data])
   end
 end

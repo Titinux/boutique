@@ -31,7 +31,7 @@ describe Admin::AdministratorsController do
 
   describe "GET show" do
     it "assigns the requested administrator as @administrator" do
-      get :show, {:id => administrator.to_param}
+      get :show, {id: administrator.to_param}
       assigns(:administrator).should eq(administrator)
     end
   end
@@ -45,7 +45,7 @@ describe Admin::AdministratorsController do
 
   describe "GET edit" do
     it "assigns the requested administrator as @administrator" do
-      get :edit, {:id => administrator.to_param}
+      get :edit, {id: administrator.to_param}
       assigns(:administrator).should eq(administrator)
     end
   end
@@ -54,18 +54,18 @@ describe Admin::AdministratorsController do
     describe "with valid params" do
       it "creates a new Administrator" do
         expect {
-          post :create, {:administrator => attributes_for(:administrator)}
+          post :create, {administrator: attributes_for(:administrator)}
         }.to change(Administrator, :count).by(1)
       end
 
       it "assigns a newly created administrator as @administrator" do
-        post :create, {:administrator => attributes_for(:administrator)}
+        post :create, {administrator: attributes_for(:administrator)}
         assigns(:administrator).should be_a(Administrator)
         assigns(:administrator).should be_persisted
       end
 
       it "redirects to the administrators list" do
-        post :create, {:administrator => attributes_for(:administrator)}
+        post :create, {administrator: attributes_for(:administrator)}
         response.should redirect_to([:admin, Administrator])
       end
     end
@@ -75,7 +75,7 @@ describe Admin::AdministratorsController do
         # Trigger the behavior that occurs when invalid params are submitted
         subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
-        post :create, {:administrator => { "name" => "invalid value" }}
+        post :create, {administrator: { "name" => "invalid value" }}
         assigns(:administrator).should be_a_new(Administrator)
       end
 
@@ -83,7 +83,7 @@ describe Admin::AdministratorsController do
         # Trigger the behavior that occurs when invalid params are submitted
         subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
-        post :create, {:administrator => { "name" => "invalid value" }}
+        post :create, {administrator: { "name" => "invalid value" }}
         response.should render_template("new")
       end
     end
@@ -97,16 +97,16 @@ describe Admin::AdministratorsController do
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
         Administrator.any_instance.should_receive(:update_attributes).with({ "name" => "MyString" })
-        put :update, {:id => administrator.to_param, :administrator => { "name" => "MyString" }}
+        put :update, {id: administrator.to_param, administrator: { "name" => "MyString" }}
       end
 
       it "assigns the requested administrator as @administrator" do
-        put :update, {:id => administrator.to_param, :administrator => attributes_for(:administrator)}
+        put :update, {id: administrator.to_param, administrator: attributes_for(:administrator)}
         assigns(:administrator).should eq(administrator)
       end
 
       it "redirects to the administrators list" do
-        put :update, {:id => administrator.to_param, :administrator => attributes_for(:administrator)}
+        put :update, {id: administrator.to_param, administrator: attributes_for(:administrator)}
         response.should redirect_to([:admin, Administrator])
       end
     end
@@ -116,7 +116,7 @@ describe Admin::AdministratorsController do
         # Trigger the behavior that occurs when invalid params are submitted
         subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
-        put :update, {:id => administrator.to_param, :administrator => { "name" => "invalid value" }}
+        put :update, {id: administrator.to_param, administrator: { "name" => "invalid value" }}
         assigns(:administrator).should eq(administrator)
       end
 
@@ -124,7 +124,7 @@ describe Admin::AdministratorsController do
         # Trigger the behavior that occurs when invalid params are submitted
         subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
-        put :update, {:id => administrator.to_param, :administrator => { "name" => "invalid value" }}
+        put :update, {id: administrator.to_param, administrator: { "name" => "invalid value" }}
         response.should render_template("edit")
       end
     end
@@ -135,12 +135,12 @@ describe Admin::AdministratorsController do
       administrator
 
       expect {
-        delete :destroy, {:id => administrator.to_param}
+        delete :destroy, {id: administrator.to_param}
       }.to change(Administrator, :count).by(-1)
     end
 
     it "redirects to the administrators list" do
-    delete :destroy, {:id => administrator.to_param}
+    delete :destroy, {id: administrator.to_param}
       response.should redirect_to(admin_administrators_url)
     end
   end

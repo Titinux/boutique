@@ -32,7 +32,7 @@ describe Admin::AssetsController do
 
   describe "GET show" do
     it "assigns the requested asset as @asset" do
-      get :show, :id => asset.to_param
+      get :show, id: asset.to_param
       assigns(:asset).should eq(asset)
     end
   end
@@ -46,7 +46,7 @@ describe Admin::AssetsController do
 
   describe "GET edit" do
     it "assigns the requested asset as @asset" do
-      get :edit, :id => asset.to_param
+      get :edit, id: asset.to_param
       assigns(:asset).should eq(asset)
     end
   end
@@ -57,18 +57,18 @@ describe Admin::AssetsController do
         asset
 
         expect {
-          post :create, :asset => attributes_for(:asset, category_id: category.id)
+          post :create, asset: attributes_for(:asset, category_id: category.id)
         }.to change(Asset, :count).by(1)
       end
 
       it "assigns a newly created asset as @asset" do
-        post :create, :asset => attributes_for(:asset, category_id: category.id)
+        post :create, asset: attributes_for(:asset, category_id: category.id)
         assigns(:asset).should be_a(Asset)
         assigns(:asset).should be_persisted
       end
 
       it "redirects to the assets list" do
-        post :create, :asset => attributes_for(:asset, category_id: category.id)
+        post :create, asset: attributes_for(:asset, category_id: category.id)
 
         response.should redirect_to([:admin, Asset])
       end
@@ -77,7 +77,7 @@ describe Admin::AssetsController do
     describe "with invalid params" do
       it "assigns a newly created but unsaved asset as @asset" do
         subject.responder.any_instance.stub(:has_errors?).and_return(true)
-        post :create, :asset => { "name" => "invalid value" }
+        post :create, asset: { "name" => "invalid value" }
 
         assigns(:asset).should be_a_new(Asset)
       end
@@ -85,7 +85,7 @@ describe Admin::AssetsController do
       it "re-renders the 'new' template" do
         subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
-        post :create, :asset => { "name" => "invalid value" }
+        post :create, asset: { "name" => "invalid value" }
         response.should render_template("new")
       end
     end
@@ -95,16 +95,16 @@ describe Admin::AssetsController do
     describe "with valid params" do
       it "updates the requested asset" do
         Asset.any_instance.should_receive(:update_attributes).with({'name' => 'params'})
-        put :update, :id => asset.to_param, :asset => {'name' => 'params'}
+        put :update, id: asset.to_param, asset: {'name' => 'params'}
       end
 
       it "assigns the requested asset as @asset" do
-        put :update, :id => asset.to_param, :asset => attributes_for(:asset)
+        put :update, id: asset.to_param, asset: attributes_for(:asset)
         assigns(:asset).should eq(asset)
       end
 
       it "redirects to the asset" do
-        put :update, :id => asset.to_param, :asset => attributes_for(:asset)
+        put :update, id: asset.to_param, asset: attributes_for(:asset)
         response.should redirect_to([:admin, Asset])
       end
     end
@@ -113,14 +113,14 @@ describe Admin::AssetsController do
       it "assigns the asset as @asset" do
         Asset.any_instance.stub(:save).and_return(false)
 
-        put :update, :id => asset.to_param, :asset => { "name" => "invalid value" }
+        put :update, id: asset.to_param, asset: { "name" => "invalid value" }
         assigns(:asset).should eq(asset)
       end
 
       it "re-renders the 'edit' template" do
         subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
-        put :update, :id => asset.to_param, :asset => { "name" => "invalid value" }
+        put :update, id: asset.to_param, asset: { "name" => "invalid value" }
         response.should render_template("edit")
       end
     end
@@ -131,12 +131,12 @@ describe Admin::AssetsController do
       asset
 
       expect {
-        delete :destroy, :id => asset.to_param
+        delete :destroy, id: asset.to_param
       }.to change(Asset, :count).by(-1)
     end
 
     it "redirects to the assets list" do
-      delete :destroy, :id => asset.to_param
+      delete :destroy, id: asset.to_param
       response.should redirect_to(admin_assets_url)
     end
   end

@@ -27,7 +27,7 @@
       %tr
         %td.picture
           - unless guild.pictureUri.blank?
-            = image_tag(guild.pictureUri, :alt => t('pictureOf', :subject => guild.name), :width => 75, :height => 75)
+            = image_tag(guild.pictureUri, alt: t('pictureOf', subject: guild.name), width: 75, height: 75)
         %td= guild.name
         %td.actions
           = link_to_show admin_guild_path(guild)

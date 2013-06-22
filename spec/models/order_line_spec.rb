@@ -21,7 +21,7 @@ describe OrderLine do
   let(:order) { build(:order) }
 
   it 'is valid with valid attributes' do
-    build(:order_line, :order_id => order.id).should be_valid
+    build(:order_line, order_id: order.id).should be_valid
   end
 
   describe 'relations' do

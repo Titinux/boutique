@@ -5,7 +5,7 @@ class MigrationToDevise < ActiveRecord::Migration
 
       t.string   'reset_password_token'
 
-      t.integer  'sign_in_count', :null => false, :default => 0
+      t.integer  'sign_in_count', null: false, default: 0
 
       t.datetime 'current_sign_in_at'
       t.string   'current_sign_in_ip'
@@ -19,36 +19,36 @@ class MigrationToDevise < ActiveRecord::Migration
       t.datetime 'confirmed_at'
       t.datetime 'confirmation_sent_at'
 
-      t.integer  'failed_attempts', :null => false, :default => 0
+      t.integer  'failed_attempts', null: false, default: 0
       t.datetime 'locked_at'
     end
 
 
     change_column_default :users, 'encrypted_password', ''
-    change_column :users, 'encrypted_password', :string, :limit => 128, :null => false
+    change_column :users, 'encrypted_password', :string, limit: 128, null: false
 
     change_column_default :users, 'password_salt', ''
-    change_column :users, 'password_salt', :string, :null => false
+    change_column :users, 'password_salt', :string, null: false
 
     User.update_all(['confirmed_at = ?', Time.now], ['activated = ?', true])
     remove_column :users, 'admin'
 
-    add_index :users, :reset_password_token, :unique => true
-    add_index :users, :confirmation_token,   :unique => true
+    add_index :users, :reset_password_token, unique: true
+    add_index :users, :confirmation_token,   unique: true
   end
 
   def self.down
     remove_index :users, :confirmation_token
     remove_index :users, :reset_password_token
 
-    add_column :users, 'admin',     :boolean, :default => false, :null => false
-    add_column :users, 'activated', :boolean, :default => false, :null => false
+    add_column :users, 'admin',     :boolean, default: false, null: false
+    add_column :users, 'activated', :boolean, default: false, null: false
     User.update_all(['activated = ?', true], 'confirmed_at is not NULL')
 
-    #change_column :users, 'password_salt', :string, :null => false
+    #change_column :users, 'password_salt', :string, null: false
     #change_column_default :users, 'password_salt', ''
 
-    #change_column :users, 'encrypted_password', :string, :limit => 128, :null => false
+    #change_column :users, 'encrypted_password', :string, limit: 128, null: false
     #change_column_default :users, 'encrypted_password', ''
 
     change_table :users do |t|

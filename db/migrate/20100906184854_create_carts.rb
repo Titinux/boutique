@@ -1,9 +1,9 @@
 class CreateCarts < ActiveRecord::Migration
   def self.up
     create_table :carts do |t|
-      t.references :user,    :null => false
+      t.references :user,    null: false
       t.string     :name
-      t.boolean    :current, :null => false, :default => false
+      t.boolean    :current, null: false, default: false
 
       t.timestamps
     end

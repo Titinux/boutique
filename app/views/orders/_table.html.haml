@@ -17,7 +17,7 @@
 
 %table
   %col
-  %col{ :width => '100%' }
+  %col{ width: '100%' }
   %thead
     %tr
       %th= Order.human_attribute_name('id')
@@ -26,7 +26,7 @@
 
   %tbody
     - orders.each do |order|
-      %tr{ :class => "#{cycle('even', 'odd')}" }
+      %tr{ class: "#{cycle('even', 'odd')}" }
         %td= order.id
         %td= Order.human_state_name(order.state)
         %td.actions= link_to_show user_order_path(order)

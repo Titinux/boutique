@@ -24,7 +24,7 @@ FactoryGirl.define do
     password_confirmation {|a| a.password }
   end
 
-  factory :gatherer, :parent => :user do
+  factory :gatherer, parent: :user do
     gatherer true
   end
 

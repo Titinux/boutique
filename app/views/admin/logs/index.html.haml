@@ -27,17 +27,17 @@
     #collapseOne.accordion-body.collapse
       .accordion-inner
         = simple_form_for(@q, url: admin_logs_path) do |f|
-          = f.input :id_eq, :label => Log.human_attribute_name(:id), :required => false
-          = f.input :user_cont, :label => User.model_name.human, :required => false
-          = f.input :action_eq, :label => Log.human_attribute_name(:action), :required => false
-          = f.input :objectType_eq, :label => Log.human_attribute_name(:objectType), :required => false
-          = f.input :objectId_eq, :label => Log.human_attribute_name(:objectId), :required => false
-          = f.input :created_at_gt, :label => t('log.after'), :required => false
-          = f.input :created_at_lt, :label => t('log.before'), :required => false
+          = f.input :id_eq, label: Log.human_attribute_name(:id), required: false
+          = f.input :user_cont, label: User.model_name.human, required: false
+          = f.input :action_eq, label: Log.human_attribute_name(:action), required: false
+          = f.input :objectType_eq, label: Log.human_attribute_name(:objectType), required: false
+          = f.input :objectId_eq, label: Log.human_attribute_name(:objectId), required: false
+          = f.input :created_at_gt, label: t('log.after'), required: false
+          = f.input :created_at_lt, label: t('log.before'), required: false
 
           .form-actions
             = f.button :submit, t('helpers.submit.search'), class: 'btn btn-primary'
 
 = paginate @logs
-= render :partial => 'table', :locals => { :logs => @logs }
+= render partial: 'table', locals: { logs: @logs }
 = paginate @logs

@@ -34,7 +34,7 @@ class DepositsController < ApplicationController
     @deposit.quantity_modifier = deposit_params[:quantity_modifier] if @deposit.persisted?
     @deposit.save
 
-    respond_with(@deposit, :location => user_deposits_path)
+    respond_with(@deposit, location: user_deposits_path)
   end
 
   private

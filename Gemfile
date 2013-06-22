@@ -45,7 +45,7 @@ gem 'compass-rails', github: 'milgner/compass-rails', branch: 'rails4'
 gem 'bootstrap-sass'
 
 # Others
-#gem 'javan-whenever', :lib => false, :source => 'http://gems.github.com'
+#gem 'javan-whenever', lib: false, source: 'http://gems.github.com'
 gem 'rack-contrib'
 gem 'sidekiq'
 

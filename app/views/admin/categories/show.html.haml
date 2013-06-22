@@ -15,14 +15,14 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-= content_title t('category.showing', :name => @category.name)
+= content_title t('category.showing', name: @category.name)
 
 = show_for @category do |c|
   = c.attribute :name
   = c.association :parent
   = c.attribute :pictureUri do
     - unless @category.pictureUri.blank?
-      = image_tag(@category.pictureUri, :alt => t('pictureOf', :subject => @category.name))
+      = image_tag(@category.pictureUri, alt: t('pictureOf', subject: @category.name))
 
 = link_to_back admin_categories_path
 = link_to_edit edit_admin_category_path(@category)

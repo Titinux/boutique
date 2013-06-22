@@ -17,7 +17,7 @@
 
 = simple_form_for([:admin, @category]) do |f|
   = f.input :name
-  = f.association :parent, :collection => Category.order(:name)
+  = f.association :parent, collection: Category.order(:name)
   = f.input :pictureUri
 
   .form-actions

@@ -16,7 +16,7 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 = sidebar do
-  = link_to_add new_admin_administrator_path, :text => t('administrator.new'), :format => :long
+  = link_to_add new_admin_administrator_path, text: t('administrator.new'), format: :long
 
 = content_title t('administrator.listing')
 
@@ -30,12 +30,12 @@
     #collapseOne.accordion-body.collapse
       .accordion-inner
         = simple_form_for(@q, url: admin_administrators_path, method: :get, html: { novalidate: true }) do |f|
-          = f.input :name_cont,  :label => Administrator.human_attribute_name(:name), :required => false
-          = f.input :email_cont, :label => Administrator.human_attribute_name(:email), :required => false
+          = f.input :name_cont,  label: Administrator.human_attribute_name(:name), required: false
+          = f.input :email_cont, label: Administrator.human_attribute_name(:email), required: false
 
           .form-actions
             = f.button :submit, t('helpers.submit.search'), class: 'btn btn-primary'
 
 = paginate @administrators
-= render :partial => 'admin/administrators/table', :locals => { :administrators => @administrators }
+= render partial: 'admin/administrators/table', locals: { administrators: @administrators }
 = paginate @administrators

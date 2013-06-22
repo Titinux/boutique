@@ -17,17 +17,17 @@
 
 = content_title t('devise.links.sign_in')
 
-= frame :title => t('user.have_acount'), :class => 'sign_in' do
+= frame title: t('user.have_acount'), class: 'sign_in' do
 
-  = simple_form_for(resource, :as => resource_name, :url => new_user_session_path) do |f|
-    = f.input :name, :hint => t('user.name_hint'), :input_html => { :maxlength => 50 }
-    = f.input :password, :input_html => { :size => 25 }
+  = simple_form_for(resource, as: resource_name, url: new_user_session_path) do |f|
+    = f.input :name, hint: t('user.name_hint'), input_html: { maxlength: 50 }
+    = f.input :password, input_html: { size: 25 }
 
     .form-actions
       = f.button :submit, t('devise.links.sign_in')
 
   = render 'users/shared/links'
 
-= frame :title => t('user.no_account_yet'), :class => 'sign_up' do
+= frame title: t('user.no_account_yet'), class: 'sign_up' do
   %ul
     %li= link_to t('devise.links.sign_up'), new_user_path

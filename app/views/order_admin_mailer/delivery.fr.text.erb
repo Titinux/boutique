@@ -5,7 +5,7 @@ Détails de la commande.
 -----------------------
 
 Commentaire : <%= @order.comment %>
-<%= render :partial => 'order_details', :locals => { :orderLines => @order.lines,  :full => true } %>
+<%= render partial: 'order_details', locals: { orderLines: @order.lines,  full: true } %>
 
 Total : <%= number_to_currency(@order.total, unit: 'K', precision: 0) %>
 

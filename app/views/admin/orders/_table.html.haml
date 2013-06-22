@@ -29,7 +29,7 @@
     - orders.each do |order|
       %tr
         %td= order.id
-        %td= link_to order.user.name, [:admin, order.user], :title => order.user.dofusNicknames
+        %td= link_to order.user.name, [:admin, order.user], title: order.user.dofusNicknames
         %td.states
           %span.label{class: order.state}= Order.human_state_name(order.state)
         %td.currency= number_to_currency(order.total, unit: 'K', precision: 0)

@@ -26,13 +26,13 @@ class Deposit < ActiveRecord::Base
   # Validations
   validates_presence_of :user_id, :asset_id
 
-  validates :quantity, :numericality => { :only_integer => true,
-                                          :greater_than_or_equal_to => -1000000,
-                                          :less_than_or_equal_to => 1000000 }
+  validates :quantity, numericality: { only_integer: true,
+                                          greater_than_or_equal_to: -1000000,
+                                          less_than_or_equal_to: 1000000 }
 
-  validates :quantity_modifier, :numericality => { :only_integer => true,
-                                                   :greater_than_or_equal_to => -1000000,
-                                                   :less_than_or_equal_to => 1000000 }
+  validates :quantity_modifier, numericality: { only_integer: true,
+                                                   greater_than_or_equal_to: -1000000,
+                                                   less_than_or_equal_to: 1000000 }
 
   validate :not_duplicate
   validate :coherant_quantity
@@ -44,19 +44,19 @@ class Deposit < ActiveRecord::Base
 
   # Scopes
   def self.deposits_of(asset)
-    where(:asset_id => asset.to_param)
+    where(asset_id: asset.to_param)
   end
 
   def self.validated( op = true)
     op = [1, '1', true, 'true'].include?(op)
 
-    where(:validated => op)
+    where(validated: op)
   end
 
   # Approve a deposit
   def approve
     # Find a validated duplicate.
-    stock = Deposit.find_or_new({:user_id => user_id, :asset_id => asset_id, :validated => true})
+    stock = Deposit.find_or_new({user_id: user_id, asset_id: asset_id, validated: true})
 
     stock.quantity_modifier = self.quantity
 
@@ -82,7 +82,7 @@ class Deposit < ActiveRecord::Base
 
   # Validation
   def not_duplicate
-    unless Deposit.where({ :user_id => self.user_id, :asset_id => self.asset_id, :validated => self.validated }).reject {|d| d.id == self.id }.blank?
+    unless Deposit.where({ user_id: self.user_id, asset_id: self.asset_id, validated: self.validated }).reject {|d| d.id == self.id }.blank?
       errors.add :base, I18n.t('deposit.validation.duplicate_is_forbidden')
     end
   end
@@ -90,7 +90,7 @@ class Deposit < ActiveRecord::Base
   # Validation
   def coherant_quantity
     final_quantity = self.quantity.to_i + self.quantity_modifier.to_i
-    potential_user_stock = Deposit.where({ :user_id => self.user_id, :asset_id => self.asset_id }).sum(:quantity)
+    potential_user_stock = Deposit.where({ user_id: self.user_id, asset_id: self.asset_id }).sum(:quantity)
 
     if self.validated?
       errors.add :base, I18n.t('deposit.validation.stock_cant_be_negative') if final_quantity < 0

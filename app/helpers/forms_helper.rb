@@ -21,7 +21,7 @@ module FormsHelper
       capture_haml do
         haml_tag 'div#errors' do
           haml_tag 'p.error_title' do
-            haml_concat I18n.t('form.errors.title', :count => o.errors[:base].count)
+            haml_concat I18n.t('form.errors.title', count: o.errors[:base].count)
           end
 
           haml_tag :ul do

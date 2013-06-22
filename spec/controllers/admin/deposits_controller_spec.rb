@@ -42,25 +42,25 @@ describe Admin::DepositsController do
         user  = deposit.user
         asset = create(:asset)
 
-        @deposit_attributes = attributes_for(:deposit).merge({ :user_id => user.to_param,
-                                                               :asset_id => asset.to_param })
+        @deposit_attributes = attributes_for(:deposit).merge({ user_id: user.to_param,
+                                                               asset_id: asset.to_param })
       end
 
       it "creates a new Deposit" do
         expect {
-          post :create, :deposit => @deposit_attributes
+          post :create, deposit: @deposit_attributes
         }.to change(Deposit, :count).by(1)
       end
 
       it "assigns a newly created deposit as @deposit" do
-        post :create, :deposit => @deposit_attributes
+        post :create, deposit: @deposit_attributes
 
         assigns(:deposit).should be_a(Deposit)
         assigns(:deposit).should be_persisted
       end
 
       it "redirects to the list of deposits" do
-        post :create, :deposit => @deposit_attributes
+        post :create, deposit: @deposit_attributes
         response.should redirect_to([:admin, Deposit])
       end
     end
@@ -69,14 +69,14 @@ describe Admin::DepositsController do
       it "assigns a newly created but unsaved deposit as @deposit" do
         subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
-        post :create, :deposit => { "name" => "invalid value" }
+        post :create, deposit: { "name" => "invalid value" }
         assigns(:deposit).should be_a_new(Deposit)
       end
 
       it "re-renders the 'new' template" do
         subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
-        post :create, :deposit => { "name" => "invalid value" }
+        post :create, deposit: { "name" => "invalid value" }
         response.should render_template("new")
       end
     end
@@ -87,12 +87,12 @@ describe Admin::DepositsController do
       deposit
 
       expect {
-        delete :destroy, :id => deposit.to_param
+        delete :destroy, id: deposit.to_param
       }.to change(Deposit, :count).by(-1)
     end
 
     it "redirects to the deposits list" do
-      delete :destroy, :id => deposit.to_param
+      delete :destroy, id: deposit.to_param
       response.should redirect_to(admin_deposits_url)
     end
   end

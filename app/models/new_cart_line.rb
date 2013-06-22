@@ -6,9 +6,9 @@ class NewCartLine
   attr_accessor :user, :cart_id, :cart_name, :asset_id, :quantity
   attr_reader :persisted
 
-  validates :user, :presence => true
-  validates :cart_name, :length => {:minimum => 2, :maximum => 30}, :allow_blank => true
-  validates :quantity, :numericality => { :only_integer => true, :greater_than => 0 }
+  validates :user, presence: true
+  validates :cart_name, length: {minimum: 2, maximum: 30}, allow_blank: true
+  validates :quantity, numericality: { only_integer: true, greater_than: 0 }
 
   def initialize(attributes = {})
     attributes.each do |name, value|

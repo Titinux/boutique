@@ -15,13 +15,13 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-= simple_form_for @cart_line, :url => cart_lines_path do |f|
-  = f.input :asset_id, :as => :hidden
+= simple_form_for @cart_line, url: cart_lines_path do |f|
+  = f.input :asset_id, as: :hidden
 
   %fieldset
     %legend= Cart.model_name.human
 
-    = f.input :cart_id, :collection => @cart_line.user.carts, :prompt => false, :required => false
+    = f.input :cart_id, collection: @cart_line.user.carts, prompt: false, required: false
     = f.input :cart_name
 
   %fieldset

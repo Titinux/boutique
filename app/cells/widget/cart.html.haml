@@ -15,7 +15,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-= frame :title => t('cart.my_cart'), :class => 'widget.cart' do
+= frame title: t('cart.my_cart'), class: 'widget.cart' do
   = @cart.name
 
   - if @cart.lines.empty?
@@ -25,4 +25,4 @@
       - @cart.lines.joins(:asset).order(Asset.arel_table[:name]).each do |line|
         %li= [line.quantity, line.asset.name].join(' ')
 
-    %p= link_to t('order.makeOrder'), new_user_order_path(:cart_id => @cart.id)
+    %p= link_to t('order.makeOrder'), new_user_order_path(cart_id: @cart.id)

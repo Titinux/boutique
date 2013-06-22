@@ -15,7 +15,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-= content_title t('cart.showing', :name => @cart.name)
+= content_title t('cart.showing', name: @cart.name)
 
 %p
   = link_to_edit edit_cart_path(@cart)
@@ -24,10 +24,10 @@
 = show_for @cart do |c|
   = c.attribute :name
 
-= render :partial => 'cart_lines/table', :locals => { :cart => @cart }
+= render partial: 'cart_lines/table', locals: { cart: @cart }
 
 - unless @cart.lines.empty?
-  %p= link_to t('order.makeOrder'), new_user_order_path(:cart_id => @cart.id)
+  %p= link_to t('order.makeOrder'), new_user_order_path(cart_id: @cart.id)
 
 = content_for :sidebar do
   = render_cell :widget, :carts

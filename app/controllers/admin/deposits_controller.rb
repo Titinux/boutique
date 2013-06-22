@@ -19,7 +19,7 @@ class Admin::DepositsController < Admin::AdminController
   def index
     search_params = {"s" => "asset_name asc", "validated_false" => '1'}.merge(params[:q] || {})
 
-    @q        = Deposit.includes(:user, :asset => :category).search(search_params)
+    @q        = Deposit.includes(:user, asset: :category).search(search_params)
     @deposits = @q.result.page(params[:page])
 
     respond_with(@deposits)
@@ -32,11 +32,11 @@ class Admin::DepositsController < Admin::AdminController
   def create
     validated = deposit_params[:validated] == '1'
 
-    @deposit = Deposit.find_or_new({ :user_id => deposit_params[:user_id], :asset_id => deposit_params[:asset_id], :validated => validated})
+    @deposit = Deposit.find_or_new({ user_id: deposit_params[:user_id], asset_id: deposit_params[:asset_id], validated: validated})
     @deposit.quantity_modifier = deposit_params[:quantity_modifier]
     @deposit.save
 
-    respond_with(@deposit, :location => admin_deposits_path)
+    respond_with(@deposit, location: admin_deposits_path)
   end
 
   def destroy

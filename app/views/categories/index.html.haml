@@ -16,7 +16,7 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 %div#categories
-  = render :partial => 'categories', :locals => { :categories => @categories }
+  = render partial: 'categories', locals: { categories: @categories }
 
 = content_for :sidebar do
   = render_cell :widget, :cart

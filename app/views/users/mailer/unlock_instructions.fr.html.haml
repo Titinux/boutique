@@ -21,4 +21,4 @@
 
 %p Veuillez cliquer sur le lien ci-dessous afin de débloquer votre compte :
 
-%p= link_to 'Débloquer mon compte', unlock_url(@resource, :unlock_token => @resource.unlock_token, :locale => 'fr')
+%p= link_to 'Débloquer mon compte', unlock_url(@resource, unlock_token: @resource.unlock_token, locale: 'fr')

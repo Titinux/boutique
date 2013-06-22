@@ -17,7 +17,7 @@
 
 = content_title t('devise.links.unlock_mail_not_received')
 
-= simple_form_for(resource, :as => resource_name, :url => unlock_path(resource_name)) do |f|
+= simple_form_for(resource, as: resource_name, url: unlock_path(resource_name)) do |f|
   = devise_error_messages!
 
   = f.input :email
@@ -25,4 +25,4 @@
   .form-actions
     = f.button :submit, t('devise.unlocks.resend')
 
-= render :partial => 'users/shared/links'
+= render partial: 'users/shared/links'

@@ -24,43 +24,43 @@ describe User do
 
   describe '#name' do
     it 'should not be empty or nil' do
-      build(:user, :name => '').should_not be_valid
-      build(:asset, :name => nil).should_not be_valid
+      build(:user, name: '').should_not be_valid
+      build(:asset, name: nil).should_not be_valid
     end
 
     it 'size should be within 3 to 25 characters' do
-      build(:user, :name => 'f').should_not be_valid
-      build(:user, :name => 'f'*26).should_not be_valid
+      build(:user, name: 'f').should_not be_valid
+      build(:user, name: 'f'*26).should_not be_valid
     end
 
     it 'should be unique' do
-      @user = create(:user, :name => 'user')
-      build(:user, :name => 'user').should_not be_valid
-      build(:user, :name => 'User').should_not be_valid
+      @user = create(:user, name: 'user')
+      build(:user, name: 'user').should_not be_valid
+      build(:user, name: 'User').should_not be_valid
     end
   end
 
   describe '#email' do
     it "should not be nil" do
-      build(:user, :email => nil).should_not be_valid
+      build(:user, email: nil).should_not be_valid
     end
 
     it 'should be well formed' do
       %w(foo foo.bar.net foo@ foo@net @net foo,foo@bar.net).each do |value|
-        build(:user, :email => value).should_not be_valid
+        build(:user, email: value).should_not be_valid
       end
     end
 
     it 'should be unique' do
-      @user = create(:user, :email => 'user@foo.bar')
-      build(:user, :email => 'user@foo.bar').should_not be_valid
-      build(:user, :email => 'User@Foo.Bar').should_not be_valid
+      @user = create(:user, email: 'user@foo.bar')
+      build(:user, email: 'user@foo.bar').should_not be_valid
+      build(:user, email: 'User@Foo.Bar').should_not be_valid
     end
   end
 
   describe "#password" do
     it 'should not be nil at the creation' do
-      build(:user, :password => nil).should_not be_valid
+      build(:user, password: nil).should_not be_valid
     end
 
     it 'could be nil in update' do
@@ -72,12 +72,12 @@ describe User do
     end
 
     it 'length should be within 6 and 128 characters' do
-      build(:user, :password => 'f'*5).should_not be_valid
-      build(:user, :password => 'f'*129).should_not be_valid
+      build(:user, password: 'f'*5).should_not be_valid
+      build(:user, password: 'f'*129).should_not be_valid
     end
   end
 
   it 'is not valid if password_confirmation does not match the password' do
-    build(:user, :password_confirmation => 'foo').should_not be_valid
+    build(:user, password_confirmation: 'foo').should_not be_valid
   end
 end

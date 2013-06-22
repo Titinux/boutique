@@ -25,8 +25,8 @@ describe Cart do
   it 'when it is destroyed it must also destroy corresponding lines' do
     proc do
       cart = create(:cart)
-      create(:cart_line, { :cart => cart })
-      create(:cart_line, { :cart => cart })
+      create(:cart_line, { cart: cart })
+      create(:cart_line, { cart: cart })
 
       cart.destroy
     end.should_not change(CartLine, :count)
@@ -34,29 +34,29 @@ describe Cart do
 
   describe '#user' do
     it 'should not be nil' do
-      build(:cart, :user => nil).should_not be_valid
+      build(:cart, user: nil).should_not be_valid
     end
   end
 
   describe '#name' do
     it 'should not be empty or nil' do
-      build(:cart, :name => '').should_not be_valid
-      build(:cart, :name => nil).should_not be_valid
+      build(:cart, name: '').should_not be_valid
+      build(:cart, name: nil).should_not be_valid
     end
 
     it 'size should be within 2 to 30 characters' do
-      build(:category, :name => 'f').should_not be_valid
-      build(:category, :name => 'f'*31).should_not be_valid
+      build(:category, name: 'f').should_not be_valid
+      build(:category, name: 'f'*31).should_not be_valid
     end
 
     it 'should be unique for a user' do
       @user1 = create(:user)
       @user2 = create(:user)
 
-      @cart = create(:cart, :user => @user1, :name => 'My cart')
+      @cart = create(:cart, user: @user1, name: 'My cart')
 
-      build(:cart, :user => @user1, :name => @cart.name).should_not be_valid
-      build(:cart, :user => @user2, :name => @cart.name).should be_valid
+      build(:cart, user: @user1, name: @cart.name).should_not be_valid
+      build(:cart, user: @user2, name: @cart.name).should be_valid
     end
   end
 end

@@ -24,7 +24,7 @@ namespace :unicorn do
     run "if [ -f #{shared_path}/pids/unicorn.pid ]; then kill -s QUIT `cat #{shared_path}/pids/unicorn.pid`; fi"
   end
 
-  task :restart, :roles => :app, :except => { :no_release => true } do
+  task :restart, roles: :app, except: { no_release: true } do
     desc 'Reload unicorn server'
     run "kill -s USR2 `cat #{shared_path}/pids/unicorn.pid`"
   end

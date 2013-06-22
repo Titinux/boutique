@@ -21,5 +21,5 @@ class Guild < ActiveRecord::Base
   has_many :users
 
   # Validation
-  validates :name, presence: true, uniqueness: { case_sensitive: false }, length: { :within => 2..25 }
+  validates :name, presence: true, uniqueness: { case_sensitive: false }, length: { within: 2..25 }
 end

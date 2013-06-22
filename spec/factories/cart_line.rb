@@ -17,8 +17,8 @@
 
 FactoryGirl.define do
   factory :cart_line do
-    association :cart,  :factory => :cart
-    association :asset, :factory => :asset
+    association :cart,  factory: :cart
+    association :asset, factory: :asset
     quantity 42
   end
 end

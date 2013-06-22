@@ -26,9 +26,9 @@
     %th= t('statistics.difference')
 
   - Statistics.stockStats.each do |asset|
-    %tr{ :class => "#{cycle('even', 'odd')}" }
+    %tr{ class: "#{cycle('even', 'odd')}" }
       %td= asset['name']
       - if current_user.try(:gatherer?)
         %td.number= number_with_delimiter(asset['stock'])
         %td.number= number_with_delimiter(asset['ordered'])
-      %td{ :class => "number #{'negative' if (asset['available'] < 0)}"}= number_with_delimiter(asset['available'])
+      %td{ class: "number #{'negative' if (asset['available'] < 0)}"}= number_with_delimiter(asset['available'])

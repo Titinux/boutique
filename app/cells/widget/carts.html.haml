@@ -15,7 +15,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-= frame :title => t('cart.my_carts'), :class => 'widget.carts' do
+= frame title: t('cart.my_carts'), class: 'widget.carts' do
   %ul
     - @carts.order(:name).each do |cart|
       %li= link_to cart.name, cart_path(cart)

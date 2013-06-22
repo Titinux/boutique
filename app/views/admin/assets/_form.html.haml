@@ -17,7 +17,7 @@
 
 = simple_form_for([:admin, @asset], html: { novalidate: true }) do |f|
   = f.input :name, autofocus: true
-  = f.association :category, :collection => Category.order(:name), :prompt => false
+  = f.association :category, collection: Category.order(:name), prompt: false
   = f.input :pictureUri
 
   .form-actions
