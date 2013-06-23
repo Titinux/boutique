@@ -15,53 +15,55 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-class Admin::GuildsController < Admin::AdminController
+module Admin
+  class GuildsController < AdminController
 
-  def index
-    search_params = {"s" => "name asc"}.merge(params[:q] || {})
+    def index
+      search_params = {"s" => "name asc"}.merge(params[:q] || {})
 
-    @q      = Guild.search(search_params)
-    @guilds = @q.result.page(params[:page])
+      @q      = Guild.search(search_params)
+      @guilds = @q.result.page(params[:page])
 
-    respond_with(@guilds)
-  end
-
-  def show
-    respond_with(@guild = Guild.find(params[:id]))
-  end
-
-  def new
-    respond_with(@guild = Guild.new)
-  end
-
-  def edit
-    respond_with(@guild = Guild.find(params[:id]))
-  end
-
-  def create
-    @guild = Guild.new(guild_params)
-    @guild.save
-
-    respond_with(:admin, @guild)
-  end
-
-  def update
-    @guild = Guild.find(params[:id])
-    @guild.update_attributes(guild_params)
-
-    respond_with(:admin, @guild)
-  end
-
-  def destroy
-    @guild = Guild.find(params[:id])
-    @guild.destroy
-
-    respond_with(:admin, @guild)
-  end
-
-  private
-
-    def guild_params
-      params.require(:guild).permit(:name, :pictureUri)
+      respond_with(@guilds)
     end
+
+    def show
+      respond_with(@guild = Guild.find(params[:id]))
+    end
+
+    def new
+      respond_with(@guild = Guild.new)
+    end
+
+    def edit
+      respond_with(@guild = Guild.find(params[:id]))
+    end
+
+    def create
+      @guild = Guild.new(guild_params)
+      @guild.save
+
+      respond_with(:admin, @guild)
+    end
+
+    def update
+      @guild = Guild.find(params[:id])
+      @guild.update_attributes(guild_params)
+
+      respond_with(:admin, @guild)
+    end
+
+    def destroy
+      @guild = Guild.find(params[:id])
+      @guild.destroy
+
+      respond_with(:admin, @guild)
+    end
+
+    private
+
+      def guild_params
+        params.require(:guild).permit(:name, :pictureUri)
+      end
+  end
 end

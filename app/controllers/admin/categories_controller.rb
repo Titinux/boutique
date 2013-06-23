@@ -15,52 +15,54 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-class Admin::CategoriesController < Admin::AdminController
-  def index
-    search_params = {"s" => "name asc"}.merge(params[:q] || {})
+module Admin
+  class CategoriesController < AdminController
+    def index
+      search_params = {"s" => "name asc"}.merge(params[:q] || {})
 
-    @q          = Category.search(search_params)
-    @categories = @q.result.page(params[:page])
+      @q          = Category.search(search_params)
+      @categories = @q.result.page(params[:page])
 
-    respond_with(@categories)
-  end
-
-  def show
-    respond_with(@category = Category.find(params[:id]))
-  end
-
-  def new
-    respond_with(@category = Category.new)
-  end
-
-  def edit
-    respond_with(@category = Category.find(params[:id]))
-  end
-
-  def create
-    @category = Category.new(category_params)
-    @category.save
-
-    respond_with(:admin, @category)
-  end
-
-  def update
-    @category = Category.find(params[:id])
-    @category.update_attributes(category_params)
-
-    respond_with(:admin, @category)
-  end
-
-  def destroy
-    @category = Category.find(params[:id])
-    @category.destroy
-
-    respond_with(:admin, @category)
-  end
-
-  private
-
-    def category_params
-      params.require(:category).permit(:name, :parent_id, :pictureUri)
+      respond_with(@categories)
     end
+
+    def show
+      respond_with(@category = Category.find(params[:id]))
+    end
+
+    def new
+      respond_with(@category = Category.new)
+    end
+
+    def edit
+      respond_with(@category = Category.find(params[:id]))
+    end
+
+    def create
+      @category = Category.new(category_params)
+      @category.save
+
+      respond_with(:admin, @category)
+    end
+
+    def update
+      @category = Category.find(params[:id])
+      @category.update_attributes(category_params)
+
+      respond_with(:admin, @category)
+    end
+
+    def destroy
+      @category = Category.find(params[:id])
+      @category.destroy
+
+      respond_with(:admin, @category)
+    end
+
+    private
+
+      def category_params
+        params.require(:category).permit(:name, :parent_id, :pictureUri)
+      end
+  end
 end

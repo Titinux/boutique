@@ -15,14 +15,16 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-class Admin::AdminController < ApplicationController
-  before_filter :authenticate_administrator!
+module Admin
+  class AdminController < ApplicationController
+    before_filter :authenticate_administrator!
 
-  layout 'admin'
+    layout 'admin'
 
-  def show
-  end
+    def show
+    end
 
-  def about
+    def about
+    end
   end
 end

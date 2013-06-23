@@ -15,57 +15,59 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-class Admin::AdministratorsController < Admin::AdminController
-  def index
-    search_params = {"s" => "name asc"}.merge(params[:q] || {})
+module Admin
+  class AdministratorsController < AdminController
+    def index
+      search_params = {"s" => "name asc"}.merge(params[:q] || {})
 
-    @q               = Administrator.search(search_params)
-    @administrators  = @q.result.page(params[:page])
+      @q               = Administrator.search(search_params)
+      @administrators  = @q.result.page(params[:page])
 
-    respond_with(@administrators)
-  end
-
-  def show
-    respond_with(@administrator = Administrator.find(params[:id]))
-  end
-
-  def new
-    respond_with(@administrator = Administrator.new)
-  end
-
-  def edit
-    respond_with(@administrator = Administrator.find(params[:id]))
-  end
-
-  def create
-    @administrator = Administrator.new(administrator_params)
-    @administrator.save
-
-    respond_with(:admin, @administrator)
-  end
-
-  def update
-    @administrator = Administrator.find(params[:id])
-    @administrator.update_attributes(administrator_params)
-
-    respond_with(:admin, @administrator)
-  end
-
-  def destroy
-    @administrator = Administrator.find(params[:id])
-    @administrator.destroy
-
-    respond_with(:admin, @administrator)
-  end
-
-  private
-
-  def administrator_params
-    if params[:administrator][:password].blank?
-      params[:administrator].delete(:password)
-      params[:administrator].delete(:password_confirmation)
+      respond_with(@administrators)
     end
 
-    params.require(:administrator).permit(:name, :email, :password, :password_confirmation, :blocked)
+    def show
+      respond_with(@administrator = Administrator.find(params[:id]))
+    end
+
+    def new
+      respond_with(@administrator = Administrator.new)
+    end
+
+    def edit
+      respond_with(@administrator = Administrator.find(params[:id]))
+    end
+
+    def create
+      @administrator = Administrator.new(administrator_params)
+      @administrator.save
+
+      respond_with(:admin, @administrator)
+    end
+
+    def update
+      @administrator = Administrator.find(params[:id])
+      @administrator.update_attributes(administrator_params)
+
+      respond_with(:admin, @administrator)
+    end
+
+    def destroy
+      @administrator = Administrator.find(params[:id])
+      @administrator.destroy
+
+      respond_with(:admin, @administrator)
+    end
+
+    private
+
+    def administrator_params
+      if params[:administrator][:password].blank?
+        params[:administrator].delete(:password)
+        params[:administrator].delete(:password_confirmation)
+      end
+
+      params.require(:administrator).permit(:name, :email, :password, :password_confirmation, :blocked)
+    end
   end
 end

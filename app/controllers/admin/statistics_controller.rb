@@ -15,23 +15,25 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-class Admin::StatisticsController < Admin::AdminController
+module Admin
+  class StatisticsController < AdminController
 
-  def index
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render xml: @statlist }
+    def index
+      respond_to do |format|
+        format.html # index.html.erb
+        format.xml  { render xml: @statlist }
+      end
     end
-  end
 
-  def show
-    redirect_to action: 'index' and return unless Statistics.respond_to?("#{params[:id].downcase}Stats")
+    def show
+      redirect_to action: 'index' and return unless Statistics.respond_to?("#{params[:id].downcase}Stats")
 
-    @stats = Statistics.send("#{params[:id].downcase}Stats")
+      @stats = Statistics.send("#{params[:id].downcase}Stats")
 
-    respond_to do |format|
-      format.html { render template: "admin/statistics/#{params[:id]}" }
-      format.xml  { render xml: @stats }
+      respond_to do |format|
+        format.html { render template: "admin/statistics/#{params[:id]}" }
+        format.xml  { render xml: @stats }
+      end
     end
   end
 end

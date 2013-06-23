@@ -15,56 +15,58 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-class Admin::AssetsController < Admin::AdminController
-  respond_to :js, only: [:index, :create, :update]
+module Admin
+  class AssetsController < AdminController
+    respond_to :js, only: [:index, :create, :update]
 
-  def index
-    search_params = {"s" => "name asc"}.merge(params[:q] || {})
+    def index
+      search_params = {"s" => "name asc"}.merge(params[:q] || {})
 
-    @q      = Asset.includes(:category).search(search_params)
-    @assets = @q.result.page(params[:page])
+      @q      = Asset.includes(:category).search(search_params)
+      @assets = @q.result.page(params[:page])
 
-    respond_with(@assets)
-  end
-
-  def show
-    respond_with(@asset = Asset.find(params[:id]))
-  end
-
-  def new
-    respond_with(@asset = Asset.new)
-  end
-
-  def edit
-    respond_with(@asset = Asset.find(params[:id]))
-  end
-
-  def create
-    @asset = Asset.new(asset_params)
-    @asset.save
-
-    respond_with(:admin, @asset) do |format|
-      format.js { render status: :ok, text: '' }
+      respond_with(@assets)
     end
-  end
 
-  def update
-    @asset = Asset.find(params[:id])
-    @asset.update_attributes(asset_params)
+    def show
+      respond_with(@asset = Asset.find(params[:id]))
+    end
 
-    respond_with(:admin, @asset)
-  end
+    def new
+      respond_with(@asset = Asset.new)
+    end
 
-  def destroy
-    @asset = Asset.find(params[:id])
-    @asset.destroy
+    def edit
+      respond_with(@asset = Asset.find(params[:id]))
+    end
 
-    respond_with(:admin, @asset)
-  end
+    def create
+      @asset = Asset.new(asset_params)
+      @asset.save
 
-  private
+      respond_with(:admin, @asset) do |format|
+        format.js { render status: :ok, text: '' }
+      end
+    end
 
-  def asset_params
-    params.require(:asset).permit(:name, :category_id, :pictureUri)
+    def update
+      @asset = Asset.find(params[:id])
+      @asset.update_attributes(asset_params)
+
+      respond_with(:admin, @asset)
+    end
+
+    def destroy
+      @asset = Asset.find(params[:id])
+      @asset.destroy
+
+      respond_with(:admin, @asset)
+    end
+
+    private
+
+    def asset_params
+      params.require(:asset).permit(:name, :category_id, :pictureUri)
+    end
   end
 end

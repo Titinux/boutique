@@ -15,18 +15,20 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-class Admin::LogsController < Admin::AdminController
+module Admin
+  class LogsController < AdminController
 
-  def index
-    search_params = {"s" => "created_at desc"}.merge(params[:q] || {})
+    def index
+      search_params = {"s" => "created_at desc"}.merge(params[:q] || {})
 
-    @q    = Log.search(search_params)
-    @logs = @q.result.page(params[:page]).order('created_at desc')
+      @q    = Log.search(search_params)
+      @logs = @q.result.page(params[:page]).order('created_at desc')
 
-    respond_with(@logs)
-  end
+      respond_with(@logs)
+    end
 
-  def show
-    respond_with(@log = Log.find(params[:id]))
+    def show
+      respond_with(@log = Log.find(params[:id]))
+    end
   end
 end

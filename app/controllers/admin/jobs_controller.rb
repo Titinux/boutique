@@ -15,11 +15,13 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-class Admin::JobsController < Admin::AdminController
-  def destroy
-    @queue = JobQueue.find(params[:job_queue_id])
-    @queue.delete_job(params[:id])
+module Admin
+  class JobsController < AdminController
+    def destroy
+      @queue = JobQueue.find(params[:job_queue_id])
+      @queue.delete_job(params[:id])
 
-    redirect_to admin_job_queues_path
+      redirect_to admin_job_queues_path
+    end
   end
 end

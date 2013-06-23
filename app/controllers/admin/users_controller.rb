@@ -15,80 +15,82 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-class Admin::UsersController < Admin::AdminController
-  respond_to :json, only: :index
+module Admin
+  class UsersController < AdminController
+    respond_to :json, only: :index
 
-  def index
-    search_params = {"s" => "name asc"}.merge(params[:q] || {})
+    def index
+      search_params = {"s" => "name asc"}.merge(params[:q] || {})
 
-    @q = User.includes(:guild).search(search_params)
-    @users = @q.result.page(params[:page])
+      @q = User.includes(:guild).search(search_params)
+      @users = @q.result.page(params[:page])
 
-    respond_with(@users)
-  end
+      respond_with(@users)
+    end
 
-  def show
-    @user = User.find(params[:id])
+    def show
+      @user = User.find(params[:id])
 
-    search_params = {"s" => "asset_name asc"}.merge(params[:q] || {})
+      search_params = {"s" => "asset_name asc"}.merge(params[:q] || {})
 
-    @search_deposits = @user.deposits.includes(asset: :category).validated.search(search_params)
-    @deposits = @search_deposits.result.page(params[:page])
+      @search_deposits = @user.deposits.includes(asset: :category).validated.search(search_params)
+      @deposits = @search_deposits.result.page(params[:page])
 
-    respond_with(@user)
-  end
+      respond_with(@user)
+    end
 
-  def new
-    respond_with(@user = User.new)
-  end
+    def new
+      respond_with(@user = User.new)
+    end
 
-  def edit
-    respond_with(@user = User.find(params[:id]))
-  end
+    def edit
+      respond_with(@user = User.find(params[:id]))
+    end
 
-  def create
-    @user = User.new(user_params.except(:confirmed))
+    def create
+      @user = User.new(user_params.except(:confirmed))
 
-    if @user.save
+      if @user.save
+        @user.confirm! if user_params[:confirmed] == '1'
+      end
+
+      respond_with(:admin, @user)
+    end
+
+    def update
+      @user = User.find(params[:id])
+
+      @user.update_attributes(user_params.except(:confirmed))
       @user.confirm! if user_params[:confirmed] == '1'
+
+      respond_with(:admin, @user)
     end
 
-    respond_with(:admin, @user)
-  end
+    def destroy
+      @user = User.find(params[:id])
+      @user.destroy
 
-  def update
-    @user = User.find(params[:id])
-
-    @user.update_attributes(user_params.except(:confirmed))
-    @user.confirm! if user_params[:confirmed] == '1'
-
-    respond_with(:admin, @user)
-  end
-
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-
-    respond_with(:admin, @user)
-  end
-
-  private
-
-  def user_params
-    if params[:user][:password].blank?
-      params[:user].delete(:password)
-      params[:user].delete(:password_confirmation)
+      respond_with(:admin, @user)
     end
 
-    params.require(:user).permit(:name,
-                                 :password,
-                                 :password_confirmation,
-                                 :dofusNicknames,
-                                 :email,
-                                 :guild_id,
-                                 :pigMoneyBox,
-                                 :gatherer,
-                                 :confirmed,
-                                 :blocked)
+    private
+
+    def user_params
+      if params[:user][:password].blank?
+        params[:user].delete(:password)
+        params[:user].delete(:password_confirmation)
+      end
+
+      params.require(:user).permit(:name,
+                                   :password,
+                                   :password_confirmation,
+                                   :dofusNicknames,
+                                   :email,
+                                   :guild_id,
+                                   :pigMoneyBox,
+                                   :gatherer,
+                                   :confirmed,
+                                   :blocked)
+    end
   end
 end

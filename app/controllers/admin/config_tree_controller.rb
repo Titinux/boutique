@@ -15,38 +15,40 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-class Admin::ConfigTreeController < Admin::AdminController
+module Admin
+  class ConfigTreeController < AdminController
 
-  def index
-    @configElements = ConfigTree.root.all_children
+    def index
+      @configElements = ConfigTree.root.all_children
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render xml: @configElements }
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render xml: @configElements }
+      end
     end
-  end
 
-  def edit
-    @configElement = ConfigTree.find(params[:id])
+    def edit
+      @configElement = ConfigTree.find(params[:id])
 
-    if params[:edit] == 'tree'
-      render action: 'edit_tree'
-    else
-      render action: 'edit_value'
-    end
-  end
-
-  def update
-    @configElement = ConfigTree.find(params[:id])
-
-    respond_to do |format|
-      if @configElement.update_attributes(params[:config_tree])
-        flash[:notice] = 'Config element was successfully updated.'
-        format.html { redirect_to(admin_config_tree_index_path) }
-        format.xml  { head :ok }
+      if params[:edit] == 'tree'
+        render action: 'edit_tree'
       else
-        format.html { render action: "edit" }
-        format.xml  { render xml: @configElement.errors, status: :unprocessable_entity }
+        render action: 'edit_value'
+      end
+    end
+
+    def update
+      @configElement = ConfigTree.find(params[:id])
+
+      respond_to do |format|
+        if @configElement.update_attributes(params[:config_tree])
+          flash[:notice] = 'Config element was successfully updated.'
+          format.html { redirect_to(admin_config_tree_index_path) }
+          format.xml  { head :ok }
+        else
+          format.html { render action: "edit" }
+          format.xml  { render xml: @configElement.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
