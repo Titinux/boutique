@@ -31,20 +31,34 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
-    @user.save
+    @user = User.new(user_params)
 
-    flash[:notice] = t('devise.confirmations.send_instructions')
+    if @user.save
+      flash[:notice] = t('devise.confirmations.send_instructions')
+    end
+
     respond_with(@user, :location => root_path)
   end
 
   def update
     @user = current_user
-    params[:user].delete(:password) if params[:user][:password].blank?
-    params[:user].delete(:password_confirmation) if params[:user][:password_confirmation].blank?
+    @user.update_attributes(user_params)
 
-    @user.update_attributes(params[:user])
+    respond_with(@user, location: user_path)
+  end
 
-    respond_with(@user, :location => user_path)
+  private
+
+  def user_params
+    if params[:user][:password].blank?
+      params[:user].delete(:password)
+      params[:user].delete(:password_confirmation)
+    end
+
+    if action_name == 'create'
+      params.require(:user).permit(:name, :dofusNicknames, :password, :password_confirmation, :email, :guild_id)
+    else
+      params.require(:user).permit(:dofusNicknames, :password, :password_confirmation, :email, :guild_id)
+    end
   end
 end
