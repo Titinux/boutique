@@ -32,9 +32,11 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.save
 
-    flash[:notice] = t('devise.confirmations.send_instructions')
+    if @user.save
+      flash[:notice] = t('devise.confirmations.send_instructions')
+    end
+
     respond_with(@user, location: root_path)
   end
 
@@ -53,6 +55,9 @@ class UsersController < ApplicationController
       params[:user].delete(:password_confirmation)
     end
 
-    params.require(:user).permit(:dofusNicknames, :password, :password_confirmation, :email, :guild_id)
+    user_attributes = [:dofusNicknames, :password, :password_confirmation, :email, :guild_id]
+    user_attributes << :name if params[:action] == 'create'
+
+    params.require(:user).permit(user_attributes)
   end
 end
