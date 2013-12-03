@@ -2,10 +2,10 @@
 source 'https://rubygems.org'
 
 # Rails
-gem 'rails', '4.0.0.rc2'
+gem 'rails', '4.0.1'
 gem 'rails-i18n'
 
-gem 'sass-rails', '4.0.0.rc1'
+gem 'sass-rails', '~> 4.0.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 
@@ -32,16 +32,17 @@ gem 'state_machine'
 
 # Controllers
 gem 'responders'
-gem 'ransack', github: 'ernie/ransack', branch: 'rails-4'
+gem 'ransack'
 gem 'cells'
 
 # Views
 gem 'haml'
-gem 'simple_form', '3.0.0.rc'
+gem 'simple_form'
 gem 'show_for'
 gem 'kaminari'
 
-gem 'compass-rails', github: 'milgner/compass-rails', branch: 'rails4'
+gem 'compass', '~> 0.13.alpha.12'
+gem 'compass-rails', '~> 2.0.alpha.0'
 gem 'bootstrap-sass'
 
 # Others
