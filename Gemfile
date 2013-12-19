@@ -2,7 +2,7 @@
 source 'https://rubygems.org'
 
 # Rails
-gem 'rails', '4.0.1'
+gem 'rails', '4.0.2'
 gem 'rails-i18n'
 
 gem 'sass-rails', '~> 4.0.0'
@@ -41,8 +41,7 @@ gem 'simple_form'
 gem 'show_for'
 gem 'kaminari'
 
-gem 'compass', '~> 0.13.alpha.12'
-gem 'compass-rails', '~> 2.0.alpha.0'
+gem 'compass-rails'
 gem 'bootstrap-sass'
 
 # Others
