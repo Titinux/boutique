@@ -14,3 +14,4 @@ config/application.yml
 app/assets/images
 public/stylesheets
 *.sublime-*
+public/assets
