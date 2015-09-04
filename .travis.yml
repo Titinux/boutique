@@ -1,10 +1,20 @@
+sudo: false
 language: ruby
-bundler_args: --without development
+bundler_args: --without development --without production
 rvm:
-  - 2.0.0
+  - 2.2.3
+
+addons:
+  postgresql: "9.4"
+
+services:
+  - memcached
+  - redis-server
+
 before_script:
   - "psql -c 'create database myapp_test;' -U postgres"
   - 'cp config/database.yml.example config/database.yml'
   - 'cp config/application.example.yml config/application.yml'
   - 'rake db:test:load'
+
 script: 'bundle exec rake spec'
