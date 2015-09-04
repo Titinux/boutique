@@ -15,7 +15,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-%table.table.table-bordered.table-striped
+%table
   %thead
     %tr
       %th= sort_link @q, :name
@@ -33,7 +33,8 @@
             = image_tag(asset.pictureUri, alt: t('pictureOf', subject: asset.name), width: 50, height: 50)
 
         %td.actions
-          = link_to_show admin_asset_path(asset)
-          = link_to_edit edit_admin_asset_path(asset)
-          = link_to_destroy admin_asset_path(asset)
+          = dropdown_menu(asset.id) do
+            %li= link_to_show admin_asset_path(asset)
+            %li= link_to_edit edit_admin_asset_path(asset)
+            %li= link_to_destroy admin_asset_path(asset)
 

@@ -15,7 +15,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-%table.table.table-bordered.table-striped
+%table
   %thead
   %tr
     %th=Job.human_attribute_name :jid
@@ -48,4 +48,5 @@
             = l(job.retried_at)
 
         %td.actions
-          = link_to_destroy [:admin, queue, job]
+          = dropdown_menu(job.id) do
+            %li= link_to_destroy [:admin, queue, job]

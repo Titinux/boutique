@@ -19,7 +19,7 @@
   = f.association :user, collection: User.order(:name), prompt: false
   = f.input :comment, input_html: { cols: 40, rows: 7 }
 
-  %table#order_lines.table.table-bordered.table-striped
+  %table#order_lines
     %thead
       %tr
         %th= Asset.model_name.human
@@ -34,11 +34,11 @@
           %td.actions
             = fl.input :_destroy, as: :hidden, input_html: { class: 'remove_fields' }
             = link_to '#', title: t('destroy'), alt: t('destroy'), onclick: "Boutique.remove_fields(this, 'tr'); return false;" do
-              %i.imoon-remove-2
+              = icon('trash')
 
   %p
     = link_to '#', title: t('order.add_line'), alt: t('order.add_line'), onclick: "Boutique.add_nested_form('#order_line_template', '#order_lines tbody'); return false;" do
-      %i.imoon-plus
+      = icon('plus')
       = t('order.add_line')
 
   .form-actions
@@ -50,6 +50,6 @@
         = render 'line_fields', f: flt
         %td.actions
           = link_to '#', title: t('destroy'), alt: t('destroy'), onclick: "Boutique.remove_fields(this, 'tr'); return false;" do
-            %i.imoon-remove-2
+            = icon('trash')
 
 

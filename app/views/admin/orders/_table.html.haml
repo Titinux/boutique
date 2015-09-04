@@ -15,7 +15,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-%table.table.table-bordered.table-striped
+%table
   %thead
     %tr
       %th= sort_link @q, :id
@@ -34,7 +34,9 @@
           %span.label{class: order.state}= Order.human_state_name(order.state)
         %td.currency= number_to_currency(order.total, unit: 'K', precision: 0)
         %td.date= l(order.updated_at)
+
         %td.actions
-          = link_to_show admin_order_path(order)
-          = link_to_edit edit_admin_order_path(order)
-          = link_to_destroy admin_order_path(order)
+          = dropdown_menu(order.id) do
+            %li= link_to_show admin_order_path(order)
+            %li= link_to_edit edit_admin_order_path(order)
+            %li= link_to_destroy admin_order_path(order)

@@ -15,7 +15,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-%table.table.table-bordered.table-striped
+%table
   %thead
     %tr
       %th= sort_link @q, :name
@@ -28,6 +28,7 @@
         %td= administrator.name
         %td= administrator.email
         %td.actions
-          = link_to_show admin_administrator_path(administrator)
-          = link_to_edit edit_admin_administrator_path(administrator)
-          = link_to_destroy admin_administrator_path(administrator)
+          = dropdown_menu(administrator.id) do
+            %li= link_to_show    [:admin, administrator]
+            %li= link_to_edit    [:edit, :admin, administrator]
+            %li= link_to_destroy [:admin, administrator] unless administrator.id == current_administrator.id

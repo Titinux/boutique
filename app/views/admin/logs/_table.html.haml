@@ -15,7 +15,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-%table.table.table-bordered.table-striped
+%table
   %thead
     %tr
       %th= sort_link @q, :id
@@ -37,5 +37,7 @@
         %td= log.objectType
         %td= log.objectId
         %td= l(log.created_at)
+
         %td.actions
-          = link_to_show admin_log_path(log)
+          = dropdown_menu(category.id) do
+            %li= link_to_show admin_log_path(log)

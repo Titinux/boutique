@@ -41,8 +41,9 @@ gem 'simple_form'
 gem 'show_for'
 gem 'kaminari'
 
-gem 'compass-rails'
-gem 'bootstrap-sass'
+gem 'compass-rails', '~> 2.0', '>= 2.0.4'
+gem 'foundation-rails', '~> 5.5'
+gem 'font-awesome-sass', '~> 4.3'
 
 # Others
 #gem 'javan-whenever', lib: false, source: 'http://gems.github.com'

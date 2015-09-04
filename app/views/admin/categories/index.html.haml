@@ -20,21 +20,16 @@
 
 = content_title t('category.listing')
 
-#category-filter.accordion
-  .accordion-group
-    .accordion-heading
-      %a.accordion-toggle{ href: '#collapseOne', data: { toggle: 'collapse', parent: '#category-filter' }}
-        %i.imoon-filter
-        Filter
+%ul#category-filter.accordion{ data: { accordion: true }}
+  %li.accordion-navigation
+    =link_to 'Filter', '#collapseOne'
+    #collapseOne.content
+      = simple_form_for(@q, url: admin_categories_path, method: :get) do |f|
+        = f.input :name_cont, label: Category.human_attribute_name(:name), required: false
+        = f.input :parent_name_cont, label: Category.human_attribute_name(:parent), required: false
 
-    #collapseOne.accordion-body.collapse
-      .accordion-inner
-        = simple_form_for(@q, url: admin_categories_path, method: :get) do |f|
-          = f.input :name_cont, label: Category.human_attribute_name(:name), required: false
-          = f.input :parent_name_cont, label: Category.human_attribute_name(:parent), required: false
-
-          .form-actions
-            = f.button :submit, t('helpers.submit.search'), class: 'btn btn-primary'
+        .form-actions
+          = f.button :submit, t('helpers.submit.search'), class: 'button tiny'
 
 
 

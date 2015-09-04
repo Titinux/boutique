@@ -22,7 +22,7 @@
   \:
   = number_to_currency(@stats[:sum], unit: 'K', precision: 0)
 
-%table.table.table-bordered.table-striped
+%table
   %caption= t('statistics.pigMoneyBox.richests', {count: @stats[:richests].size})
   - @stats[:richests].each_with_index do |user, index|
     %tr

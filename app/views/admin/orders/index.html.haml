@@ -20,25 +20,20 @@
 
 = content_title t('order.listing')
 
-#order-filter.accordion
-  .accordion-group
-    .accordion-heading
-      %a.accordion-toggle{ href: '#collapseOne', data: { toggle: 'collapse', parent: '#order-filter' }}
-        %i.imoon-filter
-        Filter
+%ul#order-filter.accordion{ data: { accordion: true }}
+  %li.accordion-navigation
+    =link_to 'Filter', '#collapseOne'
+    #collapseOne.content
+      = simple_form_for(@q, url: admin_orders_path, method: :get) do |f|
+        = f.input :id_eq, label: Order.human_attribute_name(:id), required: false
+        = f.input :user_name_cont, label: User.model_name.human, required: false
+        = f.input :state_in, collection: Order.state_machine.states.map{ |o| [content_tag(:span, Order.human_state_name(o.name), class: "label #{o.name}"), o.name.to_s]},
+                             as: :check_boxes,
+                             required: false,
+                             label: false
 
-    #collapseOne.accordion-body.collapse
-      .accordion-inner
-        = simple_form_for(@q, url: admin_orders_path, method: :get) do |f|
-          = f.input :id_eq, label: Order.human_attribute_name(:id), required: false
-          = f.input :user_name_cont, label: User.model_name.human, required: false
-          = f.input :state_in, collection: Order.state_machine.states.map{ |o| [content_tag(:span, Order.human_state_name(o.name), class: "label #{o.name}"), o.name.to_s]},
-                               as: :check_boxes,
-                               required: false,
-                               label: false
-
-          .form-actions
-            = f.button :submit, t('helpers.submit.search'), class: 'btn btn-primary'
+        .form-actions
+          = f.button :submit, t('helpers.submit.search'), class: 'button tiny'
 
 = paginate @orders
 = render partial: 'table', locals: { orders: @orders }

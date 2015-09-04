@@ -32,7 +32,7 @@
   %li
     Les sources sont gracieusement versionnés par
     = link_to 'https://github.com', target: '_blank' do
-      %i.imoon-github-3
+      = icon('github')
       Github
 
   %li
@@ -52,10 +52,13 @@
     = link_to 'AGPLv3', 'http://www.gnu.org/licenses/agpl-3.0.fr.html', title: 'Licence publique générale GNU Affero', target: '_blank'
     = image_tag 'logo/agplv3.png', title: 'Logo AGPLv3', alt: 'Logo AGPLv3'
 
-%p
-  %i.imoon-IcoMoon
-  Nous remercions Keyamoon pour les icones que l'on peut retrouver un peu partout dans la partie administration.
-  Ce set d'icon est diffusé sous license
-  = link_to 'CC BY 3.0', 'http://creativecommons.org/licenses/by/3.0/', title: 'Creative Commons Attribution 3.0 Unported', target: '_blank'
-  et on peut le retrouver sur le site
-  = link_to 'http://icomoon.io', 'http://icomoon.io', title: 'IcoMoon', target: '_blank'
+  %li
+    Les icônes que l'on peut voir un peu partout dans la partie administration proviennent du projet
+    = icon('flag')
+    = link_to 'FontAwesome', 'http://fontawesome.io', title: 'FontAwesome', target: '_blank'
+    \. Ce set d'icônes est diffusé sous license
+    = link_to 'SIL OFL 1.1', 'http://scripts.sil.org/OFL', title: 'SIL Open Font License', target: '_blank'
+    et le code est sous
+    = link_to 'MIT License', 'http://opensource.org/licenses/mit-license.html', title: 'The MIT License', target: '_blank'
+    \.
+

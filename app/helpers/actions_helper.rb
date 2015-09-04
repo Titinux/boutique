@@ -16,51 +16,106 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 module ActionsHelper
-  def link_to_action(link, text, picture, *args)
-    options = args.extract_options!
-    options[:format] ||= :short
-
-    link_to(link, options.except(:format, :text)) do
-      out = "<i class=\"#{picture} action\" title=\"#{options[:text]}\"></i>"
-      out << ' ' + text if options[:format] == :long
-      out.html_safe
-    end
-  end
+  include FontAwesome::Sass::Rails::ViewHelpers
+  include ActionView::Helpers::TranslationHelper
 
   def link_to_show(link, *args)
     options = args.extract_options!
+    options[:icon] ||= 'search'
     options[:text] ||= t('show')
 
-    link_to_action link, options[:text], 'imoon-search ', options
+    link_to_action options[:text], link, options
   end
 
-  def link_to_edit(link, *args)
+  def link_to_new(link, *args)
     options = args.extract_options!
-    options[:text] ||= t('edit')
+    text = options.delete(:text) || t('create')
 
-    link_to_action link, options[:text], 'imoon-pencil-2', options
-  end
+    options[:icon] ||= 'plus'
 
-  def link_to_destroy(link, *args)
-    options = args.extract_options!
-    options[:text] ||= t('destroy')
-    options[:data] = { confirm: t('destroy_confirm') }.merge(options[:data] || {})
-    options[:method] = :delete
-
-    link_to_action link, options[:text], 'imoon-remove-2', options
+    link_to_action text, link, options
   end
 
   def link_to_add(link, *args)
     options = args.extract_options!
-    options[:text] ||= t('new')
+    text = options.delete(:text) || t('add')
 
-    link_to_action link, options[:text], 'imoon-plus', options
+    options[:icon] ||= 'plus'
+
+    link_to_action text, link, options
+  end
+
+  def link_to_edit(link, *args)
+    options = args.extract_options!
+    text = options.delete(:text) || t('edit')
+
+    options[:icon] ||= 'edit'
+
+    link_to_action text, link, options
+  end
+
+  def link_to_sort(link, *args)
+    options = args.extract_options!
+    text = options.delete(:text) || t('sort')
+
+    options[:icon] ||= 'random'
+
+    link_to_action text, link, options
+  end
+
+  def link_to_destroy(link, *args)
+    options = args.extract_options!
+    text = options.delete(:text) || t('destroy')
+
+    options[:data] ||= {}
+    options[:data][:method] ||= :delete
+    options[:data][:confirm] ||= t('destroy_confirm')
+
+    options[:icon] ||= 'trash'
+
+    link_to_action text, link, options
+  end
+
+  def link_to_event(link, *args)
+    options = args.extract_options!
+    text = options.delete(:text) || t('action')
+
+    options[:icon] ||= 'bolt'
+
+    link_to_action text, link, options
   end
 
   def link_to_back(link, *args)
     options = args.extract_options!
-    options[:text] ||= t('back')
+    text = options.delete(:text) || t('back')
 
-    link_to_action link, options[:text], 'imoon-arrow-left-3', options
+    options[:icon] ||= 'arrow-left'
+
+    link_to_action text, link, options
+  end
+
+  def link_to_action(text, link, *args)
+    options = args.extract_options!
+    icon = options.delete(:icon)
+
+    out = ''
+    out += icon(icon) if icon.present?
+    out += text unless options[:format] == :icon_only
+
+    capture do
+      link_to out.html_safe, link, options
+    end
+  end
+
+  def dropdown_menu(id, &block)
+    capture do
+      haml_tag 'button.button.dropdown.tiny', data: { dropdown: "drop#{id}" } do
+        concat icon('wrench')
+      end
+
+      haml_tag "ul#drop#{id}.f-dropdown", data: { 'dropdown-content' => true }, tabindex: -1 do
+        concat capture(&block)
+      end
+    end
   end
 end

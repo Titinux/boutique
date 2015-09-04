@@ -16,29 +16,24 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 = sidebar do
-  = link_to_add t('deposit.new'), new_admin_deposit_path, text: t('deposit.new'), format: :long
+  = link_to_add new_admin_deposit_path, text: t('deposit.new'), format: :long
 
 = content_title t('deposit.listing')
 
-#deposit-filter.accordion
-  .accordion-group
-    .accordion-heading
-      %a.accordion-toggle{ href: '#collapseOne', data: { toggle: 'collapse', parent: '#deposit-filter' }}
-        %i.imoon-filter
-        Filter
+%ul#deposit-filter.accordion{ data: { accordion: true }}
+  %li.accordion-navigation
+    =link_to 'Filter', '#collapseOne'
+    #collapseOne.content
+      = simple_form_for(@q, url: admin_deposits_path, method: :get) do |f|
+        = f.input :user_name_cont, label: User.model_name.human, required: false
+        = f.input :asset_category_name_cont, label: Category.model_name.human, required: false
+        = f.input :asset_name_cont, label: Asset.model_name.human, required: false
 
-    #collapseOne.accordion-body.collapse
-      .accordion-inner
-        = simple_form_for(@q, url: admin_deposits_path, method: :get) do |f|
-          = f.input :user_name_cont, label: User.model_name.human, required: false
-          = f.input :asset_category_name_cont, label: Category.model_name.human, required: false
-          = f.input :asset_name_cont, label: Asset.model_name.human, required: false
+        = f.input :validated_true, label: Deposit.human_attribute_name(:validated).pluralize(I18n.locale), as: :boolean, require: false
+        = f.input :validated_false, label: Deposit.human_attribute_name(:not_validated).pluralize(I18n.locale), as: :boolean, require: false
 
-          = f.input :validated_true, label: Deposit.human_attribute_name(:validated).pluralize(I18n.locale), as: :boolean, require: false
-          = f.input :validated_false, label: Deposit.human_attribute_name(:not_validated).pluralize(I18n.locale), as: :boolean, require: false
-
-          .form-actions
-            = f.button :submit, t('helpers.submit.search')
+        .form-actions
+          = f.button :submit, t('helpers.submit.search'), class: 'button tiny'
 
 = paginate @deposits
 = render partial: 'table', locals: { deposits: @deposits }

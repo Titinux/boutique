@@ -15,7 +15,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-%table.table.table-bordered.table-striped
+%table
   %thead
     %tr
       %th= sort_link @q, :name
@@ -31,7 +31,9 @@
         %td.picture
           - unless category.pictureUri.blank?
             = image_tag(category.pictureUri, alt: t('pictureOf', subject: category.name), width: 75, height: 75)
+
         %td.actions
-          = link_to_show [:admin, category]
-          = link_to_edit edit_admin_category_path(category)
-          = link_to_destroy [:admin, category], confirm: t('destroy_confirm'), method: :delete
+          = dropdown_menu(category.id) do
+            %li= link_to_show [:admin, category]
+            %li= link_to_edit edit_admin_category_path(category)
+            %li= link_to_destroy [:admin, category], confirm: t('destroy_confirm'), method: :delete

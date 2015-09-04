@@ -15,7 +15,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-%table.table.table-bordered.table-striped
+%table
   %thead
     %tr
       %th= t('guild.blazon')
@@ -29,7 +29,9 @@
           - unless guild.pictureUri.blank?
             = image_tag(guild.pictureUri, alt: t('pictureOf', subject: guild.name), width: 75, height: 75)
         %td= guild.name
+
         %td.actions
-          = link_to_show admin_guild_path(guild)
-          = link_to_edit edit_admin_guild_path(guild)
-          = link_to_destroy admin_guild_path(guild)
+          = dropdown_menu(guild.id) do
+            %li= link_to_show admin_guild_path(guild)
+            %li= link_to_edit edit_admin_guild_path(guild)
+            %li= link_to_destroy admin_guild_path(guild)

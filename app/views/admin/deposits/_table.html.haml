@@ -15,7 +15,7 @@
   You should have received a copy of the GNU Affero General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-%table.table.table-bordered.table-striped
+%table
   %thead
     %tr
       %th= sort_link @q, :user_name, User.model_name.human
@@ -32,7 +32,8 @@
         %td.number= number_with_delimiter(deposit.quantity)
         %td.actions
           - unless deposit.validated
-            = link_to t('deposit.validate'), validate_admin_deposit_path(deposit), method: :put
-            = link_to t('deposit.refuse'), admin_deposit_path(deposit),
-                                           confirm: t('deposit.confirm_refuse', quantity: deposit.quantity, asset: deposit.asset.name, user: deposit.user.name ),
-                                           method: :delete
+            = dropdown_menu(deposit.id) do
+              %li= link_to t('deposit.validate'), validate_admin_deposit_path(deposit), method: :put
+              %li= link_to t('deposit.refuse'), admin_deposit_path(deposit),
+                                                confirm: t('deposit.confirm_refuse', quantity: deposit.quantity, asset: deposit.asset.name, user: deposit.user.name ),
+                                                method: :delete

@@ -1,0 +1,33 @@
+table
+  width: 100%
+
+  tr
+    &.negative
+      background-color: red
+      color: white
+
+    th
+      text-align: center
+
+    td
+      &.actions
+        text-align: center
+
+        >*
+          text-align: left
+
+      &.number
+        text-align: right
+        &.negative
+          font-weight: bold
+      &.currency
+        text-align: right
+      &.boolean
+        text-align: center
+      &.date
+        text-align: center
+      &.states
+        text-align: center
+
+.pagination.center
+  text-align: center
