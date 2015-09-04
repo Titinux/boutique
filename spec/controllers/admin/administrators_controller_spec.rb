@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-require "spec_helper"
+require "rails_helper"
 
 describe Admin::AdministratorsController do
   login_administrator
@@ -25,28 +25,28 @@ describe Admin::AdministratorsController do
   describe "GET index" do
     it "assigns all administrators as @administrators" do
       get :index, {}
-      assigns(:administrators).should eq([subject.current_administrator, administrator])
+      expect(assigns(:administrators)).to eq([subject.current_administrator, administrator])
     end
   end
 
   describe "GET show" do
     it "assigns the requested administrator as @administrator" do
       get :show, {id: administrator.to_param}
-      assigns(:administrator).should eq(administrator)
+      expect(assigns(:administrator)).to eq(administrator)
     end
   end
 
   describe "GET new" do
     it "assigns a new administrator as @administrator" do
       get :new, {}
-      assigns(:administrator).should be_a_new(Administrator)
+      expect(assigns(:administrator)).to be_a_new(Administrator)
     end
   end
 
   describe "GET edit" do
     it "assigns the requested administrator as @administrator" do
       get :edit, {id: administrator.to_param}
-      assigns(:administrator).should eq(administrator)
+      expect(assigns(:administrator)).to eq(administrator)
     end
   end
 
@@ -60,13 +60,13 @@ describe Admin::AdministratorsController do
 
       it "assigns a newly created administrator as @administrator" do
         post :create, {administrator: attributes_for(:administrator)}
-        assigns(:administrator).should be_a(Administrator)
-        assigns(:administrator).should be_persisted
+        expect(assigns(:administrator)).to be_a(Administrator)
+        expect(assigns(:administrator)).to be_persisted
       end
 
       it "redirects to the administrators list" do
         post :create, {administrator: attributes_for(:administrator)}
-        response.should redirect_to([:admin, Administrator])
+        expect(response).to redirect_to([:admin, Administrator])
       end
     end
 
@@ -76,7 +76,7 @@ describe Admin::AdministratorsController do
         subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
         post :create, {administrator: { "name" => "invalid value" }}
-        assigns(:administrator).should be_a_new(Administrator)
+        expect(assigns(:administrator)).to be_a_new(Administrator)
       end
 
       it "re-renders the 'new' template" do
@@ -84,7 +84,7 @@ describe Admin::AdministratorsController do
         subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
         post :create, {administrator: { "name" => "invalid value" }}
-        response.should render_template("new")
+        expect(response).to render_template("new")
       end
     end
   end
@@ -96,18 +96,18 @@ describe Admin::AdministratorsController do
         # specifies that the Administrator created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Administrator.any_instance.should_receive(:update_attributes).with({ "name" => "MyString" })
+        expect(Administrator.any_instance).to receive(:update_attributes).with({ "name" => "MyString" })
         put :update, {id: administrator.to_param, administrator: { "name" => "MyString" }}
       end
 
       it "assigns the requested administrator as @administrator" do
         put :update, {id: administrator.to_param, administrator: attributes_for(:administrator)}
-        assigns(:administrator).should eq(administrator)
+        expect(assigns(:administrator)).to eq(administrator)
       end
 
       it "redirects to the administrators list" do
         put :update, {id: administrator.to_param, administrator: attributes_for(:administrator)}
-        response.should redirect_to([:admin, Administrator])
+        expect(response).to redirect_to([:admin, Administrator])
       end
     end
 
@@ -117,7 +117,7 @@ describe Admin::AdministratorsController do
         subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
         put :update, {id: administrator.to_param, administrator: { "name" => "invalid value" }}
-        assigns(:administrator).should eq(administrator)
+        expect(assigns(:administrator)).to eq(administrator)
       end
 
       it "re-renders the 'edit' template" do
@@ -125,7 +125,7 @@ describe Admin::AdministratorsController do
         subject.responder.any_instance.stub(:has_errors?).and_return(true)
 
         put :update, {id: administrator.to_param, administrator: { "name" => "invalid value" }}
-        response.should render_template("edit")
+        expect(response).to render_template("edit")
       end
     end
   end
@@ -141,7 +141,7 @@ describe Admin::AdministratorsController do
 
     it "redirects to the administrators list" do
     delete :destroy, {id: administrator.to_param}
-      response.should redirect_to(admin_administrators_url)
+      expect(response).to redirect_to(admin_administrators_url)
     end
   end
 
