@@ -23,7 +23,7 @@ class NewCartLine
   end
 
   def cart
-    return user.carts.find_or_create_by_name(cart_name) unless cart_name.blank?
+    return user.carts.find_or_create_by(name: cart_name) unless cart_name.blank?
 
     begin
       user.carts.find(cart_id)
@@ -34,7 +34,7 @@ class NewCartLine
 
   def save
     if valid?
-      line = cart.lines.find_or_create_by_asset_id(asset_id)
+      line = cart.lines.find_or_create_by(asset_id: asset_id)
 
       line.quantity ||= 0
       line.quantity += quantity.to_i

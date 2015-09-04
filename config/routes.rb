@@ -1,4 +1,4 @@
-Boutique::Application.routes.draw do
+Rails.application.routes.draw do
   scope ':locale',
         constraints: { locale: /[a-z]{2}/ } do
 
