@@ -2,7 +2,7 @@
 source 'https://rubygems.org'
 
 # Rails
-gem 'rails', '4.0.2'
+gem 'rails', '4.0.13'
 gem 'rails-i18n'
 
 gem 'sass-rails', '~> 4.0.0'
@@ -33,7 +33,7 @@ gem 'state_machine'
 # Controllers
 gem 'responders'
 gem 'ransack'
-gem 'cells'
+gem 'cells', '< 4.0.0'
 
 # Views
 gem 'haml'

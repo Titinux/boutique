@@ -3,6 +3,7 @@
 --
 
 SET statement_timeout = 0;
+SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -684,11 +685,11 @@ ALTER TABLE ONLY config_values
 
 
 --
--- Name: deposites_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: deposits_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY deposits
-    ADD CONSTRAINT deposites_pkey PRIMARY KEY (id);
+    ADD CONSTRAINT deposits_pkey PRIMARY KEY (id);
 
 
 --
