@@ -18,7 +18,7 @@
 = frame title: t('order.commandId', id: @order.id) do
   = show_for @order do |o|
     = o.attribute :state do
-      = Order.human_state_name(@order.state)
+      = @order.aasm.human_state
 
     = o.attribute :total do
       = number_to_currency(@order.total, unit: 'K', precision: 0)
@@ -28,8 +28,7 @@
   = frame title: t('order.details') do
     = render partial: 'order_lines_table', locals: { order: @order }
 
-
-  - @order.state_events.select{ |e| [:quote_accepted, :cancel].include?(e)}.each do |event|
-    %p= link_to Order.human_state_event_name(event), event_user_order_path(@order, event.to_s), method: :post
+  - (@order.aasm.events.map(&:name) & [:quote_accepted, :cancel]).each do |event_name|
+    %p= link_to Order.aasm.human_event_name(event_name), event_user_order_path(@order, event_name.to_s), method: :post
 
   %p= link_to_back user_orders_path

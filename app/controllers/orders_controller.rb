@@ -55,9 +55,9 @@ class OrdersController < ApplicationController
     event  = params[:event].to_sym
 
     if [:quote_accepted, :cancel].include?(event)
-      @order.fire_state_event(event)
+      @order.send("#{event}!")
     end
 
-    respond_with([:user, @order])
+    respond_with(@order, location: user_order_path(@order))
   end
 end

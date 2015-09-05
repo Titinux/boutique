@@ -27,7 +27,7 @@
       = simple_form_for(@q, url: admin_orders_path, method: :get) do |f|
         = f.input :id_eq, label: Order.human_attribute_name(:id), required: false
         = f.input :user_name_cont, label: User.model_name.human, required: false
-        = f.input :state_in, collection: Order.state_machine.states.map{ |o| [content_tag(:span, Order.human_state_name(o.name), class: "label #{o.name}"), o.name.to_s]},
+        = f.input :state_in, collection: Order.aasm.states.map { |state| [content_tag(:span, state.human_name), state.name.to_s]},
                              as: :check_boxes,
                              required: false,
                              label: false

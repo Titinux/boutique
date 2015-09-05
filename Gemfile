@@ -28,7 +28,7 @@ gem 'devise-i18n'
 gem 'devise-encryptable', '>= 0.1.2'
 
 # Models
-gem 'state_machine'
+gem 'aasm'
 
 # Controllers
 gem 'responders'

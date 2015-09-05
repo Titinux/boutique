@@ -65,8 +65,8 @@ module Admin
       @order = Order.find(params[:id])
 
       if @order.update_attributes(quote_params)
-        if @order.state_events.include?(:quote_done) && @order.quote_ready?
-          @order.quote_done
+        if @order.aasm.events.map(&:name).include?(:quote_done) && @order.quote_ready?
+          @order.quote_done!
         end
       end
 
@@ -75,7 +75,7 @@ module Admin
 
     def event
       @order = Order.find(params[:id])
-      @order.send params[:event]
+      @order.send("#{params[:event].to_sym}!")
 
       redirect_to action: :show
     end

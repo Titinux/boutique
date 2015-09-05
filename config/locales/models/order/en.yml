@@ -7,29 +7,25 @@ en:
       order:
         total: Total amount
         id: #
-        state: State
         dispatched: Dispatched
         created_at: Created at
         comment: Comment
         user: user
+        state: State
+        state/quotation: Waiting quotation
+        state/quote_validation: Quote validation
+        state/preparation: Preparation
+        state/delivery: Delivery
+        state/complete: Complete
+        state/canceled: Canceled
 
-    state_machines:
+    events:
       order:
-        state:
-          states:
-            quotation: Waiting quotation
-            quote_validation: Quote validation
-            preparation: Preparation
-            delivery: Delivery
-            complete: Complete
-            canceled: Canceled
-
-          events:
-            quote_done: Quote done
-            quote_accepted: Accept this quote
-            prepared: Order prepared
-            delivered: Order delivered
-            cancel: Cancel this order
+        quote_done: Quote done
+        quote_accepted: Accept this quote
+        prepared: Order prepared
+        delivered: Order delivered
+        cancel: Cancel this order
 
   # Order
   order:

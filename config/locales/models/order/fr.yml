@@ -7,30 +7,26 @@ fr:
       order:
         total: Montant total
         id: N°
-        state: État
         dispatched: Répartie
         created_at: Créée le
         updated_at: Modifiée le
         comment: Commentaire
         user: Utilisateur
+        state: État
+        state/quotation: En attente du devis
+        state/quote_validation: Validation du devis
+        state/preparation: Préparation
+        state/delivery: Livraison
+        state/complete: Terminée
+        state/canceled: Annulée
 
-    state_machines:
+    events:
       order:
-        state:
-          states:
-            quotation: En attente du devis
-            quote_validation: Validation du devis
-            preparation: Préparation
-            delivery: Livraison
-            complete: Terminée
-            canceled: Annulée
-
-          events:
-            quote_done: Devis réalisé
-            quote_accepted: Accepter le devis
-            prepared: Commande préparée
-            delivered: Commande livrée
-            cancel: Annuler cette commande
+        quote_done: Devis réalisé
+        quote_accepted: Accepter le devis
+        prepared: Commande préparée
+        delivered: Commande livrée
+        cancel: Annuler cette commande
 
   # Order
   order:

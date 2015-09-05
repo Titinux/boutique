@@ -16,6 +16,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class Order < ActiveRecord::Base
+  include AASM
+
+  STATES = [:quotation, :quote_validation, :preparation, :delivery, :complete, :canceled]
+
   belongs_to :user
   has_many   :lines, class_name: 'OrderLine', dependent: :delete_all
 
@@ -30,37 +34,44 @@ class Order < ActiveRecord::Base
   # Callbacks
   after_save :notifications
 
-  state_machine :state, :initial => :quotation do
+  aasm column: :state, whiny_transitions: false do
+    state :quotation, initial: true
+    state :quote_validation
+    state :preparation
+    state :delivery
+    state :complete
+    state :canceled
+
     event :quote_done do
-      transition :quotation => :quote_validation, if: :quote_ready?
+      transitions from: :quotation, to: :quote_validation, guard: :quote_ready?
     end
 
     event :quote_accepted do
-      transition :quote_validation => :preparation
+      transitions from: :quote_validation, to: :preparation
     end
 
     event :prepared do
-      transition :preparation => :delivery
+      transitions from: :preparation, to: :delivery
     end
 
     event :delivered do
-      transition :delivery => :complete
+      transitions from: :delivery, to: :complete
     end
 
     event :cancel do
-      transition any - [:complete, :canceled] => :canceled
+      transitions from: STATES - [:complete, :canceled], to: :canceled
     end
 
-    after_transition any => any do |order, transition|
-      payload = {
-        order_id: order.id,
-        event:    transition.event,
-        from:     transition.from_name,
-        to:       transition.to_name
-      }
+    # after_transition from: STATES, to: STATES do |order, transition|
+    #   payload = {
+    #     order_id: order.id,
+    #     event:    transition.event,
+    #     from:     transition.from_name,
+    #     to:       transition.to_name
+    #   }
 
-      ActiveSupport::Notifications.instrument "state_changed.orders.dofus_shop.event", payload
-    end
+    #   ActiveSupport::Notifications.instrument "state_changed.orders.dofus_shop.event", payload
+    # end
   end
 
   def quote_ready?

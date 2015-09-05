@@ -31,7 +31,7 @@
         %td= order.id
         %td= link_to order.user.name, [:admin, order.user], title: order.user.dofusNicknames
         %td.states
-          %span.label{class: order.state}= Order.human_state_name(order.state)
+          %span.label{class: order.state}= order.aasm.human_state
         %td.currency= number_to_currency(order.total, unit: 'K', precision: 0)
         %td.date= l(order.updated_at)
 
