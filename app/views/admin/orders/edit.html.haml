@@ -19,5 +19,6 @@
 
 = render partial: 'form'
 
-= link_to_back admin_orders_path
-= link_to_show [:admin, @order]
+= sidebar do
+  = link_to_back admin_orders_path, class: 'button tiny'
+  = link_to_show [:admin, @order], class: 'button tiny'

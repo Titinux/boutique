@@ -32,12 +32,17 @@
 = frame title: t('order.details') do
   = render partial: 'admin/order_lines/table', locals: { order: @order }
 
-%ul.nav.nav-list
-  %li.nav-header= t('action').pluralize
-  %li= link_to_edit edit_admin_order_path(@order)
-  - unless @order.quote_ready?
-    %li= link_to t('order.draw_up_quote'), quote_admin_order_path(@order)
+= sidebar do
+  = link_to_edit edit_admin_order_path(@order), class: 'button tiny radius'
 
-  %li.nav-header= t('event').pluralize
-  - @order.aasm.events.each do |event|
-    %li= link_to Order.aasm.human_event_name(event.name), event_admin_order_path(@order, event.name.to_s), method: :post
+  - unless @order.quote_ready?
+    = link_to t('order.draw_up_quote'), quote_admin_order_path(@order), class: 'button tiny radius'
+
+  - if @order.aasm.events.any?
+    = link_to '#', class: 'button tiny split' do
+      = t('event').pluralize
+      %span{ data: { dropdown: 'events' }}
+    %ul#events.f-dropdown{ data: { 'dropdown-content': true }}
+      - @order.aasm.events.each do |event|
+        %li= link_to Order.aasm.human_event_name(event.name), event_admin_order_path(@order, event.name.to_s), method: :post
+
