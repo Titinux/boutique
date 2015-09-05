@@ -7,5 +7,21 @@
 #   Mayor.create(name: 'Daley', city: cities.first)
 
 if Rails.env == 'development'
-  Administrator.create! name: 'administrator', email: 'admin@example.com', password: 'administrator', password_confirmation: 'administrator'
+  if Administrator.count == 0
+    Administrator.create! name: 'administrator', email: 'admin@example.com', password: 'administrator', password_confirmation: 'administrator'
+  end
+
+  if Category.count == 0
+    (1..10).each do |c|
+      cat = Category.create! name: "Category #{c}"
+
+      rand(10).times do |sc|
+        subcat = Category.create! name: "Category #{c}-#{sc}", parent_id: cat.id
+
+        rand(100).times do |p|
+          Asset.create! name: "Asset #{c}-#{sc} #{p}", category_id: subcat.id
+        end
+      end
+    end
+  end
 end
