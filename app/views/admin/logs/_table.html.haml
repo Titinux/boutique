@@ -39,5 +39,5 @@
         %td= l(log.created_at)
 
         %td.actions
-          = dropdown_menu(category.id) do
+          = dropdown_menu(log.id) do
             %li= link_to_show admin_log_path(log)
