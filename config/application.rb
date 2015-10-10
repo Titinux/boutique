@@ -10,11 +10,6 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-# Load config file
-CONFIG = YAML.load(File.read(File.expand_path('../application.yml', __FILE__)))
-CONFIG.merge! CONFIG.fetch(Rails.env, {})
-CONFIG.symbolize_keys!
-
 module Boutique
   VERSION = "1.2.3".freeze
 
@@ -79,8 +74,18 @@ module Boutique
     config.middleware.use Rack::Locale
 
     # Mailer config
-    CONFIG[:action_mailer].each_pair do |key, value|
-      config.action_mailer.send("#{key}=".to_sym, value)
-    end
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.raise_delivery_errors = false
+
+    config.action_mailer.default_url_options = { host: 'boutique.hyze.fr' }
+    config.action_mailer.smtp_settings = {
+      address:              'smtp.titinux.net',
+      domain:               'boutique.hyze.fr',
+      port:                 25,
+      authentication:       'plain',
+      enable_starttls_auto: false,
+      user_name:            'contact@boutique.hyze.fr',
+      password:             ENV['SMTP_PASSWORD']
+    }
   end
 end
