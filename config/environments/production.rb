@@ -40,7 +40,9 @@ Boutique::Application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
   # Use a different cache store in production
-  config.cache_store = :dalli_store, '127.0.0.1:11211', { :namespace => 'boutique.hyze.fr' }
+  if ENV['MEMCACHE_PORT'].present?
+    config.cache_store = :dalli_store, ENV['MEMCACHE_PORT'].sub('tcp://', ''), { :namespace => 'boutique.hyze.fr' }
+  end
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
